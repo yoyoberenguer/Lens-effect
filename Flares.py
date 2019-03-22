@@ -137,24 +137,30 @@ class LensFlareEffect(pygame.sprite.Sprite):
             light_position_: pygame.math.Vector2,  # Glow position
             exception_  # texture exception
             ):
+
         w, h = texture_.get_size()
+        dist = uniform(-2, 2)
+
         if texture_ not in exception_:
 
-            texture_ = pygame.transform.smoothscale(texture_, (int(w * size_), int(h * size_)))
+            texture_ = pygame.transform.smoothscale(texture_, (int(w * (size_ * abs(dist))),
+                                                               int(h * size_ * abs(dist))))
+
             w, h = texture_.get_size()
             s_2 = pygame.math.Vector2(w / 2, h / 2)
             surface_ = pygame.Surface((w, h), flags=pygame.SRCALPHA)
-            gfxdraw.textured_polygon(surface_, polygon_ * size_, texture_, 0, 0)
+            gfxdraw.textured_polygon(surface_, polygon_ * size_ * abs(dist), texture_, 0, 0)
             pos_ = tuple(light_position_ - s_2)
-            LensFlareEffect.SECOND_FLARES.append([surface_, pos_, uniform(0, 5)])
+            LensFlareEffect.SECOND_FLARES.append([surface_, pos_, dist])
         else:
 
             s_ = uniform(0.2, size_)
-            texture_ = pygame.transform.smoothscale(texture_, (int(w * s_), int(h * s_)))
+            texture_ = pygame.transform.smoothscale(texture_,
+                                                    (int(w * s_ * abs(dist)), int(h * s_ * abs(dist))))
             w, h = texture_.get_size()
             s_2 = pygame.math.Vector2(w / 2, h / 2)
             pos_ = tuple(light_position_ - s_2)
-            LensFlareEffect.SECOND_FLARES.append([texture_, pos_, uniform(0, 5)])
+            LensFlareEffect.SECOND_FLARES.append([texture_, pos_, dist])
 
     def update(self):
 
@@ -186,7 +192,8 @@ class LensFlareEffect(pygame.sprite.Sprite):
             else:
                 v1 = pygame.math.Vector2(LensFlareEffect.vector.x, LensFlareEffect.vector.y)
                 if v1.length() != 0:
-                    v1.scale_to_length(LensFlareEffect.vector.length() / self.alpha if self.alpha != 0 else 0.2)
+                    v1.scale_to_length(LensFlareEffect.vector.length() * self.alpha)
+
                     self.rect.center = self.position + v1
             self.dt = 0
         self.dt += self.gl.TIME_PASSED_SECONDS
@@ -196,6 +203,7 @@ class GL:
     TIME_PASSED_SECONDS = 0
     All = 0
     screenrect = 0
+
 
 if __name__ == '__main__':
 
@@ -252,30 +260,32 @@ if __name__ == '__main__':
     angle = 0
     LensFlareEffect.SECOND_FLARES = []
 
-    for r in range(2):
+    for r in range(10):
         LensFlareEffect.second_flares(texture, uniform(0.8, 2),
                                       LensFlareEffect.list_,
                                       LensFlareEffect.FLARE_POSITION,
                                       (texture2, texture4))
-    for r in range(2):
-        LensFlareEffect.second_flares(texture2, 1,
-                                      LensFlareEffect.list_,
-                                      LensFlareEffect.FLARE_POSITION,
-                                      (texture2, texture4))
-    for r in range(2):
-        LensFlareEffect.second_flares(texture1, uniform(0.8, 2),
-                                      LensFlareEffect.list_,
-                                      LensFlareEffect.FLARE_POSITION,
-                                      (texture2, texture4))
-    for r in range(2):
-        LensFlareEffect.second_flares(texture4, 1,
+
+    for r in range(10):
+        LensFlareEffect.second_flares(texture2, uniform(0.8, 2),
                                       LensFlareEffect.list_,
                                       LensFlareEffect.FLARE_POSITION,
                                       (texture2, texture4))
 
-    hidden_planer = LensFlareEffect(alpha_=50, gl_=GL, timing_=30, layer_=0, blend_=pygame.BLEND_RGB_ADD)
+    for r in range(5):
+        LensFlareEffect.second_flares(texture1, uniform(0.8, 2),
+                                      LensFlareEffect.list_,
+                                      LensFlareEffect.FLARE_POSITION,
+                                      (texture2, texture4))
+    for r in range(5):
+        LensFlareEffect.second_flares(texture4, uniform(0.8, 2),
+                                      LensFlareEffect.list_,
+                                      LensFlareEffect.FLARE_POSITION,
+                                      (texture2, texture4))
+
+    hidden_planer = LensFlareEffect(alpha_=2, gl_=GL, timing_=30, layer_=0, blend_=pygame.BLEND_RGB_ADD)
     LensFlareEffect.images = texture2
-    glare = LensFlareEffect(alpha_=1.6, gl_=GL, timing_=30, layer_=0, blend_=pygame.BLEND_RGB_ADD)
+    glare = LensFlareEffect(alpha_=1, gl_=GL, timing_=30, layer_=0, blend_=pygame.BLEND_RGB_ADD)
     for flares in LensFlareEffect.SECOND_FLARES:
         LensFlareEffect.images = flares[0]
         LensFlareEffect(alpha_=flares[2], gl_=GL, timing_=30, layer_=0, blend_=pygame.BLEND_RGB_ADD)
@@ -301,7 +311,8 @@ if __name__ == '__main__':
 
             # screenshots
             elif keys[pygame.K_F8]:
-                pygame.image.save(SCREEN, 'Assets\\Screenshot\\Screendump' + str(screendump) + '.png')
+                pygame.image.save(SCREEN, 'Assets\\Screenshot\\Screendump'
+                                  + str(screendump) + '.png')
                 screendump += 1
 
             if event.type == pygame.MOUSEMOTION:
@@ -322,7 +333,7 @@ if __name__ == '__main__':
         TIME_PASSED_SECONDS = clock.tick_busy_loop(60)
         GL.TIME_PASSED_SECONDS = TIME_PASSED_SECONDS
         avg_fps = clock.get_fps()
-        print(avg_fps)
+        # print(avg_fps)
 
         FRAME += 1
 
