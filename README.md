@@ -1,5 +1,5 @@
 # Lens-effect
-Pseudo Lens flare 
+Pseudo Lens flare effect for 2D video game
 
 Reference : (see page https://www.noah.org/wiki/Wavelength_to_RGB_in_Python)
 Wavelength to RGB in Python - Noah.org
