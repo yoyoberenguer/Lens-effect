@@ -31,6 +31,89 @@ import pygame
 from pygame import gfxdraw
 
 
+def wavelength_to_rgb(wavelength, gamma=0.8):
+
+    """
+    :param wavelength: wavelength of light in nanometer
+    :param gamma: default gamma = 0.8
+    :return: return RGB color
+
+    == A few notes about color ==
+
+    Color   Wavelength(nm) Frequency(THz)
+    Red     620-750        484-400
+    Orange  590-620        508-484
+    Yellow  570-590        526-508
+    Green   495-570        606-526
+    Blue    450-495        668-606
+    Violet  380-450        789-668
+
+    f is frequency (cycles per second)
+    l (lambda) is wavelength (meters per cycle)
+    e is energy (Joules)
+    h (Plank's constant) = 6.6260695729 x 10^-34 Joule*seconds
+                         = 6.6260695729 x 10^-34 m^2*kg/seconds
+    c = 299792458 meters per second
+    f = c/l
+    l = c/f
+    e = h*f
+    e = c*h/l
+
+    List of peak frequency responses for each type of
+    photoreceptor cell in the human eye:
+        S cone: 437 nm
+        M cone: 533 nm
+        L cone: 564 nm
+        rod:    550 nm in bright daylight, 498 nm when dark adapted.
+                Rods adapt to low light conditions by becoming more sensitive.
+                Peak frequency response shifts to 498 nm.
+
+    This converts a given wavelength of light to an
+    approximate RGB color value. The wavelength must be given
+    in nanometers in the range from 380 nm through 750 nm
+    (789 THz through 400 THz).
+
+    Based on code by Dan Bruton
+    http://www.physics.sfasu.edu/astro/color/spectra.html
+    """
+
+    wavelength = float(wavelength)
+    if 380 <= wavelength <= 440:
+        attenuation = 0.3 + 0.7 * (wavelength - 380) / (440 - 380)
+        R = ((-(wavelength - 440) / (440 - 380)) * attenuation) ** gamma
+        G = 0.0
+        B = (1.0 * attenuation) ** gamma
+    elif 440 <= wavelength <= 490:
+        R = 0.0
+        G = ((wavelength - 440) / (490 - 440)) ** gamma
+        B = 1.0
+    elif 490 <= wavelength <= 510:
+        R = 0.0
+        G = 1.0
+        B = (-(wavelength - 510) / (510 - 490)) ** gamma
+    elif 510 <= wavelength <= 580:
+        R = ((wavelength - 510) / (580 - 510)) ** gamma
+        G = 1.0
+        B = 0.0
+    elif 580 <= wavelength <= 645:
+        R = 1.0
+        G = (-(wavelength - 645) / (645 - 580)) ** gamma
+        B = 0.0
+    elif 645 <= wavelength <= 750:
+        attenuation = 0.3 + 0.7 * (750 - wavelength) / (750 - 645)
+        R = (1.0 * attenuation) ** gamma
+        G = 0.0
+        B = 0.0
+    else:
+        R = 0.0
+        G = 0.0
+        B = 0.0
+    R *= 255
+    G *= 255
+    B *= 255
+    return int(R), int(G), int(B), 22
+
+
 class LayeredUpdatesModified(pygame.sprite.LayeredUpdates):
 
     def __init__(self):
@@ -97,8 +180,9 @@ class LensFlareEffect(pygame.sprite.Sprite):
                  gl_,                           # global variable
                  timing_=15,                    # Refreshing time
                  layer_=0,                      # Layer to use
-                 blend_=pygame.BLEND_RGB_ADD,   # Blend additive mode
-                 event_='CHILD'                 # define parent or child class
+                 blend_= pygame.BLEND_RGB_ADD,   # Blend additive mode
+                 event_='CHILD',                # define parent or child class
+                 delete_=False
                  ):
         pygame.sprite.Sprite.__init__(self, LensFlareEffect.containers)
         if isinstance(gl_.All, pygame.sprite.LayeredUpdates):
@@ -114,6 +198,8 @@ class LensFlareEffect(pygame.sprite.Sprite):
         self._blend = blend_                                # use additive mode or not
         self.alpha = alpha_                                 # vector fraction
         self.event = event_                                 # event name
+        self.delete = delete_
+        self.screenrect = pygame.display.get_surface().get_rect()
         if self.event != 'PARENT':                          # Parent or child instance
             LensFlareEffect.CHILD.append(self)
 
@@ -139,16 +225,19 @@ class LensFlareEffect(pygame.sprite.Sprite):
             ):
 
         w, h = texture_.get_size()
-        dist = uniform(-2, 2)
+        dist = uniform(-0.4, 2)
+        color_c = lambda x: 380 + (750 - 380) * x
 
         if texture_ not in exception_:
-
-            texture_ = pygame.transform.smoothscale(texture_, (int(w * (size_ * abs(dist))),
+            texture = pygame.Surface((w, h))
+            texture.fill(tuple(wavelength_to_rgb(color_c(abs(dist)/2))))
+            texture.set_alpha(randint(30, 50))
+            texture_ = pygame.transform.smoothscale(texture, (int(w * (size_ * abs(dist))),
                                                                int(h * size_ * abs(dist))))
-
             w, h = texture_.get_size()
             s_2 = pygame.math.Vector2(w / 2, h / 2)
             surface_ = pygame.Surface((w, h), flags=pygame.SRCALPHA)
+            # gfxdraw.textured_polygon(surface_, polygon_ * size_ * abs(dist), texture_, 0, 0)
             gfxdraw.textured_polygon(surface_, polygon_ * size_ * abs(dist), texture_, 0, 0)
             pos_ = tuple(light_position_ - s_2)
             LensFlareEffect.SECOND_FLARES.append([surface_, pos_, dist])
@@ -168,7 +257,7 @@ class LensFlareEffect(pygame.sprite.Sprite):
 
             if self.event == 'PARENT':
 
-                if self.rect.top > self.gl.screenrect.bottom / 4:
+                if self.rect.top > self.screenrect.bottom / 4:
                     for child in LensFlareEffect.CHILD:
                         child.kill()
                     self.kill()
@@ -178,8 +267,9 @@ class LensFlareEffect(pygame.sprite.Sprite):
                 if 0 < LensFlareEffect.vector.length() < 10:
                     self.image = LensFlareEffect.star_burst4x
                     self.rect = self.image.get_rect(center=self.position)
-                    # for child in LensFlareEffect.CHILD:
-                    #    child.kill()
+                    if self.delete:
+                        for child in LensFlareEffect.CHILD:
+                            child.kill()
 
                 elif 0 < LensFlareEffect.vector.length() < 80:
                     self.image = LensFlareEffect.star_burst4x
@@ -209,6 +299,10 @@ if __name__ == '__main__':
 
     # cobra()
 
+    import timeit
+
+    print(timeit.timeit('wavelength_to_rgb(620)', 'from __main__ import wavelength_to_rgb', number=1000000) / 1000000)
+
     AVG_FPS = []
 
     SCREENRECT = pygame.Rect(0, 0, 800, 1024)
@@ -229,7 +323,7 @@ if __name__ == '__main__':
 
     STOP_GAME = False
     FRAME = 0
-    BCK1 = pygame.image.load('Assets\\Graphics\\Background\\BCK0_800x2048_LIGHTS_32.png').convert()
+    BCK1 = pygame.image.load('Assets\\Graphics\\Background\\BCK1.800x2048.png').convert()
 
     texture = pygame.image.load('Assets\\Untitled3.png').convert_alpha()
     texture = pygame.transform.smoothscale(texture, (100, 100))
@@ -260,25 +354,25 @@ if __name__ == '__main__':
     angle = 0
     LensFlareEffect.SECOND_FLARES = []
 
-    for r in range(10):
-        LensFlareEffect.second_flares(texture, uniform(0.8, 2),
-                                      LensFlareEffect.list_,
-                                      LensFlareEffect.FLARE_POSITION,
-                                      (texture2, texture4))
-
-    for r in range(10):
-        LensFlareEffect.second_flares(texture2, uniform(0.8, 2),
+    for r in range(5):
+        LensFlareEffect.second_flares(texture, uniform(0.8, 1.2),
                                       LensFlareEffect.list_,
                                       LensFlareEffect.FLARE_POSITION,
                                       (texture2, texture4))
 
     for r in range(5):
-        LensFlareEffect.second_flares(texture1, uniform(0.8, 2),
+        LensFlareEffect.second_flares(texture2, uniform(0.8, 1.2),
+                                      LensFlareEffect.list_,
+                                      LensFlareEffect.FLARE_POSITION,
+                                      (texture2, texture4))
+
+    for r in range(5):
+        LensFlareEffect.second_flares(texture1, uniform(0.8, 1.2),
                                       LensFlareEffect.list_,
                                       LensFlareEffect.FLARE_POSITION,
                                       (texture2, texture4))
     for r in range(5):
-        LensFlareEffect.second_flares(texture4, uniform(0.8, 2),
+        LensFlareEffect.second_flares(texture4, uniform(0.8, 1.2),
                                       LensFlareEffect.list_,
                                       LensFlareEffect.FLARE_POSITION,
                                       (texture2, texture4))
@@ -299,6 +393,7 @@ if __name__ == '__main__':
 
     screendump = 0
     while not STOP_GAME:
+
 
         pygame.event.pump()
 
@@ -333,7 +428,7 @@ if __name__ == '__main__':
         TIME_PASSED_SECONDS = clock.tick_busy_loop(60)
         GL.TIME_PASSED_SECONDS = TIME_PASSED_SECONDS
         avg_fps = clock.get_fps()
-        # print(avg_fps)
+        print(avg_fps)
 
         FRAME += 1
 
