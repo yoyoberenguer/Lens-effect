@@ -1,7 +1,10 @@
 # Lens-effect
-Pseudo Lens flare effect for 2D video game
 
-Reference : (see page https://www.noah.org/wiki/Wavelength_to_RGB_in_Python)
+### Pseudo Lens flare effect for 2D video game
+
+#### Reference see page https://www.noah.org/wiki/Wavelength_to_RGB_in_Python
+
+```
 Wavelength to RGB in Python - Noah.org
 Based on code by Dan Bruton
 http://www.physics.sfasu.edu/astro/color/spectra.html
@@ -38,7 +41,7 @@ http://www.physics.sfasu.edu/astro/color/spectra.html
                 Peak frequency response shifts to 498 nm.
 
 
-
+```
 
 
 ![alt text](https://github.com/yoyoberenguer/lens-effect/blob/master/Screendump0.png) 
