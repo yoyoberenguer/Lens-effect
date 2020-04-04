@@ -42,7 +42,7 @@ http://www.physics.sfasu.edu/astro/color/spectra.html
 
 
 ```
-
+Color Spectrum
 
 ![alt text](https://github.com/yoyoberenguer/lens-effect/blob/master/color_spectrum.png) 
 
