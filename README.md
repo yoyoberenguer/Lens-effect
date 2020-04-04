@@ -44,8 +44,5 @@ http://www.physics.sfasu.edu/astro/color/spectra.html
 ```
 
 
-![alt text](https://github.com/yoyoberenguer/lens-effect/blob/master/Screendump0.png) 
-
-![alt text](https://github.com/yoyoberenguer/lens-effect/blob/master/Screendump1.png) 
-![alt text](https://github.com/yoyoberenguer/lens-effect/blob/master/Screendump3.png) 
+![alt text](https://github.com/yoyoberenguer/lens-effect/blob/master/LensFlare.gif) 
 
