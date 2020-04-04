@@ -256,6 +256,21 @@ cdef class LayeredUpdatesModified(LayeredUpdates):
         return dirty
 
 
+cpdef v_surface():
+    """
+    Create a surface with the light spectrum
+    :return: Return a pygame Surface
+    """
+
+    cdef rgba_color color1
+    s = pygame.Surface((370, 370))
+    for r in range(380, 750):
+        color1 = wavelength_to_rgba(r, 0.8)
+        pygame.draw.aaline(s, (color1.r, color1.g, color1.b, color1.a),
+                           (r - 380, 0) , (r - 380, 370))
+    return s
+
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.nonecheck(False)

@@ -79,35 +79,46 @@ inline struct rgba_color wavelength_to_rgba(int wavelength, double gamma){
 
     struct rgba_color color = {.r=0, .g=0, .b=0, .a=0};
     double attenuation=0;
-
-    if ((380 < wavelength) && (wavelength < 440))
+    if ((wavelength >= 380) & (wavelength <= 440))
     {
       attenuation = 0.3 + 0.7 * (wavelength - 380.0) / 60.0;
       color.r = (int)(pow((((440 - wavelength) / 60.0) * attenuation), gamma) * 255.0f);
+      // color.g = 0;
       color.b = (int)(pow(attenuation, gamma) * 255.0f);
     }
-    else if((440 < wavelength) && (wavelength < 490))
+    else if((wavelength >=440) && (wavelength <= 490))
     {
+      // color.r = 0;
       color.g = (int)(pow((wavelength - 440) / 50.0, gamma) * 255.0f);
       color.b = 255;
     }
-    else if ((490 < wavelength) && (wavelength < 510)){
+    else if ((wavelength>=490) && (wavelength <= 510)){
+      // color.r = 0;
       color.g = 255;
       color.b = (int)(pow((510 - wavelength) / 20.0, gamma) * 255.0f);
     }
-    else if ((510 < wavelength) && (wavelength < 580)){
+    else if ((wavelength>=510) && (wavelength <= 580)){
       color.r = (int)(pow((wavelength - 510) / 70.0, gamma) * 255.0f);
       color.g = 255;
+      // color.b = 0;
     }
-    else if ((580 < wavelength) && (wavelength < 645)){
+    else if ((wavelength>=580) && (wavelength <= 645)){
       color.r = 255;
       color.g = (int)(pow((645 - wavelength) / 65.0, gamma) * 255.0f);
+      // color.b = 0;
     }
-    else if ((645 < wavelength) && (wavelength < 750)){
+    else if ((wavelength>=645) && (wavelength <= 750)){
       attenuation = 0.3 + 0.7 * (750 - wavelength) / 105.0;
       color.r = (int)(pow(attenuation, gamma) * 255.0f);
-
+      // color.g = 0;
+      // color.b = 0;
     }
+//    else{
+//    color.r = 0;
+//    color.g = 0;
+//    color.b = 0;
+//
+//    }
     color.a = 22;
     return color;
 }

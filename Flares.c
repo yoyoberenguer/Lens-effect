@@ -1052,7 +1052,7 @@ struct __pyx_opt_args_6FLARES_create_flare_sprite;
 struct __pyx_opt_args_6FLARES_14LayeredUpdates_add_internal;
 struct __pyx_opt_args_6FLARES_14LayeredUpdates_add;
 
-/* "Flares.pyx":472
+/* "Flares.pyx":492
  * 
  * 
  * cpdef create_flare_sprite(images_,             # <<<<<<<<<<<<<<
@@ -1066,7 +1066,7 @@ struct __pyx_opt_args_6FLARES_create_flare_sprite {
   int delete_;
 };
 
-/* "Flares.pyx":770
+/* "Flares.pyx":790
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cpdef add_internal(self, sprite, layer_=None):             # <<<<<<<<<<<<<<
@@ -1078,7 +1078,7 @@ struct __pyx_opt_args_6FLARES_14LayeredUpdates_add_internal {
   PyObject *layer_;
 };
 
-/* "Flares.pyx":809
+/* "Flares.pyx":829
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cpdef add(self, sprites, layer=None):             # <<<<<<<<<<<<<<
@@ -1105,7 +1105,7 @@ struct __pyx_obj_6FLARES_Sprite {
 };
 
 
-/* "Flares.pyx":518
+/* "Flares.pyx":538
  * @cython.nonecheck(False)
  * @cython.cdivision(True)
  * cdef class AbstractGroup(object):             # <<<<<<<<<<<<<<
@@ -1121,7 +1121,7 @@ struct __pyx_obj_6FLARES_AbstractGroup {
 };
 
 
-/* "Flares.pyx":747
+/* "Flares.pyx":767
  * @cython.nonecheck(False)
  * @cython.cdivision(True)
  * cdef class LayeredUpdates(AbstractGroup):             # <<<<<<<<<<<<<<
@@ -1172,7 +1172,7 @@ struct __pyx_vtabstruct_6FLARES_Sprite {
 static struct __pyx_vtabstruct_6FLARES_Sprite *__pyx_vtabptr_6FLARES_Sprite;
 
 
-/* "Flares.pyx":518
+/* "Flares.pyx":538
  * @cython.nonecheck(False)
  * @cython.cdivision(True)
  * cdef class AbstractGroup(object):             # <<<<<<<<<<<<<<
@@ -1194,7 +1194,7 @@ struct __pyx_vtabstruct_6FLARES_AbstractGroup {
 static struct __pyx_vtabstruct_6FLARES_AbstractGroup *__pyx_vtabptr_6FLARES_AbstractGroup;
 
 
-/* "Flares.pyx":747
+/* "Flares.pyx":767
  * @cython.nonecheck(False)
  * @cython.cdivision(True)
  * cdef class LayeredUpdates(AbstractGroup):             # <<<<<<<<<<<<<<
@@ -1514,6 +1514,33 @@ static CYTHON_INLINE int __Pyx_PyList_Append(PyObject* list, PyObject* x) {
 /* RaiseException.proto */
 static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
 
+/* PyIntBinop.proto */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject* __Pyx_PyInt_SubtractObjC(PyObject *op1, PyObject *op2, long intval, int inplace);
+#else
+#define __Pyx_PyInt_SubtractObjC(op1, op2, intval, inplace)\
+    (inplace ? PyNumber_InPlaceSubtract(op1, op2) : PyNumber_Subtract(op1, op2))
+#endif
+
+/* SaveResetException.proto */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_ExceptionSave(type, value, tb)  __Pyx__ExceptionSave(__pyx_tstate, type, value, tb)
+static CYTHON_INLINE void __Pyx__ExceptionSave(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
+#define __Pyx_ExceptionReset(type, value, tb)  __Pyx__ExceptionReset(__pyx_tstate, type, value, tb)
+static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb);
+#else
+#define __Pyx_ExceptionSave(type, value, tb)   PyErr_GetExcInfo(type, value, tb)
+#define __Pyx_ExceptionReset(type, value, tb)  PyErr_SetExcInfo(type, value, tb)
+#endif
+
+/* GetException.proto */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_GetException(type, value, tb)  __Pyx__GetException(__pyx_tstate, type, value, tb)
+static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
+#else
+static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb);
+#endif
+
 /* RaiseDoubleKeywords.proto */
 static void __Pyx_RaiseDoubleKeywordsError(const char* func_name, PyObject* kw_name);
 
@@ -1629,25 +1656,6 @@ static CYTHON_INLINE int __Pyx_PyDict_ContainsTF(PyObject* item, PyObject* dict,
     return unlikely(result < 0) ? result : (result == (eq == Py_EQ));
 }
 
-/* SaveResetException.proto */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_ExceptionSave(type, value, tb)  __Pyx__ExceptionSave(__pyx_tstate, type, value, tb)
-static CYTHON_INLINE void __Pyx__ExceptionSave(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
-#define __Pyx_ExceptionReset(type, value, tb)  __Pyx__ExceptionReset(__pyx_tstate, type, value, tb)
-static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb);
-#else
-#define __Pyx_ExceptionSave(type, value, tb)   PyErr_GetExcInfo(type, value, tb)
-#define __Pyx_ExceptionReset(type, value, tb)  PyErr_SetExcInfo(type, value, tb)
-#endif
-
-/* GetException.proto */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_GetException(type, value, tb)  __Pyx__GetException(__pyx_tstate, type, value, tb)
-static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
-#else
-static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb);
-#endif
-
 /* py_dict_values.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyDict_Values(PyObject* d);
 
@@ -1698,14 +1706,6 @@ static CYTHON_INLINE int __Pyx_ListComp_Append(PyObject* list, PyObject* x) {
 }
 #else
 #define __Pyx_ListComp_Append(L,x) PyList_Append(L,x)
-#endif
-
-/* PyIntBinop.proto */
-#if !CYTHON_COMPILING_IN_PYPY
-static PyObject* __Pyx_PyInt_SubtractObjC(PyObject *op1, PyObject *op2, long intval, int inplace);
-#else
-#define __Pyx_PyInt_SubtractObjC(op1, op2, intval, inplace)\
-    (inplace ? PyNumber_InPlaceSubtract(op1, op2) : PyNumber_Subtract(op1, op2))
 #endif
 
 /* Import.proto */
@@ -1839,6 +1839,14 @@ static PyObject* __pyx_convert__to_py_struct__vector2d(struct vector2d s);
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
 
+static PyObject* __pyx_convert__to_py_struct__rgba_color(struct rgba_color s);
+/* Print.proto */
+static int __Pyx_Print(PyObject*, PyObject *, int);
+#if CYTHON_COMPILING_IN_PYPY || PY_MAJOR_VERSION >= 3
+static PyObject* __pyx_print = 0;
+static PyObject* __pyx_print_kwargs = 0;
+#endif
+
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
 
@@ -1948,6 +1956,9 @@ static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
 
 /* CIntFromPy.proto */
 static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *);
+
+/* PrintOne.proto */
+static int __Pyx_PrintOne(PyObject* stream, PyObject *o);
 
 /* FastTypeChecks.proto */
 #if CYTHON_COMPILING_IN_CPYTHON
@@ -2066,6 +2077,7 @@ static PyTypeObject *__pyx_ptype_6FLARES_AbstractGroup = 0;
 static PyTypeObject *__pyx_ptype_6FLARES_LayeredUpdates = 0;
 static PyTypeObject *__pyx_ptype_6FLARES_LayeredUpdatesModified = 0;
 static PyObject *__pyx_f_6FLARES_make_vector2d(PyObject *, int __pyx_skip_dispatch); /*proto*/
+static PyObject *__pyx_f_6FLARES_v_surface(int __pyx_skip_dispatch); /*proto*/
 static PyObject *__pyx_f_6FLARES_get_angle(struct vector2d, struct vector2d, int __pyx_skip_dispatch); /*proto*/
 static PyArrayObject *__pyx_f_6FLARES_polygon(int __pyx_skip_dispatch); /*proto*/
 static PyObject *__pyx_f_6FLARES_second_flares(PyObject *, PyArrayObject *, struct vector2d, float, float, PyObject *, int __pyx_skip_dispatch); /*proto*/
@@ -2087,6 +2099,10 @@ static PyObject *__pyx_builtin_AttributeError;
 static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_RuntimeError;
 static PyObject *__pyx_builtin_KeyError;
+static const char __pyx_k_a[] = "a";
+static const char __pyx_k_b[] = "b";
+static const char __pyx_k_g[] = "g";
+static const char __pyx_k_r[] = "r";
 static const char __pyx_k_x[] = "x";
 static const char __pyx_k_y[] = "y";
 static const char __pyx_k_gl[] = "gl_";
@@ -2095,6 +2111,7 @@ static const char __pyx_k_w2[] = "w2";
 static const char __pyx_k_add[] = "add";
 static const char __pyx_k_bgd[] = "bgd";
 static const char __pyx_k_doc[] = "__doc__";
+static const char __pyx_k_end[] = "end";
 static const char __pyx_k_get[] = "get";
 static const char __pyx_k_int[] = "int";
 static const char __pyx_k_new[] = "__new__";
@@ -2105,6 +2122,7 @@ static const char __pyx_k_call[] = "__call__";
 static const char __pyx_k_copy[] = "copy";
 static const char __pyx_k_dict[] = "__dict__";
 static const char __pyx_k_draw[] = "draw";
+static const char __pyx_k_file[] = "file";
 static const char __pyx_k_fill[] = "fill";
 static const char __pyx_k_full[] = "full";
 static const char __pyx_k_gl_2[] = "gl";
@@ -2132,6 +2150,7 @@ static const char __pyx_k_image[] = "image";
 static const char __pyx_k_int32[] = "int32";
 static const char __pyx_k_layer[] = "layer";
 static const char __pyx_k_numpy[] = "numpy";
+static const char __pyx_k_print[] = "print";
 static const char __pyx_k_range[] = "range";
 static const char __pyx_k_scale[] = "scale";
 static const char __pyx_k_truth[] = "truth";
@@ -2142,6 +2161,7 @@ static const char __pyx_k_FLARES[] = "FLARES";
 static const char __pyx_k_PARENT[] = "PARENT";
 static const char __pyx_k_SCREEN[] = "SCREEN";
 static const char __pyx_k_Sprite[] = "Sprite";
+static const char __pyx_k_aaline[] = "aaline";
 static const char __pyx_k_append[] = "append";
 static const char __pyx_k_center[] = "center";
 static const char __pyx_k_delete[] = "delete";
@@ -2313,6 +2333,8 @@ static PyObject *__pyx_n_s_Surface;
 static PyObject *__pyx_n_s_TypeError;
 static PyObject *__pyx_n_s_ValueError;
 static PyObject *__pyx_n_s_Vector2;
+static PyObject *__pyx_n_s_a;
+static PyObject *__pyx_n_s_aaline;
 static PyObject *__pyx_n_s_add;
 static PyObject *__pyx_n_s_add_internal;
 static PyObject *__pyx_n_s_alpha;
@@ -2322,6 +2344,7 @@ static PyObject *__pyx_n_s_array3d;
 static PyObject *__pyx_n_s_array_alpha;
 static PyObject *__pyx_n_s_asarray;
 static PyObject *__pyx_n_s_ascontiguousarray;
+static PyObject *__pyx_n_s_b;
 static PyObject *__pyx_n_s_bgd;
 static PyObject *__pyx_n_s_blend;
 static PyObject *__pyx_n_s_blend_2;
@@ -2352,14 +2375,17 @@ static PyObject *__pyx_n_s_draw;
 static PyObject *__pyx_n_s_dstack;
 static PyObject *__pyx_n_s_dtype;
 static PyObject *__pyx_n_s_empty;
+static PyObject *__pyx_n_s_end;
 static PyObject *__pyx_n_s_event_type;
 static PyObject *__pyx_n_s_exception;
+static PyObject *__pyx_n_s_file;
 static PyObject *__pyx_n_s_fill;
 static PyObject *__pyx_n_s_flags;
 static PyObject *__pyx_n_s_float32;
 static PyObject *__pyx_n_s_float64;
 static PyObject *__pyx_n_s_frombuffer;
 static PyObject *__pyx_n_s_full;
+static PyObject *__pyx_n_s_g;
 static PyObject *__pyx_n_s_get;
 static PyObject *__pyx_n_s_get_bottom_layer;
 static PyObject *__pyx_n_s_get_height;
@@ -2422,6 +2448,7 @@ static PyObject *__pyx_n_s_pop;
 static PyObject *__pyx_n_s_position;
 static PyObject *__pyx_n_s_position_2;
 static PyObject *__pyx_n_s_prepare;
+static PyObject *__pyx_n_s_print;
 static PyObject *__pyx_n_s_pygame;
 static PyObject *__pyx_n_s_pygame_image;
 static PyObject *__pyx_n_s_pygame_surfarray;
@@ -2435,6 +2462,7 @@ static PyObject *__pyx_n_s_pyx_unpickle_AbstractGroup;
 static PyObject *__pyx_n_s_pyx_unpickle_Sprite;
 static PyObject *__pyx_n_s_pyx_vtable;
 static PyObject *__pyx_n_s_qualname;
+static PyObject *__pyx_n_s_r;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_rect;
 static PyObject *__pyx_n_s_reduce;
@@ -2485,11 +2513,12 @@ static int __pyx_pf_6FLARES_22LayeredUpdatesModified___init__(struct __pyx_obj_6
 static PyObject *__pyx_pf_6FLARES_22LayeredUpdatesModified_2draw(struct __pyx_obj_6FLARES_LayeredUpdatesModified *__pyx_v_self, PyObject *__pyx_v_surface_); /* proto */
 static PyObject *__pyx_pf_6FLARES_22LayeredUpdatesModified_4__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_6FLARES_LayeredUpdatesModified *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_6FLARES_22LayeredUpdatesModified_6__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_6FLARES_LayeredUpdatesModified *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6FLARES_2get_angle(CYTHON_UNUSED PyObject *__pyx_self, struct vector2d __pyx_v_obj1, struct vector2d __pyx_v_obj2); /* proto */
-static PyObject *__pyx_pf_6FLARES_4polygon(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
-static PyObject *__pyx_pf_6FLARES_6second_flares(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_texture_, PyArrayObject *__pyx_v_polygon_, struct vector2d __pyx_v_light_position_, float __pyx_v_min_size, float __pyx_v_max_size, PyObject *__pyx_v_exception_); /* proto */
-static PyObject *__pyx_pf_6FLARES_8display_flare_sprite(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_child_group, PyObject *__pyx_v_star_burst, PyObject *__pyx_v_star_burst3x, PyObject *__pyx_v_gl_, PyObject *__pyx_v_vector); /* proto */
-static PyObject *__pyx_pf_6FLARES_10create_flare_sprite(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_images_, float __pyx_v_distance_, PyObject *__pyx_v_vector_, PyObject *__pyx_v_position_, int __pyx_v_layer_, PyObject *__pyx_v_gl_, PyObject *__pyx_v_child_group_, int __pyx_v_blend_, PyObject *__pyx_v_event_type, int __pyx_v_delete_); /* proto */
+static PyObject *__pyx_pf_6FLARES_2v_surface(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
+static PyObject *__pyx_pf_6FLARES_4get_angle(CYTHON_UNUSED PyObject *__pyx_self, struct vector2d __pyx_v_obj1, struct vector2d __pyx_v_obj2); /* proto */
+static PyObject *__pyx_pf_6FLARES_6polygon(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
+static PyObject *__pyx_pf_6FLARES_8second_flares(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_texture_, PyArrayObject *__pyx_v_polygon_, struct vector2d __pyx_v_light_position_, float __pyx_v_min_size, float __pyx_v_max_size, PyObject *__pyx_v_exception_); /* proto */
+static PyObject *__pyx_pf_6FLARES_10display_flare_sprite(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_child_group, PyObject *__pyx_v_star_burst, PyObject *__pyx_v_star_burst3x, PyObject *__pyx_v_gl_, PyObject *__pyx_v_vector); /* proto */
+static PyObject *__pyx_pf_6FLARES_12create_flare_sprite(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_images_, float __pyx_v_distance_, PyObject *__pyx_v_vector_, PyObject *__pyx_v_position_, int __pyx_v_layer_, PyObject *__pyx_v_gl_, PyObject *__pyx_v_child_group_, int __pyx_v_blend_, PyObject *__pyx_v_event_type, int __pyx_v_delete_); /* proto */
 static int __pyx_pf_6FLARES_13AbstractGroup___init__(struct __pyx_obj_6FLARES_AbstractGroup *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_6FLARES_13AbstractGroup_2__iter__(struct __pyx_obj_6FLARES_AbstractGroup *__pyx_v_self); /* proto */
 static int __pyx_pf_6FLARES_13AbstractGroup_4__contains__(struct __pyx_obj_6FLARES_AbstractGroup *__pyx_v_self, PyObject *__pyx_v_sprite); /* proto */
@@ -2540,8 +2569,8 @@ static int __pyx_pf_6FLARES_14LayeredUpdates_10_init_rect_2__set__(struct __pyx_
 static int __pyx_pf_6FLARES_14LayeredUpdates_10_init_rect_4__del__(struct __pyx_obj_6FLARES_LayeredUpdates *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_32__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_6FLARES_LayeredUpdates *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_34__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_6FLARES_LayeredUpdates *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6FLARES_12__pyx_unpickle_Sprite(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6FLARES_15__pyx_unpickle_AbstractGroup(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6FLARES_14__pyx_unpickle_Sprite(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6FLARES_17__pyx_unpickle_AbstractGroup(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static PyObject *__pyx_tp_new_6FLARES_Sprite(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -2552,14 +2581,17 @@ static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values = {0, &__pyx_n_s_v
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_80;
+static PyObject *__pyx_int_370;
+static PyObject *__pyx_int_380;
+static PyObject *__pyx_int_750;
 static PyObject *__pyx_int_15991511;
 static PyObject *__pyx_int_188665677;
-static int __pyx_k__3;
+static int __pyx_k__6;
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__2;
+static PyObject *__pyx_tuple__3;
 static PyObject *__pyx_tuple__4;
 static PyObject *__pyx_tuple__5;
-static PyObject *__pyx_tuple__6;
 static PyObject *__pyx_tuple__7;
 static PyObject *__pyx_tuple__8;
 static PyObject *__pyx_tuple__9;
@@ -2575,13 +2607,16 @@ static PyObject *__pyx_tuple__18;
 static PyObject *__pyx_tuple__19;
 static PyObject *__pyx_tuple__20;
 static PyObject *__pyx_tuple__21;
+static PyObject *__pyx_tuple__22;
 static PyObject *__pyx_tuple__23;
-static PyObject *__pyx_tuple__25;
-static PyObject *__pyx_codeobj__22;
-static PyObject *__pyx_codeobj__24;
-static PyObject *__pyx_codeobj__26;
+static PyObject *__pyx_tuple__24;
+static PyObject *__pyx_tuple__26;
+static PyObject *__pyx_tuple__28;
+static PyObject *__pyx_codeobj__25;
+static PyObject *__pyx_codeobj__27;
+static PyObject *__pyx_codeobj__29;
 
-/* "Flares.pyx":511
+/* "Flares.pyx":531
  * # with the hasattr function.
  * if 'callable' not in dir(__builtins__):
  *     callable = lambda obj: hasattr(obj, '__call__')             # <<<<<<<<<<<<<<
@@ -2590,9 +2625,9 @@ static PyObject *__pyx_codeobj__26;
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6FLARES_14lambda(PyObject *__pyx_self, PyObject *__pyx_v_obj); /*proto*/
-static PyMethodDef __pyx_mdef_6FLARES_14lambda = {"lambda", (PyCFunction)__pyx_pw_6FLARES_14lambda, METH_O, 0};
-static PyObject *__pyx_pw_6FLARES_14lambda(PyObject *__pyx_self, PyObject *__pyx_v_obj) {
+static PyObject *__pyx_pw_6FLARES_16lambda(PyObject *__pyx_self, PyObject *__pyx_v_obj); /*proto*/
+static PyMethodDef __pyx_mdef_6FLARES_16lambda = {"lambda", (PyCFunction)__pyx_pw_6FLARES_16lambda, METH_O, 0};
+static PyObject *__pyx_pw_6FLARES_16lambda(PyObject *__pyx_self, PyObject *__pyx_v_obj) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("lambda (wrapper)", 0);
@@ -2610,8 +2645,8 @@ static PyObject *__pyx_lambda_funcdef_6FLARES_lambda(CYTHON_UNUSED PyObject *__p
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("lambda", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_obj, __pyx_n_s_call); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 511, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 511, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_obj, __pyx_n_s_call); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 531, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 531, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -5149,7 +5184,425 @@ static PyObject *__pyx_pf_6FLARES_22LayeredUpdatesModified_6__setstate_cython__(
   return __pyx_r;
 }
 
-/* "Flares.pyx":263
+/* "Flares.pyx":265
+ * 
+ * 
+ * cpdef v_surface():             # <<<<<<<<<<<<<<
+ *     cdef rgba_color color1
+ *     s = pygame.Surface((370, 370))
+ */
+
+static PyObject *__pyx_pw_6FLARES_3v_surface(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_f_6FLARES_v_surface(CYTHON_UNUSED int __pyx_skip_dispatch) {
+  struct rgba_color __pyx_v_color1;
+  PyObject *__pyx_v_s = NULL;
+  PyObject *__pyx_v_r = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  Py_ssize_t __pyx_t_3;
+  PyObject *(*__pyx_t_4)(PyObject *);
+  int __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *__pyx_t_8 = NULL;
+  PyObject *__pyx_t_9 = NULL;
+  PyObject *__pyx_t_10 = NULL;
+  PyObject *__pyx_t_11 = NULL;
+  PyObject *__pyx_t_12 = NULL;
+  PyObject *__pyx_t_13 = NULL;
+  PyObject *__pyx_t_14 = NULL;
+  __Pyx_RefNannySetupContext("v_surface", 0);
+
+  /* "Flares.pyx":267
+ * cpdef v_surface():
+ *     cdef rgba_color color1
+ *     s = pygame.Surface((370, 370))             # <<<<<<<<<<<<<<
+ *     for r in range(380, 750):
+ *         color1 = wavelength_to_rgba(r, 0.8)
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Surface); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_s = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "Flares.pyx":268
+ *     cdef rgba_color color1
+ *     s = pygame.Surface((370, 370))
+ *     for r in range(380, 750):             # <<<<<<<<<<<<<<
+ *         color1 = wavelength_to_rgba(r, 0.8)
+ *         try:
+ */
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
+    __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_3 = 0;
+    __pyx_t_4 = NULL;
+  } else {
+    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 268, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 268, __pyx_L1_error)
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  for (;;) {
+    if (likely(!__pyx_t_4)) {
+      if (likely(PyList_CheckExact(__pyx_t_2))) {
+        if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_2)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 268, __pyx_L1_error)
+        #else
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        #endif
+      } else {
+        if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 268, __pyx_L1_error)
+        #else
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        #endif
+      }
+    } else {
+      __pyx_t_1 = __pyx_t_4(__pyx_t_2);
+      if (unlikely(!__pyx_t_1)) {
+        PyObject* exc_type = PyErr_Occurred();
+        if (exc_type) {
+          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+          else __PYX_ERR(0, 268, __pyx_L1_error)
+        }
+        break;
+      }
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    __Pyx_XDECREF_SET(__pyx_v_r, __pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "Flares.pyx":269
+ *     s = pygame.Surface((370, 370))
+ *     for r in range(380, 750):
+ *         color1 = wavelength_to_rgba(r, 0.8)             # <<<<<<<<<<<<<<
+ *         try:
+ *             pygame.draw.aaline(s, (color1.r, color1.g, color1.b, color1.a),
+ */
+    __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_v_r); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 269, __pyx_L1_error)
+    __pyx_v_color1 = wavelength_to_rgba(__pyx_t_5, 0.8);
+
+    /* "Flares.pyx":270
+ *     for r in range(380, 750):
+ *         color1 = wavelength_to_rgba(r, 0.8)
+ *         try:             # <<<<<<<<<<<<<<
+ *             pygame.draw.aaline(s, (color1.r, color1.g, color1.b, color1.a),
+ *                                (r - 380, 0) , (r - 380, 370))
+ */
+    {
+      __Pyx_PyThreadState_declare
+      __Pyx_PyThreadState_assign
+      __Pyx_ExceptionSave(&__pyx_t_6, &__pyx_t_7, &__pyx_t_8);
+      __Pyx_XGOTREF(__pyx_t_6);
+      __Pyx_XGOTREF(__pyx_t_7);
+      __Pyx_XGOTREF(__pyx_t_8);
+      /*try:*/ {
+
+        /* "Flares.pyx":271
+ *         color1 = wavelength_to_rgba(r, 0.8)
+ *         try:
+ *             pygame.draw.aaline(s, (color1.r, color1.g, color1.b, color1.a),             # <<<<<<<<<<<<<<
+ *                                (r - 380, 0) , (r - 380, 370))
+ *         except:
+ */
+        __pyx_t_9 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 271, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_9);
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_draw); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 271, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_aaline); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 271, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_9);
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_color1.r); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 271, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_color1.g); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 271, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_11);
+        __pyx_t_12 = __Pyx_PyInt_From_int(__pyx_v_color1.b); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 271, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_12);
+        __pyx_t_13 = __Pyx_PyInt_From_int(__pyx_v_color1.a); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 271, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __pyx_t_14 = PyTuple_New(4); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 271, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_14);
+        __Pyx_GIVEREF(__pyx_t_10);
+        PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_10);
+        __Pyx_GIVEREF(__pyx_t_11);
+        PyTuple_SET_ITEM(__pyx_t_14, 1, __pyx_t_11);
+        __Pyx_GIVEREF(__pyx_t_12);
+        PyTuple_SET_ITEM(__pyx_t_14, 2, __pyx_t_12);
+        __Pyx_GIVEREF(__pyx_t_13);
+        PyTuple_SET_ITEM(__pyx_t_14, 3, __pyx_t_13);
+        __pyx_t_10 = 0;
+        __pyx_t_11 = 0;
+        __pyx_t_12 = 0;
+        __pyx_t_13 = 0;
+
+        /* "Flares.pyx":272
+ *         try:
+ *             pygame.draw.aaline(s, (color1.r, color1.g, color1.b, color1.a),
+ *                                (r - 380, 0) , (r - 380, 370))             # <<<<<<<<<<<<<<
+ *         except:
+ *             print(r, color1)
+ */
+        __pyx_t_13 = __Pyx_PyInt_SubtractObjC(__pyx_v_r, __pyx_int_380, 0x17C, 0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 272, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __pyx_t_12 = PyTuple_New(2); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 272, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_12);
+        __Pyx_GIVEREF(__pyx_t_13);
+        PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_13);
+        __Pyx_INCREF(__pyx_int_0);
+        __Pyx_GIVEREF(__pyx_int_0);
+        PyTuple_SET_ITEM(__pyx_t_12, 1, __pyx_int_0);
+        __pyx_t_13 = 0;
+        __pyx_t_13 = __Pyx_PyInt_SubtractObjC(__pyx_v_r, __pyx_int_380, 0x17C, 0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 272, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __pyx_t_11 = PyTuple_New(2); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 272, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_11);
+        __Pyx_GIVEREF(__pyx_t_13);
+        PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_13);
+        __Pyx_INCREF(__pyx_int_370);
+        __Pyx_GIVEREF(__pyx_int_370);
+        PyTuple_SET_ITEM(__pyx_t_11, 1, __pyx_int_370);
+        __pyx_t_13 = 0;
+        __pyx_t_13 = NULL;
+        __pyx_t_5 = 0;
+        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_9))) {
+          __pyx_t_13 = PyMethod_GET_SELF(__pyx_t_9);
+          if (likely(__pyx_t_13)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_9);
+            __Pyx_INCREF(__pyx_t_13);
+            __Pyx_INCREF(function);
+            __Pyx_DECREF_SET(__pyx_t_9, function);
+            __pyx_t_5 = 1;
+          }
+        }
+        #if CYTHON_FAST_PYCALL
+        if (PyFunction_Check(__pyx_t_9)) {
+          PyObject *__pyx_temp[5] = {__pyx_t_13, __pyx_v_s, __pyx_t_14, __pyx_t_12, __pyx_t_11};
+          __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_5, 4+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L5_error)
+          __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
+          __Pyx_GOTREF(__pyx_t_1);
+          __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+          __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+          __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+        } else
+        #endif
+        #if CYTHON_FAST_PYCCALL
+        if (__Pyx_PyFastCFunction_Check(__pyx_t_9)) {
+          PyObject *__pyx_temp[5] = {__pyx_t_13, __pyx_v_s, __pyx_t_14, __pyx_t_12, __pyx_t_11};
+          __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_5, 4+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L5_error)
+          __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
+          __Pyx_GOTREF(__pyx_t_1);
+          __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+          __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+          __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+        } else
+        #endif
+        {
+          __pyx_t_10 = PyTuple_New(4+__pyx_t_5); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 271, __pyx_L5_error)
+          __Pyx_GOTREF(__pyx_t_10);
+          if (__pyx_t_13) {
+            __Pyx_GIVEREF(__pyx_t_13); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_13); __pyx_t_13 = NULL;
+          }
+          __Pyx_INCREF(__pyx_v_s);
+          __Pyx_GIVEREF(__pyx_v_s);
+          PyTuple_SET_ITEM(__pyx_t_10, 0+__pyx_t_5, __pyx_v_s);
+          __Pyx_GIVEREF(__pyx_t_14);
+          PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_5, __pyx_t_14);
+          __Pyx_GIVEREF(__pyx_t_12);
+          PyTuple_SET_ITEM(__pyx_t_10, 2+__pyx_t_5, __pyx_t_12);
+          __Pyx_GIVEREF(__pyx_t_11);
+          PyTuple_SET_ITEM(__pyx_t_10, 3+__pyx_t_5, __pyx_t_11);
+          __pyx_t_14 = 0;
+          __pyx_t_12 = 0;
+          __pyx_t_11 = 0;
+          __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L5_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        }
+        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+        /* "Flares.pyx":270
+ *     for r in range(380, 750):
+ *         color1 = wavelength_to_rgba(r, 0.8)
+ *         try:             # <<<<<<<<<<<<<<
+ *             pygame.draw.aaline(s, (color1.r, color1.g, color1.b, color1.a),
+ *                                (r - 380, 0) , (r - 380, 370))
+ */
+      }
+      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
+      goto __pyx_L12_try_end;
+      __pyx_L5_error:;
+      __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
+      __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
+      __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
+      __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
+      __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+      __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
+      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+      /* "Flares.pyx":273
+ *             pygame.draw.aaline(s, (color1.r, color1.g, color1.b, color1.a),
+ *                                (r - 380, 0) , (r - 380, 370))
+ *         except:             # <<<<<<<<<<<<<<
+ *             print(r, color1)
+ *     return s
+ */
+      /*except:*/ {
+        __Pyx_AddTraceback("FLARES.v_surface", __pyx_clineno, __pyx_lineno, __pyx_filename);
+        if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_9, &__pyx_t_10) < 0) __PYX_ERR(0, 273, __pyx_L7_except_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_GOTREF(__pyx_t_9);
+        __Pyx_GOTREF(__pyx_t_10);
+
+        /* "Flares.pyx":274
+ *                                (r - 380, 0) , (r - 380, 370))
+ *         except:
+ *             print(r, color1)             # <<<<<<<<<<<<<<
+ *     return s
+ * 
+ */
+        __pyx_t_11 = __pyx_convert__to_py_struct__rgba_color(__pyx_v_color1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 274, __pyx_L7_except_error)
+        __Pyx_GOTREF(__pyx_t_11);
+        __pyx_t_12 = PyTuple_New(2); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 274, __pyx_L7_except_error)
+        __Pyx_GOTREF(__pyx_t_12);
+        __Pyx_INCREF(__pyx_v_r);
+        __Pyx_GIVEREF(__pyx_v_r);
+        PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_v_r);
+        __Pyx_GIVEREF(__pyx_t_11);
+        PyTuple_SET_ITEM(__pyx_t_12, 1, __pyx_t_11);
+        __pyx_t_11 = 0;
+        if (__Pyx_PrintOne(0, __pyx_t_12) < 0) __PYX_ERR(0, 274, __pyx_L7_except_error)
+        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        goto __pyx_L6_exception_handled;
+      }
+      __pyx_L7_except_error:;
+
+      /* "Flares.pyx":270
+ *     for r in range(380, 750):
+ *         color1 = wavelength_to_rgba(r, 0.8)
+ *         try:             # <<<<<<<<<<<<<<
+ *             pygame.draw.aaline(s, (color1.r, color1.g, color1.b, color1.a),
+ *                                (r - 380, 0) , (r - 380, 370))
+ */
+      __Pyx_XGIVEREF(__pyx_t_6);
+      __Pyx_XGIVEREF(__pyx_t_7);
+      __Pyx_XGIVEREF(__pyx_t_8);
+      __Pyx_ExceptionReset(__pyx_t_6, __pyx_t_7, __pyx_t_8);
+      goto __pyx_L1_error;
+      __pyx_L6_exception_handled:;
+      __Pyx_XGIVEREF(__pyx_t_6);
+      __Pyx_XGIVEREF(__pyx_t_7);
+      __Pyx_XGIVEREF(__pyx_t_8);
+      __Pyx_ExceptionReset(__pyx_t_6, __pyx_t_7, __pyx_t_8);
+      __pyx_L12_try_end:;
+    }
+
+    /* "Flares.pyx":268
+ *     cdef rgba_color color1
+ *     s = pygame.Surface((370, 370))
+ *     for r in range(380, 750):             # <<<<<<<<<<<<<<
+ *         color1 = wavelength_to_rgba(r, 0.8)
+ *         try:
+ */
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "Flares.pyx":275
+ *         except:
+ *             print(r, color1)
+ *     return s             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(__pyx_v_s);
+  __pyx_r = __pyx_v_s;
+  goto __pyx_L0;
+
+  /* "Flares.pyx":265
+ * 
+ * 
+ * cpdef v_surface():             # <<<<<<<<<<<<<<
+ *     cdef rgba_color color1
+ *     s = pygame.Surface((370, 370))
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_10);
+  __Pyx_XDECREF(__pyx_t_11);
+  __Pyx_XDECREF(__pyx_t_12);
+  __Pyx_XDECREF(__pyx_t_13);
+  __Pyx_XDECREF(__pyx_t_14);
+  __Pyx_AddTraceback("FLARES.v_surface", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_s);
+  __Pyx_XDECREF(__pyx_v_r);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6FLARES_3v_surface(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_6FLARES_3v_surface(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("v_surface (wrapper)", 0);
+  __pyx_r = __pyx_pf_6FLARES_2v_surface(__pyx_self);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6FLARES_2v_surface(CYTHON_UNUSED PyObject *__pyx_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("v_surface", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_6FLARES_v_surface(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 265, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("FLARES.v_surface", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "Flares.pyx":283
  * @cython.nonecheck(False)
  * @cython.cdivision(True)
  * cpdef get_angle(vector2d obj1, vector2d obj2):             # <<<<<<<<<<<<<<
@@ -5157,7 +5610,7 @@ static PyObject *__pyx_pf_6FLARES_22LayeredUpdatesModified_6__setstate_cython__(
  *     Return a pygame.math.Vector2 representing a vector
  */
 
-static PyObject *__pyx_pw_6FLARES_3get_angle(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_6FLARES_5get_angle(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyObject *__pyx_f_6FLARES_get_angle(struct vector2d __pyx_v_obj1, struct vector2d __pyx_v_obj2, CYTHON_UNUSED int __pyx_skip_dispatch) {
   struct angle_vector __pyx_v_av;
   PyObject *__pyx_r = NULL;
@@ -5171,7 +5624,7 @@ static PyObject *__pyx_f_6FLARES_get_angle(struct vector2d __pyx_v_obj1, struct 
   PyObject *__pyx_t_7 = NULL;
   __Pyx_RefNannySetupContext("get_angle", 0);
 
-  /* "Flares.pyx":273
+  /* "Flares.pyx":293
  *     """
  *     cdef angle_vector av;
  *     av = get_angle_c(&obj1, &obj2)             # <<<<<<<<<<<<<<
@@ -5180,7 +5633,7 @@ static PyObject *__pyx_f_6FLARES_get_angle(struct vector2d __pyx_v_obj1, struct 
  */
   __pyx_v_av = get_angle_c((&__pyx_v_obj1), (&__pyx_v_obj2));
 
-  /* "Flares.pyx":274
+  /* "Flares.pyx":294
  *     cdef angle_vector av;
  *     av = get_angle_c(&obj1, &obj2)
  *     return pygame.math.Vector2(av.vector.x, av.vector.y)             # <<<<<<<<<<<<<<
@@ -5188,17 +5641,17 @@ static PyObject *__pyx_f_6FLARES_get_angle(struct vector2d __pyx_v_obj1, struct 
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_math); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_math); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_Vector2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_Vector2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_av.vector.x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_av.vector.x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_av.vector.y); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_av.vector.y); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   __pyx_t_6 = 0;
@@ -5215,7 +5668,7 @@ static PyObject *__pyx_f_6FLARES_get_angle(struct vector2d __pyx_v_obj1, struct 
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_t_3, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 274, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -5225,7 +5678,7 @@ static PyObject *__pyx_f_6FLARES_get_angle(struct vector2d __pyx_v_obj1, struct 
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_t_3, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 274, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -5233,7 +5686,7 @@ static PyObject *__pyx_f_6FLARES_get_angle(struct vector2d __pyx_v_obj1, struct 
   } else
   #endif
   {
-    __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 274, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 294, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     if (__pyx_t_5) {
       __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -5244,7 +5697,7 @@ static PyObject *__pyx_f_6FLARES_get_angle(struct vector2d __pyx_v_obj1, struct 
     PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_6, __pyx_t_4);
     __pyx_t_3 = 0;
     __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 274, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
@@ -5253,7 +5706,7 @@ static PyObject *__pyx_f_6FLARES_get_angle(struct vector2d __pyx_v_obj1, struct 
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "Flares.pyx":263
+  /* "Flares.pyx":283
  * @cython.nonecheck(False)
  * @cython.cdivision(True)
  * cpdef get_angle(vector2d obj1, vector2d obj2):             # <<<<<<<<<<<<<<
@@ -5278,9 +5731,9 @@ static PyObject *__pyx_f_6FLARES_get_angle(struct vector2d __pyx_v_obj1, struct 
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6FLARES_3get_angle(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6FLARES_2get_angle[] = "\n    Return a pygame.math.Vector2 representing a vector \n    This angle represent the beam lens direction\n     \n    :param obj1: vector2d; object 1 vector\n    :param obj2: vector2d; object 2 vector\n    :return: pygame.math.Vector2; Return pygame Vector2d \n    ";
-static PyObject *__pyx_pw_6FLARES_3get_angle(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6FLARES_5get_angle(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6FLARES_4get_angle[] = "\n    Return a pygame.math.Vector2 representing a vector \n    This angle represent the beam lens direction\n     \n    :param obj1: vector2d; object 1 vector\n    :param obj2: vector2d; object 2 vector\n    :return: pygame.math.Vector2; Return pygame Vector2d \n    ";
+static PyObject *__pyx_pw_6FLARES_5get_angle(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct vector2d __pyx_v_obj1;
   struct vector2d __pyx_v_obj2;
   PyObject *__pyx_r = 0;
@@ -5309,11 +5762,11 @@ static PyObject *__pyx_pw_6FLARES_3get_angle(PyObject *__pyx_self, PyObject *__p
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_obj2)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_angle", 1, 2, 2, 1); __PYX_ERR(0, 263, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_angle", 1, 2, 2, 1); __PYX_ERR(0, 283, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_angle") < 0)) __PYX_ERR(0, 263, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_angle") < 0)) __PYX_ERR(0, 283, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -5321,31 +5774,31 @@ static PyObject *__pyx_pw_6FLARES_3get_angle(PyObject *__pyx_self, PyObject *__p
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_obj1 = __pyx_convert__from_py_struct__vector2d(values[0]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 263, __pyx_L3_error)
-    __pyx_v_obj2 = __pyx_convert__from_py_struct__vector2d(values[1]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 263, __pyx_L3_error)
+    __pyx_v_obj1 = __pyx_convert__from_py_struct__vector2d(values[0]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 283, __pyx_L3_error)
+    __pyx_v_obj2 = __pyx_convert__from_py_struct__vector2d(values[1]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 283, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_angle", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 263, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_angle", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 283, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("FLARES.get_angle", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6FLARES_2get_angle(__pyx_self, __pyx_v_obj1, __pyx_v_obj2);
+  __pyx_r = __pyx_pf_6FLARES_4get_angle(__pyx_self, __pyx_v_obj1, __pyx_v_obj2);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6FLARES_2get_angle(CYTHON_UNUSED PyObject *__pyx_self, struct vector2d __pyx_v_obj1, struct vector2d __pyx_v_obj2) {
+static PyObject *__pyx_pf_6FLARES_4get_angle(CYTHON_UNUSED PyObject *__pyx_self, struct vector2d __pyx_v_obj1, struct vector2d __pyx_v_obj2) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("get_angle", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_get_angle(__pyx_v_obj1, __pyx_v_obj2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_get_angle(__pyx_v_obj1, __pyx_v_obj2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5362,7 +5815,7 @@ static PyObject *__pyx_pf_6FLARES_2get_angle(CYTHON_UNUSED PyObject *__pyx_self,
   return __pyx_r;
 }
 
-/* "Flares.pyx":281
+/* "Flares.pyx":301
  * @cython.nonecheck(False)
  * @cython.cdivision(True)
  * cpdef np.ndarray[np.int_t, ndim=2] polygon():             # <<<<<<<<<<<<<<
@@ -5370,7 +5823,7 @@ static PyObject *__pyx_pf_6FLARES_2get_angle(CYTHON_UNUSED PyObject *__pyx_self,
  *     CREATE A FLARE POLYGON OCTAGON (REFERENCE)
  */
 
-static PyObject *__pyx_pw_6FLARES_5polygon(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_6FLARES_7polygon(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
 static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispatch) {
   short __pyx_v__a;
   short __pyx_v__b;
@@ -5391,7 +5844,7 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
   PyObject *__pyx_t_11 = NULL;
   __Pyx_RefNannySetupContext("polygon", 0);
 
-  /* "Flares.pyx":288
+  /* "Flares.pyx":308
  *     :return: Return a numpy.ndarray shape (w, h) numpy.int
  *     """
  *     cdef short int _a = 10                      # Octagon parameter             # <<<<<<<<<<<<<<
@@ -5400,7 +5853,7 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
  */
   __pyx_v__a = 10;
 
-  /* "Flares.pyx":289
+  /* "Flares.pyx":309
  *     """
  *     cdef short int _a = 10                      # Octagon parameter
  *     cdef short int _b = 30                      # Octagon parameter             # <<<<<<<<<<<<<<
@@ -5409,7 +5862,7 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
  */
   __pyx_v__b = 30;
 
-  /* "Flares.pyx":290
+  /* "Flares.pyx":310
  *     cdef short int _a = 10                      # Octagon parameter
  *     cdef short int _b = 30                      # Octagon parameter
  *     cdef int center_x = 50, center_y = 50       # Octagon's center             # <<<<<<<<<<<<<<
@@ -5419,7 +5872,7 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
   __pyx_v_center_x = 50;
   __pyx_v_center_y = 50;
 
-  /* "Flares.pyx":292
+  /* "Flares.pyx":312
  *     cdef int center_x = 50, center_y = 50       # Octagon's center
  *     # Octagon sides (Octagon second flares)
  *     return numpy.array([[center_x - _a, center_y - _b],             # <<<<<<<<<<<<<<
@@ -5427,16 +5880,16 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
  *                         [center_x + _b, center_y - _a],
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_x - __pyx_v__a)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_x - __pyx_v__a)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_y - __pyx_v__b)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_y - __pyx_v__b)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyList_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_4 = PyList_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
   PyList_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
@@ -5445,18 +5898,18 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
 
-  /* "Flares.pyx":293
+  /* "Flares.pyx":313
  *     # Octagon sides (Octagon second flares)
  *     return numpy.array([[center_x - _a, center_y - _b],
  *                         [center_x + _a, center_y - _b],             # <<<<<<<<<<<<<<
  *                         [center_x + _b, center_y - _a],
  *                         [center_x + _b, center_y + _a],
  */
-  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_x + __pyx_v__a)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 293, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_x + __pyx_v__a)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_y - __pyx_v__b)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 293, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_y - __pyx_v__b)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = PyList_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 293, __pyx_L1_error)
+  __pyx_t_5 = PyList_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_3);
   PyList_SET_ITEM(__pyx_t_5, 0, __pyx_t_3);
@@ -5465,18 +5918,18 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
   __pyx_t_3 = 0;
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":294
+  /* "Flares.pyx":314
  *     return numpy.array([[center_x - _a, center_y - _b],
  *                         [center_x + _a, center_y - _b],
  *                         [center_x + _b, center_y - _a],             # <<<<<<<<<<<<<<
  *                         [center_x + _b, center_y + _a],
  *                         [center_x + _a, center_y + _b],
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_x + __pyx_v__b)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_x + __pyx_v__b)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 314, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_y - __pyx_v__a)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_y - __pyx_v__a)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 314, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_6 = PyList_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_6 = PyList_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 314, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_1);
   PyList_SET_ITEM(__pyx_t_6, 0, __pyx_t_1);
@@ -5485,18 +5938,18 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
 
-  /* "Flares.pyx":295
+  /* "Flares.pyx":315
  *                         [center_x + _a, center_y - _b],
  *                         [center_x + _b, center_y - _a],
  *                         [center_x + _b, center_y + _a],             # <<<<<<<<<<<<<<
  *                         [center_x + _a, center_y + _b],
  *                         [center_x - _a, center_y + _b],
  */
-  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_x + __pyx_v__b)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_x + __pyx_v__b)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_y + __pyx_v__a)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_y + __pyx_v__a)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = PyList_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_7 = PyList_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_3);
   PyList_SET_ITEM(__pyx_t_7, 0, __pyx_t_3);
@@ -5505,18 +5958,18 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
   __pyx_t_3 = 0;
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":296
+  /* "Flares.pyx":316
  *                         [center_x + _b, center_y - _a],
  *                         [center_x + _b, center_y + _a],
  *                         [center_x + _a, center_y + _b],             # <<<<<<<<<<<<<<
  *                         [center_x - _a, center_y + _b],
  *                         [center_x - _b, center_y + _a],
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_x + __pyx_v__a)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_x + __pyx_v__a)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 316, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_y + __pyx_v__b)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_y + __pyx_v__b)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 316, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_8 = PyList_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __pyx_t_8 = PyList_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 316, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_GIVEREF(__pyx_t_1);
   PyList_SET_ITEM(__pyx_t_8, 0, __pyx_t_1);
@@ -5525,18 +5978,18 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
 
-  /* "Flares.pyx":297
+  /* "Flares.pyx":317
  *                         [center_x + _b, center_y + _a],
  *                         [center_x + _a, center_y + _b],
  *                         [center_x - _a, center_y + _b],             # <<<<<<<<<<<<<<
  *                         [center_x - _b, center_y + _a],
  *                         [center_x - _b, center_y - _a]], dtype=numpy.int, copy=False)
  */
-  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_x - __pyx_v__a)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_x - __pyx_v__a)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_y + __pyx_v__b)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_y + __pyx_v__b)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_9 = PyList_New(2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_9 = PyList_New(2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_GIVEREF(__pyx_t_3);
   PyList_SET_ITEM(__pyx_t_9, 0, __pyx_t_3);
@@ -5545,18 +5998,18 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
   __pyx_t_3 = 0;
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":298
+  /* "Flares.pyx":318
  *                         [center_x + _a, center_y + _b],
  *                         [center_x - _a, center_y + _b],
  *                         [center_x - _b, center_y + _a],             # <<<<<<<<<<<<<<
  *                         [center_x - _b, center_y - _a]], dtype=numpy.int, copy=False)
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_x - __pyx_v__b)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_x - __pyx_v__b)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_y + __pyx_v__a)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_y + __pyx_v__a)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_10 = PyList_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_t_10 = PyList_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_GIVEREF(__pyx_t_1);
   PyList_SET_ITEM(__pyx_t_10, 0, __pyx_t_1);
@@ -5565,18 +6018,18 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
 
-  /* "Flares.pyx":299
+  /* "Flares.pyx":319
  *                         [center_x - _a, center_y + _b],
  *                         [center_x - _b, center_y + _a],
  *                         [center_x - _b, center_y - _a]], dtype=numpy.int, copy=False)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_x - __pyx_v__b)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int((__pyx_v_center_x - __pyx_v__b)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_y - __pyx_v__a)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int((__pyx_v_center_y - __pyx_v__a)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_11 = PyList_New(2); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __pyx_t_11 = PyList_New(2); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_GIVEREF(__pyx_t_3);
   PyList_SET_ITEM(__pyx_t_11, 0, __pyx_t_3);
@@ -5585,14 +6038,14 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
   __pyx_t_3 = 0;
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":292
+  /* "Flares.pyx":312
  *     cdef int center_x = 50, center_y = 50       # Octagon's center
  *     # Octagon sides (Octagon second flares)
  *     return numpy.array([[center_x - _a, center_y - _b],             # <<<<<<<<<<<<<<
  *                         [center_x + _a, center_y - _b],
  *                         [center_x + _b, center_y - _a],
  */
-  __pyx_t_1 = PyList_New(8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_4);
   PyList_SET_ITEM(__pyx_t_1, 0, __pyx_t_4);
@@ -5618,48 +6071,48 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
   __pyx_t_9 = 0;
   __pyx_t_10 = 0;
   __pyx_t_11 = 0;
-  __pyx_t_11 = PyTuple_New(1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_11 = PyTuple_New(1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":299
+  /* "Flares.pyx":319
  *                         [center_x - _a, center_y + _b],
  *                         [center_x - _b, center_y + _a],
  *                         [center_x - _b, center_y - _a]], dtype=numpy.int, copy=False)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_10 = __Pyx_GetModuleGlobalName(__pyx_n_s_numpy); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_GetModuleGlobalName(__pyx_n_s_numpy); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_int); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_int); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_9) < 0) __PYX_ERR(0, 299, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_9) < 0) __PYX_ERR(0, 319, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_copy, Py_False) < 0) __PYX_ERR(0, 299, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_copy, Py_False) < 0) __PYX_ERR(0, 319, __pyx_L1_error)
 
-  /* "Flares.pyx":292
+  /* "Flares.pyx":312
  *     cdef int center_x = 50, center_y = 50       # Octagon's center
  *     # Octagon sides (Octagon second flares)
  *     return numpy.array([[center_x - _a, center_y - _b],             # <<<<<<<<<<<<<<
  *                         [center_x + _a, center_y - _b],
  *                         [center_x + _b, center_y - _a],
  */
-  __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_11, __pyx_t_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_11, __pyx_t_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_9) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_9, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 292, __pyx_L1_error)
+  if (!(likely(((__pyx_t_9) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_9, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 312, __pyx_L1_error)
   __pyx_r = ((PyArrayObject *)__pyx_t_9);
   __pyx_t_9 = 0;
   goto __pyx_L0;
 
-  /* "Flares.pyx":281
+  /* "Flares.pyx":301
  * @cython.nonecheck(False)
  * @cython.cdivision(True)
  * cpdef np.ndarray[np.int_t, ndim=2] polygon():             # <<<<<<<<<<<<<<
@@ -5689,26 +6142,26 @@ static PyArrayObject *__pyx_f_6FLARES_polygon(CYTHON_UNUSED int __pyx_skip_dispa
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6FLARES_5polygon(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_6FLARES_4polygon[] = "\n    CREATE A FLARE POLYGON OCTAGON (REFERENCE) \n    POLYGON SHAPE IS HARD ENCODED WITH VARIABLES _a, _b, center_x, center_y  \n    \n    :return: Return a numpy.ndarray shape (w, h) numpy.int\n    ";
-static PyObject *__pyx_pw_6FLARES_5polygon(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_6FLARES_7polygon(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_6FLARES_6polygon[] = "\n    CREATE A FLARE POLYGON OCTAGON (REFERENCE) \n    POLYGON SHAPE IS HARD ENCODED WITH VARIABLES _a, _b, center_x, center_y  \n    \n    :return: Return a numpy.ndarray shape (w, h) numpy.int\n    ";
+static PyObject *__pyx_pw_6FLARES_7polygon(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("polygon (wrapper)", 0);
-  __pyx_r = __pyx_pf_6FLARES_4polygon(__pyx_self);
+  __pyx_r = __pyx_pf_6FLARES_6polygon(__pyx_self);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6FLARES_4polygon(CYTHON_UNUSED PyObject *__pyx_self) {
+static PyObject *__pyx_pf_6FLARES_6polygon(CYTHON_UNUSED PyObject *__pyx_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("polygon", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6FLARES_polygon(0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6FLARES_polygon(0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5725,7 +6178,7 @@ static PyObject *__pyx_pf_6FLARES_4polygon(CYTHON_UNUSED PyObject *__pyx_self) {
   return __pyx_r;
 }
 
-/* "Flares.pyx":306
+/* "Flares.pyx":326
  * @cython.nonecheck(False)
  * @cython.cdivision(True)
  * cpdef second_flares(             # <<<<<<<<<<<<<<
@@ -5733,7 +6186,7 @@ static PyObject *__pyx_pf_6FLARES_4polygon(CYTHON_UNUSED PyObject *__pyx_self) {
  *         np.ndarray[np.int_t, ndim=2] polygon_,
  */
 
-static PyObject *__pyx_pw_6FLARES_7second_flares(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_6FLARES_9second_flares(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArrayObject *__pyx_v_polygon_, CYTHON_UNUSED struct vector2d __pyx_v_light_position_, float __pyx_v_min_size, float __pyx_v_max_size, PyObject *__pyx_v_exception_, CYTHON_UNUSED int __pyx_skip_dispatch) {
   int __pyx_v_w;
   int __pyx_v_h;
@@ -5775,18 +6228,18 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
   __pyx_pybuffernd_polygon_.rcbuffer = &__pyx_pybuffer_polygon_;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_polygon_.rcbuffer->pybuffer, (PyObject*)__pyx_v_polygon_, &__Pyx_TypeInfo_nn___pyx_t_5numpy_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 306, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_polygon_.rcbuffer->pybuffer, (PyObject*)__pyx_v_polygon_, &__Pyx_TypeInfo_nn___pyx_t_5numpy_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 326, __pyx_L1_error)
   }
   __pyx_pybuffernd_polygon_.diminfo[0].strides = __pyx_pybuffernd_polygon_.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_polygon_.diminfo[0].shape = __pyx_pybuffernd_polygon_.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_polygon_.diminfo[1].strides = __pyx_pybuffernd_polygon_.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_polygon_.diminfo[1].shape = __pyx_pybuffernd_polygon_.rcbuffer->pybuffer.shape[1];
 
-  /* "Flares.pyx":337
+  /* "Flares.pyx":357
  *     # FIXME size range ?
  *     cdef:
  *         int w = texture_.get_width()             # <<<<<<<<<<<<<<
  *         int h = texture_.get_height()
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_texture_, __pyx_n_s_get_width); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 337, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_texture_, __pyx_n_s_get_width); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 357, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -5799,25 +6252,25 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 337, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 357, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 337, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 357, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 337, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 357, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_w = __pyx_t_4;
 
-  /* "Flares.pyx":338
+  /* "Flares.pyx":358
  *     cdef:
  *         int w = texture_.get_width()
  *         int h = texture_.get_height()             # <<<<<<<<<<<<<<
  * 
  *         # -0.8 negative distance (behind focal point)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_texture_, __pyx_n_s_get_height); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 338, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_texture_, __pyx_n_s_get_height); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 358, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -5830,18 +6283,18 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 338, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 358, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 338, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 358, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 338, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 358, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_h = __pyx_t_4;
 
-  /* "Flares.pyx":342
+  /* "Flares.pyx":362
  *         # -0.8 negative distance (behind focal point)
  *         # +2 after focal point
  *         float dist = uniform_c(-0.8, 2)             # <<<<<<<<<<<<<<
@@ -5850,7 +6303,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
  */
   __pyx_v_dist = uniform_c(-0.8, 2.0);
 
-  /* "Flares.pyx":344
+  /* "Flares.pyx":364
  *         float dist = uniform_c(-0.8, 2)
  * 
  *         float a_dist = <float>fabs(dist)             # <<<<<<<<<<<<<<
@@ -5859,19 +6312,19 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
  */
   __pyx_v_a_dist = ((float)fabs(__pyx_v_dist));
 
-  /* "Flares.pyx":350
+  /* "Flares.pyx":370
  *         vector2d s_2
  * 
  *     cdef list flare = []             # <<<<<<<<<<<<<<
  * 
  *     # FAST C UNIFORM (FASTER THAT PYTHON RANDOM.UNIFORM METHOD)
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_flare = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":353
+  /* "Flares.pyx":373
  * 
  *     # FAST C UNIFORM (FASTER THAT PYTHON RANDOM.UNIFORM METHOD)
  *     size_ = uniform_c(min_size, max_size)             # <<<<<<<<<<<<<<
@@ -5880,34 +6333,34 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
  */
   __pyx_v_size_ = uniform_c(__pyx_v_min_size, __pyx_v_max_size);
 
-  /* "Flares.pyx":358
+  /* "Flares.pyx":378
  *     # BE BLIT DIRECTLY ONTO THE SCREEN WITHOUT
  *     # BEING DRAWN ONTO THE POLYGON.
  *     if texture_ not in exception_:             # <<<<<<<<<<<<<<
  * 
  *         # EMPTY SURFACE with RLEACCEL and fast blit
  */
-  __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_v_texture_, __pyx_v_exception_, Py_NE)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_v_texture_, __pyx_v_exception_, Py_NE)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 378, __pyx_L1_error)
   __pyx_t_6 = (__pyx_t_5 != 0);
   if (__pyx_t_6) {
 
-    /* "Flares.pyx":361
+    /* "Flares.pyx":381
  * 
  *         # EMPTY SURFACE with RLEACCEL and fast blit
  *         texture = pygame.Surface((w, h), flags=pygame.RLEACCEL).convert()             # <<<<<<<<<<<<<<
  * 
  *         # WAVELENGTH V
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_Surface); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_Surface); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_w); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_w); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_h); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_h); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_2);
@@ -5915,26 +6368,26 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_7);
     __pyx_t_2 = 0;
     __pyx_t_7 = 0;
-    __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_GIVEREF(__pyx_t_8);
     PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_8);
     __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_RLEACCEL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_RLEACCEL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_flags, __pyx_t_9) < 0) __PYX_ERR(0, 361, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_flags, __pyx_t_9) < 0) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_convert); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_convert); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __pyx_t_9 = NULL;
@@ -5948,17 +6401,17 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       }
     }
     if (__pyx_t_9) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 361, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 381, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     } else {
-      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 361, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 381, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_v_texture = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "Flares.pyx":364
+    /* "Flares.pyx":384
  * 
  *         # WAVELENGTH V
  *         v = <int>((dist * HALF) * 370.0 + 380.0)             # <<<<<<<<<<<<<<
@@ -5967,7 +6420,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
  */
     __pyx_v_v = ((int)(((__pyx_v_dist * 0.5) * 370.0) + 380.0));
 
-    /* "Flares.pyx":366
+    /* "Flares.pyx":386
  *         v = <int>((dist * HALF) * 370.0 + 380.0)
  *         # GET RGBA color corresponding to the given wavelength v
  *         color1 = wavelength_to_rgba(v, 0.8)             # <<<<<<<<<<<<<<
@@ -5976,24 +6429,24 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
  */
     __pyx_v_color1 = wavelength_to_rgba(__pyx_v_v, 0.8);
 
-    /* "Flares.pyx":369
+    /* "Flares.pyx":389
  * 
  *         # FILL the TEXTURE and set_alpha
  *         texture.fill((color1.r, color1.g, color1.b, color1.a))             # <<<<<<<<<<<<<<
  *         texture.set_alpha(randint_c(30, 50))
  * 
  */
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_texture, __pyx_n_s_fill); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_texture, __pyx_n_s_fill); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 389, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_color1.r); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_color1.r); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 389, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_color1.g); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_color1.g); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 389, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_color1.b); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_color1.b); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 389, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_color1.a); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_color1.a); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 389, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_10 = PyTuple_New(4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_10 = PyTuple_New(4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 389, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_GIVEREF(__pyx_t_9);
     PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_9);
@@ -6018,14 +6471,14 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       }
     }
     if (!__pyx_t_2) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 369, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 389, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_8)) {
         PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_10};
-        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 369, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 389, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
@@ -6034,20 +6487,20 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_8)) {
         PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_10};
-        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 369, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 389, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       } else
       #endif
       {
-        __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 369, __pyx_L1_error)
+        __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 389, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2); __pyx_t_2 = NULL;
         __Pyx_GIVEREF(__pyx_t_10);
         PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_10);
         __pyx_t_10 = 0;
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 369, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 389, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       }
@@ -6055,16 +6508,16 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "Flares.pyx":370
+    /* "Flares.pyx":390
  *         # FILL the TEXTURE and set_alpha
  *         texture.fill((color1.r, color1.g, color1.b, color1.a))
  *         texture.set_alpha(randint_c(30, 50))             # <<<<<<<<<<<<<<
  * 
  *         # RESIZE
  */
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_texture, __pyx_n_s_set_alpha); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 370, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_texture, __pyx_n_s_set_alpha); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 390, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_3 = __Pyx_PyInt_From_int(randint_c(30, 50)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 370, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_int(randint_c(30, 50)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 390, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_10 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_8))) {
@@ -6077,14 +6530,14 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       }
     }
     if (!__pyx_t_10) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 390, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_8)) {
         PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_t_3};
-        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 390, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6093,20 +6546,20 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_8)) {
         PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_t_3};
-        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 390, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       } else
       #endif
       {
-        __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 370, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 390, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_10); __pyx_t_10 = NULL;
         __Pyx_GIVEREF(__pyx_t_3);
         PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_3);
         __pyx_t_3 = 0;
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 390, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       }
@@ -6114,7 +6567,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "Flares.pyx":373
+    /* "Flares.pyx":393
  * 
  *         # RESIZE
  *         v1 = <float>(size_ * a_dist)             # <<<<<<<<<<<<<<
@@ -6123,26 +6576,26 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
  */
     __pyx_v_v1 = ((float)(__pyx_v_size_ * __pyx_v_a_dist));
 
-    /* "Flares.pyx":374
+    /* "Flares.pyx":394
  *         # RESIZE
  *         v1 = <float>(size_ * a_dist)
  *         texture_ = pygame.transform.scale(texture, (<int>(w * v1), <int>(h * v1)))             # <<<<<<<<<<<<<<
  * 
  *         w, h = texture_.get_size()
  */
-    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 374, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 394, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_transform); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 374, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_transform); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 394, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_scale); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 374, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_scale); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 394, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyInt_From_int(((int)(__pyx_v_w * __pyx_v_v1))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 374, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_int(((int)(__pyx_v_w * __pyx_v_v1))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 394, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyInt_From_int(((int)(__pyx_v_h * __pyx_v_v1))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 374, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_int(((int)(__pyx_v_h * __pyx_v_v1))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 394, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 374, __pyx_L1_error)
+    __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 394, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_2);
@@ -6165,7 +6618,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_8)) {
       PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_texture, __pyx_t_10};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 374, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
@@ -6174,14 +6627,14 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_8)) {
       PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_texture, __pyx_t_10};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 374, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     } else
     #endif
     {
-      __pyx_t_2 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 374, __pyx_L1_error)
+      __pyx_t_2 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 394, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       if (__pyx_t_3) {
         __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -6192,7 +6645,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       __Pyx_GIVEREF(__pyx_t_10);
       PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_4, __pyx_t_10);
       __pyx_t_10 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 374, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
@@ -6200,14 +6653,14 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     __Pyx_DECREF_SET(__pyx_v_texture_, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "Flares.pyx":376
+    /* "Flares.pyx":396
  *         texture_ = pygame.transform.scale(texture, (<int>(w * v1), <int>(h * v1)))
  * 
  *         w, h = texture_.get_size()             # <<<<<<<<<<<<<<
  *         s_2.x = <float> (w >> 1)
  *         s_2.y = <float> (h >> 1)
  */
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_texture_, __pyx_n_s_get_size); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 376, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_texture_, __pyx_n_s_get_size); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 396, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __pyx_t_2 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_8))) {
@@ -6220,10 +6673,10 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       }
     }
     if (__pyx_t_2) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 396, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else {
-      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 396, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -6237,7 +6690,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 376, __pyx_L1_error)
+        __PYX_ERR(0, 396, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -6250,15 +6703,15 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       __Pyx_INCREF(__pyx_t_8);
       __Pyx_INCREF(__pyx_t_2);
       #else
-      __pyx_t_8 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 376, __pyx_L1_error)
+      __pyx_t_8 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 396, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 376, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 396, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       #endif
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_10 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 376, __pyx_L1_error)
+      __pyx_t_10 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 396, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_11 = Py_TYPE(__pyx_t_10)->tp_iternext;
@@ -6266,7 +6719,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       __Pyx_GOTREF(__pyx_t_8);
       index = 1; __pyx_t_2 = __pyx_t_11(__pyx_t_10); if (unlikely(!__pyx_t_2)) goto __pyx_L4_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_2);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_11(__pyx_t_10), 2) < 0) __PYX_ERR(0, 376, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_11(__pyx_t_10), 2) < 0) __PYX_ERR(0, 396, __pyx_L1_error)
       __pyx_t_11 = NULL;
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       goto __pyx_L5_unpacking_done;
@@ -6274,17 +6727,17 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __pyx_t_11 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 376, __pyx_L1_error)
+      __PYX_ERR(0, 396, __pyx_L1_error)
       __pyx_L5_unpacking_done:;
     }
-    __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_8); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 376, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_8); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 396, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 376, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 396, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_w = __pyx_t_4;
     __pyx_v_h = __pyx_t_12;
 
-    /* "Flares.pyx":377
+    /* "Flares.pyx":397
  * 
  *         w, h = texture_.get_size()
  *         s_2.x = <float> (w >> 1)             # <<<<<<<<<<<<<<
@@ -6293,7 +6746,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
  */
     __pyx_v_s_2.x = ((float)(__pyx_v_w >> 1));
 
-    /* "Flares.pyx":378
+    /* "Flares.pyx":398
  *         w, h = texture_.get_size()
  *         s_2.x = <float> (w >> 1)
  *         s_2.y = <float> (h >> 1)             # <<<<<<<<<<<<<<
@@ -6302,23 +6755,23 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
  */
     __pyx_v_s_2.y = ((float)(__pyx_v_h >> 1));
 
-    /* "Flares.pyx":381
+    /* "Flares.pyx":401
  * 
  *         # APPLY TEXTURE to polygon
  *         surface_ = pygame.Surface((w, h), flags=pygame.RLEACCEL).convert()             # <<<<<<<<<<<<<<
  *         gfxdraw.textured_polygon(surface_, polygon_ * v1, texture_, 0, 0)
  * 
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 401, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_Surface); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_Surface); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 401, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_w); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_w); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 401, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_h); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_h); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 401, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 401, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
@@ -6326,26 +6779,26 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_10);
     __pyx_t_2 = 0;
     __pyx_t_10 = 0;
-    __pyx_t_10 = PyTuple_New(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_10 = PyTuple_New(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 401, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_GIVEREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 401, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 401, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_RLEACCEL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_RLEACCEL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 401, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_flags, __pyx_t_7) < 0) __PYX_ERR(0, 381, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_flags, __pyx_t_7) < 0) __PYX_ERR(0, 401, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_10, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_10, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 401, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_convert); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_convert); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 401, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_7 = NULL;
@@ -6359,31 +6812,31 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       }
     }
     if (__pyx_t_7) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 381, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 401, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     } else {
-      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 381, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 401, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_surface_ = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "Flares.pyx":382
+    /* "Flares.pyx":402
  *         # APPLY TEXTURE to polygon
  *         surface_ = pygame.Surface((w, h), flags=pygame.RLEACCEL).convert()
  *         gfxdraw.textured_polygon(surface_, polygon_ * v1, texture_, 0, 0)             # <<<<<<<<<<<<<<
  * 
  *         flare = [surface_, dist]
  */
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_gfxdraw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 382, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_gfxdraw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 402, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_textured_polygon); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 382, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_textured_polygon); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 402, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_v1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 382, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_v1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 402, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_10 = PyNumber_Multiply(((PyObject *)__pyx_v_polygon_), __pyx_t_3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 382, __pyx_L1_error)
+    __pyx_t_10 = PyNumber_Multiply(((PyObject *)__pyx_v_polygon_), __pyx_t_3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 402, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -6401,7 +6854,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_7)) {
       PyObject *__pyx_temp[6] = {__pyx_t_3, __pyx_v_surface_, __pyx_t_10, __pyx_v_texture_, __pyx_int_0, __pyx_int_0};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_12, 5+__pyx_t_12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 382, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_12, 5+__pyx_t_12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
@@ -6410,14 +6863,14 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
       PyObject *__pyx_temp[6] = {__pyx_t_3, __pyx_v_surface_, __pyx_t_10, __pyx_v_texture_, __pyx_int_0, __pyx_int_0};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_12, 5+__pyx_t_12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 382, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_12, 5+__pyx_t_12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     } else
     #endif
     {
-      __pyx_t_8 = PyTuple_New(5+__pyx_t_12); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 382, __pyx_L1_error)
+      __pyx_t_8 = PyTuple_New(5+__pyx_t_12); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 402, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       if (__pyx_t_3) {
         __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -6437,23 +6890,23 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       __Pyx_GIVEREF(__pyx_int_0);
       PyTuple_SET_ITEM(__pyx_t_8, 4+__pyx_t_12, __pyx_int_0);
       __pyx_t_10 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 382, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "Flares.pyx":384
+    /* "Flares.pyx":404
  *         gfxdraw.textured_polygon(surface_, polygon_ * v1, texture_, 0, 0)
  * 
  *         flare = [surface_, dist]             # <<<<<<<<<<<<<<
  * 
  *     # DIRECT BLIT
  */
-    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_dist); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 384, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_dist); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 404, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_7 = PyList_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 384, __pyx_L1_error)
+    __pyx_t_7 = PyList_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 404, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_INCREF(__pyx_v_surface_);
     __Pyx_GIVEREF(__pyx_v_surface_);
@@ -6464,7 +6917,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     __Pyx_DECREF_SET(__pyx_v_flare, ((PyObject*)__pyx_t_7));
     __pyx_t_7 = 0;
 
-    /* "Flares.pyx":358
+    /* "Flares.pyx":378
  *     # BE BLIT DIRECTLY ONTO THE SCREEN WITHOUT
  *     # BEING DRAWN ONTO THE POLYGON.
  *     if texture_ not in exception_:             # <<<<<<<<<<<<<<
@@ -6474,7 +6927,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     goto __pyx_L3;
   }
 
-  /* "Flares.pyx":388
+  /* "Flares.pyx":408
  *     # DIRECT BLIT
  *     else:
  *         s_ = uniform_c(0.2, size_)             # <<<<<<<<<<<<<<
@@ -6484,7 +6937,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
   /*else*/ {
     __pyx_v_s_ = uniform_c(0.2, __pyx_v_size_);
 
-    /* "Flares.pyx":389
+    /* "Flares.pyx":409
  *     else:
  *         s_ = uniform_c(0.2, size_)
  *         v2 = <float>(s_ * a_dist)             # <<<<<<<<<<<<<<
@@ -6493,26 +6946,26 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
  */
     __pyx_v_v2 = ((float)(__pyx_v_s_ * __pyx_v_a_dist));
 
-    /* "Flares.pyx":390
+    /* "Flares.pyx":410
  *         s_ = uniform_c(0.2, size_)
  *         v2 = <float>(s_ * a_dist)
  *         texture_ = pygame.transform.scale(texture_, (<int>(w * v2), <int>(h * v2)))             # <<<<<<<<<<<<<<
  *         w, h = texture_.get_size()
  *         s_2.x, s_2.y = <float>(w >> 1), <float>(h >> 1)
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 390, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 410, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_transform); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 390, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_transform); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 410, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_scale); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 390, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_scale); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 410, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyInt_From_int(((int)(__pyx_v_w * __pyx_v_v2))); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 390, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyInt_From_int(((int)(__pyx_v_w * __pyx_v_v2))); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 410, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_10 = __Pyx_PyInt_From_int(((int)(__pyx_v_h * __pyx_v_v2))); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 390, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyInt_From_int(((int)(__pyx_v_h * __pyx_v_v2))); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 410, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 390, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 410, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_8);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_8);
@@ -6535,7 +6988,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[3] = {__pyx_t_10, __pyx_v_texture_, __pyx_t_3};
-      __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_12, 2+__pyx_t_12); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 390, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_12, 2+__pyx_t_12); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 410, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6544,14 +6997,14 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[3] = {__pyx_t_10, __pyx_v_texture_, __pyx_t_3};
-      __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_12, 2+__pyx_t_12); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 390, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_12, 2+__pyx_t_12); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 410, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     } else
     #endif
     {
-      __pyx_t_8 = PyTuple_New(2+__pyx_t_12); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 390, __pyx_L1_error)
+      __pyx_t_8 = PyTuple_New(2+__pyx_t_12); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 410, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       if (__pyx_t_10) {
         __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_10); __pyx_t_10 = NULL;
@@ -6562,7 +7015,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_12, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_8, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 390, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_8, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 410, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
@@ -6570,14 +7023,14 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     __Pyx_DECREF_SET(__pyx_v_texture_, __pyx_t_7);
     __pyx_t_7 = 0;
 
-    /* "Flares.pyx":391
+    /* "Flares.pyx":411
  *         v2 = <float>(s_ * a_dist)
  *         texture_ = pygame.transform.scale(texture_, (<int>(w * v2), <int>(h * v2)))
  *         w, h = texture_.get_size()             # <<<<<<<<<<<<<<
  *         s_2.x, s_2.y = <float>(w >> 1), <float>(h >> 1)
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_texture_, __pyx_n_s_get_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 391, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_texture_, __pyx_n_s_get_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 411, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_8 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -6590,10 +7043,10 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       }
     }
     if (__pyx_t_8) {
-      __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 391, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 411, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     } else {
-      __pyx_t_7 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 391, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 411, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6607,7 +7060,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 391, __pyx_L1_error)
+        __PYX_ERR(0, 411, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -6620,15 +7073,15 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       __Pyx_INCREF(__pyx_t_1);
       __Pyx_INCREF(__pyx_t_8);
       #else
-      __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 391, __pyx_L1_error)
+      __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 411, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_8 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 391, __pyx_L1_error)
+      __pyx_t_8 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 411, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       #endif
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_3 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 391, __pyx_L1_error)
+      __pyx_t_3 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 411, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_11 = Py_TYPE(__pyx_t_3)->tp_iternext;
@@ -6636,7 +7089,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       __Pyx_GOTREF(__pyx_t_1);
       index = 1; __pyx_t_8 = __pyx_t_11(__pyx_t_3); if (unlikely(!__pyx_t_8)) goto __pyx_L6_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_8);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_11(__pyx_t_3), 2) < 0) __PYX_ERR(0, 391, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_11(__pyx_t_3), 2) < 0) __PYX_ERR(0, 411, __pyx_L1_error)
       __pyx_t_11 = NULL;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       goto __pyx_L7_unpacking_done;
@@ -6644,17 +7097,17 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_11 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 391, __pyx_L1_error)
+      __PYX_ERR(0, 411, __pyx_L1_error)
       __pyx_L7_unpacking_done:;
     }
-    __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 391, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 411, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_8); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 391, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_8); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 411, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_v_w = __pyx_t_12;
     __pyx_v_h = __pyx_t_4;
 
-    /* "Flares.pyx":392
+    /* "Flares.pyx":412
  *         texture_ = pygame.transform.scale(texture_, (<int>(w * v2), <int>(h * v2)))
  *         w, h = texture_.get_size()
  *         s_2.x, s_2.y = <float>(w >> 1), <float>(h >> 1)             # <<<<<<<<<<<<<<
@@ -6666,16 +7119,16 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
     __pyx_v_s_2.x = __pyx_t_13;
     __pyx_v_s_2.y = __pyx_t_14;
 
-    /* "Flares.pyx":394
+    /* "Flares.pyx":414
  *         s_2.x, s_2.y = <float>(w >> 1), <float>(h >> 1)
  * 
  *         flare = [texture_, dist] #pos_, dist]             # <<<<<<<<<<<<<<
  * 
  *     return flare
  */
-    __pyx_t_7 = PyFloat_FromDouble(__pyx_v_dist); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 394, __pyx_L1_error)
+    __pyx_t_7 = PyFloat_FromDouble(__pyx_v_dist); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 414, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_8 = PyList_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 394, __pyx_L1_error)
+    __pyx_t_8 = PyList_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 414, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_INCREF(__pyx_v_texture_);
     __Pyx_GIVEREF(__pyx_v_texture_);
@@ -6688,7 +7141,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
   }
   __pyx_L3:;
 
-  /* "Flares.pyx":396
+  /* "Flares.pyx":416
  *         flare = [texture_, dist] #pos_, dist]
  * 
  *     return flare             # <<<<<<<<<<<<<<
@@ -6700,7 +7153,7 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
   __pyx_r = __pyx_v_flare;
   goto __pyx_L0;
 
-  /* "Flares.pyx":306
+  /* "Flares.pyx":326
  * @cython.nonecheck(False)
  * @cython.cdivision(True)
  * cpdef second_flares(             # <<<<<<<<<<<<<<
@@ -6739,9 +7192,9 @@ static PyObject *__pyx_f_6FLARES_second_flares(PyObject *__pyx_v_texture_, PyArr
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6FLARES_7second_flares(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6FLARES_6second_flares[] = "\n    CREATE A FLARE POLYGON ALONG THE FLARE VECTOR DIRECTION \n    SECOND FLARE(S) ARE BUILD OFFLINE BEFORE THE MAIN LOOP \n    THE POLYGON IS THEN FILLED WITH THE GIVEN TEXTURE (variable TEXTURE)\n    \n    :param polygon_: numpy.ndarray; polygon (octagon) This is the shape used for sub-flares.\n      see python method polygon for more details\n    :param max_size: float; Max factor for resizing the polygon \n    :param min_size: float; Min factor for resizing the polygon \n    :param texture_: pygame.Surface; Flare textures optional (TEXTURE 100x100, TEXTURE1 100x100,\n     TEXTURE2 256x256, TEXTURE3 256x256 TEXTURE4 120x120). Note that TEXTURE2 and TEXTURE4 are \n     finalized textures, they will be blit onto the background. \n     Pygame surface compatible 24 bit without per-pixel transparency. This surface is converted for \n     fast blit and RLEACCEL \n    :param light_position_: vector2d; Vector position for the second flare\n    :param exception_: list; List containing TEXTURE(s) that do not require to be blit onto \n      the polygon object.\n    :return: Return a python list object containing flares's (TEXTURE, distance). \n    with TEXTURE : pygame.Surface, position vector2d (x, y), distance (float) \n    ";
-static PyObject *__pyx_pw_6FLARES_7second_flares(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6FLARES_9second_flares(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6FLARES_8second_flares[] = "\n    CREATE A FLARE POLYGON ALONG THE FLARE VECTOR DIRECTION \n    SECOND FLARE(S) ARE BUILD OFFLINE BEFORE THE MAIN LOOP \n    THE POLYGON IS THEN FILLED WITH THE GIVEN TEXTURE (variable TEXTURE)\n    \n    :param polygon_: numpy.ndarray; polygon (octagon) This is the shape used for sub-flares.\n      see python method polygon for more details\n    :param max_size: float; Max factor for resizing the polygon \n    :param min_size: float; Min factor for resizing the polygon \n    :param texture_: pygame.Surface; Flare textures optional (TEXTURE 100x100, TEXTURE1 100x100,\n     TEXTURE2 256x256, TEXTURE3 256x256 TEXTURE4 120x120). Note that TEXTURE2 and TEXTURE4 are \n     finalized textures, they will be blit onto the background. \n     Pygame surface compatible 24 bit without per-pixel transparency. This surface is converted for \n     fast blit and RLEACCEL \n    :param light_position_: vector2d; Vector position for the second flare\n    :param exception_: list; List containing TEXTURE(s) that do not require to be blit onto \n      the polygon object.\n    :return: Return a python list object containing flares's (TEXTURE, distance). \n    with TEXTURE : pygame.Surface, position vector2d (x, y), distance (float) \n    ";
+static PyObject *__pyx_pw_6FLARES_9second_flares(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_texture_ = 0;
   PyArrayObject *__pyx_v_polygon_ = 0;
   struct vector2d __pyx_v_light_position_;
@@ -6782,35 +7235,35 @@ static PyObject *__pyx_pw_6FLARES_7second_flares(PyObject *__pyx_self, PyObject 
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_polygon)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("second_flares", 1, 6, 6, 1); __PYX_ERR(0, 306, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("second_flares", 1, 6, 6, 1); __PYX_ERR(0, 326, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_light_position)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("second_flares", 1, 6, 6, 2); __PYX_ERR(0, 306, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("second_flares", 1, 6, 6, 2); __PYX_ERR(0, 326, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_min_size)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("second_flares", 1, 6, 6, 3); __PYX_ERR(0, 306, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("second_flares", 1, 6, 6, 3); __PYX_ERR(0, 326, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_max_size)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("second_flares", 1, 6, 6, 4); __PYX_ERR(0, 306, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("second_flares", 1, 6, 6, 4); __PYX_ERR(0, 326, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_exception)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("second_flares", 1, 6, 6, 5); __PYX_ERR(0, 306, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("second_flares", 1, 6, 6, 5); __PYX_ERR(0, 326, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "second_flares") < 0)) __PYX_ERR(0, 306, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "second_flares") < 0)) __PYX_ERR(0, 326, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
@@ -6824,22 +7277,22 @@ static PyObject *__pyx_pw_6FLARES_7second_flares(PyObject *__pyx_self, PyObject 
     }
     __pyx_v_texture_ = values[0];
     __pyx_v_polygon_ = ((PyArrayObject *)values[1]);
-    __pyx_v_light_position_ = __pyx_convert__from_py_struct__vector2d(values[2]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 309, __pyx_L3_error)
-    __pyx_v_min_size = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v_min_size == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 310, __pyx_L3_error)
-    __pyx_v_max_size = __pyx_PyFloat_AsFloat(values[4]); if (unlikely((__pyx_v_max_size == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 311, __pyx_L3_error)
+    __pyx_v_light_position_ = __pyx_convert__from_py_struct__vector2d(values[2]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 329, __pyx_L3_error)
+    __pyx_v_min_size = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v_min_size == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 330, __pyx_L3_error)
+    __pyx_v_max_size = __pyx_PyFloat_AsFloat(values[4]); if (unlikely((__pyx_v_max_size == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 331, __pyx_L3_error)
     __pyx_v_exception_ = ((PyObject*)values[5]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("second_flares", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 306, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("second_flares", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 326, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("FLARES.second_flares", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_polygon_), __pyx_ptype_5numpy_ndarray, 1, "polygon_", 0))) __PYX_ERR(0, 308, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_exception_), (&PyList_Type), 1, "exception_", 1))) __PYX_ERR(0, 312, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6FLARES_6second_flares(__pyx_self, __pyx_v_texture_, __pyx_v_polygon_, __pyx_v_light_position_, __pyx_v_min_size, __pyx_v_max_size, __pyx_v_exception_);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_polygon_), __pyx_ptype_5numpy_ndarray, 1, "polygon_", 0))) __PYX_ERR(0, 328, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_exception_), (&PyList_Type), 1, "exception_", 1))) __PYX_ERR(0, 332, __pyx_L1_error)
+  __pyx_r = __pyx_pf_6FLARES_8second_flares(__pyx_self, __pyx_v_texture_, __pyx_v_polygon_, __pyx_v_light_position_, __pyx_v_min_size, __pyx_v_max_size, __pyx_v_exception_);
 
   /* function exit code */
   goto __pyx_L0;
@@ -6850,7 +7303,7 @@ static PyObject *__pyx_pw_6FLARES_7second_flares(PyObject *__pyx_self, PyObject 
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6FLARES_6second_flares(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_texture_, PyArrayObject *__pyx_v_polygon_, struct vector2d __pyx_v_light_position_, float __pyx_v_min_size, float __pyx_v_max_size, PyObject *__pyx_v_exception_) {
+static PyObject *__pyx_pf_6FLARES_8second_flares(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_texture_, PyArrayObject *__pyx_v_polygon_, struct vector2d __pyx_v_light_position_, float __pyx_v_min_size, float __pyx_v_max_size, PyObject *__pyx_v_exception_) {
   __Pyx_LocalBuf_ND __pyx_pybuffernd_polygon_;
   __Pyx_Buffer __pyx_pybuffer_polygon_;
   PyObject *__pyx_r = NULL;
@@ -6863,11 +7316,11 @@ static PyObject *__pyx_pf_6FLARES_6second_flares(CYTHON_UNUSED PyObject *__pyx_s
   __pyx_pybuffernd_polygon_.rcbuffer = &__pyx_pybuffer_polygon_;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_polygon_.rcbuffer->pybuffer, (PyObject*)__pyx_v_polygon_, &__Pyx_TypeInfo_nn___pyx_t_5numpy_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 306, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_polygon_.rcbuffer->pybuffer, (PyObject*)__pyx_v_polygon_, &__Pyx_TypeInfo_nn___pyx_t_5numpy_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 326, __pyx_L1_error)
   }
   __pyx_pybuffernd_polygon_.diminfo[0].strides = __pyx_pybuffernd_polygon_.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_polygon_.diminfo[0].shape = __pyx_pybuffernd_polygon_.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_polygon_.diminfo[1].strides = __pyx_pybuffernd_polygon_.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_polygon_.diminfo[1].shape = __pyx_pybuffernd_polygon_.rcbuffer->pybuffer.shape[1];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_second_flares(__pyx_v_texture_, __pyx_v_polygon_, __pyx_v_light_position_, __pyx_v_min_size, __pyx_v_max_size, __pyx_v_exception_, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_second_flares(__pyx_v_texture_, __pyx_v_polygon_, __pyx_v_light_position_, __pyx_v_min_size, __pyx_v_max_size, __pyx_v_exception_, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 326, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6893,7 +7346,7 @@ static PyObject *__pyx_pf_6FLARES_6second_flares(CYTHON_UNUSED PyObject *__pyx_s
   return __pyx_r;
 }
 
-/* "Flares.pyx":403
+/* "Flares.pyx":423
  * @cython.nonecheck(False)
  * @cython.cdivision(True)
  * cpdef display_flare_sprite(list child_group,             # <<<<<<<<<<<<<<
@@ -6901,7 +7354,7 @@ static PyObject *__pyx_pf_6FLARES_6second_flares(CYTHON_UNUSED PyObject *__pyx_s
  *                            star_burst3x,
  */
 
-static PyObject *__pyx_pw_6FLARES_9display_flare_sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_6FLARES_11display_flare_sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_group, PyObject *__pyx_v_star_burst, PyObject *__pyx_v_star_burst3x, PyObject *__pyx_v_gl_, PyObject *__pyx_v_vector, CYTHON_UNUSED int __pyx_skip_dispatch) {
   struct vector2d __pyx_v_v1;
   float __pyx_v_length;
@@ -6925,7 +7378,7 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
   PyObject *__pyx_t_13 = NULL;
   __Pyx_RefNannySetupContext("display_flare_sprite", 0);
 
-  /* "Flares.pyx":423
+  /* "Flares.pyx":443
  *     cdef float length
  * 
  *     for spr in child_group:             # <<<<<<<<<<<<<<
@@ -6934,52 +7387,52 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
  */
   if (unlikely(__pyx_v_child_group == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 423, __pyx_L1_error)
+    __PYX_ERR(0, 443, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_v_child_group; __Pyx_INCREF(__pyx_t_1); __pyx_t_2 = 0;
   for (;;) {
     if (__pyx_t_2 >= PyList_GET_SIZE(__pyx_t_1)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 443, __pyx_L1_error)
     #else
-    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 443, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     __Pyx_XDECREF_SET(__pyx_v_spr, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "Flares.pyx":425
+    /* "Flares.pyx":445
  *     for spr in child_group:
  * 
  *         spr.vector = vector             # <<<<<<<<<<<<<<
  * 
  *         if spr.event_type == 'PARENT':
  */
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_spr, __pyx_n_s_vector, __pyx_v_vector) < 0) __PYX_ERR(0, 425, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_spr, __pyx_n_s_vector, __pyx_v_vector) < 0) __PYX_ERR(0, 445, __pyx_L1_error)
 
-    /* "Flares.pyx":427
+    /* "Flares.pyx":447
  *         spr.vector = vector
  * 
  *         if spr.event_type == 'PARENT':             # <<<<<<<<<<<<<<
  * 
  *             # VECTOR DISTANCE FROM THE LOCAL POINT (STAR CENTRE) IS
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_event_type); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 427, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_event_type); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 447, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = (__Pyx_PyString_Equals(__pyx_t_3, __pyx_n_s_PARENT, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 427, __pyx_L1_error)
+    __pyx_t_4 = (__Pyx_PyString_Equals(__pyx_t_3, __pyx_n_s_PARENT, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 447, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_4) {
 
-      /* "Flares.pyx":432
+      /* "Flares.pyx":452
  *             # BELOW 80, INCREASE BRIGHTNESS OF THE STAR USING A SURFACE
  *             # 4 TIMES LARGER.
  *             if 0 < spr.vector.length() < 80:             # <<<<<<<<<<<<<<
  *                 spr.image = star_burst3x
  *                 spr.rect = spr.image.get_rect(center=spr.position)
  */
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_vector); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 432, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_vector); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 452, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_length); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 432, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_length); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 452, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_5 = NULL;
@@ -6993,58 +7446,58 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
         }
       }
       if (__pyx_t_5) {
-        __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 432, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 452, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       } else {
-        __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 432, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 452, __pyx_L1_error)
       }
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_6 = PyObject_RichCompare(__pyx_int_0, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 432, __pyx_L1_error)
+      __pyx_t_6 = PyObject_RichCompare(__pyx_int_0, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 452, __pyx_L1_error)
       if (__Pyx_PyObject_IsTrue(__pyx_t_6)) {
         __Pyx_DECREF(__pyx_t_6);
-        __pyx_t_6 = PyObject_RichCompare(__pyx_t_3, __pyx_int_80, Py_LT); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 432, __pyx_L1_error)
+        __pyx_t_6 = PyObject_RichCompare(__pyx_t_3, __pyx_int_80, Py_LT); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 452, __pyx_L1_error)
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 432, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 452, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       if (__pyx_t_4) {
 
-        /* "Flares.pyx":433
+        /* "Flares.pyx":453
  *             # 4 TIMES LARGER.
  *             if 0 < spr.vector.length() < 80:
  *                 spr.image = star_burst3x             # <<<<<<<<<<<<<<
  *                 spr.rect = spr.image.get_rect(center=spr.position)
  * 
  */
-        if (__Pyx_PyObject_SetAttrStr(__pyx_v_spr, __pyx_n_s_image, __pyx_v_star_burst3x) < 0) __PYX_ERR(0, 433, __pyx_L1_error)
+        if (__Pyx_PyObject_SetAttrStr(__pyx_v_spr, __pyx_n_s_image, __pyx_v_star_burst3x) < 0) __PYX_ERR(0, 453, __pyx_L1_error)
 
-        /* "Flares.pyx":434
+        /* "Flares.pyx":454
  *             if 0 < spr.vector.length() < 80:
  *                 spr.image = star_burst3x
  *                 spr.rect = spr.image.get_rect(center=spr.position)             # <<<<<<<<<<<<<<
  * 
  *             else:
  */
-        __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 434, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 454, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_get_rect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 434, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_get_rect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 454, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 434, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 454, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_position); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 434, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_position); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 454, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_center, __pyx_t_5) < 0) __PYX_ERR(0, 434, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_center, __pyx_t_5) < 0) __PYX_ERR(0, 454, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 434, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 454, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        if (__Pyx_PyObject_SetAttrStr(__pyx_v_spr, __pyx_n_s_rect, __pyx_t_5) < 0) __PYX_ERR(0, 434, __pyx_L1_error)
+        if (__Pyx_PyObject_SetAttrStr(__pyx_v_spr, __pyx_n_s_rect, __pyx_t_5) < 0) __PYX_ERR(0, 454, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-        /* "Flares.pyx":432
+        /* "Flares.pyx":452
  *             # BELOW 80, INCREASE BRIGHTNESS OF THE STAR USING A SURFACE
  *             # 4 TIMES LARGER.
  *             if 0 < spr.vector.length() < 80:             # <<<<<<<<<<<<<<
@@ -7054,7 +7507,7 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
         goto __pyx_L6;
       }
 
-      /* "Flares.pyx":442
+      /* "Flares.pyx":462
  *                 # l = 1/(lv * 0.002)
  *                 #
  *                 w, h = star_burst.get_size()             # <<<<<<<<<<<<<<
@@ -7062,7 +7515,7 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
  *                 # h = h * l
  */
       /*else*/ {
-        __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_star_burst, __pyx_n_s_get_size); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 442, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_star_burst, __pyx_n_s_get_size); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 462, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __pyx_t_3 = NULL;
         if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -7075,10 +7528,10 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
           }
         }
         if (__pyx_t_3) {
-          __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 442, __pyx_L1_error)
+          __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 462, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         } else {
-          __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 442, __pyx_L1_error)
+          __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 462, __pyx_L1_error)
         }
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -7092,7 +7545,7 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
           if (unlikely(size != 2)) {
             if (size > 2) __Pyx_RaiseTooManyValuesError(2);
             else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-            __PYX_ERR(0, 442, __pyx_L1_error)
+            __PYX_ERR(0, 462, __pyx_L1_error)
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
           if (likely(PyTuple_CheckExact(sequence))) {
@@ -7105,15 +7558,15 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
           __Pyx_INCREF(__pyx_t_6);
           __Pyx_INCREF(__pyx_t_3);
           #else
-          __pyx_t_6 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 442, __pyx_L1_error)
+          __pyx_t_6 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 462, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 442, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         } else {
           Py_ssize_t index = -1;
-          __pyx_t_7 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 442, __pyx_L1_error)
+          __pyx_t_7 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 462, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
           __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -7121,7 +7574,7 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
           __Pyx_GOTREF(__pyx_t_6);
           index = 1; __pyx_t_3 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_3)) goto __pyx_L7_unpacking_failed;
           __Pyx_GOTREF(__pyx_t_3);
-          if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 442, __pyx_L1_error)
+          if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 462, __pyx_L1_error)
           __pyx_t_8 = NULL;
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           goto __pyx_L8_unpacking_done;
@@ -7129,7 +7582,7 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           __pyx_t_8 = NULL;
           if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-          __PYX_ERR(0, 442, __pyx_L1_error)
+          __PYX_ERR(0, 462, __pyx_L1_error)
           __pyx_L8_unpacking_done:;
         }
         __Pyx_XDECREF_SET(__pyx_v_w, __pyx_t_6);
@@ -7137,22 +7590,22 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
         __Pyx_XDECREF_SET(__pyx_v_h, __pyx_t_3);
         __pyx_t_3 = 0;
 
-        /* "Flares.pyx":451
+        /* "Flares.pyx":471
  *                 # h = <int>max(star_burst.get_height(), h)
  * 
  *                 spr.image = pygame.transform.scale(star_burst, (w, h))             # <<<<<<<<<<<<<<
  *                 spr.rect = spr.image.get_rect(center=(spr.position.x, spr.position.y))
  * 
  */
-        __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 451, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 471, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_transform); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 451, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_transform); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 471, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_scale); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 451, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_scale); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 471, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 451, __pyx_L1_error)
+        __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 471, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_INCREF(__pyx_v_w);
         __Pyx_GIVEREF(__pyx_v_w);
@@ -7175,7 +7628,7 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_star_burst, __pyx_t_6};
-          __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 451, __pyx_L1_error)
+          __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 471, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -7184,14 +7637,14 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_star_burst, __pyx_t_6};
-          __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 451, __pyx_L1_error)
+          __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 471, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         } else
         #endif
         {
-          __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 451, __pyx_L1_error)
+          __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 471, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_10);
           if (__pyx_t_7) {
             __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -7202,39 +7655,39 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
           __Pyx_GIVEREF(__pyx_t_6);
           PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_9, __pyx_t_6);
           __pyx_t_6 = 0;
-          __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 451, __pyx_L1_error)
+          __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 471, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (__Pyx_PyObject_SetAttrStr(__pyx_v_spr, __pyx_n_s_image, __pyx_t_5) < 0) __PYX_ERR(0, 451, __pyx_L1_error)
+        if (__Pyx_PyObject_SetAttrStr(__pyx_v_spr, __pyx_n_s_image, __pyx_t_5) < 0) __PYX_ERR(0, 471, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-        /* "Flares.pyx":452
+        /* "Flares.pyx":472
  * 
  *                 spr.image = pygame.transform.scale(star_burst, (w, h))
  *                 spr.rect = spr.image.get_rect(center=(spr.position.x, spr.position.y))             # <<<<<<<<<<<<<<
  * 
  *         else:
  */
-        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 452, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 472, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_get_rect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 452, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_get_rect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 472, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 452, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 472, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_position); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 452, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_position); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 472, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
-        __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_x); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 452, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_x); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 472, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_position); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 452, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_position); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 472, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
-        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_y); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 452, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_y); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 472, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 452, __pyx_L1_error)
+        __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 472, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_GIVEREF(__pyx_t_6);
         PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_6);
@@ -7242,18 +7695,18 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
         PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_t_7);
         __pyx_t_6 = 0;
         __pyx_t_7 = 0;
-        if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_center, __pyx_t_10) < 0) __PYX_ERR(0, 452, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_center, __pyx_t_10) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 452, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 472, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        if (__Pyx_PyObject_SetAttrStr(__pyx_v_spr, __pyx_n_s_rect, __pyx_t_10) < 0) __PYX_ERR(0, 452, __pyx_L1_error)
+        if (__Pyx_PyObject_SetAttrStr(__pyx_v_spr, __pyx_n_s_rect, __pyx_t_10) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       }
       __pyx_L6:;
 
-      /* "Flares.pyx":427
+      /* "Flares.pyx":447
  *         spr.vector = vector
  * 
  *         if spr.event_type == 'PARENT':             # <<<<<<<<<<<<<<
@@ -7263,7 +7716,7 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
       goto __pyx_L5;
     }
 
-    /* "Flares.pyx":456
+    /* "Flares.pyx":476
  *         else:
  * 
  *             v1.x = spr.vector.x             # <<<<<<<<<<<<<<
@@ -7271,32 +7724,32 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
  *             length = v_length(&v1)
  */
     /*else*/ {
-      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_vector); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 456, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_vector); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 476, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 456, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 476, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 456, __pyx_L1_error)
+      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 476, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_v_v1.x = __pyx_t_11;
 
-      /* "Flares.pyx":457
+      /* "Flares.pyx":477
  * 
  *             v1.x = spr.vector.x
  *             v1.y = spr.vector.y             # <<<<<<<<<<<<<<
  *             length = v_length(&v1)
  * 
  */
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_vector); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 457, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_vector); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 477, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_y); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 457, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_y); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 477, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_10); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 457, __pyx_L1_error)
+      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_10); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 477, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __pyx_v_v1.y = __pyx_t_11;
 
-      /* "Flares.pyx":458
+      /* "Flares.pyx":478
  *             v1.x = spr.vector.x
  *             v1.y = spr.vector.y
  *             length = v_length(&v1)             # <<<<<<<<<<<<<<
@@ -7305,7 +7758,7 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
  */
       __pyx_v_length = v_length((&__pyx_v_v1));
 
-      /* "Flares.pyx":460
+      /* "Flares.pyx":480
  *             length = v_length(&v1)
  * 
  *             if length != 0:             # <<<<<<<<<<<<<<
@@ -7315,55 +7768,55 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
       __pyx_t_4 = ((__pyx_v_length != 0.0) != 0);
       if (__pyx_t_4) {
 
-        /* "Flares.pyx":461
+        /* "Flares.pyx":481
  * 
  *             if length != 0:
  *                 scale_to_length(&v1, length * spr.alpha)             # <<<<<<<<<<<<<<
  *                 spr.rect.center = spr.position.x + v1.x, spr.position.y + v1.y
  * 
  */
-        __pyx_t_10 = PyFloat_FromDouble(__pyx_v_length); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 461, __pyx_L1_error)
+        __pyx_t_10 = PyFloat_FromDouble(__pyx_v_length); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 481, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
-        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_alpha); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 461, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_alpha); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 481, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_3 = PyNumber_Multiply(__pyx_t_10, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 461, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Multiply(__pyx_t_10, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 481, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_12 = __pyx_PyFloat_AsFloat(__pyx_t_3); if (unlikely((__pyx_t_12 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 461, __pyx_L1_error)
+        __pyx_t_12 = __pyx_PyFloat_AsFloat(__pyx_t_3); if (unlikely((__pyx_t_12 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 481, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         scale_to_length((&__pyx_v_v1), __pyx_t_12);
 
-        /* "Flares.pyx":462
+        /* "Flares.pyx":482
  *             if length != 0:
  *                 scale_to_length(&v1, length * spr.alpha)
  *                 spr.rect.center = spr.position.x + v1.x, spr.position.y + v1.y             # <<<<<<<<<<<<<<
  * 
  *         spr.w2 = spr.image.get_width() >> 1
  */
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_position); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_position); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 482, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 462, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 482, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_v1.x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_v1.x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 482, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_10 = PyNumber_Add(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 462, __pyx_L1_error)
+        __pyx_t_10 = PyNumber_Add(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 482, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_position); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_position); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 482, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 462, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 482, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_v1.y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_v1.y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 482, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_7 = PyNumber_Add(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 462, __pyx_L1_error)
+        __pyx_t_7 = PyNumber_Add(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 482, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
+        __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 482, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_GIVEREF(__pyx_t_10);
         PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_10);
@@ -7371,13 +7824,13 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
         PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_7);
         __pyx_t_10 = 0;
         __pyx_t_7 = 0;
-        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_rect); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 462, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_rect); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 482, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        if (__Pyx_PyObject_SetAttrStr(__pyx_t_7, __pyx_n_s_center, __pyx_t_3) < 0) __PYX_ERR(0, 462, __pyx_L1_error)
+        if (__Pyx_PyObject_SetAttrStr(__pyx_t_7, __pyx_n_s_center, __pyx_t_3) < 0) __PYX_ERR(0, 482, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-        /* "Flares.pyx":460
+        /* "Flares.pyx":480
  *             length = v_length(&v1)
  * 
  *             if length != 0:             # <<<<<<<<<<<<<<
@@ -7388,16 +7841,16 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
     }
     __pyx_L5:;
 
-    /* "Flares.pyx":464
+    /* "Flares.pyx":484
  *                 spr.rect.center = spr.position.x + v1.x, spr.position.y + v1.y
  * 
  *         spr.w2 = spr.image.get_width() >> 1             # <<<<<<<<<<<<<<
  *         spr.h2 = spr.image.get_height() >> 1
  *         gl_.SCREEN.blit(spr.image, (
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 464, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 484, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_get_width); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 464, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_get_width); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 484, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -7411,29 +7864,29 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
       }
     }
     if (__pyx_t_3) {
-      __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 464, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 484, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     } else {
-      __pyx_t_7 = __Pyx_PyObject_CallNoArg(__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 464, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_CallNoArg(__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 484, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    __pyx_t_10 = __Pyx_PyInt_RshiftObjC(__pyx_t_7, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 464, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyInt_RshiftObjC(__pyx_t_7, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 484, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_spr, __pyx_n_s_w2, __pyx_t_10) < 0) __PYX_ERR(0, 464, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_spr, __pyx_n_s_w2, __pyx_t_10) < 0) __PYX_ERR(0, 484, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-    /* "Flares.pyx":465
+    /* "Flares.pyx":485
  * 
  *         spr.w2 = spr.image.get_width() >> 1
  *         spr.h2 = spr.image.get_height() >> 1             # <<<<<<<<<<<<<<
  *         gl_.SCREEN.blit(spr.image, (
  *             spr.rect.centerx - spr.w2,
  */
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 465, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 485, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_get_height); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 465, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_get_height); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 485, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_7 = NULL;
@@ -7447,80 +7900,80 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
       }
     }
     if (__pyx_t_7) {
-      __pyx_t_10 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_7); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 465, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_7); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 485, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     } else {
-      __pyx_t_10 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 465, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 485, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyInt_RshiftObjC(__pyx_t_10, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 465, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_RshiftObjC(__pyx_t_10, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 485, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_spr, __pyx_n_s_h2, __pyx_t_3) < 0) __PYX_ERR(0, 465, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_spr, __pyx_n_s_h2, __pyx_t_3) < 0) __PYX_ERR(0, 485, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "Flares.pyx":466
+    /* "Flares.pyx":486
  *         spr.w2 = spr.image.get_width() >> 1
  *         spr.h2 = spr.image.get_height() >> 1
  *         gl_.SCREEN.blit(spr.image, (             # <<<<<<<<<<<<<<
  *             spr.rect.centerx - spr.w2,
  *             spr.rect.centery - spr.h2),
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_gl_, __pyx_n_s_SCREEN); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 466, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_gl_, __pyx_n_s_SCREEN); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 486, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_blit); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 466, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_blit); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 486, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 466, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 486, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
 
-    /* "Flares.pyx":467
+    /* "Flares.pyx":487
  *         spr.h2 = spr.image.get_height() >> 1
  *         gl_.SCREEN.blit(spr.image, (
  *             spr.rect.centerx - spr.w2,             # <<<<<<<<<<<<<<
  *             spr.rect.centery - spr.h2),
  *                         special_flags=pygame.BLEND_RGB_ADD)
  */
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_rect); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 467, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_rect); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 487, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_centerx); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 467, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_centerx); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 487, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_w2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 467, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_w2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 487, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_6 = PyNumber_Subtract(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 467, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Subtract(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 487, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-    /* "Flares.pyx":468
+    /* "Flares.pyx":488
  *         gl_.SCREEN.blit(spr.image, (
  *             spr.rect.centerx - spr.w2,
  *             spr.rect.centery - spr.h2),             # <<<<<<<<<<<<<<
  *                         special_flags=pygame.BLEND_RGB_ADD)
  * 
  */
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_rect); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 468, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_rect); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 488, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_centery); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 468, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_centery); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 488, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_h2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 468, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_h2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 488, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_13 = PyNumber_Subtract(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 468, __pyx_L1_error)
+    __pyx_t_13 = PyNumber_Subtract(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 488, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-    /* "Flares.pyx":467
+    /* "Flares.pyx":487
  *         spr.h2 = spr.image.get_height() >> 1
  *         gl_.SCREEN.blit(spr.image, (
  *             spr.rect.centerx - spr.w2,             # <<<<<<<<<<<<<<
  *             spr.rect.centery - spr.h2),
  *                         special_flags=pygame.BLEND_RGB_ADD)
  */
-    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 467, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 487, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_GIVEREF(__pyx_t_6);
     PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6);
@@ -7529,14 +7982,14 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
     __pyx_t_6 = 0;
     __pyx_t_13 = 0;
 
-    /* "Flares.pyx":466
+    /* "Flares.pyx":486
  *         spr.w2 = spr.image.get_width() >> 1
  *         spr.h2 = spr.image.get_height() >> 1
  *         gl_.SCREEN.blit(spr.image, (             # <<<<<<<<<<<<<<
  *             spr.rect.centerx - spr.w2,
  *             spr.rect.centery - spr.h2),
  */
-    __pyx_t_13 = PyTuple_New(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 466, __pyx_L1_error)
+    __pyx_t_13 = PyTuple_New(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 486, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
     __Pyx_GIVEREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_3);
@@ -7545,38 +7998,38 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
     __pyx_t_3 = 0;
     __pyx_t_7 = 0;
 
-    /* "Flares.pyx":469
+    /* "Flares.pyx":489
  *             spr.rect.centerx - spr.w2,
  *             spr.rect.centery - spr.h2),
  *                         special_flags=pygame.BLEND_RGB_ADD)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 469, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 489, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 469, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 489, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_BLEND_RGB_ADD); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 469, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_BLEND_RGB_ADD); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 489, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_special_flags, __pyx_t_6) < 0) __PYX_ERR(0, 469, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_special_flags, __pyx_t_6) < 0) __PYX_ERR(0, 489, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "Flares.pyx":466
+    /* "Flares.pyx":486
  *         spr.w2 = spr.image.get_width() >> 1
  *         spr.h2 = spr.image.get_height() >> 1
  *         gl_.SCREEN.blit(spr.image, (             # <<<<<<<<<<<<<<
  *             spr.rect.centerx - spr.w2,
  *             spr.rect.centery - spr.h2),
  */
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_13, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 466, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_13, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 486, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "Flares.pyx":423
+    /* "Flares.pyx":443
  *     cdef float length
  * 
  *     for spr in child_group:             # <<<<<<<<<<<<<<
@@ -7586,7 +8039,7 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":403
+  /* "Flares.pyx":423
  * @cython.nonecheck(False)
  * @cython.cdivision(True)
  * cpdef display_flare_sprite(list child_group,             # <<<<<<<<<<<<<<
@@ -7617,9 +8070,9 @@ static PyObject *__pyx_f_6FLARES_display_flare_sprite(PyObject *__pyx_v_child_gr
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6FLARES_9display_flare_sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6FLARES_8display_flare_sprite[] = "\n    Display all the flares sprites onto the background image\n    \n    :param child_group: list; Group or list that will contains all the sprites (this is not a pygame sprite group, \n      only a python list. We are using a list in order to boost performances. We do not need to use pygame \n      group methods of collision etc).\n    :param star_burst: pygame Surface; Star surface   \n    :param star_burst3x: Star surface size x 4\n    :param gl_: Class constant (contains all the constants)\n    :param vector: pygame.math.Vector2 \n \n    ";
-static PyObject *__pyx_pw_6FLARES_9display_flare_sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6FLARES_11display_flare_sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6FLARES_10display_flare_sprite[] = "\n    Display all the flares sprites onto the background image\n    \n    :param child_group: list; Group or list that will contains all the sprites (this is not a pygame sprite group, \n      only a python list. We are using a list in order to boost performances. We do not need to use pygame \n      group methods of collision etc).\n    :param star_burst: pygame Surface; Star surface   \n    :param star_burst3x: Star surface size x 4\n    :param gl_: Class constant (contains all the constants)\n    :param vector: pygame.math.Vector2 \n \n    ";
+static PyObject *__pyx_pw_6FLARES_11display_flare_sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_child_group = 0;
   PyObject *__pyx_v_star_burst = 0;
   PyObject *__pyx_v_star_burst3x = 0;
@@ -7657,29 +8110,29 @@ static PyObject *__pyx_pw_6FLARES_9display_flare_sprite(PyObject *__pyx_self, Py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_star_burst)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("display_flare_sprite", 1, 5, 5, 1); __PYX_ERR(0, 403, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("display_flare_sprite", 1, 5, 5, 1); __PYX_ERR(0, 423, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_star_burst3x)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("display_flare_sprite", 1, 5, 5, 2); __PYX_ERR(0, 403, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("display_flare_sprite", 1, 5, 5, 2); __PYX_ERR(0, 423, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_gl)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("display_flare_sprite", 1, 5, 5, 3); __PYX_ERR(0, 403, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("display_flare_sprite", 1, 5, 5, 3); __PYX_ERR(0, 423, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_vector)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("display_flare_sprite", 1, 5, 5, 4); __PYX_ERR(0, 403, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("display_flare_sprite", 1, 5, 5, 4); __PYX_ERR(0, 423, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "display_flare_sprite") < 0)) __PYX_ERR(0, 403, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "display_flare_sprite") < 0)) __PYX_ERR(0, 423, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
@@ -7698,14 +8151,14 @@ static PyObject *__pyx_pw_6FLARES_9display_flare_sprite(PyObject *__pyx_self, Py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("display_flare_sprite", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 403, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("display_flare_sprite", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 423, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("FLARES.display_flare_sprite", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_child_group), (&PyList_Type), 1, "child_group", 1))) __PYX_ERR(0, 403, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6FLARES_8display_flare_sprite(__pyx_self, __pyx_v_child_group, __pyx_v_star_burst, __pyx_v_star_burst3x, __pyx_v_gl_, __pyx_v_vector);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_child_group), (&PyList_Type), 1, "child_group", 1))) __PYX_ERR(0, 423, __pyx_L1_error)
+  __pyx_r = __pyx_pf_6FLARES_10display_flare_sprite(__pyx_self, __pyx_v_child_group, __pyx_v_star_burst, __pyx_v_star_burst3x, __pyx_v_gl_, __pyx_v_vector);
 
   /* function exit code */
   goto __pyx_L0;
@@ -7716,13 +8169,13 @@ static PyObject *__pyx_pw_6FLARES_9display_flare_sprite(PyObject *__pyx_self, Py
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6FLARES_8display_flare_sprite(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_child_group, PyObject *__pyx_v_star_burst, PyObject *__pyx_v_star_burst3x, PyObject *__pyx_v_gl_, PyObject *__pyx_v_vector) {
+static PyObject *__pyx_pf_6FLARES_10display_flare_sprite(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_child_group, PyObject *__pyx_v_star_burst, PyObject *__pyx_v_star_burst3x, PyObject *__pyx_v_gl_, PyObject *__pyx_v_vector) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("display_flare_sprite", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_display_flare_sprite(__pyx_v_child_group, __pyx_v_star_burst, __pyx_v_star_burst3x, __pyx_v_gl_, __pyx_v_vector, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 403, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_display_flare_sprite(__pyx_v_child_group, __pyx_v_star_burst, __pyx_v_star_burst3x, __pyx_v_gl_, __pyx_v_vector, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 423, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7739,7 +8192,7 @@ static PyObject *__pyx_pf_6FLARES_8display_flare_sprite(CYTHON_UNUSED PyObject *
   return __pyx_r;
 }
 
-/* "Flares.pyx":472
+/* "Flares.pyx":492
  * 
  * 
  * cpdef create_flare_sprite(images_,             # <<<<<<<<<<<<<<
@@ -7747,12 +8200,12 @@ static PyObject *__pyx_pf_6FLARES_8display_flare_sprite(CYTHON_UNUSED PyObject *
  *                           vector_,
  */
 
-static PyObject *__pyx_pw_6FLARES_11create_flare_sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_6FLARES_13create_flare_sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyObject *__pyx_f_6FLARES_create_flare_sprite(PyObject *__pyx_v_images_, float __pyx_v_distance_, PyObject *__pyx_v_vector_, PyObject *__pyx_v_position_, int __pyx_v_layer_, PyObject *__pyx_v_gl_, PyObject *__pyx_v_child_group_, CYTHON_UNUSED int __pyx_skip_dispatch, struct __pyx_opt_args_6FLARES_create_flare_sprite *__pyx_optional_args) {
-  int __pyx_v_blend_ = __pyx_k__3;
+  int __pyx_v_blend_ = __pyx_k__6;
   PyObject *__pyx_v_event_type = ((PyObject *)__pyx_n_s_CHILD);
 
-  /* "Flares.pyx":481
+  /* "Flares.pyx":501
  *                           int blend_ = pygame.BLEND_RGB_ADD,
  *                           event_type = 'CHILD',
  *                           bint delete_=False             # <<<<<<<<<<<<<<
@@ -7789,19 +8242,19 @@ static PyObject *__pyx_f_6FLARES_create_flare_sprite(PyObject *__pyx_v_images_, 
     }
   }
 
-  /* "Flares.pyx":485
+  /* "Flares.pyx":505
  * 
  *     # CREATE A PYGAME SPRITE OBJECT
  *     flare_spr = pygame.sprite.Sprite()             # <<<<<<<<<<<<<<
  *     flare_spr.image = images_[0] if isinstance(images_, list) else images_
  *     flare_spr.alpha = distance_
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 485, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 505, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_sprite); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 485, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_sprite); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 505, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_Sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 485, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_Sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 505, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -7815,17 +8268,17 @@ static PyObject *__pyx_f_6FLARES_create_flare_sprite(PyObject *__pyx_v_images_, 
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 485, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 505, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 485, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 505, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_flare_spr = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":486
+  /* "Flares.pyx":506
  *     # CREATE A PYGAME SPRITE OBJECT
  *     flare_spr = pygame.sprite.Sprite()
  *     flare_spr.image = images_[0] if isinstance(images_, list) else images_             # <<<<<<<<<<<<<<
@@ -7834,7 +8287,7 @@ static PyObject *__pyx_f_6FLARES_create_flare_sprite(PyObject *__pyx_v_images_, 
  */
   __pyx_t_4 = PyList_Check(__pyx_v_images_); 
   if ((__pyx_t_4 != 0)) {
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_images_, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 486, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_images_, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 506, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_1 = __pyx_t_2;
     __pyx_t_2 = 0;
@@ -7842,69 +8295,69 @@ static PyObject *__pyx_f_6FLARES_create_flare_sprite(PyObject *__pyx_v_images_, 
     __Pyx_INCREF(__pyx_v_images_);
     __pyx_t_1 = __pyx_v_images_;
   }
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_image, __pyx_t_1) < 0) __PYX_ERR(0, 486, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_image, __pyx_t_1) < 0) __PYX_ERR(0, 506, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":487
+  /* "Flares.pyx":507
  *     flare_spr = pygame.sprite.Sprite()
  *     flare_spr.image = images_[0] if isinstance(images_, list) else images_
  *     flare_spr.alpha = distance_             # <<<<<<<<<<<<<<
  *     flare_spr.vector = vector_
  *     flare_spr.rect = flare_spr.image.get_rect(
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_distance_); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 487, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_distance_); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 507, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_alpha, __pyx_t_1) < 0) __PYX_ERR(0, 487, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_alpha, __pyx_t_1) < 0) __PYX_ERR(0, 507, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":488
+  /* "Flares.pyx":508
  *     flare_spr.image = images_[0] if isinstance(images_, list) else images_
  *     flare_spr.alpha = distance_
  *     flare_spr.vector = vector_             # <<<<<<<<<<<<<<
  *     flare_spr.rect = flare_spr.image.get_rect(
  *         center=(vector_.x + position_.x, vector_.y + position_.y))
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_vector, __pyx_v_vector_) < 0) __PYX_ERR(0, 488, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_vector, __pyx_v_vector_) < 0) __PYX_ERR(0, 508, __pyx_L1_error)
 
-  /* "Flares.pyx":489
+  /* "Flares.pyx":509
  *     flare_spr.alpha = distance_
  *     flare_spr.vector = vector_
  *     flare_spr.rect = flare_spr.image.get_rect(             # <<<<<<<<<<<<<<
  *         center=(vector_.x + position_.x, vector_.y + position_.y))
  *     flare_spr.position = position_
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_flare_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 489, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_flare_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 509, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_get_rect); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 489, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_get_rect); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 509, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":490
+  /* "Flares.pyx":510
  *     flare_spr.vector = vector_
  *     flare_spr.rect = flare_spr.image.get_rect(
  *         center=(vector_.x + position_.x, vector_.y + position_.y))             # <<<<<<<<<<<<<<
  *     flare_spr.position = position_
  *     flare_spr.layer = layer_
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 490, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_vector_, __pyx_n_s_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 490, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_vector_, __pyx_n_s_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_position_, __pyx_n_s_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 490, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_position_, __pyx_n_s_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyNumber_Add(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 490, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Add(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_vector_, __pyx_n_s_y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 490, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_vector_, __pyx_n_s_y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_position_, __pyx_n_s_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 490, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_position_, __pyx_n_s_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = PyNumber_Add(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 490, __pyx_L1_error)
+  __pyx_t_7 = PyNumber_Add(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 490, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_6);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_6);
@@ -7912,96 +8365,96 @@ static PyObject *__pyx_f_6FLARES_create_flare_sprite(PyObject *__pyx_v_images_, 
   PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_7);
   __pyx_t_6 = 0;
   __pyx_t_7 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_center, __pyx_t_3) < 0) __PYX_ERR(0, 490, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_center, __pyx_t_3) < 0) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "Flares.pyx":489
+  /* "Flares.pyx":509
  *     flare_spr.alpha = distance_
  *     flare_spr.vector = vector_
  *     flare_spr.rect = flare_spr.image.get_rect(             # <<<<<<<<<<<<<<
  *         center=(vector_.x + position_.x, vector_.y + position_.y))
  *     flare_spr.position = position_
  */
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 489, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 509, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_rect, __pyx_t_3) < 0) __PYX_ERR(0, 489, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_rect, __pyx_t_3) < 0) __PYX_ERR(0, 509, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "Flares.pyx":491
+  /* "Flares.pyx":511
  *     flare_spr.rect = flare_spr.image.get_rect(
  *         center=(vector_.x + position_.x, vector_.y + position_.y))
  *     flare_spr.position = position_             # <<<<<<<<<<<<<<
  *     flare_spr.layer = layer_
  *     flare_spr.gl = gl_
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_position, __pyx_v_position_) < 0) __PYX_ERR(0, 491, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_position, __pyx_v_position_) < 0) __PYX_ERR(0, 511, __pyx_L1_error)
 
-  /* "Flares.pyx":492
+  /* "Flares.pyx":512
  *         center=(vector_.x + position_.x, vector_.y + position_.y))
  *     flare_spr.position = position_
  *     flare_spr.layer = layer_             # <<<<<<<<<<<<<<
  *     flare_spr.gl = gl_
  *     flare_spr._blend = blend_
  */
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_layer_); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 492, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_layer_); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 512, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_layer, __pyx_t_3) < 0) __PYX_ERR(0, 492, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_layer, __pyx_t_3) < 0) __PYX_ERR(0, 512, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "Flares.pyx":493
+  /* "Flares.pyx":513
  *     flare_spr.position = position_
  *     flare_spr.layer = layer_
  *     flare_spr.gl = gl_             # <<<<<<<<<<<<<<
  *     flare_spr._blend = blend_
  *     flare_spr.event_type = event_type
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_gl_2, __pyx_v_gl_) < 0) __PYX_ERR(0, 493, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_gl_2, __pyx_v_gl_) < 0) __PYX_ERR(0, 513, __pyx_L1_error)
 
-  /* "Flares.pyx":494
+  /* "Flares.pyx":514
  *     flare_spr.layer = layer_
  *     flare_spr.gl = gl_
  *     flare_spr._blend = blend_             # <<<<<<<<<<<<<<
  *     flare_spr.event_type = event_type
  *     flare_spr.delete = delete_
  */
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_blend_); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 494, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_blend_); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 514, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_blend, __pyx_t_3) < 0) __PYX_ERR(0, 494, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_blend, __pyx_t_3) < 0) __PYX_ERR(0, 514, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "Flares.pyx":495
+  /* "Flares.pyx":515
  *     flare_spr.gl = gl_
  *     flare_spr._blend = blend_
  *     flare_spr.event_type = event_type             # <<<<<<<<<<<<<<
  *     flare_spr.delete = delete_
  *     cdef int w, h
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_event_type, __pyx_v_event_type) < 0) __PYX_ERR(0, 495, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_event_type, __pyx_v_event_type) < 0) __PYX_ERR(0, 515, __pyx_L1_error)
 
-  /* "Flares.pyx":496
+  /* "Flares.pyx":516
  *     flare_spr._blend = blend_
  *     flare_spr.event_type = event_type
  *     flare_spr.delete = delete_             # <<<<<<<<<<<<<<
  *     cdef int w, h
  *     w, h = flare_spr.image.get_size()
  */
-  __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_v_delete_); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 496, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_v_delete_); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 516, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_delete, __pyx_t_3) < 0) __PYX_ERR(0, 496, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_delete, __pyx_t_3) < 0) __PYX_ERR(0, 516, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "Flares.pyx":498
+  /* "Flares.pyx":518
  *     flare_spr.delete = delete_
  *     cdef int w, h
  *     w, h = flare_spr.image.get_size()             # <<<<<<<<<<<<<<
  *     flare_spr.w2, flare_spr.h2 = w >> 1, h >> 1
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_flare_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 498, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_flare_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 518, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_get_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 498, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_get_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 518, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -8015,10 +8468,10 @@ static PyObject *__pyx_f_6FLARES_create_flare_sprite(PyObject *__pyx_v_images_, 
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 498, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 518, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 498, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 518, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -8032,7 +8485,7 @@ static PyObject *__pyx_f_6FLARES_create_flare_sprite(PyObject *__pyx_v_images_, 
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 498, __pyx_L1_error)
+      __PYX_ERR(0, 518, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -8045,15 +8498,15 @@ static PyObject *__pyx_f_6FLARES_create_flare_sprite(PyObject *__pyx_v_images_, 
     __Pyx_INCREF(__pyx_t_2);
     __Pyx_INCREF(__pyx_t_1);
     #else
-    __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 498, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 518, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 498, __pyx_L1_error)
+    __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 518, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     #endif
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_7 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 498, __pyx_L1_error)
+    __pyx_t_7 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 518, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -8061,7 +8514,7 @@ static PyObject *__pyx_f_6FLARES_create_flare_sprite(PyObject *__pyx_v_images_, 
     __Pyx_GOTREF(__pyx_t_2);
     index = 1; __pyx_t_1 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_1)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_1);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 498, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 518, __pyx_L1_error)
     __pyx_t_8 = NULL;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     goto __pyx_L4_unpacking_done;
@@ -8069,42 +8522,42 @@ static PyObject *__pyx_f_6FLARES_create_flare_sprite(PyObject *__pyx_v_images_, 
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_8 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 498, __pyx_L1_error)
+    __PYX_ERR(0, 518, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
-  __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 498, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 518, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 498, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 518, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_w = __pyx_t_9;
   __pyx_v_h = __pyx_t_10;
 
-  /* "Flares.pyx":499
+  /* "Flares.pyx":519
  *     cdef int w, h
  *     w, h = flare_spr.image.get_size()
  *     flare_spr.w2, flare_spr.h2 = w >> 1, h >> 1             # <<<<<<<<<<<<<<
  * 
  *     child_group_.append(flare_spr)
  */
-  __pyx_t_3 = __Pyx_PyInt_From_long((__pyx_v_w >> 1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 499, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_long((__pyx_v_w >> 1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 519, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyInt_From_long((__pyx_v_h >> 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 499, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long((__pyx_v_h >> 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 519, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_w2, __pyx_t_3) < 0) __PYX_ERR(0, 499, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_w2, __pyx_t_3) < 0) __PYX_ERR(0, 519, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_h2, __pyx_t_1) < 0) __PYX_ERR(0, 499, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_flare_spr, __pyx_n_s_h2, __pyx_t_1) < 0) __PYX_ERR(0, 519, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":501
+  /* "Flares.pyx":521
  *     flare_spr.w2, flare_spr.h2 = w >> 1, h >> 1
  * 
  *     child_group_.append(flare_spr)             # <<<<<<<<<<<<<<
  * 
  *     # OVERRIDE UPDATE METHOD
  */
-  __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_child_group_, __pyx_v_flare_spr); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 501, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_child_group_, __pyx_v_flare_spr); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 521, __pyx_L1_error)
 
-  /* "Flares.pyx":472
+  /* "Flares.pyx":492
  * 
  * 
  * cpdef create_flare_sprite(images_,             # <<<<<<<<<<<<<<
@@ -8132,8 +8585,8 @@ static PyObject *__pyx_f_6FLARES_create_flare_sprite(PyObject *__pyx_v_images_, 
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6FLARES_11create_flare_sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_6FLARES_11create_flare_sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6FLARES_13create_flare_sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_6FLARES_13create_flare_sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_images_ = 0;
   float __pyx_v_distance_;
   PyObject *__pyx_v_vector_ = 0;
@@ -8187,37 +8640,37 @@ static PyObject *__pyx_pw_6FLARES_11create_flare_sprite(PyObject *__pyx_self, Py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_distance)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("create_flare_sprite", 0, 7, 10, 1); __PYX_ERR(0, 472, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("create_flare_sprite", 0, 7, 10, 1); __PYX_ERR(0, 492, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_vector_2)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("create_flare_sprite", 0, 7, 10, 2); __PYX_ERR(0, 472, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("create_flare_sprite", 0, 7, 10, 2); __PYX_ERR(0, 492, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_position_2)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("create_flare_sprite", 0, 7, 10, 3); __PYX_ERR(0, 472, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("create_flare_sprite", 0, 7, 10, 3); __PYX_ERR(0, 492, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_layer_2)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("create_flare_sprite", 0, 7, 10, 4); __PYX_ERR(0, 472, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("create_flare_sprite", 0, 7, 10, 4); __PYX_ERR(0, 492, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_gl)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("create_flare_sprite", 0, 7, 10, 5); __PYX_ERR(0, 472, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("create_flare_sprite", 0, 7, 10, 5); __PYX_ERR(0, 492, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  6:
         if (likely((values[6] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_child_group_2)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("create_flare_sprite", 0, 7, 10, 6); __PYX_ERR(0, 472, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("create_flare_sprite", 0, 7, 10, 6); __PYX_ERR(0, 492, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  7:
@@ -8239,7 +8692,7 @@ static PyObject *__pyx_pw_6FLARES_11create_flare_sprite(PyObject *__pyx_self, Py
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "create_flare_sprite") < 0)) __PYX_ERR(0, 472, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "create_flare_sprite") < 0)) __PYX_ERR(0, 492, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -8261,23 +8714,23 @@ static PyObject *__pyx_pw_6FLARES_11create_flare_sprite(PyObject *__pyx_self, Py
       }
     }
     __pyx_v_images_ = values[0];
-    __pyx_v_distance_ = __pyx_PyFloat_AsFloat(values[1]); if (unlikely((__pyx_v_distance_ == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 473, __pyx_L3_error)
+    __pyx_v_distance_ = __pyx_PyFloat_AsFloat(values[1]); if (unlikely((__pyx_v_distance_ == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 493, __pyx_L3_error)
     __pyx_v_vector_ = values[2];
     __pyx_v_position_ = values[3];
-    __pyx_v_layer_ = __Pyx_PyInt_As_int(values[4]); if (unlikely((__pyx_v_layer_ == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 476, __pyx_L3_error)
+    __pyx_v_layer_ = __Pyx_PyInt_As_int(values[4]); if (unlikely((__pyx_v_layer_ == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 496, __pyx_L3_error)
     __pyx_v_gl_ = values[5];
     __pyx_v_child_group_ = values[6];
     if (values[7]) {
-      __pyx_v_blend_ = __Pyx_PyInt_As_int(values[7]); if (unlikely((__pyx_v_blend_ == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 479, __pyx_L3_error)
+      __pyx_v_blend_ = __Pyx_PyInt_As_int(values[7]); if (unlikely((__pyx_v_blend_ == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 499, __pyx_L3_error)
     } else {
-      __pyx_v_blend_ = __pyx_k__3;
+      __pyx_v_blend_ = __pyx_k__6;
     }
     __pyx_v_event_type = values[8];
     if (values[9]) {
-      __pyx_v_delete_ = __Pyx_PyObject_IsTrue(values[9]); if (unlikely((__pyx_v_delete_ == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 481, __pyx_L3_error)
+      __pyx_v_delete_ = __Pyx_PyObject_IsTrue(values[9]); if (unlikely((__pyx_v_delete_ == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 501, __pyx_L3_error)
     } else {
 
-      /* "Flares.pyx":481
+      /* "Flares.pyx":501
  *                           int blend_ = pygame.BLEND_RGB_ADD,
  *                           event_type = 'CHILD',
  *                           bint delete_=False             # <<<<<<<<<<<<<<
@@ -8289,15 +8742,15 @@ static PyObject *__pyx_pw_6FLARES_11create_flare_sprite(PyObject *__pyx_self, Py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("create_flare_sprite", 0, 7, 10, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 472, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("create_flare_sprite", 0, 7, 10, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 492, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("FLARES.create_flare_sprite", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6FLARES_10create_flare_sprite(__pyx_self, __pyx_v_images_, __pyx_v_distance_, __pyx_v_vector_, __pyx_v_position_, __pyx_v_layer_, __pyx_v_gl_, __pyx_v_child_group_, __pyx_v_blend_, __pyx_v_event_type, __pyx_v_delete_);
+  __pyx_r = __pyx_pf_6FLARES_12create_flare_sprite(__pyx_self, __pyx_v_images_, __pyx_v_distance_, __pyx_v_vector_, __pyx_v_position_, __pyx_v_layer_, __pyx_v_gl_, __pyx_v_child_group_, __pyx_v_blend_, __pyx_v_event_type, __pyx_v_delete_);
 
-  /* "Flares.pyx":472
+  /* "Flares.pyx":492
  * 
  * 
  * cpdef create_flare_sprite(images_,             # <<<<<<<<<<<<<<
@@ -8310,7 +8763,7 @@ static PyObject *__pyx_pw_6FLARES_11create_flare_sprite(PyObject *__pyx_self, Py
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6FLARES_10create_flare_sprite(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_images_, float __pyx_v_distance_, PyObject *__pyx_v_vector_, PyObject *__pyx_v_position_, int __pyx_v_layer_, PyObject *__pyx_v_gl_, PyObject *__pyx_v_child_group_, int __pyx_v_blend_, PyObject *__pyx_v_event_type, int __pyx_v_delete_) {
+static PyObject *__pyx_pf_6FLARES_12create_flare_sprite(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_images_, float __pyx_v_distance_, PyObject *__pyx_v_vector_, PyObject *__pyx_v_position_, int __pyx_v_layer_, PyObject *__pyx_v_gl_, PyObject *__pyx_v_child_group_, int __pyx_v_blend_, PyObject *__pyx_v_event_type, int __pyx_v_delete_) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -8321,7 +8774,7 @@ static PyObject *__pyx_pf_6FLARES_10create_flare_sprite(CYTHON_UNUSED PyObject *
   __pyx_t_2.blend_ = __pyx_v_blend_;
   __pyx_t_2.event_type = __pyx_v_event_type;
   __pyx_t_2.delete_ = __pyx_v_delete_;
-  __pyx_t_1 = __pyx_f_6FLARES_create_flare_sprite(__pyx_v_images_, __pyx_v_distance_, __pyx_v_vector_, __pyx_v_position_, __pyx_v_layer_, __pyx_v_gl_, __pyx_v_child_group_, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 472, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_create_flare_sprite(__pyx_v_images_, __pyx_v_distance_, __pyx_v_vector_, __pyx_v_position_, __pyx_v_layer_, __pyx_v_gl_, __pyx_v_child_group_, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 492, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -8338,7 +8791,7 @@ static PyObject *__pyx_pf_6FLARES_10create_flare_sprite(CYTHON_UNUSED PyObject *
   return __pyx_r;
 }
 
-/* "Flares.pyx":525
+/* "Flares.pyx":545
  *     # _spritegroup = True
  *     cdef public bint _spritegroup
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -8368,7 +8821,7 @@ static int __pyx_pf_6FLARES_13AbstractGroup___init__(struct __pyx_obj_6FLARES_Ab
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "Flares.pyx":526
+  /* "Flares.pyx":546
  *     cdef public bint _spritegroup
  *     def __init__(self):
  *         self._spritegroup = True             # <<<<<<<<<<<<<<
@@ -8377,14 +8830,14 @@ static int __pyx_pf_6FLARES_13AbstractGroup___init__(struct __pyx_obj_6FLARES_Ab
  */
   __pyx_v_self->_spritegroup = 1;
 
-  /* "Flares.pyx":527
+  /* "Flares.pyx":547
  *     def __init__(self):
  *         self._spritegroup = True
  *         self.spritedict = {}             # <<<<<<<<<<<<<<
  *         self.lostsprites = []
  * 
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 527, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 547, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->spritedict);
@@ -8392,14 +8845,14 @@ static int __pyx_pf_6FLARES_13AbstractGroup___init__(struct __pyx_obj_6FLARES_Ab
   __pyx_v_self->spritedict = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":528
+  /* "Flares.pyx":548
  *         self._spritegroup = True
  *         self.spritedict = {}
  *         self.lostsprites = []             # <<<<<<<<<<<<<<
  * 
  *     @cython.boundscheck(False)
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 528, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 548, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->lostsprites);
@@ -8407,7 +8860,7 @@ static int __pyx_pf_6FLARES_13AbstractGroup___init__(struct __pyx_obj_6FLARES_Ab
   __pyx_v_self->lostsprites = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":525
+  /* "Flares.pyx":545
  *     # _spritegroup = True
  *     cdef public bint _spritegroup
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -8427,7 +8880,7 @@ static int __pyx_pf_6FLARES_13AbstractGroup___init__(struct __pyx_obj_6FLARES_Ab
   return __pyx_r;
 }
 
-/* "Flares.pyx":534
+/* "Flares.pyx":554
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef sprites(self):             # <<<<<<<<<<<<<<
@@ -8441,7 +8894,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_sprites(struct __pyx_obj_6FLARE
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("sprites", 0);
 
-  /* "Flares.pyx":535
+  /* "Flares.pyx":555
  *     @cython.cdivision(True)
  *     cdef sprites(self):
  *         return list(self.spritedict)             # <<<<<<<<<<<<<<
@@ -8449,13 +8902,13 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_sprites(struct __pyx_obj_6FLARE
  *     @cython.boundscheck(False)
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PySequence_List(__pyx_v_self->spritedict); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 535, __pyx_L1_error)
+  __pyx_t_1 = PySequence_List(__pyx_v_self->spritedict); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 555, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "Flares.pyx":534
+  /* "Flares.pyx":554
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef sprites(self):             # <<<<<<<<<<<<<<
@@ -8474,7 +8927,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_sprites(struct __pyx_obj_6FLARE
   return __pyx_r;
 }
 
-/* "Flares.pyx":541
+/* "Flares.pyx":561
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef add_internal(self, sprite):             # <<<<<<<<<<<<<<
@@ -8487,7 +8940,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add_internal(struct __pyx_obj_6
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("add_internal", 0);
 
-  /* "Flares.pyx":542
+  /* "Flares.pyx":562
  *     @cython.cdivision(True)
  *     cdef add_internal(self, sprite):
  *         self.spritedict[sprite] = 0             # <<<<<<<<<<<<<<
@@ -8496,11 +8949,11 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add_internal(struct __pyx_obj_6
  */
   if (unlikely(__pyx_v_self->spritedict == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 542, __pyx_L1_error)
+    __PYX_ERR(0, 562, __pyx_L1_error)
   }
-  if (unlikely(PyDict_SetItem(__pyx_v_self->spritedict, __pyx_v_sprite, __pyx_int_0) < 0)) __PYX_ERR(0, 542, __pyx_L1_error)
+  if (unlikely(PyDict_SetItem(__pyx_v_self->spritedict, __pyx_v_sprite, __pyx_int_0) < 0)) __PYX_ERR(0, 562, __pyx_L1_error)
 
-  /* "Flares.pyx":541
+  /* "Flares.pyx":561
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef add_internal(self, sprite):             # <<<<<<<<<<<<<<
@@ -8520,7 +8973,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add_internal(struct __pyx_obj_6
   return __pyx_r;
 }
 
-/* "Flares.pyx":548
+/* "Flares.pyx":568
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef remove_internal(self, sprite):             # <<<<<<<<<<<<<<
@@ -8537,7 +8990,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove_internal(struct __pyx_ob
   int __pyx_t_3;
   __Pyx_RefNannySetupContext("remove_internal", 0);
 
-  /* "Flares.pyx":549
+  /* "Flares.pyx":569
  *     @cython.cdivision(True)
  *     cdef remove_internal(self, sprite):
  *         r = self.spritedict[sprite]             # <<<<<<<<<<<<<<
@@ -8546,24 +8999,24 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove_internal(struct __pyx_ob
  */
   if (unlikely(__pyx_v_self->spritedict == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 549, __pyx_L1_error)
+    __PYX_ERR(0, 569, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_self->spritedict, __pyx_v_sprite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 549, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_self->spritedict, __pyx_v_sprite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 569, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_r = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":550
+  /* "Flares.pyx":570
  *     cdef remove_internal(self, sprite):
  *         r = self.spritedict[sprite]
  *         if r:             # <<<<<<<<<<<<<<
  *             self.lostsprites.append(r)
  *         del self.spritedict[sprite]
  */
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_r); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 550, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_r); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 570, __pyx_L1_error)
   if (__pyx_t_2) {
 
-    /* "Flares.pyx":551
+    /* "Flares.pyx":571
  *         r = self.spritedict[sprite]
  *         if r:
  *             self.lostsprites.append(r)             # <<<<<<<<<<<<<<
@@ -8572,11 +9025,11 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove_internal(struct __pyx_ob
  */
     if (unlikely(__pyx_v_self->lostsprites == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 551, __pyx_L1_error)
+      __PYX_ERR(0, 571, __pyx_L1_error)
     }
-    __pyx_t_3 = __Pyx_PyList_Append(__pyx_v_self->lostsprites, __pyx_v_r); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 551, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyList_Append(__pyx_v_self->lostsprites, __pyx_v_r); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 571, __pyx_L1_error)
 
-    /* "Flares.pyx":550
+    /* "Flares.pyx":570
  *     cdef remove_internal(self, sprite):
  *         r = self.spritedict[sprite]
  *         if r:             # <<<<<<<<<<<<<<
@@ -8585,7 +9038,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove_internal(struct __pyx_ob
  */
   }
 
-  /* "Flares.pyx":552
+  /* "Flares.pyx":572
  *         if r:
  *             self.lostsprites.append(r)
  *         del self.spritedict[sprite]             # <<<<<<<<<<<<<<
@@ -8594,11 +9047,11 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove_internal(struct __pyx_ob
  */
   if (unlikely(__pyx_v_self->spritedict == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 552, __pyx_L1_error)
+    __PYX_ERR(0, 572, __pyx_L1_error)
   }
-  if (unlikely(PyDict_DelItem(__pyx_v_self->spritedict, __pyx_v_sprite) < 0)) __PYX_ERR(0, 552, __pyx_L1_error)
+  if (unlikely(PyDict_DelItem(__pyx_v_self->spritedict, __pyx_v_sprite) < 0)) __PYX_ERR(0, 572, __pyx_L1_error)
 
-  /* "Flares.pyx":548
+  /* "Flares.pyx":568
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef remove_internal(self, sprite):             # <<<<<<<<<<<<<<
@@ -8620,7 +9073,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove_internal(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "Flares.pyx":558
+/* "Flares.pyx":578
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef has_internal(self, sprite):             # <<<<<<<<<<<<<<
@@ -8635,7 +9088,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has_internal(struct __pyx_obj_6
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("has_internal", 0);
 
-  /* "Flares.pyx":559
+  /* "Flares.pyx":579
  *     @cython.cdivision(True)
  *     cdef has_internal(self, sprite):
  *         return sprite in self.spritedict             # <<<<<<<<<<<<<<
@@ -8645,16 +9098,16 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has_internal(struct __pyx_obj_6
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(__pyx_v_self->spritedict == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 559, __pyx_L1_error)
+    __PYX_ERR(0, 579, __pyx_L1_error)
   }
-  __pyx_t_1 = (__Pyx_PyDict_ContainsTF(__pyx_v_sprite, __pyx_v_self->spritedict, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 559, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 559, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyDict_ContainsTF(__pyx_v_sprite, __pyx_v_self->spritedict, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 579, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 579, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "Flares.pyx":558
+  /* "Flares.pyx":578
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef has_internal(self, sprite):             # <<<<<<<<<<<<<<
@@ -8673,7 +9126,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has_internal(struct __pyx_obj_6
   return __pyx_r;
 }
 
-/* "Flares.pyx":565
+/* "Flares.pyx":585
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef copy(self):             # <<<<<<<<<<<<<<
@@ -8691,7 +9144,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_copy(struct __pyx_obj_6FLARES_A
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("copy", 0);
 
-  /* "Flares.pyx":566
+  /* "Flares.pyx":586
  *     @cython.cdivision(True)
  *     cdef copy(self):
  *         return self.__class__(self.sprites())             # <<<<<<<<<<<<<<
@@ -8699,9 +9152,9 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_copy(struct __pyx_obj_6FLARES_A
  *     def __iter__(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 566, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 586, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->sprites(__pyx_v_self); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 566, __pyx_L1_error)
+  __pyx_t_3 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->sprites(__pyx_v_self); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 586, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -8714,14 +9167,14 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_copy(struct __pyx_obj_6FLARES_A
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 566, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 586, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_3};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 566, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 586, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -8730,20 +9183,20 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_copy(struct __pyx_obj_6FLARES_A
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_3};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 566, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 586, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 566, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 586, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 566, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 586, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
@@ -8753,7 +9206,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_copy(struct __pyx_obj_6FLARES_A
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "Flares.pyx":565
+  /* "Flares.pyx":585
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef copy(self):             # <<<<<<<<<<<<<<
@@ -8776,7 +9229,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_copy(struct __pyx_obj_6FLARES_A
   return __pyx_r;
 }
 
-/* "Flares.pyx":568
+/* "Flares.pyx":588
  *         return self.__class__(self.sprites())
  * 
  *     def __iter__(self):             # <<<<<<<<<<<<<<
@@ -8804,7 +9257,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_2__iter__(struct __pyx_obj_6FL
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("__iter__", 0);
 
-  /* "Flares.pyx":569
+  /* "Flares.pyx":589
  * 
  *     def __iter__(self):
  *         return iter(self.sprites())             # <<<<<<<<<<<<<<
@@ -8812,16 +9265,16 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_2__iter__(struct __pyx_obj_6FL
  *     def __contains__(self, sprite):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->sprites(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 569, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->sprites(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 589, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 569, __pyx_L1_error)
+  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 589, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "Flares.pyx":568
+  /* "Flares.pyx":588
  *         return self.__class__(self.sprites())
  * 
  *     def __iter__(self):             # <<<<<<<<<<<<<<
@@ -8841,7 +9294,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_2__iter__(struct __pyx_obj_6FL
   return __pyx_r;
 }
 
-/* "Flares.pyx":571
+/* "Flares.pyx":591
  *         return iter(self.sprites())
  * 
  *     def __contains__(self, sprite):             # <<<<<<<<<<<<<<
@@ -8869,22 +9322,22 @@ static int __pyx_pf_6FLARES_13AbstractGroup_4__contains__(struct __pyx_obj_6FLAR
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("__contains__", 0);
 
-  /* "Flares.pyx":572
+  /* "Flares.pyx":592
  * 
  *     def __contains__(self, sprite):
  *         return self.has(sprite)             # <<<<<<<<<<<<<<
  * 
  *     @cython.boundscheck(False)
  */
-  if (!(likely(PyTuple_CheckExact(__pyx_v_sprite))||((__pyx_v_sprite) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_v_sprite)->tp_name), 0))) __PYX_ERR(0, 572, __pyx_L1_error)
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has(__pyx_v_self, ((PyObject*)__pyx_v_sprite)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 572, __pyx_L1_error)
+  if (!(likely(PyTuple_CheckExact(__pyx_v_sprite))||((__pyx_v_sprite) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_v_sprite)->tp_name), 0))) __PYX_ERR(0, 592, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has(__pyx_v_self, ((PyObject*)__pyx_v_sprite)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 592, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 572, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 592, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   goto __pyx_L0;
 
-  /* "Flares.pyx":571
+  /* "Flares.pyx":591
  *         return iter(self.sprites())
  * 
  *     def __contains__(self, sprite):             # <<<<<<<<<<<<<<
@@ -8902,7 +9355,7 @@ static int __pyx_pf_6FLARES_13AbstractGroup_4__contains__(struct __pyx_obj_6FLAR
   return __pyx_r;
 }
 
-/* "Flares.pyx":578
+/* "Flares.pyx":598
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cpdef add(self, sprites):             # <<<<<<<<<<<<<<
@@ -8940,7 +9393,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_add); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 578, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_add); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 598, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_13AbstractGroup_7add)) {
       __Pyx_XDECREF(__pyx_r);
@@ -8956,13 +9409,13 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_sprites); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 578, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_sprites); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 598, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_sprites};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 578, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 598, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -8970,19 +9423,19 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_sprites};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 578, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 598, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 578, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 598, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(__pyx_v_sprites);
           __Pyx_GIVEREF(__pyx_v_sprites);
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_sprites);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 578, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 598, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
@@ -8996,7 +9449,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":580
+  /* "Flares.pyx":600
  *     cpdef add(self, sprites):
  * 
  *         for sprite in sprites:             # <<<<<<<<<<<<<<
@@ -9007,26 +9460,26 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
     __pyx_t_1 = __pyx_v_sprites; __Pyx_INCREF(__pyx_t_1); __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
   } else {
-    __pyx_t_6 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_sprites); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 580, __pyx_L1_error)
+    __pyx_t_6 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_sprites); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 600, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_7 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 580, __pyx_L1_error)
+    __pyx_t_7 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 600, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_7)) {
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 580, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 600, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 580, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 600, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 580, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 600, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 580, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 600, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -9036,7 +9489,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 580, __pyx_L1_error)
+          else __PYX_ERR(0, 600, __pyx_L1_error)
         }
         break;
       }
@@ -9045,7 +9498,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
     __Pyx_XDECREF_SET(__pyx_v_sprite, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "Flares.pyx":584
+    /* "Flares.pyx":604
  *             # If this is the case, we should add the sprite itself,
  *             # and not the iterator object.
  *             if isinstance(sprite, Sprite):             # <<<<<<<<<<<<<<
@@ -9056,39 +9509,39 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
     __pyx_t_9 = (__pyx_t_8 != 0);
     if (__pyx_t_9) {
 
-      /* "Flares.pyx":585
+      /* "Flares.pyx":605
  *             # and not the iterator object.
  *             if isinstance(sprite, Sprite):
  *                 if not self.has_internal(sprite):             # <<<<<<<<<<<<<<
  *                     self.add_internal(sprite)
  *                     sprite.add_internal(self)
  */
-      __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 585, __pyx_L1_error)
+      __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 605, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 585, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 605, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_8 = ((!__pyx_t_9) != 0);
       if (__pyx_t_8) {
 
-        /* "Flares.pyx":586
+        /* "Flares.pyx":606
  *             if isinstance(sprite, Sprite):
  *                 if not self.has_internal(sprite):
  *                     self.add_internal(sprite)             # <<<<<<<<<<<<<<
  *                     sprite.add_internal(self)
  *             else:
  */
-        __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->add_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 586, __pyx_L1_error)
+        __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->add_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 606, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "Flares.pyx":587
+        /* "Flares.pyx":607
  *                 if not self.has_internal(sprite):
  *                     self.add_internal(sprite)
  *                     sprite.add_internal(self)             # <<<<<<<<<<<<<<
  *             else:
  *                 try:
  */
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_add_internal); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 587, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_add_internal); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 607, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __pyx_t_5 = NULL;
         if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -9101,13 +9554,13 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
           }
         }
         if (!__pyx_t_5) {
-          __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 587, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 607, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
         } else {
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_3)) {
             PyObject *__pyx_temp[2] = {__pyx_t_5, ((PyObject *)__pyx_v_self)};
-            __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 587, __pyx_L1_error)
+            __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 607, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
             __Pyx_GOTREF(__pyx_t_2);
           } else
@@ -9115,19 +9568,19 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
             PyObject *__pyx_temp[2] = {__pyx_t_5, ((PyObject *)__pyx_v_self)};
-            __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 587, __pyx_L1_error)
+            __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 607, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
             __Pyx_GOTREF(__pyx_t_2);
           } else
           #endif
           {
-            __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 587, __pyx_L1_error)
+            __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 607, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5); __pyx_t_5 = NULL;
             __Pyx_INCREF(((PyObject *)__pyx_v_self));
             __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
             PyTuple_SET_ITEM(__pyx_t_4, 0+1, ((PyObject *)__pyx_v_self));
-            __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 587, __pyx_L1_error)
+            __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 607, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_2);
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           }
@@ -9135,7 +9588,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "Flares.pyx":585
+        /* "Flares.pyx":605
  *             # and not the iterator object.
  *             if isinstance(sprite, Sprite):
  *                 if not self.has_internal(sprite):             # <<<<<<<<<<<<<<
@@ -9144,7 +9597,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
  */
       }
 
-      /* "Flares.pyx":584
+      /* "Flares.pyx":604
  *             # If this is the case, we should add the sprite itself,
  *             # and not the iterator object.
  *             if isinstance(sprite, Sprite):             # <<<<<<<<<<<<<<
@@ -9154,7 +9607,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
       goto __pyx_L5;
     }
 
-    /* "Flares.pyx":589
+    /* "Flares.pyx":609
  *                     sprite.add_internal(self)
  *             else:
  *                 try:             # <<<<<<<<<<<<<<
@@ -9171,21 +9624,21 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
         __Pyx_XGOTREF(__pyx_t_12);
         /*try:*/ {
 
-          /* "Flares.pyx":592
+          /* "Flares.pyx":612
  *                     # See if sprite is an iterator, like a list or sprite
  *                     # group.
  *                     self.add(tuple(sprite))             # <<<<<<<<<<<<<<
  *                 except (TypeError, AttributeError):
  *                     # Not iterable. This is probably a sprite that is not an
  */
-          __pyx_t_2 = __Pyx_PySequence_Tuple(__pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 592, __pyx_L7_error)
+          __pyx_t_2 = __Pyx_PySequence_Tuple(__pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 612, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_3 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->add(__pyx_v_self, __pyx_t_2, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 592, __pyx_L7_error)
+          __pyx_t_3 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->add(__pyx_v_self, __pyx_t_2, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 612, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-          /* "Flares.pyx":589
+          /* "Flares.pyx":609
  *                     sprite.add_internal(self)
  *             else:
  *                 try:             # <<<<<<<<<<<<<<
@@ -9203,7 +9656,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-        /* "Flares.pyx":593
+        /* "Flares.pyx":613
  *                     # group.
  *                     self.add(tuple(sprite))
  *                 except (TypeError, AttributeError):             # <<<<<<<<<<<<<<
@@ -9213,30 +9666,30 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
         __pyx_t_13 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_TypeError) || __Pyx_PyErr_ExceptionMatches(__pyx_builtin_AttributeError);
         if (__pyx_t_13) {
           __Pyx_AddTraceback("FLARES.AbstractGroup.add", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_2, &__pyx_t_4) < 0) __PYX_ERR(0, 593, __pyx_L9_except_error)
+          if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_2, &__pyx_t_4) < 0) __PYX_ERR(0, 613, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_GOTREF(__pyx_t_4);
 
-          /* "Flares.pyx":598
+          /* "Flares.pyx":618
  *                     # subclass of the Sprite class. Alternately, it could be an
  *                     # old-style sprite group.
  *                     if hasattr(sprite, '_spritegroup'):             # <<<<<<<<<<<<<<
  *                         for spr in sprite.sprites():
  *                             if not self.has_internal(spr):
  */
-          __pyx_t_8 = __Pyx_HasAttr(__pyx_v_sprite, __pyx_n_s_spritegroup); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 598, __pyx_L9_except_error)
+          __pyx_t_8 = __Pyx_HasAttr(__pyx_v_sprite, __pyx_n_s_spritegroup); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 618, __pyx_L9_except_error)
           __pyx_t_9 = (__pyx_t_8 != 0);
           if (__pyx_t_9) {
 
-            /* "Flares.pyx":599
+            /* "Flares.pyx":619
  *                     # old-style sprite group.
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():             # <<<<<<<<<<<<<<
  *                             if not self.has_internal(spr):
  *                                 self.add_internal(spr)
  */
-            __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_sprites); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 599, __pyx_L9_except_error)
+            __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_sprites); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 619, __pyx_L9_except_error)
             __Pyx_GOTREF(__pyx_t_14);
             __pyx_t_15 = NULL;
             if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_14))) {
@@ -9249,10 +9702,10 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
               }
             }
             if (__pyx_t_15) {
-              __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_14, __pyx_t_15); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 599, __pyx_L9_except_error)
+              __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_14, __pyx_t_15); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 619, __pyx_L9_except_error)
               __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
             } else {
-              __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_14); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 599, __pyx_L9_except_error)
+              __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_14); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 619, __pyx_L9_except_error)
             }
             __Pyx_GOTREF(__pyx_t_5);
             __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
@@ -9260,9 +9713,9 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
               __pyx_t_14 = __pyx_t_5; __Pyx_INCREF(__pyx_t_14); __pyx_t_16 = 0;
               __pyx_t_17 = NULL;
             } else {
-              __pyx_t_16 = -1; __pyx_t_14 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 599, __pyx_L9_except_error)
+              __pyx_t_16 = -1; __pyx_t_14 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 619, __pyx_L9_except_error)
               __Pyx_GOTREF(__pyx_t_14);
-              __pyx_t_17 = Py_TYPE(__pyx_t_14)->tp_iternext; if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 599, __pyx_L9_except_error)
+              __pyx_t_17 = Py_TYPE(__pyx_t_14)->tp_iternext; if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 619, __pyx_L9_except_error)
             }
             __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
             for (;;) {
@@ -9270,17 +9723,17 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
                 if (likely(PyList_CheckExact(__pyx_t_14))) {
                   if (__pyx_t_16 >= PyList_GET_SIZE(__pyx_t_14)) break;
                   #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_5 = PyList_GET_ITEM(__pyx_t_14, __pyx_t_16); __Pyx_INCREF(__pyx_t_5); __pyx_t_16++; if (unlikely(0 < 0)) __PYX_ERR(0, 599, __pyx_L9_except_error)
+                  __pyx_t_5 = PyList_GET_ITEM(__pyx_t_14, __pyx_t_16); __Pyx_INCREF(__pyx_t_5); __pyx_t_16++; if (unlikely(0 < 0)) __PYX_ERR(0, 619, __pyx_L9_except_error)
                   #else
-                  __pyx_t_5 = PySequence_ITEM(__pyx_t_14, __pyx_t_16); __pyx_t_16++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 599, __pyx_L9_except_error)
+                  __pyx_t_5 = PySequence_ITEM(__pyx_t_14, __pyx_t_16); __pyx_t_16++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 619, __pyx_L9_except_error)
                   __Pyx_GOTREF(__pyx_t_5);
                   #endif
                 } else {
                   if (__pyx_t_16 >= PyTuple_GET_SIZE(__pyx_t_14)) break;
                   #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_5 = PyTuple_GET_ITEM(__pyx_t_14, __pyx_t_16); __Pyx_INCREF(__pyx_t_5); __pyx_t_16++; if (unlikely(0 < 0)) __PYX_ERR(0, 599, __pyx_L9_except_error)
+                  __pyx_t_5 = PyTuple_GET_ITEM(__pyx_t_14, __pyx_t_16); __Pyx_INCREF(__pyx_t_5); __pyx_t_16++; if (unlikely(0 < 0)) __PYX_ERR(0, 619, __pyx_L9_except_error)
                   #else
-                  __pyx_t_5 = PySequence_ITEM(__pyx_t_14, __pyx_t_16); __pyx_t_16++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 599, __pyx_L9_except_error)
+                  __pyx_t_5 = PySequence_ITEM(__pyx_t_14, __pyx_t_16); __pyx_t_16++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 619, __pyx_L9_except_error)
                   __Pyx_GOTREF(__pyx_t_5);
                   #endif
                 }
@@ -9290,7 +9743,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
                   PyObject* exc_type = PyErr_Occurred();
                   if (exc_type) {
                     if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                    else __PYX_ERR(0, 599, __pyx_L9_except_error)
+                    else __PYX_ERR(0, 619, __pyx_L9_except_error)
                   }
                   break;
                 }
@@ -9299,39 +9752,39 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
               __Pyx_XDECREF_SET(__pyx_v_spr, __pyx_t_5);
               __pyx_t_5 = 0;
 
-              /* "Flares.pyx":600
+              /* "Flares.pyx":620
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():
  *                             if not self.has_internal(spr):             # <<<<<<<<<<<<<<
  *                                 self.add_internal(spr)
  *                                 spr.add_internal(self)
  */
-              __pyx_t_5 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_spr); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 600, __pyx_L9_except_error)
+              __pyx_t_5 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_spr); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 620, __pyx_L9_except_error)
               __Pyx_GOTREF(__pyx_t_5);
-              __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 600, __pyx_L9_except_error)
+              __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 620, __pyx_L9_except_error)
               __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
               __pyx_t_8 = ((!__pyx_t_9) != 0);
               if (__pyx_t_8) {
 
-                /* "Flares.pyx":601
+                /* "Flares.pyx":621
  *                         for spr in sprite.sprites():
  *                             if not self.has_internal(spr):
  *                                 self.add_internal(spr)             # <<<<<<<<<<<<<<
  *                                 spr.add_internal(self)
  *                     elif not self.has_internal(sprite):
  */
-                __pyx_t_5 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->add_internal(__pyx_v_self, __pyx_v_spr); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 601, __pyx_L9_except_error)
+                __pyx_t_5 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->add_internal(__pyx_v_self, __pyx_v_spr); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 621, __pyx_L9_except_error)
                 __Pyx_GOTREF(__pyx_t_5);
                 __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-                /* "Flares.pyx":602
+                /* "Flares.pyx":622
  *                             if not self.has_internal(spr):
  *                                 self.add_internal(spr)
  *                                 spr.add_internal(self)             # <<<<<<<<<<<<<<
  *                     elif not self.has_internal(sprite):
  *                         self.add_internal(sprite)
  */
-                __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_add_internal); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 602, __pyx_L9_except_error)
+                __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_add_internal); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 622, __pyx_L9_except_error)
                 __Pyx_GOTREF(__pyx_t_15);
                 __pyx_t_18 = NULL;
                 if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_15))) {
@@ -9344,13 +9797,13 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
                   }
                 }
                 if (!__pyx_t_18) {
-                  __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_15, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 602, __pyx_L9_except_error)
+                  __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_15, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 622, __pyx_L9_except_error)
                   __Pyx_GOTREF(__pyx_t_5);
                 } else {
                   #if CYTHON_FAST_PYCALL
                   if (PyFunction_Check(__pyx_t_15)) {
                     PyObject *__pyx_temp[2] = {__pyx_t_18, ((PyObject *)__pyx_v_self)};
-                    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_15, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 602, __pyx_L9_except_error)
+                    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_15, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 622, __pyx_L9_except_error)
                     __Pyx_XDECREF(__pyx_t_18); __pyx_t_18 = 0;
                     __Pyx_GOTREF(__pyx_t_5);
                   } else
@@ -9358,19 +9811,19 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
                   #if CYTHON_FAST_PYCCALL
                   if (__Pyx_PyFastCFunction_Check(__pyx_t_15)) {
                     PyObject *__pyx_temp[2] = {__pyx_t_18, ((PyObject *)__pyx_v_self)};
-                    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_15, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 602, __pyx_L9_except_error)
+                    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_15, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 622, __pyx_L9_except_error)
                     __Pyx_XDECREF(__pyx_t_18); __pyx_t_18 = 0;
                     __Pyx_GOTREF(__pyx_t_5);
                   } else
                   #endif
                   {
-                    __pyx_t_19 = PyTuple_New(1+1); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 602, __pyx_L9_except_error)
+                    __pyx_t_19 = PyTuple_New(1+1); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 622, __pyx_L9_except_error)
                     __Pyx_GOTREF(__pyx_t_19);
                     __Pyx_GIVEREF(__pyx_t_18); PyTuple_SET_ITEM(__pyx_t_19, 0, __pyx_t_18); __pyx_t_18 = NULL;
                     __Pyx_INCREF(((PyObject *)__pyx_v_self));
                     __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
                     PyTuple_SET_ITEM(__pyx_t_19, 0+1, ((PyObject *)__pyx_v_self));
-                    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_15, __pyx_t_19, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 602, __pyx_L9_except_error)
+                    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_15, __pyx_t_19, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 622, __pyx_L9_except_error)
                     __Pyx_GOTREF(__pyx_t_5);
                     __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
                   }
@@ -9378,7 +9831,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
                 __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
                 __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-                /* "Flares.pyx":600
+                /* "Flares.pyx":620
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():
  *                             if not self.has_internal(spr):             # <<<<<<<<<<<<<<
@@ -9387,7 +9840,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
  */
               }
 
-              /* "Flares.pyx":599
+              /* "Flares.pyx":619
  *                     # old-style sprite group.
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():             # <<<<<<<<<<<<<<
@@ -9397,7 +9850,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
             }
             __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
 
-            /* "Flares.pyx":598
+            /* "Flares.pyx":618
  *                     # subclass of the Sprite class. Alternately, it could be an
  *                     # old-style sprite group.
  *                     if hasattr(sprite, '_spritegroup'):             # <<<<<<<<<<<<<<
@@ -9407,39 +9860,39 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
             goto __pyx_L17;
           }
 
-          /* "Flares.pyx":603
+          /* "Flares.pyx":623
  *                                 self.add_internal(spr)
  *                                 spr.add_internal(self)
  *                     elif not self.has_internal(sprite):             # <<<<<<<<<<<<<<
  *                         self.add_internal(sprite)
  *                         sprite.add_internal(self)
  */
-          __pyx_t_14 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 603, __pyx_L9_except_error)
+          __pyx_t_14 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 623, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_14);
-          __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_14); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 603, __pyx_L9_except_error)
+          __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_14); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 623, __pyx_L9_except_error)
           __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
           __pyx_t_9 = ((!__pyx_t_8) != 0);
           if (__pyx_t_9) {
 
-            /* "Flares.pyx":604
+            /* "Flares.pyx":624
  *                                 spr.add_internal(self)
  *                     elif not self.has_internal(sprite):
  *                         self.add_internal(sprite)             # <<<<<<<<<<<<<<
  *                         sprite.add_internal(self)
  * 
  */
-            __pyx_t_14 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->add_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 604, __pyx_L9_except_error)
+            __pyx_t_14 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->add_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 624, __pyx_L9_except_error)
             __Pyx_GOTREF(__pyx_t_14);
             __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
 
-            /* "Flares.pyx":605
+            /* "Flares.pyx":625
  *                     elif not self.has_internal(sprite):
  *                         self.add_internal(sprite)
  *                         sprite.add_internal(self)             # <<<<<<<<<<<<<<
  * 
  *     @cython.boundscheck(False)
  */
-            __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_add_internal); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 605, __pyx_L9_except_error)
+            __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_add_internal); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 625, __pyx_L9_except_error)
             __Pyx_GOTREF(__pyx_t_5);
             __pyx_t_15 = NULL;
             if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -9452,13 +9905,13 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
               }
             }
             if (!__pyx_t_15) {
-              __pyx_t_14 = __Pyx_PyObject_CallOneArg(__pyx_t_5, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 605, __pyx_L9_except_error)
+              __pyx_t_14 = __Pyx_PyObject_CallOneArg(__pyx_t_5, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 625, __pyx_L9_except_error)
               __Pyx_GOTREF(__pyx_t_14);
             } else {
               #if CYTHON_FAST_PYCALL
               if (PyFunction_Check(__pyx_t_5)) {
                 PyObject *__pyx_temp[2] = {__pyx_t_15, ((PyObject *)__pyx_v_self)};
-                __pyx_t_14 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 605, __pyx_L9_except_error)
+                __pyx_t_14 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 625, __pyx_L9_except_error)
                 __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
                 __Pyx_GOTREF(__pyx_t_14);
               } else
@@ -9466,19 +9919,19 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
               #if CYTHON_FAST_PYCCALL
               if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
                 PyObject *__pyx_temp[2] = {__pyx_t_15, ((PyObject *)__pyx_v_self)};
-                __pyx_t_14 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 605, __pyx_L9_except_error)
+                __pyx_t_14 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 625, __pyx_L9_except_error)
                 __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
                 __Pyx_GOTREF(__pyx_t_14);
               } else
               #endif
               {
-                __pyx_t_19 = PyTuple_New(1+1); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 605, __pyx_L9_except_error)
+                __pyx_t_19 = PyTuple_New(1+1); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 625, __pyx_L9_except_error)
                 __Pyx_GOTREF(__pyx_t_19);
                 __Pyx_GIVEREF(__pyx_t_15); PyTuple_SET_ITEM(__pyx_t_19, 0, __pyx_t_15); __pyx_t_15 = NULL;
                 __Pyx_INCREF(((PyObject *)__pyx_v_self));
                 __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
                 PyTuple_SET_ITEM(__pyx_t_19, 0+1, ((PyObject *)__pyx_v_self));
-                __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_19, NULL); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 605, __pyx_L9_except_error)
+                __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_19, NULL); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 625, __pyx_L9_except_error)
                 __Pyx_GOTREF(__pyx_t_14);
                 __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
               }
@@ -9486,7 +9939,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
             __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
             __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
 
-            /* "Flares.pyx":603
+            /* "Flares.pyx":623
  *                                 self.add_internal(spr)
  *                                 spr.add_internal(self)
  *                     elif not self.has_internal(sprite):             # <<<<<<<<<<<<<<
@@ -9503,7 +9956,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
         goto __pyx_L9_except_error;
         __pyx_L9_except_error:;
 
-        /* "Flares.pyx":589
+        /* "Flares.pyx":609
  *                     sprite.add_internal(self)
  *             else:
  *                 try:             # <<<<<<<<<<<<<<
@@ -9525,7 +9978,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
     }
     __pyx_L5:;
 
-    /* "Flares.pyx":580
+    /* "Flares.pyx":600
  *     cpdef add(self, sprites):
  * 
  *         for sprite in sprites:             # <<<<<<<<<<<<<<
@@ -9535,7 +9988,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_add(struct __pyx_obj_6FLARES_Ab
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":578
+  /* "Flares.pyx":598
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cpdef add(self, sprites):             # <<<<<<<<<<<<<<
@@ -9585,7 +10038,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_6add(struct __pyx_obj_6FLARES_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("add", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_13AbstractGroup_add(__pyx_v_self, __pyx_v_sprites, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 578, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_13AbstractGroup_add(__pyx_v_self, __pyx_v_sprites, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 598, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9602,7 +10055,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_6add(struct __pyx_obj_6FLARES_
   return __pyx_r;
 }
 
-/* "Flares.pyx":611
+/* "Flares.pyx":631
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef remove(self, tuple sprites):             # <<<<<<<<<<<<<<
@@ -9635,7 +10088,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
   PyObject *__pyx_t_18 = NULL;
   __Pyx_RefNannySetupContext("remove", 0);
 
-  /* "Flares.pyx":618
+  /* "Flares.pyx":638
  *         # old-style sprite group. Lastly, if that fails, it assumes that the
  *         # normal Sprite methods should be used.
  *         for sprite in sprites:             # <<<<<<<<<<<<<<
@@ -9644,21 +10097,21 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
  */
   if (unlikely(__pyx_v_sprites == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 618, __pyx_L1_error)
+    __PYX_ERR(0, 638, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_v_sprites; __Pyx_INCREF(__pyx_t_1); __pyx_t_2 = 0;
   for (;;) {
     if (__pyx_t_2 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 618, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 638, __pyx_L1_error)
     #else
-    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 618, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 638, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     __Pyx_XDECREF_SET(__pyx_v_sprite, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "Flares.pyx":619
+    /* "Flares.pyx":639
  *         # normal Sprite methods should be used.
  *         for sprite in sprites:
  *             if isinstance(sprite, Sprite):             # <<<<<<<<<<<<<<
@@ -9669,38 +10122,38 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
     __pyx_t_5 = (__pyx_t_4 != 0);
     if (__pyx_t_5) {
 
-      /* "Flares.pyx":620
+      /* "Flares.pyx":640
  *         for sprite in sprites:
  *             if isinstance(sprite, Sprite):
  *                 if self.has_internal(sprite):             # <<<<<<<<<<<<<<
  *                     self.remove_internal(sprite)
  *                     sprite.remove_internal(self)
  */
-      __pyx_t_3 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 620, __pyx_L1_error)
+      __pyx_t_3 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 640, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 620, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 640, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       if (__pyx_t_5) {
 
-        /* "Flares.pyx":621
+        /* "Flares.pyx":641
  *             if isinstance(sprite, Sprite):
  *                 if self.has_internal(sprite):
  *                     self.remove_internal(sprite)             # <<<<<<<<<<<<<<
  *                     sprite.remove_internal(self)
  *             else:
  */
-        __pyx_t_3 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->remove_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 621, __pyx_L1_error)
+        __pyx_t_3 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->remove_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 641, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-        /* "Flares.pyx":622
+        /* "Flares.pyx":642
  *                 if self.has_internal(sprite):
  *                     self.remove_internal(sprite)
  *                     sprite.remove_internal(self)             # <<<<<<<<<<<<<<
  *             else:
  *                 try:
  */
-        __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_remove_internal); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 622, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_remove_internal); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 642, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __pyx_t_7 = NULL;
         if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -9713,13 +10166,13 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
           }
         }
         if (!__pyx_t_7) {
-          __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_6, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 622, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_6, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 642, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
         } else {
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_6)) {
             PyObject *__pyx_temp[2] = {__pyx_t_7, ((PyObject *)__pyx_v_self)};
-            __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 622, __pyx_L1_error)
+            __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 642, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
             __Pyx_GOTREF(__pyx_t_3);
           } else
@@ -9727,19 +10180,19 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
             PyObject *__pyx_temp[2] = {__pyx_t_7, ((PyObject *)__pyx_v_self)};
-            __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 622, __pyx_L1_error)
+            __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 642, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
             __Pyx_GOTREF(__pyx_t_3);
           } else
           #endif
           {
-            __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 622, __pyx_L1_error)
+            __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 642, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_8);
             __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_7); __pyx_t_7 = NULL;
             __Pyx_INCREF(((PyObject *)__pyx_v_self));
             __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
             PyTuple_SET_ITEM(__pyx_t_8, 0+1, ((PyObject *)__pyx_v_self));
-            __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_8, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 622, __pyx_L1_error)
+            __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_8, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 642, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_3);
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           }
@@ -9747,7 +10200,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-        /* "Flares.pyx":620
+        /* "Flares.pyx":640
  *         for sprite in sprites:
  *             if isinstance(sprite, Sprite):
  *                 if self.has_internal(sprite):             # <<<<<<<<<<<<<<
@@ -9756,7 +10209,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
  */
       }
 
-      /* "Flares.pyx":619
+      /* "Flares.pyx":639
  *         # normal Sprite methods should be used.
  *         for sprite in sprites:
  *             if isinstance(sprite, Sprite):             # <<<<<<<<<<<<<<
@@ -9766,7 +10219,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
       goto __pyx_L5;
     }
 
-    /* "Flares.pyx":624
+    /* "Flares.pyx":644
  *                     sprite.remove_internal(self)
  *             else:
  *                 try:             # <<<<<<<<<<<<<<
@@ -9783,21 +10236,21 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
         __Pyx_XGOTREF(__pyx_t_11);
         /*try:*/ {
 
-          /* "Flares.pyx":625
+          /* "Flares.pyx":645
  *             else:
  *                 try:
  *                     self.remove(tuple(sprite))             # <<<<<<<<<<<<<<
  *                 except (TypeError, AttributeError):
  *                     if hasattr(sprite, '_spritegroup'):
  */
-          __pyx_t_3 = __Pyx_PySequence_Tuple(__pyx_v_sprite); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 625, __pyx_L7_error)
+          __pyx_t_3 = __Pyx_PySequence_Tuple(__pyx_v_sprite); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 645, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_6 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->remove(__pyx_v_self, ((PyObject*)__pyx_t_3)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 625, __pyx_L7_error)
+          __pyx_t_6 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->remove(__pyx_v_self, ((PyObject*)__pyx_t_3)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 645, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_6);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-          /* "Flares.pyx":624
+          /* "Flares.pyx":644
  *                     sprite.remove_internal(self)
  *             else:
  *                 try:             # <<<<<<<<<<<<<<
@@ -9815,7 +10268,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-        /* "Flares.pyx":626
+        /* "Flares.pyx":646
  *                 try:
  *                     self.remove(tuple(sprite))
  *                 except (TypeError, AttributeError):             # <<<<<<<<<<<<<<
@@ -9825,30 +10278,30 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
         __pyx_t_12 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_TypeError) || __Pyx_PyErr_ExceptionMatches(__pyx_builtin_AttributeError);
         if (__pyx_t_12) {
           __Pyx_AddTraceback("FLARES.AbstractGroup.remove", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_6, &__pyx_t_3, &__pyx_t_8) < 0) __PYX_ERR(0, 626, __pyx_L9_except_error)
+          if (__Pyx_GetException(&__pyx_t_6, &__pyx_t_3, &__pyx_t_8) < 0) __PYX_ERR(0, 646, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_6);
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_GOTREF(__pyx_t_8);
 
-          /* "Flares.pyx":627
+          /* "Flares.pyx":647
  *                     self.remove(tuple(sprite))
  *                 except (TypeError, AttributeError):
  *                     if hasattr(sprite, '_spritegroup'):             # <<<<<<<<<<<<<<
  *                         for spr in sprite.sprites():
  *                             if self.has_internal(spr):
  */
-          __pyx_t_5 = __Pyx_HasAttr(__pyx_v_sprite, __pyx_n_s_spritegroup); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 627, __pyx_L9_except_error)
+          __pyx_t_5 = __Pyx_HasAttr(__pyx_v_sprite, __pyx_n_s_spritegroup); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 647, __pyx_L9_except_error)
           __pyx_t_4 = (__pyx_t_5 != 0);
           if (__pyx_t_4) {
 
-            /* "Flares.pyx":628
+            /* "Flares.pyx":648
  *                 except (TypeError, AttributeError):
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():             # <<<<<<<<<<<<<<
  *                             if self.has_internal(spr):
  *                                 self.remove_internal(spr)
  */
-            __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_sprites); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 628, __pyx_L9_except_error)
+            __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_sprites); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 648, __pyx_L9_except_error)
             __Pyx_GOTREF(__pyx_t_13);
             __pyx_t_14 = NULL;
             if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_13))) {
@@ -9861,10 +10314,10 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
               }
             }
             if (__pyx_t_14) {
-              __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_13, __pyx_t_14); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 628, __pyx_L9_except_error)
+              __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_13, __pyx_t_14); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 648, __pyx_L9_except_error)
               __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
             } else {
-              __pyx_t_7 = __Pyx_PyObject_CallNoArg(__pyx_t_13); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 628, __pyx_L9_except_error)
+              __pyx_t_7 = __Pyx_PyObject_CallNoArg(__pyx_t_13); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 648, __pyx_L9_except_error)
             }
             __Pyx_GOTREF(__pyx_t_7);
             __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
@@ -9872,9 +10325,9 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
               __pyx_t_13 = __pyx_t_7; __Pyx_INCREF(__pyx_t_13); __pyx_t_15 = 0;
               __pyx_t_16 = NULL;
             } else {
-              __pyx_t_15 = -1; __pyx_t_13 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 628, __pyx_L9_except_error)
+              __pyx_t_15 = -1; __pyx_t_13 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 648, __pyx_L9_except_error)
               __Pyx_GOTREF(__pyx_t_13);
-              __pyx_t_16 = Py_TYPE(__pyx_t_13)->tp_iternext; if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 628, __pyx_L9_except_error)
+              __pyx_t_16 = Py_TYPE(__pyx_t_13)->tp_iternext; if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 648, __pyx_L9_except_error)
             }
             __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
             for (;;) {
@@ -9882,17 +10335,17 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
                 if (likely(PyList_CheckExact(__pyx_t_13))) {
                   if (__pyx_t_15 >= PyList_GET_SIZE(__pyx_t_13)) break;
                   #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_7 = PyList_GET_ITEM(__pyx_t_13, __pyx_t_15); __Pyx_INCREF(__pyx_t_7); __pyx_t_15++; if (unlikely(0 < 0)) __PYX_ERR(0, 628, __pyx_L9_except_error)
+                  __pyx_t_7 = PyList_GET_ITEM(__pyx_t_13, __pyx_t_15); __Pyx_INCREF(__pyx_t_7); __pyx_t_15++; if (unlikely(0 < 0)) __PYX_ERR(0, 648, __pyx_L9_except_error)
                   #else
-                  __pyx_t_7 = PySequence_ITEM(__pyx_t_13, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 628, __pyx_L9_except_error)
+                  __pyx_t_7 = PySequence_ITEM(__pyx_t_13, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 648, __pyx_L9_except_error)
                   __Pyx_GOTREF(__pyx_t_7);
                   #endif
                 } else {
                   if (__pyx_t_15 >= PyTuple_GET_SIZE(__pyx_t_13)) break;
                   #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_13, __pyx_t_15); __Pyx_INCREF(__pyx_t_7); __pyx_t_15++; if (unlikely(0 < 0)) __PYX_ERR(0, 628, __pyx_L9_except_error)
+                  __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_13, __pyx_t_15); __Pyx_INCREF(__pyx_t_7); __pyx_t_15++; if (unlikely(0 < 0)) __PYX_ERR(0, 648, __pyx_L9_except_error)
                   #else
-                  __pyx_t_7 = PySequence_ITEM(__pyx_t_13, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 628, __pyx_L9_except_error)
+                  __pyx_t_7 = PySequence_ITEM(__pyx_t_13, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 648, __pyx_L9_except_error)
                   __Pyx_GOTREF(__pyx_t_7);
                   #endif
                 }
@@ -9902,7 +10355,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
                   PyObject* exc_type = PyErr_Occurred();
                   if (exc_type) {
                     if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                    else __PYX_ERR(0, 628, __pyx_L9_except_error)
+                    else __PYX_ERR(0, 648, __pyx_L9_except_error)
                   }
                   break;
                 }
@@ -9911,38 +10364,38 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
               __Pyx_XDECREF_SET(__pyx_v_spr, __pyx_t_7);
               __pyx_t_7 = 0;
 
-              /* "Flares.pyx":629
+              /* "Flares.pyx":649
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():
  *                             if self.has_internal(spr):             # <<<<<<<<<<<<<<
  *                                 self.remove_internal(spr)
  *                                 spr.remove_internal(self)
  */
-              __pyx_t_7 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_spr); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 629, __pyx_L9_except_error)
+              __pyx_t_7 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_spr); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 649, __pyx_L9_except_error)
               __Pyx_GOTREF(__pyx_t_7);
-              __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 629, __pyx_L9_except_error)
+              __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 649, __pyx_L9_except_error)
               __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
               if (__pyx_t_4) {
 
-                /* "Flares.pyx":630
+                /* "Flares.pyx":650
  *                         for spr in sprite.sprites():
  *                             if self.has_internal(spr):
  *                                 self.remove_internal(spr)             # <<<<<<<<<<<<<<
  *                                 spr.remove_internal(self)
  *                     elif self.has_internal(sprite):
  */
-                __pyx_t_7 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->remove_internal(__pyx_v_self, __pyx_v_spr); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 630, __pyx_L9_except_error)
+                __pyx_t_7 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->remove_internal(__pyx_v_self, __pyx_v_spr); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 650, __pyx_L9_except_error)
                 __Pyx_GOTREF(__pyx_t_7);
                 __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-                /* "Flares.pyx":631
+                /* "Flares.pyx":651
  *                             if self.has_internal(spr):
  *                                 self.remove_internal(spr)
  *                                 spr.remove_internal(self)             # <<<<<<<<<<<<<<
  *                     elif self.has_internal(sprite):
  *                         self.remove_internal(sprite)
  */
-                __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_remove_internal); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 631, __pyx_L9_except_error)
+                __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_remove_internal); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 651, __pyx_L9_except_error)
                 __Pyx_GOTREF(__pyx_t_14);
                 __pyx_t_17 = NULL;
                 if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_14))) {
@@ -9955,13 +10408,13 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
                   }
                 }
                 if (!__pyx_t_17) {
-                  __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_14, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 631, __pyx_L9_except_error)
+                  __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_14, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 651, __pyx_L9_except_error)
                   __Pyx_GOTREF(__pyx_t_7);
                 } else {
                   #if CYTHON_FAST_PYCALL
                   if (PyFunction_Check(__pyx_t_14)) {
                     PyObject *__pyx_temp[2] = {__pyx_t_17, ((PyObject *)__pyx_v_self)};
-                    __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_14, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 631, __pyx_L9_except_error)
+                    __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_14, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 651, __pyx_L9_except_error)
                     __Pyx_XDECREF(__pyx_t_17); __pyx_t_17 = 0;
                     __Pyx_GOTREF(__pyx_t_7);
                   } else
@@ -9969,19 +10422,19 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
                   #if CYTHON_FAST_PYCCALL
                   if (__Pyx_PyFastCFunction_Check(__pyx_t_14)) {
                     PyObject *__pyx_temp[2] = {__pyx_t_17, ((PyObject *)__pyx_v_self)};
-                    __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_14, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 631, __pyx_L9_except_error)
+                    __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_14, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 651, __pyx_L9_except_error)
                     __Pyx_XDECREF(__pyx_t_17); __pyx_t_17 = 0;
                     __Pyx_GOTREF(__pyx_t_7);
                   } else
                   #endif
                   {
-                    __pyx_t_18 = PyTuple_New(1+1); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 631, __pyx_L9_except_error)
+                    __pyx_t_18 = PyTuple_New(1+1); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 651, __pyx_L9_except_error)
                     __Pyx_GOTREF(__pyx_t_18);
                     __Pyx_GIVEREF(__pyx_t_17); PyTuple_SET_ITEM(__pyx_t_18, 0, __pyx_t_17); __pyx_t_17 = NULL;
                     __Pyx_INCREF(((PyObject *)__pyx_v_self));
                     __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
                     PyTuple_SET_ITEM(__pyx_t_18, 0+1, ((PyObject *)__pyx_v_self));
-                    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_t_18, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 631, __pyx_L9_except_error)
+                    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_t_18, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 651, __pyx_L9_except_error)
                     __Pyx_GOTREF(__pyx_t_7);
                     __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
                   }
@@ -9989,7 +10442,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
                 __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
                 __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-                /* "Flares.pyx":629
+                /* "Flares.pyx":649
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():
  *                             if self.has_internal(spr):             # <<<<<<<<<<<<<<
@@ -9998,7 +10451,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
  */
               }
 
-              /* "Flares.pyx":628
+              /* "Flares.pyx":648
  *                 except (TypeError, AttributeError):
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():             # <<<<<<<<<<<<<<
@@ -10008,7 +10461,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
             }
             __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
 
-            /* "Flares.pyx":627
+            /* "Flares.pyx":647
  *                     self.remove(tuple(sprite))
  *                 except (TypeError, AttributeError):
  *                     if hasattr(sprite, '_spritegroup'):             # <<<<<<<<<<<<<<
@@ -10018,38 +10471,38 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
             goto __pyx_L17;
           }
 
-          /* "Flares.pyx":632
+          /* "Flares.pyx":652
  *                                 self.remove_internal(spr)
  *                                 spr.remove_internal(self)
  *                     elif self.has_internal(sprite):             # <<<<<<<<<<<<<<
  *                         self.remove_internal(sprite)
  *                         sprite.remove_internal(self)
  */
-          __pyx_t_13 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 632, __pyx_L9_except_error)
+          __pyx_t_13 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 652, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_13);
-          __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_13); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 632, __pyx_L9_except_error)
+          __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_13); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 652, __pyx_L9_except_error)
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
           if (__pyx_t_4) {
 
-            /* "Flares.pyx":633
+            /* "Flares.pyx":653
  *                                 spr.remove_internal(self)
  *                     elif self.has_internal(sprite):
  *                         self.remove_internal(sprite)             # <<<<<<<<<<<<<<
  *                         sprite.remove_internal(self)
  * 
  */
-            __pyx_t_13 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->remove_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 633, __pyx_L9_except_error)
+            __pyx_t_13 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->remove_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 653, __pyx_L9_except_error)
             __Pyx_GOTREF(__pyx_t_13);
             __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
 
-            /* "Flares.pyx":634
+            /* "Flares.pyx":654
  *                     elif self.has_internal(sprite):
  *                         self.remove_internal(sprite)
  *                         sprite.remove_internal(self)             # <<<<<<<<<<<<<<
  * 
  *     @cython.boundscheck(False)
  */
-            __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_remove_internal); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 634, __pyx_L9_except_error)
+            __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_remove_internal); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 654, __pyx_L9_except_error)
             __Pyx_GOTREF(__pyx_t_7);
             __pyx_t_14 = NULL;
             if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_7))) {
@@ -10062,13 +10515,13 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
               }
             }
             if (!__pyx_t_14) {
-              __pyx_t_13 = __Pyx_PyObject_CallOneArg(__pyx_t_7, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 634, __pyx_L9_except_error)
+              __pyx_t_13 = __Pyx_PyObject_CallOneArg(__pyx_t_7, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 654, __pyx_L9_except_error)
               __Pyx_GOTREF(__pyx_t_13);
             } else {
               #if CYTHON_FAST_PYCALL
               if (PyFunction_Check(__pyx_t_7)) {
                 PyObject *__pyx_temp[2] = {__pyx_t_14, ((PyObject *)__pyx_v_self)};
-                __pyx_t_13 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 634, __pyx_L9_except_error)
+                __pyx_t_13 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 654, __pyx_L9_except_error)
                 __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
                 __Pyx_GOTREF(__pyx_t_13);
               } else
@@ -10076,19 +10529,19 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
               #if CYTHON_FAST_PYCCALL
               if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
                 PyObject *__pyx_temp[2] = {__pyx_t_14, ((PyObject *)__pyx_v_self)};
-                __pyx_t_13 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 634, __pyx_L9_except_error)
+                __pyx_t_13 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 654, __pyx_L9_except_error)
                 __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
                 __Pyx_GOTREF(__pyx_t_13);
               } else
               #endif
               {
-                __pyx_t_18 = PyTuple_New(1+1); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 634, __pyx_L9_except_error)
+                __pyx_t_18 = PyTuple_New(1+1); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 654, __pyx_L9_except_error)
                 __Pyx_GOTREF(__pyx_t_18);
                 __Pyx_GIVEREF(__pyx_t_14); PyTuple_SET_ITEM(__pyx_t_18, 0, __pyx_t_14); __pyx_t_14 = NULL;
                 __Pyx_INCREF(((PyObject *)__pyx_v_self));
                 __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
                 PyTuple_SET_ITEM(__pyx_t_18, 0+1, ((PyObject *)__pyx_v_self));
-                __pyx_t_13 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_18, NULL); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 634, __pyx_L9_except_error)
+                __pyx_t_13 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_18, NULL); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 654, __pyx_L9_except_error)
                 __Pyx_GOTREF(__pyx_t_13);
                 __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
               }
@@ -10096,7 +10549,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
             __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
             __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
 
-            /* "Flares.pyx":632
+            /* "Flares.pyx":652
  *                                 self.remove_internal(spr)
  *                                 spr.remove_internal(self)
  *                     elif self.has_internal(sprite):             # <<<<<<<<<<<<<<
@@ -10113,7 +10566,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
         goto __pyx_L9_except_error;
         __pyx_L9_except_error:;
 
-        /* "Flares.pyx":624
+        /* "Flares.pyx":644
  *                     sprite.remove_internal(self)
  *             else:
  *                 try:             # <<<<<<<<<<<<<<
@@ -10135,7 +10588,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
     }
     __pyx_L5:;
 
-    /* "Flares.pyx":618
+    /* "Flares.pyx":638
  *         # old-style sprite group. Lastly, if that fails, it assumes that the
  *         # normal Sprite methods should be used.
  *         for sprite in sprites:             # <<<<<<<<<<<<<<
@@ -10145,7 +10598,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":611
+  /* "Flares.pyx":631
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef remove(self, tuple sprites):             # <<<<<<<<<<<<<<
@@ -10176,7 +10629,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_remove(struct __pyx_obj_6FLARES
   return __pyx_r;
 }
 
-/* "Flares.pyx":640
+/* "Flares.pyx":660
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef has(self, tuple sprites):             # <<<<<<<<<<<<<<
@@ -10208,7 +10661,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
   PyObject *(*__pyx_t_16)(PyObject *);
   __Pyx_RefNannySetupContext("has", 0);
 
-  /* "Flares.pyx":641
+  /* "Flares.pyx":661
  *     @cython.cdivision(True)
  *     cdef has(self, tuple sprites):
  *         cdef bint return_value = False             # <<<<<<<<<<<<<<
@@ -10217,7 +10670,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
  */
   __pyx_v_return_value = 0;
 
-  /* "Flares.pyx":643
+  /* "Flares.pyx":663
  *         cdef bint return_value = False
  * 
  *         for sprite in sprites:             # <<<<<<<<<<<<<<
@@ -10226,21 +10679,21 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
  */
   if (unlikely(__pyx_v_sprites == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 643, __pyx_L1_error)
+    __PYX_ERR(0, 663, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_v_sprites; __Pyx_INCREF(__pyx_t_1); __pyx_t_2 = 0;
   for (;;) {
     if (__pyx_t_2 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 643, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 663, __pyx_L1_error)
     #else
-    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 643, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 663, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     __Pyx_XDECREF_SET(__pyx_v_sprite, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "Flares.pyx":644
+    /* "Flares.pyx":664
  * 
  *         for sprite in sprites:
  *             if isinstance(sprite, Sprite):             # <<<<<<<<<<<<<<
@@ -10251,20 +10704,20 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
     __pyx_t_5 = (__pyx_t_4 != 0);
     if (__pyx_t_5) {
 
-      /* "Flares.pyx":646
+      /* "Flares.pyx":666
  *             if isinstance(sprite, Sprite):
  *                 # Check for Sprite instance's membership in this group
  *                 if self.has_internal(sprite):             # <<<<<<<<<<<<<<
  *                     return_value = True
  *                 else:
  */
-      __pyx_t_3 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 646, __pyx_L1_error)
+      __pyx_t_3 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 666, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 646, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 666, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       if (__pyx_t_5) {
 
-        /* "Flares.pyx":647
+        /* "Flares.pyx":667
  *                 # Check for Sprite instance's membership in this group
  *                 if self.has_internal(sprite):
  *                     return_value = True             # <<<<<<<<<<<<<<
@@ -10273,7 +10726,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
  */
         __pyx_v_return_value = 1;
 
-        /* "Flares.pyx":646
+        /* "Flares.pyx":666
  *             if isinstance(sprite, Sprite):
  *                 # Check for Sprite instance's membership in this group
  *                 if self.has_internal(sprite):             # <<<<<<<<<<<<<<
@@ -10283,7 +10736,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
         goto __pyx_L6;
       }
 
-      /* "Flares.pyx":649
+      /* "Flares.pyx":669
  *                     return_value = True
  *                 else:
  *                     return False             # <<<<<<<<<<<<<<
@@ -10299,7 +10752,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
       }
       __pyx_L6:;
 
-      /* "Flares.pyx":644
+      /* "Flares.pyx":664
  * 
  *         for sprite in sprites:
  *             if isinstance(sprite, Sprite):             # <<<<<<<<<<<<<<
@@ -10309,7 +10762,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
       goto __pyx_L5;
     }
 
-    /* "Flares.pyx":651
+    /* "Flares.pyx":671
  *                     return False
  *             else:
  *                 try:             # <<<<<<<<<<<<<<
@@ -10326,23 +10779,23 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
         __Pyx_XGOTREF(__pyx_t_8);
         /*try:*/ {
 
-          /* "Flares.pyx":652
+          /* "Flares.pyx":672
  *             else:
  *                 try:
  *                     if self.has(tuple(sprite)):             # <<<<<<<<<<<<<<
  *                         return_value = True
  *                     else:
  */
-          __pyx_t_3 = __Pyx_PySequence_Tuple(__pyx_v_sprite); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 652, __pyx_L7_error)
+          __pyx_t_3 = __Pyx_PySequence_Tuple(__pyx_v_sprite); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 672, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_9 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has(__pyx_v_self, ((PyObject*)__pyx_t_3)); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 652, __pyx_L7_error)
+          __pyx_t_9 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has(__pyx_v_self, ((PyObject*)__pyx_t_3)); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 672, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_9);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 652, __pyx_L7_error)
+          __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 672, __pyx_L7_error)
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
           if (__pyx_t_5) {
 
-            /* "Flares.pyx":653
+            /* "Flares.pyx":673
  *                 try:
  *                     if self.has(tuple(sprite)):
  *                         return_value = True             # <<<<<<<<<<<<<<
@@ -10351,7 +10804,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
  */
             __pyx_v_return_value = 1;
 
-            /* "Flares.pyx":652
+            /* "Flares.pyx":672
  *             else:
  *                 try:
  *                     if self.has(tuple(sprite)):             # <<<<<<<<<<<<<<
@@ -10361,7 +10814,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
             goto __pyx_L15;
           }
 
-          /* "Flares.pyx":655
+          /* "Flares.pyx":675
  *                         return_value = True
  *                     else:
  *                         return False             # <<<<<<<<<<<<<<
@@ -10377,7 +10830,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
           }
           __pyx_L15:;
 
-          /* "Flares.pyx":651
+          /* "Flares.pyx":671
  *                     return False
  *             else:
  *                 try:             # <<<<<<<<<<<<<<
@@ -10393,7 +10846,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-        /* "Flares.pyx":656
+        /* "Flares.pyx":676
  *                     else:
  *                         return False
  *                 except (TypeError, AttributeError):             # <<<<<<<<<<<<<<
@@ -10403,30 +10856,30 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
         __pyx_t_10 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_TypeError) || __Pyx_PyErr_ExceptionMatches(__pyx_builtin_AttributeError);
         if (__pyx_t_10) {
           __Pyx_AddTraceback("FLARES.AbstractGroup.has", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_9, &__pyx_t_3, &__pyx_t_11) < 0) __PYX_ERR(0, 656, __pyx_L9_except_error)
+          if (__Pyx_GetException(&__pyx_t_9, &__pyx_t_3, &__pyx_t_11) < 0) __PYX_ERR(0, 676, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_9);
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_GOTREF(__pyx_t_11);
 
-          /* "Flares.pyx":657
+          /* "Flares.pyx":677
  *                         return False
  *                 except (TypeError, AttributeError):
  *                     if hasattr(sprite, '_spritegroup'):             # <<<<<<<<<<<<<<
  *                         for spr in sprite.sprites():
  *                             if self.has_internal(spr):
  */
-          __pyx_t_5 = __Pyx_HasAttr(__pyx_v_sprite, __pyx_n_s_spritegroup); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 657, __pyx_L9_except_error)
+          __pyx_t_5 = __Pyx_HasAttr(__pyx_v_sprite, __pyx_n_s_spritegroup); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 677, __pyx_L9_except_error)
           __pyx_t_4 = (__pyx_t_5 != 0);
           if (__pyx_t_4) {
 
-            /* "Flares.pyx":658
+            /* "Flares.pyx":678
  *                 except (TypeError, AttributeError):
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():             # <<<<<<<<<<<<<<
  *                             if self.has_internal(spr):
  *                                 return_value = True
  */
-            __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_sprites); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 658, __pyx_L9_except_error)
+            __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_sprites); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 678, __pyx_L9_except_error)
             __Pyx_GOTREF(__pyx_t_13);
             __pyx_t_14 = NULL;
             if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_13))) {
@@ -10439,10 +10892,10 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
               }
             }
             if (__pyx_t_14) {
-              __pyx_t_12 = __Pyx_PyObject_CallOneArg(__pyx_t_13, __pyx_t_14); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 658, __pyx_L9_except_error)
+              __pyx_t_12 = __Pyx_PyObject_CallOneArg(__pyx_t_13, __pyx_t_14); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 678, __pyx_L9_except_error)
               __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
             } else {
-              __pyx_t_12 = __Pyx_PyObject_CallNoArg(__pyx_t_13); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 658, __pyx_L9_except_error)
+              __pyx_t_12 = __Pyx_PyObject_CallNoArg(__pyx_t_13); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 678, __pyx_L9_except_error)
             }
             __Pyx_GOTREF(__pyx_t_12);
             __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
@@ -10450,9 +10903,9 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
               __pyx_t_13 = __pyx_t_12; __Pyx_INCREF(__pyx_t_13); __pyx_t_15 = 0;
               __pyx_t_16 = NULL;
             } else {
-              __pyx_t_15 = -1; __pyx_t_13 = PyObject_GetIter(__pyx_t_12); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 658, __pyx_L9_except_error)
+              __pyx_t_15 = -1; __pyx_t_13 = PyObject_GetIter(__pyx_t_12); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 678, __pyx_L9_except_error)
               __Pyx_GOTREF(__pyx_t_13);
-              __pyx_t_16 = Py_TYPE(__pyx_t_13)->tp_iternext; if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 658, __pyx_L9_except_error)
+              __pyx_t_16 = Py_TYPE(__pyx_t_13)->tp_iternext; if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 678, __pyx_L9_except_error)
             }
             __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
             for (;;) {
@@ -10460,17 +10913,17 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
                 if (likely(PyList_CheckExact(__pyx_t_13))) {
                   if (__pyx_t_15 >= PyList_GET_SIZE(__pyx_t_13)) break;
                   #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_12 = PyList_GET_ITEM(__pyx_t_13, __pyx_t_15); __Pyx_INCREF(__pyx_t_12); __pyx_t_15++; if (unlikely(0 < 0)) __PYX_ERR(0, 658, __pyx_L9_except_error)
+                  __pyx_t_12 = PyList_GET_ITEM(__pyx_t_13, __pyx_t_15); __Pyx_INCREF(__pyx_t_12); __pyx_t_15++; if (unlikely(0 < 0)) __PYX_ERR(0, 678, __pyx_L9_except_error)
                   #else
-                  __pyx_t_12 = PySequence_ITEM(__pyx_t_13, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 658, __pyx_L9_except_error)
+                  __pyx_t_12 = PySequence_ITEM(__pyx_t_13, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 678, __pyx_L9_except_error)
                   __Pyx_GOTREF(__pyx_t_12);
                   #endif
                 } else {
                   if (__pyx_t_15 >= PyTuple_GET_SIZE(__pyx_t_13)) break;
                   #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_12 = PyTuple_GET_ITEM(__pyx_t_13, __pyx_t_15); __Pyx_INCREF(__pyx_t_12); __pyx_t_15++; if (unlikely(0 < 0)) __PYX_ERR(0, 658, __pyx_L9_except_error)
+                  __pyx_t_12 = PyTuple_GET_ITEM(__pyx_t_13, __pyx_t_15); __Pyx_INCREF(__pyx_t_12); __pyx_t_15++; if (unlikely(0 < 0)) __PYX_ERR(0, 678, __pyx_L9_except_error)
                   #else
-                  __pyx_t_12 = PySequence_ITEM(__pyx_t_13, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 658, __pyx_L9_except_error)
+                  __pyx_t_12 = PySequence_ITEM(__pyx_t_13, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 678, __pyx_L9_except_error)
                   __Pyx_GOTREF(__pyx_t_12);
                   #endif
                 }
@@ -10480,7 +10933,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
                   PyObject* exc_type = PyErr_Occurred();
                   if (exc_type) {
                     if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                    else __PYX_ERR(0, 658, __pyx_L9_except_error)
+                    else __PYX_ERR(0, 678, __pyx_L9_except_error)
                   }
                   break;
                 }
@@ -10489,20 +10942,20 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
               __Pyx_XDECREF_SET(__pyx_v_spr, __pyx_t_12);
               __pyx_t_12 = 0;
 
-              /* "Flares.pyx":659
+              /* "Flares.pyx":679
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():
  *                             if self.has_internal(spr):             # <<<<<<<<<<<<<<
  *                                 return_value = True
  *                             else:
  */
-              __pyx_t_12 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_spr); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 659, __pyx_L9_except_error)
+              __pyx_t_12 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_spr); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 679, __pyx_L9_except_error)
               __Pyx_GOTREF(__pyx_t_12);
-              __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_12); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 659, __pyx_L9_except_error)
+              __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_12); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 679, __pyx_L9_except_error)
               __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
               if (__pyx_t_4) {
 
-                /* "Flares.pyx":660
+                /* "Flares.pyx":680
  *                         for spr in sprite.sprites():
  *                             if self.has_internal(spr):
  *                                 return_value = True             # <<<<<<<<<<<<<<
@@ -10511,7 +10964,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
  */
                 __pyx_v_return_value = 1;
 
-                /* "Flares.pyx":659
+                /* "Flares.pyx":679
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():
  *                             if self.has_internal(spr):             # <<<<<<<<<<<<<<
@@ -10521,7 +10974,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
                 goto __pyx_L21;
               }
 
-              /* "Flares.pyx":662
+              /* "Flares.pyx":682
  *                                 return_value = True
  *                             else:
  *                                 return False             # <<<<<<<<<<<<<<
@@ -10541,7 +10994,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
               }
               __pyx_L21:;
 
-              /* "Flares.pyx":658
+              /* "Flares.pyx":678
  *                 except (TypeError, AttributeError):
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():             # <<<<<<<<<<<<<<
@@ -10551,7 +11004,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
             }
             __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
 
-            /* "Flares.pyx":657
+            /* "Flares.pyx":677
  *                         return False
  *                 except (TypeError, AttributeError):
  *                     if hasattr(sprite, '_spritegroup'):             # <<<<<<<<<<<<<<
@@ -10561,7 +11014,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
             goto __pyx_L18;
           }
 
-          /* "Flares.pyx":664
+          /* "Flares.pyx":684
  *                                 return False
  *                     else:
  *                         if self.has_internal(sprite):             # <<<<<<<<<<<<<<
@@ -10569,13 +11022,13 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
  *                         else:
  */
           /*else*/ {
-            __pyx_t_13 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 664, __pyx_L9_except_error)
+            __pyx_t_13 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->has_internal(__pyx_v_self, __pyx_v_sprite); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 684, __pyx_L9_except_error)
             __Pyx_GOTREF(__pyx_t_13);
-            __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_13); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 664, __pyx_L9_except_error)
+            __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_13); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 684, __pyx_L9_except_error)
             __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
             if (__pyx_t_4) {
 
-              /* "Flares.pyx":665
+              /* "Flares.pyx":685
  *                     else:
  *                         if self.has_internal(sprite):
  *                             return_value = True             # <<<<<<<<<<<<<<
@@ -10584,7 +11037,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
  */
               __pyx_v_return_value = 1;
 
-              /* "Flares.pyx":664
+              /* "Flares.pyx":684
  *                                 return False
  *                     else:
  *                         if self.has_internal(sprite):             # <<<<<<<<<<<<<<
@@ -10594,7 +11047,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
               goto __pyx_L22;
             }
 
-            /* "Flares.pyx":667
+            /* "Flares.pyx":687
  *                             return_value = True
  *                         else:
  *                             return False             # <<<<<<<<<<<<<<
@@ -10622,7 +11075,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
         goto __pyx_L9_except_error;
         __pyx_L9_except_error:;
 
-        /* "Flares.pyx":651
+        /* "Flares.pyx":671
  *                     return False
  *             else:
  *                 try:             # <<<<<<<<<<<<<<
@@ -10656,7 +11109,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
     }
     __pyx_L5:;
 
-    /* "Flares.pyx":643
+    /* "Flares.pyx":663
  *         cdef bint return_value = False
  * 
  *         for sprite in sprites:             # <<<<<<<<<<<<<<
@@ -10666,7 +11119,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":669
+  /* "Flares.pyx":689
  *                             return False
  * 
  *         return return_value             # <<<<<<<<<<<<<<
@@ -10674,13 +11127,13 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
  *     @cython.boundscheck(False)
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_return_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 669, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_return_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 689, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "Flares.pyx":640
+  /* "Flares.pyx":660
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef has(self, tuple sprites):             # <<<<<<<<<<<<<<
@@ -10707,7 +11160,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_has(struct __pyx_obj_6FLARES_Ab
   return __pyx_r;
 }
 
-/* "Flares.pyx":675
+/* "Flares.pyx":695
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     def update(self, *args):             # <<<<<<<<<<<<<<
@@ -10744,22 +11197,22 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_8update(struct __pyx_obj_6FLAR
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("update", 0);
 
-  /* "Flares.pyx":677
+  /* "Flares.pyx":697
  *     def update(self, *args):
  * 
  *         for s in self.sprites():             # <<<<<<<<<<<<<<
  *             s.update(*args)
  * 
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->sprites(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 677, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->sprites(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 697, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_3 = 0;
     __pyx_t_4 = NULL;
   } else {
-    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 677, __pyx_L1_error)
+    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 697, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 677, __pyx_L1_error)
+    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 697, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -10767,17 +11220,17 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_8update(struct __pyx_obj_6FLAR
       if (likely(PyList_CheckExact(__pyx_t_2))) {
         if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 677, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 697, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 677, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 697, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 677, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 697, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 677, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 697, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -10787,7 +11240,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_8update(struct __pyx_obj_6FLAR
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 677, __pyx_L1_error)
+          else __PYX_ERR(0, 697, __pyx_L1_error)
         }
         break;
       }
@@ -10796,21 +11249,21 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_8update(struct __pyx_obj_6FLAR
     __Pyx_XDECREF_SET(__pyx_v_s, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "Flares.pyx":678
+    /* "Flares.pyx":698
  * 
  *         for s in self.sprites():
  *             s.update(*args)             # <<<<<<<<<<<<<<
  * 
  *     @cython.boundscheck(False)
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_s, __pyx_n_s_update); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 678, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_s, __pyx_n_s_update); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 698, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_args, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 678, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_args, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 698, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "Flares.pyx":677
+    /* "Flares.pyx":697
  *     def update(self, *args):
  * 
  *         for s in self.sprites():             # <<<<<<<<<<<<<<
@@ -10820,7 +11273,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_8update(struct __pyx_obj_6FLAR
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "Flares.pyx":675
+  /* "Flares.pyx":695
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     def update(self, *args):             # <<<<<<<<<<<<<<
@@ -10844,7 +11297,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_8update(struct __pyx_obj_6FLAR
   return __pyx_r;
 }
 
-/* "Flares.pyx":684
+/* "Flares.pyx":704
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef draw(self, surface):             # <<<<<<<<<<<<<<
@@ -10870,31 +11323,31 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_draw(struct __pyx_obj_6FLARES_A
   PyObject *__pyx_t_10 = NULL;
   __Pyx_RefNannySetupContext("draw", 0);
 
-  /* "Flares.pyx":685
+  /* "Flares.pyx":705
  *     @cython.cdivision(True)
  *     cdef draw(self, surface):
  *         sprites = self.sprites()             # <<<<<<<<<<<<<<
  *         surface_blit = surface.blit
  *         for spr in sprites:
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->sprites(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 685, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->sprites(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 705, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_sprites = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":686
+  /* "Flares.pyx":706
  *     cdef draw(self, surface):
  *         sprites = self.sprites()
  *         surface_blit = surface.blit             # <<<<<<<<<<<<<<
  *         for spr in sprites:
  *             self.spritedict[spr] = surface_blit(spr.image, spr.rect)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_surface, __pyx_n_s_blit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 686, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_surface, __pyx_n_s_blit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 706, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_surface_blit = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":687
+  /* "Flares.pyx":707
  *         sprites = self.sprites()
  *         surface_blit = surface.blit
  *         for spr in sprites:             # <<<<<<<<<<<<<<
@@ -10905,26 +11358,26 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_draw(struct __pyx_obj_6FLARES_A
     __pyx_t_1 = __pyx_v_sprites; __Pyx_INCREF(__pyx_t_1); __pyx_t_2 = 0;
     __pyx_t_3 = NULL;
   } else {
-    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_sprites); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 687, __pyx_L1_error)
+    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_sprites); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 707, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 687, __pyx_L1_error)
+    __pyx_t_3 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 707, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_3)) {
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_2 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 687, __pyx_L1_error)
+        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 707, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 687, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 707, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       } else {
         if (__pyx_t_2 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 687, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 707, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 687, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 707, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       }
@@ -10934,7 +11387,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_draw(struct __pyx_obj_6FLARES_A
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 687, __pyx_L1_error)
+          else __PYX_ERR(0, 707, __pyx_L1_error)
         }
         break;
       }
@@ -10943,16 +11396,16 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_draw(struct __pyx_obj_6FLARES_A
     __Pyx_XDECREF_SET(__pyx_v_spr, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "Flares.pyx":688
+    /* "Flares.pyx":708
  *         surface_blit = surface.blit
  *         for spr in sprites:
  *             self.spritedict[spr] = surface_blit(spr.image, spr.rect)             # <<<<<<<<<<<<<<
  *         self.lostsprites = []
  * 
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 688, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 708, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_rect); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 688, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_rect); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 708, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_INCREF(__pyx_v_surface_blit);
     __pyx_t_7 = __pyx_v_surface_blit; __pyx_t_8 = NULL;
@@ -10970,7 +11423,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_draw(struct __pyx_obj_6FLARES_A
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_7)) {
       PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_5, __pyx_t_6};
-      __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 688, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 708, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -10980,7 +11433,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_draw(struct __pyx_obj_6FLARES_A
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
       PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_5, __pyx_t_6};
-      __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 688, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 708, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -10988,7 +11441,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_draw(struct __pyx_obj_6FLARES_A
     } else
     #endif
     {
-      __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 688, __pyx_L1_error)
+      __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 708, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       if (__pyx_t_8) {
         __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_8); __pyx_t_8 = NULL;
@@ -10999,19 +11452,19 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_draw(struct __pyx_obj_6FLARES_A
       PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_9, __pyx_t_6);
       __pyx_t_5 = 0;
       __pyx_t_6 = 0;
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_10, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 688, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_10, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 708, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     if (unlikely(__pyx_v_self->spritedict == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 688, __pyx_L1_error)
+      __PYX_ERR(0, 708, __pyx_L1_error)
     }
-    if (unlikely(PyDict_SetItem(__pyx_v_self->spritedict, __pyx_v_spr, __pyx_t_4) < 0)) __PYX_ERR(0, 688, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v_self->spritedict, __pyx_v_spr, __pyx_t_4) < 0)) __PYX_ERR(0, 708, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "Flares.pyx":687
+    /* "Flares.pyx":707
  *         sprites = self.sprites()
  *         surface_blit = surface.blit
  *         for spr in sprites:             # <<<<<<<<<<<<<<
@@ -11021,14 +11474,14 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_draw(struct __pyx_obj_6FLARES_A
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":689
+  /* "Flares.pyx":709
  *         for spr in sprites:
  *             self.spritedict[spr] = surface_blit(spr.image, spr.rect)
  *         self.lostsprites = []             # <<<<<<<<<<<<<<
  * 
  *     def clear(self, surface, bgd):
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 689, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 709, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->lostsprites);
@@ -11036,7 +11489,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_draw(struct __pyx_obj_6FLARES_A
   __pyx_v_self->lostsprites = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":684
+  /* "Flares.pyx":704
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cdef draw(self, surface):             # <<<<<<<<<<<<<<
@@ -11066,7 +11519,7 @@ static PyObject *__pyx_f_6FLARES_13AbstractGroup_draw(struct __pyx_obj_6FLARES_A
   return __pyx_r;
 }
 
-/* "Flares.pyx":691
+/* "Flares.pyx":711
  *         self.lostsprites = []
  * 
  *     def clear(self, surface, bgd):             # <<<<<<<<<<<<<<
@@ -11105,11 +11558,11 @@ static PyObject *__pyx_pw_6FLARES_13AbstractGroup_11clear(PyObject *__pyx_v_self
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_bgd)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("clear", 1, 2, 2, 1); __PYX_ERR(0, 691, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("clear", 1, 2, 2, 1); __PYX_ERR(0, 711, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "clear") < 0)) __PYX_ERR(0, 691, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "clear") < 0)) __PYX_ERR(0, 711, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -11122,7 +11575,7 @@ static PyObject *__pyx_pw_6FLARES_13AbstractGroup_11clear(PyObject *__pyx_v_self
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("clear", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 691, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("clear", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 711, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("FLARES.AbstractGroup.clear", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -11151,14 +11604,14 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
   PyObject *(*__pyx_t_9)(PyObject *);
   __Pyx_RefNannySetupContext("clear", 0);
 
-  /* "Flares.pyx":693
+  /* "Flares.pyx":713
  *     def clear(self, surface, bgd):
  * 
  *         if callable(bgd):             # <<<<<<<<<<<<<<
  *             for r in self.lostsprites:
  *                 bgd(surface, r)
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_callable); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 693, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_callable); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 713, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -11171,13 +11624,13 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_bgd); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 693, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_bgd); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 713, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_bgd};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 693, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 713, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -11185,29 +11638,29 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_bgd};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 693, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 713, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 693, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 713, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_INCREF(__pyx_v_bgd);
       __Pyx_GIVEREF(__pyx_v_bgd);
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_bgd);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 693, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 713, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 693, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 713, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_5) {
 
-    /* "Flares.pyx":694
+    /* "Flares.pyx":714
  * 
  *         if callable(bgd):
  *             for r in self.lostsprites:             # <<<<<<<<<<<<<<
@@ -11216,21 +11669,21 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
  */
     if (unlikely(__pyx_v_self->lostsprites == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 694, __pyx_L1_error)
+      __PYX_ERR(0, 714, __pyx_L1_error)
     }
     __pyx_t_1 = __pyx_v_self->lostsprites; __Pyx_INCREF(__pyx_t_1); __pyx_t_6 = 0;
     for (;;) {
       if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_1)) break;
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 694, __pyx_L1_error)
+      __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 714, __pyx_L1_error)
       #else
-      __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 694, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 714, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       #endif
       __Pyx_XDECREF_SET(__pyx_v_r, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "Flares.pyx":695
+      /* "Flares.pyx":715
  *         if callable(bgd):
  *             for r in self.lostsprites:
  *                 bgd(surface, r)             # <<<<<<<<<<<<<<
@@ -11253,7 +11706,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_surface, __pyx_v_r};
-        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 695, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 715, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_GOTREF(__pyx_t_2);
       } else
@@ -11261,13 +11714,13 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_surface, __pyx_v_r};
-        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 695, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 715, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_GOTREF(__pyx_t_2);
       } else
       #endif
       {
-        __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 695, __pyx_L1_error)
+        __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 715, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         if (__pyx_t_3) {
           __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -11278,14 +11731,14 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
         __Pyx_INCREF(__pyx_v_r);
         __Pyx_GIVEREF(__pyx_v_r);
         PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_v_r);
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 695, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 715, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       }
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "Flares.pyx":694
+      /* "Flares.pyx":714
  * 
  *         if callable(bgd):
  *             for r in self.lostsprites:             # <<<<<<<<<<<<<<
@@ -11295,7 +11748,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "Flares.pyx":696
+    /* "Flares.pyx":716
  *             for r in self.lostsprites:
  *                 bgd(surface, r)
  *             for r in self.spritedict.values():             # <<<<<<<<<<<<<<
@@ -11304,17 +11757,17 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
  */
     if (unlikely(__pyx_v_self->spritedict == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "values");
-      __PYX_ERR(0, 696, __pyx_L1_error)
+      __PYX_ERR(0, 716, __pyx_L1_error)
     }
-    __pyx_t_1 = __Pyx_PyDict_Values(__pyx_v_self->spritedict); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 696, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyDict_Values(__pyx_v_self->spritedict); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 716, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
       __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_6 = 0;
       __pyx_t_9 = NULL;
     } else {
-      __pyx_t_6 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 696, __pyx_L1_error)
+      __pyx_t_6 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 716, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_9 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 696, __pyx_L1_error)
+      __pyx_t_9 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 716, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     for (;;) {
@@ -11322,17 +11775,17 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
         if (likely(PyList_CheckExact(__pyx_t_2))) {
           if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_2)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 696, __pyx_L1_error)
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 716, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 696, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 716, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         } else {
           if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 696, __pyx_L1_error)
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 716, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 696, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 716, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         }
@@ -11342,7 +11795,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 696, __pyx_L1_error)
+            else __PYX_ERR(0, 716, __pyx_L1_error)
           }
           break;
         }
@@ -11351,17 +11804,17 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
       __Pyx_XDECREF_SET(__pyx_v_r, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "Flares.pyx":697
+      /* "Flares.pyx":717
  *                 bgd(surface, r)
  *             for r in self.spritedict.values():
  *                 if r:             # <<<<<<<<<<<<<<
  *                     bgd(surface, r)
  *         else:
  */
-      __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_r); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 697, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_r); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 717, __pyx_L1_error)
       if (__pyx_t_5) {
 
-        /* "Flares.pyx":698
+        /* "Flares.pyx":718
  *             for r in self.spritedict.values():
  *                 if r:
  *                     bgd(surface, r)             # <<<<<<<<<<<<<<
@@ -11384,7 +11837,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_4)) {
           PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_v_surface, __pyx_v_r};
-          __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 698, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 718, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
           __Pyx_GOTREF(__pyx_t_1);
         } else
@@ -11392,13 +11845,13 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
           PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_v_surface, __pyx_v_r};
-          __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 698, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 718, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
           __Pyx_GOTREF(__pyx_t_1);
         } else
         #endif
         {
-          __pyx_t_3 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 698, __pyx_L1_error)
+          __pyx_t_3 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 718, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           if (__pyx_t_8) {
             __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_8); __pyx_t_8 = NULL;
@@ -11409,14 +11862,14 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
           __Pyx_INCREF(__pyx_v_r);
           __Pyx_GIVEREF(__pyx_v_r);
           PyTuple_SET_ITEM(__pyx_t_3, 1+__pyx_t_7, __pyx_v_r);
-          __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 698, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 718, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-        /* "Flares.pyx":697
+        /* "Flares.pyx":717
  *                 bgd(surface, r)
  *             for r in self.spritedict.values():
  *                 if r:             # <<<<<<<<<<<<<<
@@ -11425,7 +11878,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
  */
       }
 
-      /* "Flares.pyx":696
+      /* "Flares.pyx":716
  *             for r in self.lostsprites:
  *                 bgd(surface, r)
  *             for r in self.spritedict.values():             # <<<<<<<<<<<<<<
@@ -11435,7 +11888,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Flares.pyx":693
+    /* "Flares.pyx":713
  *     def clear(self, surface, bgd):
  * 
  *         if callable(bgd):             # <<<<<<<<<<<<<<
@@ -11445,7 +11898,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
     goto __pyx_L3;
   }
 
-  /* "Flares.pyx":700
+  /* "Flares.pyx":720
  *                     bgd(surface, r)
  *         else:
  *             surface_blit = surface.blit             # <<<<<<<<<<<<<<
@@ -11453,12 +11906,12 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
  *                 surface_blit(bgd, r, r)
  */
   /*else*/ {
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_surface, __pyx_n_s_blit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 700, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_surface, __pyx_n_s_blit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 720, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_surface_blit = __pyx_t_2;
     __pyx_t_2 = 0;
 
-    /* "Flares.pyx":701
+    /* "Flares.pyx":721
  *         else:
  *             surface_blit = surface.blit
  *             for r in self.lostsprites:             # <<<<<<<<<<<<<<
@@ -11467,21 +11920,21 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
  */
     if (unlikely(__pyx_v_self->lostsprites == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 701, __pyx_L1_error)
+      __PYX_ERR(0, 721, __pyx_L1_error)
     }
     __pyx_t_2 = __pyx_v_self->lostsprites; __Pyx_INCREF(__pyx_t_2); __pyx_t_6 = 0;
     for (;;) {
       if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_2)) break;
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 701, __pyx_L1_error)
+      __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 721, __pyx_L1_error)
       #else
-      __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 701, __pyx_L1_error)
+      __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 721, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       #endif
       __Pyx_XDECREF_SET(__pyx_v_r, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "Flares.pyx":702
+      /* "Flares.pyx":722
  *             surface_blit = surface.blit
  *             for r in self.lostsprites:
  *                 surface_blit(bgd, r, r)             # <<<<<<<<<<<<<<
@@ -11504,7 +11957,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[4] = {__pyx_t_3, __pyx_v_bgd, __pyx_v_r, __pyx_v_r};
-        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 702, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 722, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_GOTREF(__pyx_t_1);
       } else
@@ -11512,13 +11965,13 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[4] = {__pyx_t_3, __pyx_v_bgd, __pyx_v_r, __pyx_v_r};
-        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 702, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 722, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_GOTREF(__pyx_t_1);
       } else
       #endif
       {
-        __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 702, __pyx_L1_error)
+        __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 722, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         if (__pyx_t_3) {
           __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -11532,14 +11985,14 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
         __Pyx_INCREF(__pyx_v_r);
         __Pyx_GIVEREF(__pyx_v_r);
         PyTuple_SET_ITEM(__pyx_t_8, 2+__pyx_t_7, __pyx_v_r);
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 702, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 722, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       }
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "Flares.pyx":701
+      /* "Flares.pyx":721
  *         else:
  *             surface_blit = surface.blit
  *             for r in self.lostsprites:             # <<<<<<<<<<<<<<
@@ -11549,7 +12002,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Flares.pyx":703
+    /* "Flares.pyx":723
  *             for r in self.lostsprites:
  *                 surface_blit(bgd, r, r)
  *             for r in self.spritedict.values():             # <<<<<<<<<<<<<<
@@ -11558,17 +12011,17 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
  */
     if (unlikely(__pyx_v_self->spritedict == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "values");
-      __PYX_ERR(0, 703, __pyx_L1_error)
+      __PYX_ERR(0, 723, __pyx_L1_error)
     }
-    __pyx_t_2 = __Pyx_PyDict_Values(__pyx_v_self->spritedict); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 703, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyDict_Values(__pyx_v_self->spritedict); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 723, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
       __pyx_t_1 = __pyx_t_2; __Pyx_INCREF(__pyx_t_1); __pyx_t_6 = 0;
       __pyx_t_9 = NULL;
     } else {
-      __pyx_t_6 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 703, __pyx_L1_error)
+      __pyx_t_6 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 723, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_9 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 703, __pyx_L1_error)
+      __pyx_t_9 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 723, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     for (;;) {
@@ -11576,17 +12029,17 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
         if (likely(PyList_CheckExact(__pyx_t_1))) {
           if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_1)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 703, __pyx_L1_error)
+          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 723, __pyx_L1_error)
           #else
-          __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 703, __pyx_L1_error)
+          __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 723, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           #endif
         } else {
           if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 703, __pyx_L1_error)
+          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 723, __pyx_L1_error)
           #else
-          __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 703, __pyx_L1_error)
+          __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 723, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           #endif
         }
@@ -11596,7 +12049,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 703, __pyx_L1_error)
+            else __PYX_ERR(0, 723, __pyx_L1_error)
           }
           break;
         }
@@ -11605,17 +12058,17 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
       __Pyx_XDECREF_SET(__pyx_v_r, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "Flares.pyx":704
+      /* "Flares.pyx":724
  *                 surface_blit(bgd, r, r)
  *             for r in self.spritedict.values():
  *                 if r:             # <<<<<<<<<<<<<<
  *                     surface_blit(bgd, r, r)
  * 
  */
-      __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_r); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 704, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_r); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 724, __pyx_L1_error)
       if (__pyx_t_5) {
 
-        /* "Flares.pyx":705
+        /* "Flares.pyx":725
  *             for r in self.spritedict.values():
  *                 if r:
  *                     surface_blit(bgd, r, r)             # <<<<<<<<<<<<<<
@@ -11638,7 +12091,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_4)) {
           PyObject *__pyx_temp[4] = {__pyx_t_8, __pyx_v_bgd, __pyx_v_r, __pyx_v_r};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 705, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 725, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -11646,13 +12099,13 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
           PyObject *__pyx_temp[4] = {__pyx_t_8, __pyx_v_bgd, __pyx_v_r, __pyx_v_r};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 705, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 725, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_3 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 705, __pyx_L1_error)
+          __pyx_t_3 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 725, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           if (__pyx_t_8) {
             __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_8); __pyx_t_8 = NULL;
@@ -11666,14 +12119,14 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
           __Pyx_INCREF(__pyx_v_r);
           __Pyx_GIVEREF(__pyx_v_r);
           PyTuple_SET_ITEM(__pyx_t_3, 2+__pyx_t_7, __pyx_v_r);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 705, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 725, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "Flares.pyx":704
+        /* "Flares.pyx":724
  *                 surface_blit(bgd, r, r)
  *             for r in self.spritedict.values():
  *                 if r:             # <<<<<<<<<<<<<<
@@ -11682,7 +12135,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
  */
       }
 
-      /* "Flares.pyx":703
+      /* "Flares.pyx":723
  *             for r in self.lostsprites:
  *                 surface_blit(bgd, r, r)
  *             for r in self.spritedict.values():             # <<<<<<<<<<<<<<
@@ -11694,7 +12147,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
   }
   __pyx_L3:;
 
-  /* "Flares.pyx":691
+  /* "Flares.pyx":711
  *         self.lostsprites = []
  * 
  *     def clear(self, surface, bgd):             # <<<<<<<<<<<<<<
@@ -11721,7 +12174,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_10clear(struct __pyx_obj_6FLAR
   return __pyx_r;
 }
 
-/* "Flares.pyx":707
+/* "Flares.pyx":727
  *                     surface_blit(bgd, r, r)
  * 
  *     def empty(self):             # <<<<<<<<<<<<<<
@@ -11756,22 +12209,22 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_12empty(struct __pyx_obj_6FLAR
   PyObject *__pyx_t_7 = NULL;
   __Pyx_RefNannySetupContext("empty", 0);
 
-  /* "Flares.pyx":715
+  /* "Flares.pyx":735
  * 
  *         """
  *         for s in self.sprites():             # <<<<<<<<<<<<<<
  *             self.remove_internal(s)
  *             s.remove_internal(self)
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->sprites(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 715, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->sprites(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 735, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_3 = 0;
     __pyx_t_4 = NULL;
   } else {
-    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 715, __pyx_L1_error)
+    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 735, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 715, __pyx_L1_error)
+    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 735, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -11779,17 +12232,17 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_12empty(struct __pyx_obj_6FLAR
       if (likely(PyList_CheckExact(__pyx_t_2))) {
         if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 715, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 735, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 715, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 735, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 715, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 735, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 715, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 735, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -11799,7 +12252,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_12empty(struct __pyx_obj_6FLAR
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 715, __pyx_L1_error)
+          else __PYX_ERR(0, 735, __pyx_L1_error)
         }
         break;
       }
@@ -11808,25 +12261,25 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_12empty(struct __pyx_obj_6FLAR
     __Pyx_XDECREF_SET(__pyx_v_s, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "Flares.pyx":716
+    /* "Flares.pyx":736
  *         """
  *         for s in self.sprites():
  *             self.remove_internal(s)             # <<<<<<<<<<<<<<
  *             s.remove_internal(self)
  * 
  */
-    __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->remove_internal(__pyx_v_self, __pyx_v_s); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 716, __pyx_L1_error)
+    __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->remove_internal(__pyx_v_self, __pyx_v_s); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 736, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "Flares.pyx":717
+    /* "Flares.pyx":737
  *         for s in self.sprites():
  *             self.remove_internal(s)
  *             s.remove_internal(self)             # <<<<<<<<<<<<<<
  * 
  *     def __nonzero__(self):
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_s, __pyx_n_s_remove_internal); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 717, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_s, __pyx_n_s_remove_internal); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 737, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -11839,13 +12292,13 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_12empty(struct __pyx_obj_6FLAR
       }
     }
     if (!__pyx_t_6) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 717, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 737, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_5)) {
         PyObject *__pyx_temp[2] = {__pyx_t_6, ((PyObject *)__pyx_v_self)};
-        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 717, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 737, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_GOTREF(__pyx_t_1);
       } else
@@ -11853,19 +12306,19 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_12empty(struct __pyx_obj_6FLAR
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
         PyObject *__pyx_temp[2] = {__pyx_t_6, ((PyObject *)__pyx_v_self)};
-        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 717, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 737, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_GOTREF(__pyx_t_1);
       } else
       #endif
       {
-        __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 717, __pyx_L1_error)
+        __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 737, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6); __pyx_t_6 = NULL;
         __Pyx_INCREF(((PyObject *)__pyx_v_self));
         __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
         PyTuple_SET_ITEM(__pyx_t_7, 0+1, ((PyObject *)__pyx_v_self));
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 717, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 737, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
@@ -11873,7 +12326,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_12empty(struct __pyx_obj_6FLAR
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "Flares.pyx":715
+    /* "Flares.pyx":735
  * 
  *         """
  *         for s in self.sprites():             # <<<<<<<<<<<<<<
@@ -11883,7 +12336,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_12empty(struct __pyx_obj_6FLAR
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "Flares.pyx":707
+  /* "Flares.pyx":727
  *                     surface_blit(bgd, r, r)
  * 
  *     def empty(self):             # <<<<<<<<<<<<<<
@@ -11909,7 +12362,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_12empty(struct __pyx_obj_6FLAR
   return __pyx_r;
 }
 
-/* "Flares.pyx":719
+/* "Flares.pyx":739
  *             s.remove_internal(self)
  * 
  *     def __nonzero__(self):             # <<<<<<<<<<<<<<
@@ -11941,16 +12394,16 @@ static int __pyx_pf_6FLARES_13AbstractGroup_14__nonzero__(struct __pyx_obj_6FLAR
   int __pyx_t_6;
   __Pyx_RefNannySetupContext("__nonzero__", 0);
 
-  /* "Flares.pyx":720
+  /* "Flares.pyx":740
  * 
  *     def __nonzero__(self):
  *         return truth(self.sprites())             # <<<<<<<<<<<<<<
  * 
  *     def __len__(self):
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_truth); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 720, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_truth); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 740, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->sprites(__pyx_v_self); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 720, __pyx_L1_error)
+  __pyx_t_3 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->sprites(__pyx_v_self); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 740, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -11963,14 +12416,14 @@ static int __pyx_pf_6FLARES_13AbstractGroup_14__nonzero__(struct __pyx_obj_6FLAR
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 720, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 740, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_3};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 720, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 740, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -11979,31 +12432,31 @@ static int __pyx_pf_6FLARES_13AbstractGroup_14__nonzero__(struct __pyx_obj_6FLAR
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_3};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 720, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 740, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 720, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 740, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 720, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 740, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 720, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 740, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_6;
   goto __pyx_L0;
 
-  /* "Flares.pyx":719
+  /* "Flares.pyx":739
  *             s.remove_internal(self)
  * 
  *     def __nonzero__(self):             # <<<<<<<<<<<<<<
@@ -12025,7 +12478,7 @@ static int __pyx_pf_6FLARES_13AbstractGroup_14__nonzero__(struct __pyx_obj_6FLAR
   return __pyx_r;
 }
 
-/* "Flares.pyx":722
+/* "Flares.pyx":742
  *         return truth(self.sprites())
  * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
@@ -12057,21 +12510,21 @@ static Py_ssize_t __pyx_pf_6FLARES_13AbstractGroup_16__len__(struct __pyx_obj_6F
   Py_ssize_t __pyx_t_2;
   __Pyx_RefNannySetupContext("__len__", 0);
 
-  /* "Flares.pyx":730
+  /* "Flares.pyx":750
  * 
  *         """
  *         return len(self.sprites())             # <<<<<<<<<<<<<<
  * 
  *     def __repr__(self):
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->sprites(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 730, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_AbstractGroup *)__pyx_v_self->__pyx_vtab)->sprites(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 750, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 730, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 750, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   goto __pyx_L0;
 
-  /* "Flares.pyx":722
+  /* "Flares.pyx":742
  *         return truth(self.sprites())
  * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
@@ -12089,7 +12542,7 @@ static Py_ssize_t __pyx_pf_6FLARES_13AbstractGroup_16__len__(struct __pyx_obj_6F
   return __pyx_r;
 }
 
-/* "Flares.pyx":732
+/* "Flares.pyx":752
  *         return len(self.sprites())
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -12119,7 +12572,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_18__repr__(struct __pyx_obj_6F
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "Flares.pyx":733
+  /* "Flares.pyx":753
  * 
  *     def __repr__(self):
  *         return "<%s(%d sprites)>" % (self.__class__.__name__, len(self))             # <<<<<<<<<<<<<<
@@ -12127,15 +12580,15 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_18__repr__(struct __pyx_obj_6F
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 733, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 753, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 733, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 753, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = PyObject_Length(((PyObject *)__pyx_v_self)); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 733, __pyx_L1_error)
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 733, __pyx_L1_error)
+  __pyx_t_3 = PyObject_Length(((PyObject *)__pyx_v_self)); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 753, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 753, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 733, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 753, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
@@ -12143,14 +12596,14 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_18__repr__(struct __pyx_obj_6F
   PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_1);
   __pyx_t_2 = 0;
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_s_d_sprites, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 733, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_s_d_sprites, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 753, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "Flares.pyx":732
+  /* "Flares.pyx":752
  *         return len(self.sprites())
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -12171,7 +12624,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_18__repr__(struct __pyx_obj_6F
   return __pyx_r;
 }
 
-/* "Flares.pyx":520
+/* "Flares.pyx":540
  * cdef class AbstractGroup(object):
  * 
  *     cdef public dict spritedict             # <<<<<<<<<<<<<<
@@ -12226,7 +12679,7 @@ static int __pyx_pf_6FLARES_13AbstractGroup_10spritedict_2__set__(struct __pyx_o
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__set__", 0);
-  if (!(likely(PyDict_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_value)->tp_name), 0))) __PYX_ERR(0, 520, __pyx_L1_error)
+  if (!(likely(PyDict_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_value)->tp_name), 0))) __PYX_ERR(0, 540, __pyx_L1_error)
   __pyx_t_1 = __pyx_v_value;
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -12276,7 +12729,7 @@ static int __pyx_pf_6FLARES_13AbstractGroup_10spritedict_4__del__(struct __pyx_o
   return __pyx_r;
 }
 
-/* "Flares.pyx":521
+/* "Flares.pyx":541
  * 
  *     cdef public dict spritedict
  *     cdef public list lostsprites             # <<<<<<<<<<<<<<
@@ -12331,7 +12784,7 @@ static int __pyx_pf_6FLARES_13AbstractGroup_11lostsprites_2__set__(struct __pyx_
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__set__", 0);
-  if (!(likely(PyList_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_v_value)->tp_name), 0))) __PYX_ERR(0, 521, __pyx_L1_error)
+  if (!(likely(PyList_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_v_value)->tp_name), 0))) __PYX_ERR(0, 541, __pyx_L1_error)
   __pyx_t_1 = __pyx_v_value;
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -12381,7 +12834,7 @@ static int __pyx_pf_6FLARES_13AbstractGroup_11lostsprites_4__del__(struct __pyx_
   return __pyx_r;
 }
 
-/* "Flares.pyx":524
+/* "Flares.pyx":544
  *     # dummy val to identify sprite groups, and avoid infinite recursion
  *     # _spritegroup = True
  *     cdef public bint _spritegroup             # <<<<<<<<<<<<<<
@@ -12408,7 +12861,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_12_spritegroup___get__(struct 
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->_spritegroup); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 524, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->_spritegroup); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 544, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12443,7 +12896,7 @@ static int __pyx_pf_6FLARES_13AbstractGroup_12_spritegroup_2__set__(struct __pyx
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_value); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 524, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_value); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 544, __pyx_L1_error)
   __pyx_v_self->_spritegroup = __pyx_t_1;
 
   /* function exit code */
@@ -12763,7 +13216,7 @@ static PyObject *__pyx_pf_6FLARES_13AbstractGroup_22__setstate_cython__(struct _
   return __pyx_r;
 }
 
-/* "Flares.pyx":738
+/* "Flares.pyx":758
  * class Group(AbstractGroup):
  * 
  *     def __init__(self, *sprites):             # <<<<<<<<<<<<<<
@@ -12810,7 +13263,7 @@ static PyObject *__pyx_pw_6FLARES_5Group_1__init__(PyObject *__pyx_self, PyObjec
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t used_pos_args = (pos_args < 1) ? pos_args : 1;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, used_pos_args, "__init__") < 0)) __PYX_ERR(0, 738, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, used_pos_args, "__init__") < 0)) __PYX_ERR(0, 758, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) < 1) {
       goto __pyx_L5_argtuple_error;
@@ -12821,7 +13274,7 @@ static PyObject *__pyx_pw_6FLARES_5Group_1__init__(PyObject *__pyx_self, PyObjec
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 738, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 758, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_DECREF(__pyx_v_sprites); __pyx_v_sprites = 0;
   __Pyx_AddTraceback("FLARES.Group.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -12845,14 +13298,14 @@ static PyObject *__pyx_pf_6FLARES_5Group___init__(CYTHON_UNUSED PyObject *__pyx_
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "Flares.pyx":739
+  /* "Flares.pyx":759
  * 
  *     def __init__(self, *sprites):
  *         AbstractGroup.__init__(self)             # <<<<<<<<<<<<<<
  *         self.add(*sprites)
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6FLARES_AbstractGroup), __pyx_n_s_init); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 739, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6FLARES_AbstractGroup), __pyx_n_s_init); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 759, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -12865,13 +13318,13 @@ static PyObject *__pyx_pf_6FLARES_5Group___init__(CYTHON_UNUSED PyObject *__pyx_
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 739, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 759, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_self};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 739, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 759, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -12879,19 +13332,19 @@ static PyObject *__pyx_pf_6FLARES_5Group___init__(CYTHON_UNUSED PyObject *__pyx_
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_self};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 739, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 759, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 739, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 759, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_INCREF(__pyx_v_self);
       __Pyx_GIVEREF(__pyx_v_self);
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_self);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 739, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 759, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -12899,21 +13352,21 @@ static PyObject *__pyx_pf_6FLARES_5Group___init__(CYTHON_UNUSED PyObject *__pyx_
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":740
+  /* "Flares.pyx":760
  *     def __init__(self, *sprites):
  *         AbstractGroup.__init__(self)
  *         self.add(*sprites)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_add); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 740, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_add); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 760, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_sprites, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 740, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_sprites, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 760, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "Flares.pyx":738
+  /* "Flares.pyx":758
  * class Group(AbstractGroup):
  * 
  *     def __init__(self, *sprites):             # <<<<<<<<<<<<<<
@@ -12937,7 +13390,7 @@ static PyObject *__pyx_pf_6FLARES_5Group___init__(CYTHON_UNUSED PyObject *__pyx_
   return __pyx_r;
 }
 
-/* "Flares.pyx":755
+/* "Flares.pyx":775
  *     cdef dict __dict__
  * 
  *     def __cinit__(self, *sprites, **kwargs):             # <<<<<<<<<<<<<<
@@ -12977,16 +13430,16 @@ static int __pyx_pf_6FLARES_14LayeredUpdates___cinit__(struct __pyx_obj_6FLARES_
   int __pyx_t_5;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "Flares.pyx":757
+  /* "Flares.pyx":777
  *     def __cinit__(self, *sprites, **kwargs):
  * 
  *         self._init_rect = Rect(0, 0, 0, 0)             # <<<<<<<<<<<<<<
  *         self._spritelayers = {}
  *         self._spritelist = []
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_Rect); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 757, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_Rect); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 777, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 757, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 777, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_GIVEREF(__pyx_t_2);
@@ -12995,14 +13448,14 @@ static int __pyx_pf_6FLARES_14LayeredUpdates___cinit__(struct __pyx_obj_6FLARES_
   __pyx_v_self->_init_rect = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "Flares.pyx":758
+  /* "Flares.pyx":778
  * 
  *         self._init_rect = Rect(0, 0, 0, 0)
  *         self._spritelayers = {}             # <<<<<<<<<<<<<<
  *         self._spritelist = []
  *         AbstractGroup.__init__(self)
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 758, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 778, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __Pyx_GOTREF(__pyx_v_self->_spritelayers);
@@ -13010,14 +13463,14 @@ static int __pyx_pf_6FLARES_14LayeredUpdates___cinit__(struct __pyx_obj_6FLARES_
   __pyx_v_self->_spritelayers = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "Flares.pyx":759
+  /* "Flares.pyx":779
  *         self._init_rect = Rect(0, 0, 0, 0)
  *         self._spritelayers = {}
  *         self._spritelist = []             # <<<<<<<<<<<<<<
  *         AbstractGroup.__init__(self)
  *         self._default_layer = kwargs.get('default_layer', 0)
  */
-  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 759, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 779, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __Pyx_GOTREF(__pyx_v_self->_spritelist);
@@ -13025,14 +13478,14 @@ static int __pyx_pf_6FLARES_14LayeredUpdates___cinit__(struct __pyx_obj_6FLARES_
   __pyx_v_self->_spritelist = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "Flares.pyx":760
+  /* "Flares.pyx":780
  *         self._spritelayers = {}
  *         self._spritelist = []
  *         AbstractGroup.__init__(self)             # <<<<<<<<<<<<<<
  *         self._default_layer = kwargs.get('default_layer', 0)
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6FLARES_AbstractGroup), __pyx_n_s_init); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 760, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6FLARES_AbstractGroup), __pyx_n_s_init); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 780, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -13045,13 +13498,13 @@ static int __pyx_pf_6FLARES_14LayeredUpdates___cinit__(struct __pyx_obj_6FLARES_
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 760, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 780, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, ((PyObject *)__pyx_v_self)};
-      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 760, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 780, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
@@ -13059,19 +13512,19 @@ static int __pyx_pf_6FLARES_14LayeredUpdates___cinit__(struct __pyx_obj_6FLARES_
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, ((PyObject *)__pyx_v_self)};
-      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 760, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 780, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 760, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 780, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_INCREF(((PyObject *)__pyx_v_self));
       __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, ((PyObject *)__pyx_v_self));
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 760, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 780, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -13079,31 +13532,31 @@ static int __pyx_pf_6FLARES_14LayeredUpdates___cinit__(struct __pyx_obj_6FLARES_
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "Flares.pyx":761
+  /* "Flares.pyx":781
  *         self._spritelist = []
  *         AbstractGroup.__init__(self)
  *         self._default_layer = kwargs.get('default_layer', 0)             # <<<<<<<<<<<<<<
  * 
  *         self.add(sprites)
  */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_n_s_default_layer, __pyx_int_0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 761, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_n_s_default_layer, __pyx_int_0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 781, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 761, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 781, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_self->_default_layer = __pyx_t_5;
 
-  /* "Flares.pyx":763
+  /* "Flares.pyx":783
  *         self._default_layer = kwargs.get('default_layer', 0)
  * 
  *         self.add(sprites)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->add(__pyx_v_self, __pyx_v_sprites, 0, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 763, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->add(__pyx_v_self, __pyx_v_sprites, 0, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 783, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "Flares.pyx":755
+  /* "Flares.pyx":775
  *     cdef dict __dict__
  * 
  *     def __cinit__(self, *sprites, **kwargs):             # <<<<<<<<<<<<<<
@@ -13126,7 +13579,7 @@ static int __pyx_pf_6FLARES_14LayeredUpdates___cinit__(struct __pyx_obj_6FLARES_
   return __pyx_r;
 }
 
-/* "Flares.pyx":770
+/* "Flares.pyx":790
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cpdef add_internal(self, sprite, layer_=None):             # <<<<<<<<<<<<<<
@@ -13169,7 +13622,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_add_internal); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 770, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_add_internal); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 790, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_3add_internal)) {
       __Pyx_XDECREF(__pyx_r);
@@ -13189,7 +13642,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_sprite, __pyx_v_layer_};
-        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 770, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 790, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_2);
       } else
@@ -13197,13 +13650,13 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_sprite, __pyx_v_layer_};
-        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 770, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 790, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_2);
       } else
       #endif
       {
-        __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 770, __pyx_L1_error)
+        __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 790, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         if (__pyx_t_4) {
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -13214,7 +13667,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
         __Pyx_INCREF(__pyx_v_layer_);
         __Pyx_GIVEREF(__pyx_v_layer_);
         PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_layer_);
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 770, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 790, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       }
@@ -13227,7 +13680,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":772
+  /* "Flares.pyx":792
  *     cpdef add_internal(self, sprite, layer_=None):
  * 
  *         self.spritedict[sprite] = self._init_rect             # <<<<<<<<<<<<<<
@@ -13238,12 +13691,12 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
   __Pyx_INCREF(__pyx_t_1);
   if (unlikely(__pyx_v_self->__pyx_base.spritedict == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 772, __pyx_L1_error)
+    __PYX_ERR(0, 792, __pyx_L1_error)
   }
-  if (unlikely(PyDict_SetItem(__pyx_v_self->__pyx_base.spritedict, __pyx_v_sprite, __pyx_t_1) < 0)) __PYX_ERR(0, 772, __pyx_L1_error)
+  if (unlikely(PyDict_SetItem(__pyx_v_self->__pyx_base.spritedict, __pyx_v_sprite, __pyx_t_1) < 0)) __PYX_ERR(0, 792, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":775
+  /* "Flares.pyx":795
  * 
  *         cdef int layer
  *         if layer_ is None:             # <<<<<<<<<<<<<<
@@ -13254,7 +13707,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
   __pyx_t_8 = (__pyx_t_7 != 0);
   if (__pyx_t_8) {
 
-    /* "Flares.pyx":776
+    /* "Flares.pyx":796
  *         cdef int layer
  *         if layer_ is None:
  *             try:             # <<<<<<<<<<<<<<
@@ -13270,20 +13723,20 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
       __Pyx_XGOTREF(__pyx_t_11);
       /*try:*/ {
 
-        /* "Flares.pyx":777
+        /* "Flares.pyx":797
  *         if layer_ is None:
  *             try:
  *                 layer = sprite._layer             # <<<<<<<<<<<<<<
  *             except AttributeError:
  *                 layer = sprite._layer = self._default_layer
  */
-        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_layer_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 777, __pyx_L4_error)
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_layer_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 797, __pyx_L4_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 777, __pyx_L4_error)
+        __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 797, __pyx_L4_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_v_layer = __pyx_t_5;
 
-        /* "Flares.pyx":776
+        /* "Flares.pyx":796
  *         cdef int layer
  *         if layer_ is None:
  *             try:             # <<<<<<<<<<<<<<
@@ -13302,7 +13755,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "Flares.pyx":778
+      /* "Flares.pyx":798
  *             try:
  *                 layer = sprite._layer
  *             except AttributeError:             # <<<<<<<<<<<<<<
@@ -13312,12 +13765,12 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
       __pyx_t_5 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_AttributeError);
       if (__pyx_t_5) {
         __Pyx_AddTraceback("FLARES.LayeredUpdates.add_internal", __pyx_clineno, __pyx_lineno, __pyx_filename);
-        if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_2, &__pyx_t_3) < 0) __PYX_ERR(0, 778, __pyx_L6_except_error)
+        if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_2, &__pyx_t_3) < 0) __PYX_ERR(0, 798, __pyx_L6_except_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_GOTREF(__pyx_t_3);
 
-        /* "Flares.pyx":779
+        /* "Flares.pyx":799
  *                 layer = sprite._layer
  *             except AttributeError:
  *                 layer = sprite._layer = self._default_layer             # <<<<<<<<<<<<<<
@@ -13325,10 +13778,10 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
  *         elif hasattr(sprite, '_layer'):
  */
         __pyx_t_5 = __pyx_v_self->_default_layer;
-        __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 779, __pyx_L6_except_error)
+        __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 799, __pyx_L6_except_error)
         __Pyx_GOTREF(__pyx_t_6);
         __pyx_v_layer = __pyx_t_5;
-        if (__Pyx_PyObject_SetAttrStr(__pyx_v_sprite, __pyx_n_s_layer_3, __pyx_t_6) < 0) __PYX_ERR(0, 779, __pyx_L6_except_error)
+        if (__Pyx_PyObject_SetAttrStr(__pyx_v_sprite, __pyx_n_s_layer_3, __pyx_t_6) < 0) __PYX_ERR(0, 799, __pyx_L6_except_error)
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -13338,7 +13791,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
       goto __pyx_L6_except_error;
       __pyx_L6_except_error:;
 
-      /* "Flares.pyx":776
+      /* "Flares.pyx":796
  *         cdef int layer
  *         if layer_ is None:
  *             try:             # <<<<<<<<<<<<<<
@@ -13358,7 +13811,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
       __pyx_L9_try_end:;
     }
 
-    /* "Flares.pyx":775
+    /* "Flares.pyx":795
  * 
  *         cdef int layer
  *         if layer_ is None:             # <<<<<<<<<<<<<<
@@ -13368,30 +13821,30 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
     goto __pyx_L3;
   }
 
-  /* "Flares.pyx":781
+  /* "Flares.pyx":801
  *                 layer = sprite._layer = self._default_layer
  * 
  *         elif hasattr(sprite, '_layer'):             # <<<<<<<<<<<<<<
  *             sprite._layer = layer
  * 
  */
-  __pyx_t_8 = __Pyx_HasAttr(__pyx_v_sprite, __pyx_n_s_layer_3); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 781, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_HasAttr(__pyx_v_sprite, __pyx_n_s_layer_3); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 801, __pyx_L1_error)
   __pyx_t_7 = (__pyx_t_8 != 0);
   if (__pyx_t_7) {
 
-    /* "Flares.pyx":782
+    /* "Flares.pyx":802
  * 
  *         elif hasattr(sprite, '_layer'):
  *             sprite._layer = layer             # <<<<<<<<<<<<<<
  * 
  *         cdef list sprites = self._spritelist # speedup
  */
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_layer); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 782, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_layer); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 802, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_sprite, __pyx_n_s_layer_3, __pyx_t_3) < 0) __PYX_ERR(0, 782, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_sprite, __pyx_n_s_layer_3, __pyx_t_3) < 0) __PYX_ERR(0, 802, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "Flares.pyx":781
+    /* "Flares.pyx":801
  *                 layer = sprite._layer = self._default_layer
  * 
  *         elif hasattr(sprite, '_layer'):             # <<<<<<<<<<<<<<
@@ -13401,7 +13854,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
   }
   __pyx_L3:;
 
-  /* "Flares.pyx":784
+  /* "Flares.pyx":804
  *             sprite._layer = layer
  * 
  *         cdef list sprites = self._spritelist # speedup             # <<<<<<<<<<<<<<
@@ -13413,7 +13866,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
   __pyx_v_sprites = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "Flares.pyx":785
+  /* "Flares.pyx":805
  * 
  *         cdef list sprites = self._spritelist # speedup
  *         cdef dict sprites_layers = self._spritelayers             # <<<<<<<<<<<<<<
@@ -13425,23 +13878,23 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
   __pyx_v_sprites_layers = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "Flares.pyx":786
+  /* "Flares.pyx":806
  *         cdef list sprites = self._spritelist # speedup
  *         cdef dict sprites_layers = self._spritelayers
  *         sprites_layers[sprite] = layer             # <<<<<<<<<<<<<<
  * 
  *         # add the sprite at the right position
  */
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_layer); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 786, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_layer); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 806, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (unlikely(__pyx_v_sprites_layers == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 786, __pyx_L1_error)
+    __PYX_ERR(0, 806, __pyx_L1_error)
   }
-  if (unlikely(PyDict_SetItem(__pyx_v_sprites_layers, __pyx_v_sprite, __pyx_t_3) < 0)) __PYX_ERR(0, 786, __pyx_L1_error)
+  if (unlikely(PyDict_SetItem(__pyx_v_sprites_layers, __pyx_v_sprite, __pyx_t_3) < 0)) __PYX_ERR(0, 806, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "Flares.pyx":790
+  /* "Flares.pyx":810
  *         # add the sprite at the right position
  *         # bisect algorithmus
  *         cdef int leng = len(sprites)             # <<<<<<<<<<<<<<
@@ -13450,12 +13903,12 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
  */
   if (unlikely(__pyx_v_sprites == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 790, __pyx_L1_error)
+    __PYX_ERR(0, 810, __pyx_L1_error)
   }
-  __pyx_t_12 = PyList_GET_SIZE(__pyx_v_sprites); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 790, __pyx_L1_error)
+  __pyx_t_12 = PyList_GET_SIZE(__pyx_v_sprites); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 810, __pyx_L1_error)
   __pyx_v_leng = __pyx_t_12;
 
-  /* "Flares.pyx":791
+  /* "Flares.pyx":811
  *         # bisect algorithmus
  *         cdef int leng = len(sprites)
  *         cdef int low = 0, mid = 0, high = leng -1             # <<<<<<<<<<<<<<
@@ -13466,7 +13919,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
   __pyx_v_mid = 0;
   __pyx_v_high = (__pyx_v_leng - 1);
 
-  /* "Flares.pyx":793
+  /* "Flares.pyx":813
  *         cdef int low = 0, mid = 0, high = leng -1
  * 
  *         while low <= high:             # <<<<<<<<<<<<<<
@@ -13477,7 +13930,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
     __pyx_t_7 = ((__pyx_v_low <= __pyx_v_high) != 0);
     if (!__pyx_t_7) break;
 
-    /* "Flares.pyx":794
+    /* "Flares.pyx":814
  * 
  *         while low <= high:
  *             mid = low + ((high - low) >> 1)             # <<<<<<<<<<<<<<
@@ -13486,7 +13939,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
  */
     __pyx_v_mid = (__pyx_v_low + ((__pyx_v_high - __pyx_v_low) >> 1));
 
-    /* "Flares.pyx":795
+    /* "Flares.pyx":815
  *         while low <= high:
  *             mid = low + ((high - low) >> 1)
  *             if sprites_layers[sprites[mid]] <= layer:             # <<<<<<<<<<<<<<
@@ -13495,24 +13948,24 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
  */
     if (unlikely(__pyx_v_sprites_layers == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 795, __pyx_L1_error)
+      __PYX_ERR(0, 815, __pyx_L1_error)
     }
     if (unlikely(__pyx_v_sprites == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 795, __pyx_L1_error)
+      __PYX_ERR(0, 815, __pyx_L1_error)
     }
-    __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_sprites_layers, PyList_GET_ITEM(__pyx_v_sprites, __pyx_v_mid)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 795, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_sprites_layers, PyList_GET_ITEM(__pyx_v_sprites, __pyx_v_mid)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 815, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_layer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 795, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_layer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 815, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = PyObject_RichCompare(__pyx_t_3, __pyx_t_2, Py_LE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 795, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_t_3, __pyx_t_2, Py_LE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 815, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 795, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 815, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_7) {
 
-      /* "Flares.pyx":796
+      /* "Flares.pyx":816
  *             mid = low + ((high - low) >> 1)
  *             if sprites_layers[sprites[mid]] <= layer:
  *                 low = mid + 1             # <<<<<<<<<<<<<<
@@ -13521,7 +13974,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
  */
       __pyx_v_low = (__pyx_v_mid + 1);
 
-      /* "Flares.pyx":795
+      /* "Flares.pyx":815
  *         while low <= high:
  *             mid = low + ((high - low) >> 1)
  *             if sprites_layers[sprites[mid]] <= layer:             # <<<<<<<<<<<<<<
@@ -13531,7 +13984,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
       goto __pyx_L14;
     }
 
-    /* "Flares.pyx":798
+    /* "Flares.pyx":818
  *                 low = mid + 1
  *             else:
  *                 high = mid - 1             # <<<<<<<<<<<<<<
@@ -13544,7 +13997,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
     __pyx_L14:;
   }
 
-  /* "Flares.pyx":800
+  /* "Flares.pyx":820
  *                 high = mid - 1
  *         # linear search to find final position
  *         while mid < leng and sprites_layers[sprites[mid]] <= layer:             # <<<<<<<<<<<<<<
@@ -13560,26 +14013,26 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
     }
     if (unlikely(__pyx_v_sprites_layers == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 800, __pyx_L1_error)
+      __PYX_ERR(0, 820, __pyx_L1_error)
     }
     if (unlikely(__pyx_v_sprites == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 800, __pyx_L1_error)
+      __PYX_ERR(0, 820, __pyx_L1_error)
     }
-    __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_sprites_layers, PyList_GET_ITEM(__pyx_v_sprites, __pyx_v_mid)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 800, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_sprites_layers, PyList_GET_ITEM(__pyx_v_sprites, __pyx_v_mid)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 820, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_layer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 800, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_layer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 820, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 800, __pyx_L1_error)
+    __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 820, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 800, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 820, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_7 = __pyx_t_8;
     __pyx_L17_bool_binop_done:;
     if (!__pyx_t_7) break;
 
-    /* "Flares.pyx":801
+    /* "Flares.pyx":821
  *         # linear search to find final position
  *         while mid < leng and sprites_layers[sprites[mid]] <= layer:
  *             mid += 1             # <<<<<<<<<<<<<<
@@ -13589,7 +14042,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
     __pyx_v_mid = (__pyx_v_mid + 1);
   }
 
-  /* "Flares.pyx":802
+  /* "Flares.pyx":822
  *         while mid < leng and sprites_layers[sprites[mid]] <= layer:
  *             mid += 1
  *         sprites.insert(mid, sprite)             # <<<<<<<<<<<<<<
@@ -13598,11 +14051,11 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal(struct __pyx_obj_6FLARES
  */
   if (unlikely(__pyx_v_sprites == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "insert");
-    __PYX_ERR(0, 802, __pyx_L1_error)
+    __PYX_ERR(0, 822, __pyx_L1_error)
   }
-  __pyx_t_13 = PyList_Insert(__pyx_v_sprites, __pyx_v_mid, __pyx_v_sprite); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 802, __pyx_L1_error)
+  __pyx_t_13 = PyList_Insert(__pyx_v_sprites, __pyx_v_mid, __pyx_v_sprite); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 822, __pyx_L1_error)
 
-  /* "Flares.pyx":770
+  /* "Flares.pyx":790
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cpdef add_internal(self, sprite, layer_=None):             # <<<<<<<<<<<<<<
@@ -13665,7 +14118,7 @@ static PyObject *__pyx_pw_6FLARES_14LayeredUpdates_3add_internal(PyObject *__pyx
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "add_internal") < 0)) __PYX_ERR(0, 770, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "add_internal") < 0)) __PYX_ERR(0, 790, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -13681,7 +14134,7 @@ static PyObject *__pyx_pw_6FLARES_14LayeredUpdates_3add_internal(PyObject *__pyx
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("add_internal", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 770, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("add_internal", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 790, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("FLARES.LayeredUpdates.add_internal", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -13703,7 +14156,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_2add_internal(struct __pyx_ob
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.layer_ = __pyx_v_layer_;
-  __pyx_t_1 = __pyx_vtabptr_6FLARES_LayeredUpdates->add_internal(__pyx_v_self, __pyx_v_sprite, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 770, __pyx_L1_error)
+  __pyx_t_1 = __pyx_vtabptr_6FLARES_LayeredUpdates->add_internal(__pyx_v_self, __pyx_v_sprite, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 790, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -13724,7 +14177,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add_internal__pyx_wrap_1(struct __pyx
   return __pyx_f_6FLARES_14LayeredUpdates_add_internal(__pyx_v_self, __pyx_v_sprite, 0, NULL);
 }
 
-/* "Flares.pyx":809
+/* "Flares.pyx":829
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cpdef add(self, sprites, layer=None):             # <<<<<<<<<<<<<<
@@ -13769,7 +14222,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_add); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 809, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_add); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 829, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_5add)) {
       __Pyx_XDECREF(__pyx_r);
@@ -13789,7 +14242,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_sprites, __pyx_v_layer};
-        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 809, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 829, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_2);
       } else
@@ -13797,13 +14250,13 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_sprites, __pyx_v_layer};
-        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 809, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 829, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_2);
       } else
       #endif
       {
-        __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 809, __pyx_L1_error)
+        __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 829, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         if (__pyx_t_4) {
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -13814,7 +14267,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
         __Pyx_INCREF(__pyx_v_layer);
         __Pyx_GIVEREF(__pyx_v_layer);
         PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_layer);
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 809, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 829, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       }
@@ -13827,18 +14280,18 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":811
+  /* "Flares.pyx":831
  *     cpdef add(self, sprites, layer=None):
  * 
  *         if not sprites:             # <<<<<<<<<<<<<<
  *             return
  * 
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_sprites); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 811, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_sprites); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 831, __pyx_L1_error)
   __pyx_t_8 = ((!__pyx_t_7) != 0);
   if (__pyx_t_8) {
 
-    /* "Flares.pyx":812
+    /* "Flares.pyx":832
  * 
  *         if not sprites:
  *             return             # <<<<<<<<<<<<<<
@@ -13849,7 +14302,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "Flares.pyx":811
+    /* "Flares.pyx":831
  *     cpdef add(self, sprites, layer=None):
  * 
  *         if not sprites:             # <<<<<<<<<<<<<<
@@ -13858,7 +14311,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
  */
   }
 
-  /* "Flares.pyx":814
+  /* "Flares.pyx":834
  *             return
  * 
  *         for sprite in sprites:             # <<<<<<<<<<<<<<
@@ -13869,26 +14322,26 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
     __pyx_t_1 = __pyx_v_sprites; __Pyx_INCREF(__pyx_t_1); __pyx_t_9 = 0;
     __pyx_t_10 = NULL;
   } else {
-    __pyx_t_9 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_sprites); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 814, __pyx_L1_error)
+    __pyx_t_9 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_sprites); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 834, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_10 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 814, __pyx_L1_error)
+    __pyx_t_10 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 834, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_10)) {
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_9 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_2); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 814, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_2); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 834, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 814, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 834, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         if (__pyx_t_9 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_2); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 814, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_2); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 834, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 814, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 834, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -13898,7 +14351,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 814, __pyx_L1_error)
+          else __PYX_ERR(0, 834, __pyx_L1_error)
         }
         break;
       }
@@ -13907,7 +14360,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
     __Pyx_XDECREF_SET(__pyx_v_sprite, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "Flares.pyx":818
+    /* "Flares.pyx":838
  *             # If this is the case, we should add the sprite itself,
  *             # and not the iterator object.
  *             if isinstance(sprite, Sprite):             # <<<<<<<<<<<<<<
@@ -13918,21 +14371,21 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
     __pyx_t_7 = (__pyx_t_8 != 0);
     if (__pyx_t_7) {
 
-      /* "Flares.pyx":819
+      /* "Flares.pyx":839
  *             # and not the iterator object.
  *             if isinstance(sprite, Sprite):
  *                 if not self.has_internal(sprite):             # <<<<<<<<<<<<<<
  *                     self.add_internal(sprite, layer)
  *                     sprite.add_internal(self)
  */
-      __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->__pyx_base.has_internal(((struct __pyx_obj_6FLARES_AbstractGroup *)__pyx_v_self), __pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 819, __pyx_L1_error)
+      __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->__pyx_base.has_internal(((struct __pyx_obj_6FLARES_AbstractGroup *)__pyx_v_self), __pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 839, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 819, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 839, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_8 = ((!__pyx_t_7) != 0);
       if (__pyx_t_8) {
 
-        /* "Flares.pyx":820
+        /* "Flares.pyx":840
  *             if isinstance(sprite, Sprite):
  *                 if not self.has_internal(sprite):
  *                     self.add_internal(sprite, layer)             # <<<<<<<<<<<<<<
@@ -13941,18 +14394,18 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
  */
         __pyx_t_11.__pyx_n = 1;
         __pyx_t_11.layer_ = __pyx_v_layer;
-        __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->add_internal(__pyx_v_self, __pyx_v_sprite, 0, &__pyx_t_11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 820, __pyx_L1_error)
+        __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->add_internal(__pyx_v_self, __pyx_v_sprite, 0, &__pyx_t_11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 840, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "Flares.pyx":821
+        /* "Flares.pyx":841
  *                 if not self.has_internal(sprite):
  *                     self.add_internal(sprite, layer)
  *                     sprite.add_internal(self)             # <<<<<<<<<<<<<<
  *             else:
  *                 try:
  */
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_add_internal); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 821, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_add_internal); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 841, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __pyx_t_6 = NULL;
         if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -13965,13 +14418,13 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
           }
         }
         if (!__pyx_t_6) {
-          __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 821, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 841, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
         } else {
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_3)) {
             PyObject *__pyx_temp[2] = {__pyx_t_6, ((PyObject *)__pyx_v_self)};
-            __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 821, __pyx_L1_error)
+            __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 841, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
             __Pyx_GOTREF(__pyx_t_2);
           } else
@@ -13979,19 +14432,19 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
             PyObject *__pyx_temp[2] = {__pyx_t_6, ((PyObject *)__pyx_v_self)};
-            __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 821, __pyx_L1_error)
+            __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 841, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
             __Pyx_GOTREF(__pyx_t_2);
           } else
           #endif
           {
-            __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 821, __pyx_L1_error)
+            __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 841, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6); __pyx_t_6 = NULL;
             __Pyx_INCREF(((PyObject *)__pyx_v_self));
             __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
             PyTuple_SET_ITEM(__pyx_t_4, 0+1, ((PyObject *)__pyx_v_self));
-            __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 821, __pyx_L1_error)
+            __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 841, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_2);
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           }
@@ -13999,7 +14452,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "Flares.pyx":819
+        /* "Flares.pyx":839
  *             # and not the iterator object.
  *             if isinstance(sprite, Sprite):
  *                 if not self.has_internal(sprite):             # <<<<<<<<<<<<<<
@@ -14008,7 +14461,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
  */
       }
 
-      /* "Flares.pyx":818
+      /* "Flares.pyx":838
  *             # If this is the case, we should add the sprite itself,
  *             # and not the iterator object.
  *             if isinstance(sprite, Sprite):             # <<<<<<<<<<<<<<
@@ -14018,7 +14471,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
       goto __pyx_L6;
     }
 
-    /* "Flares.pyx":823
+    /* "Flares.pyx":843
  *                     sprite.add_internal(self)
  *             else:
  *                 try:             # <<<<<<<<<<<<<<
@@ -14035,18 +14488,18 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
         __Pyx_XGOTREF(__pyx_t_14);
         /*try:*/ {
 
-          /* "Flares.pyx":826
+          /* "Flares.pyx":846
  *                     # See if sprite is an iterator, like a list or sprite
  *                     # group.
  *                     self.add(sprite)             # <<<<<<<<<<<<<<
  *                 except (TypeError, AttributeError):
  *                     # Not iterable. This is probably a sprite that is not an
  */
-          __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->add(__pyx_v_self, __pyx_v_sprite, 0, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 826, __pyx_L8_error)
+          __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->add(__pyx_v_self, __pyx_v_sprite, 0, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 846, __pyx_L8_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-          /* "Flares.pyx":823
+          /* "Flares.pyx":843
  *                     sprite.add_internal(self)
  *             else:
  *                 try:             # <<<<<<<<<<<<<<
@@ -14064,7 +14517,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "Flares.pyx":827
+        /* "Flares.pyx":847
  *                     # group.
  *                     self.add(sprite)
  *                 except (TypeError, AttributeError):             # <<<<<<<<<<<<<<
@@ -14074,30 +14527,30 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
         __pyx_t_5 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_TypeError) || __Pyx_PyErr_ExceptionMatches(__pyx_builtin_AttributeError);
         if (__pyx_t_5) {
           __Pyx_AddTraceback("FLARES.LayeredUpdates.add", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 827, __pyx_L10_except_error)
+          if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 847, __pyx_L10_except_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_GOTREF(__pyx_t_4);
 
-          /* "Flares.pyx":832
+          /* "Flares.pyx":852
  *                     # subclass of the Sprite class. Alternately, it could be an
  *                     # old-style sprite group.
  *                     if hasattr(sprite, '_spritegroup'):             # <<<<<<<<<<<<<<
  *                         for spr in sprite.sprites():
  *                             if not self.has_internal(spr):
  */
-          __pyx_t_8 = __Pyx_HasAttr(__pyx_v_sprite, __pyx_n_s_spritegroup); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 832, __pyx_L10_except_error)
+          __pyx_t_8 = __Pyx_HasAttr(__pyx_v_sprite, __pyx_n_s_spritegroup); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 852, __pyx_L10_except_error)
           __pyx_t_7 = (__pyx_t_8 != 0);
           if (__pyx_t_7) {
 
-            /* "Flares.pyx":833
+            /* "Flares.pyx":853
  *                     # old-style sprite group.
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():             # <<<<<<<<<<<<<<
  *                             if not self.has_internal(spr):
  *                                 self.add_internal(spr, layer)
  */
-            __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_sprites); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 833, __pyx_L10_except_error)
+            __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_sprites); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 853, __pyx_L10_except_error)
             __Pyx_GOTREF(__pyx_t_15);
             __pyx_t_16 = NULL;
             if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_15))) {
@@ -14110,10 +14563,10 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
               }
             }
             if (__pyx_t_16) {
-              __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_15, __pyx_t_16); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 833, __pyx_L10_except_error)
+              __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_15, __pyx_t_16); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 853, __pyx_L10_except_error)
               __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
             } else {
-              __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_15); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 833, __pyx_L10_except_error)
+              __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_15); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 853, __pyx_L10_except_error)
             }
             __Pyx_GOTREF(__pyx_t_6);
             __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
@@ -14121,9 +14574,9 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
               __pyx_t_15 = __pyx_t_6; __Pyx_INCREF(__pyx_t_15); __pyx_t_17 = 0;
               __pyx_t_18 = NULL;
             } else {
-              __pyx_t_17 = -1; __pyx_t_15 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 833, __pyx_L10_except_error)
+              __pyx_t_17 = -1; __pyx_t_15 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 853, __pyx_L10_except_error)
               __Pyx_GOTREF(__pyx_t_15);
-              __pyx_t_18 = Py_TYPE(__pyx_t_15)->tp_iternext; if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 833, __pyx_L10_except_error)
+              __pyx_t_18 = Py_TYPE(__pyx_t_15)->tp_iternext; if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 853, __pyx_L10_except_error)
             }
             __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
             for (;;) {
@@ -14131,17 +14584,17 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
                 if (likely(PyList_CheckExact(__pyx_t_15))) {
                   if (__pyx_t_17 >= PyList_GET_SIZE(__pyx_t_15)) break;
                   #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_6 = PyList_GET_ITEM(__pyx_t_15, __pyx_t_17); __Pyx_INCREF(__pyx_t_6); __pyx_t_17++; if (unlikely(0 < 0)) __PYX_ERR(0, 833, __pyx_L10_except_error)
+                  __pyx_t_6 = PyList_GET_ITEM(__pyx_t_15, __pyx_t_17); __Pyx_INCREF(__pyx_t_6); __pyx_t_17++; if (unlikely(0 < 0)) __PYX_ERR(0, 853, __pyx_L10_except_error)
                   #else
-                  __pyx_t_6 = PySequence_ITEM(__pyx_t_15, __pyx_t_17); __pyx_t_17++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 833, __pyx_L10_except_error)
+                  __pyx_t_6 = PySequence_ITEM(__pyx_t_15, __pyx_t_17); __pyx_t_17++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 853, __pyx_L10_except_error)
                   __Pyx_GOTREF(__pyx_t_6);
                   #endif
                 } else {
                   if (__pyx_t_17 >= PyTuple_GET_SIZE(__pyx_t_15)) break;
                   #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_15, __pyx_t_17); __Pyx_INCREF(__pyx_t_6); __pyx_t_17++; if (unlikely(0 < 0)) __PYX_ERR(0, 833, __pyx_L10_except_error)
+                  __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_15, __pyx_t_17); __Pyx_INCREF(__pyx_t_6); __pyx_t_17++; if (unlikely(0 < 0)) __PYX_ERR(0, 853, __pyx_L10_except_error)
                   #else
-                  __pyx_t_6 = PySequence_ITEM(__pyx_t_15, __pyx_t_17); __pyx_t_17++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 833, __pyx_L10_except_error)
+                  __pyx_t_6 = PySequence_ITEM(__pyx_t_15, __pyx_t_17); __pyx_t_17++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 853, __pyx_L10_except_error)
                   __Pyx_GOTREF(__pyx_t_6);
                   #endif
                 }
@@ -14151,7 +14604,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
                   PyObject* exc_type = PyErr_Occurred();
                   if (exc_type) {
                     if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                    else __PYX_ERR(0, 833, __pyx_L10_except_error)
+                    else __PYX_ERR(0, 853, __pyx_L10_except_error)
                   }
                   break;
                 }
@@ -14160,21 +14613,21 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
               __Pyx_XDECREF_SET(__pyx_v_spr, __pyx_t_6);
               __pyx_t_6 = 0;
 
-              /* "Flares.pyx":834
+              /* "Flares.pyx":854
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():
  *                             if not self.has_internal(spr):             # <<<<<<<<<<<<<<
  *                                 self.add_internal(spr, layer)
  *                                 spr.add_internal(self)
  */
-              __pyx_t_6 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->__pyx_base.has_internal(((struct __pyx_obj_6FLARES_AbstractGroup *)__pyx_v_self), __pyx_v_spr); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 834, __pyx_L10_except_error)
+              __pyx_t_6 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->__pyx_base.has_internal(((struct __pyx_obj_6FLARES_AbstractGroup *)__pyx_v_self), __pyx_v_spr); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 854, __pyx_L10_except_error)
               __Pyx_GOTREF(__pyx_t_6);
-              __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 834, __pyx_L10_except_error)
+              __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 854, __pyx_L10_except_error)
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
               __pyx_t_8 = ((!__pyx_t_7) != 0);
               if (__pyx_t_8) {
 
-                /* "Flares.pyx":835
+                /* "Flares.pyx":855
  *                         for spr in sprite.sprites():
  *                             if not self.has_internal(spr):
  *                                 self.add_internal(spr, layer)             # <<<<<<<<<<<<<<
@@ -14183,18 +14636,18 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
  */
                 __pyx_t_11.__pyx_n = 1;
                 __pyx_t_11.layer_ = __pyx_v_layer;
-                __pyx_t_6 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->add_internal(__pyx_v_self, __pyx_v_spr, 0, &__pyx_t_11); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 835, __pyx_L10_except_error)
+                __pyx_t_6 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->add_internal(__pyx_v_self, __pyx_v_spr, 0, &__pyx_t_11); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 855, __pyx_L10_except_error)
                 __Pyx_GOTREF(__pyx_t_6);
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-                /* "Flares.pyx":836
+                /* "Flares.pyx":856
  *                             if not self.has_internal(spr):
  *                                 self.add_internal(spr, layer)
  *                                 spr.add_internal(self)             # <<<<<<<<<<<<<<
  *                     elif not self.has_internal(sprite):
  *                         self.add_internal(sprite, layer)
  */
-                __pyx_t_16 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_add_internal); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 836, __pyx_L10_except_error)
+                __pyx_t_16 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_add_internal); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 856, __pyx_L10_except_error)
                 __Pyx_GOTREF(__pyx_t_16);
                 __pyx_t_19 = NULL;
                 if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_16))) {
@@ -14207,13 +14660,13 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
                   }
                 }
                 if (!__pyx_t_19) {
-                  __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_16, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 836, __pyx_L10_except_error)
+                  __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_16, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 856, __pyx_L10_except_error)
                   __Pyx_GOTREF(__pyx_t_6);
                 } else {
                   #if CYTHON_FAST_PYCALL
                   if (PyFunction_Check(__pyx_t_16)) {
                     PyObject *__pyx_temp[2] = {__pyx_t_19, ((PyObject *)__pyx_v_self)};
-                    __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_16, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 836, __pyx_L10_except_error)
+                    __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_16, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 856, __pyx_L10_except_error)
                     __Pyx_XDECREF(__pyx_t_19); __pyx_t_19 = 0;
                     __Pyx_GOTREF(__pyx_t_6);
                   } else
@@ -14221,19 +14674,19 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
                   #if CYTHON_FAST_PYCCALL
                   if (__Pyx_PyFastCFunction_Check(__pyx_t_16)) {
                     PyObject *__pyx_temp[2] = {__pyx_t_19, ((PyObject *)__pyx_v_self)};
-                    __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_16, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 836, __pyx_L10_except_error)
+                    __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_16, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 856, __pyx_L10_except_error)
                     __Pyx_XDECREF(__pyx_t_19); __pyx_t_19 = 0;
                     __Pyx_GOTREF(__pyx_t_6);
                   } else
                   #endif
                   {
-                    __pyx_t_20 = PyTuple_New(1+1); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 836, __pyx_L10_except_error)
+                    __pyx_t_20 = PyTuple_New(1+1); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 856, __pyx_L10_except_error)
                     __Pyx_GOTREF(__pyx_t_20);
                     __Pyx_GIVEREF(__pyx_t_19); PyTuple_SET_ITEM(__pyx_t_20, 0, __pyx_t_19); __pyx_t_19 = NULL;
                     __Pyx_INCREF(((PyObject *)__pyx_v_self));
                     __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
                     PyTuple_SET_ITEM(__pyx_t_20, 0+1, ((PyObject *)__pyx_v_self));
-                    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_16, __pyx_t_20, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 836, __pyx_L10_except_error)
+                    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_16, __pyx_t_20, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 856, __pyx_L10_except_error)
                     __Pyx_GOTREF(__pyx_t_6);
                     __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
                   }
@@ -14241,7 +14694,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
                 __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-                /* "Flares.pyx":834
+                /* "Flares.pyx":854
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():
  *                             if not self.has_internal(spr):             # <<<<<<<<<<<<<<
@@ -14250,7 +14703,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
  */
               }
 
-              /* "Flares.pyx":833
+              /* "Flares.pyx":853
  *                     # old-style sprite group.
  *                     if hasattr(sprite, '_spritegroup'):
  *                         for spr in sprite.sprites():             # <<<<<<<<<<<<<<
@@ -14260,7 +14713,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
             }
             __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
 
-            /* "Flares.pyx":832
+            /* "Flares.pyx":852
  *                     # subclass of the Sprite class. Alternately, it could be an
  *                     # old-style sprite group.
  *                     if hasattr(sprite, '_spritegroup'):             # <<<<<<<<<<<<<<
@@ -14270,21 +14723,21 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
             goto __pyx_L18;
           }
 
-          /* "Flares.pyx":837
+          /* "Flares.pyx":857
  *                                 self.add_internal(spr, layer)
  *                                 spr.add_internal(self)
  *                     elif not self.has_internal(sprite):             # <<<<<<<<<<<<<<
  *                         self.add_internal(sprite, layer)
  *                         sprite.add_internal(self)
  */
-          __pyx_t_15 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->__pyx_base.has_internal(((struct __pyx_obj_6FLARES_AbstractGroup *)__pyx_v_self), __pyx_v_sprite); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 837, __pyx_L10_except_error)
+          __pyx_t_15 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->__pyx_base.has_internal(((struct __pyx_obj_6FLARES_AbstractGroup *)__pyx_v_self), __pyx_v_sprite); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 857, __pyx_L10_except_error)
           __Pyx_GOTREF(__pyx_t_15);
-          __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_15); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 837, __pyx_L10_except_error)
+          __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_15); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 857, __pyx_L10_except_error)
           __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
           __pyx_t_7 = ((!__pyx_t_8) != 0);
           if (__pyx_t_7) {
 
-            /* "Flares.pyx":838
+            /* "Flares.pyx":858
  *                                 spr.add_internal(self)
  *                     elif not self.has_internal(sprite):
  *                         self.add_internal(sprite, layer)             # <<<<<<<<<<<<<<
@@ -14293,18 +14746,18 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
  */
             __pyx_t_11.__pyx_n = 1;
             __pyx_t_11.layer_ = __pyx_v_layer;
-            __pyx_t_15 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->add_internal(__pyx_v_self, __pyx_v_sprite, 0, &__pyx_t_11); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 838, __pyx_L10_except_error)
+            __pyx_t_15 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->add_internal(__pyx_v_self, __pyx_v_sprite, 0, &__pyx_t_11); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 858, __pyx_L10_except_error)
             __Pyx_GOTREF(__pyx_t_15);
             __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
 
-            /* "Flares.pyx":839
+            /* "Flares.pyx":859
  *                     elif not self.has_internal(sprite):
  *                         self.add_internal(sprite, layer)
  *                         sprite.add_internal(self)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-            __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_add_internal); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 839, __pyx_L10_except_error)
+            __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_add_internal); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 859, __pyx_L10_except_error)
             __Pyx_GOTREF(__pyx_t_6);
             __pyx_t_16 = NULL;
             if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -14317,13 +14770,13 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
               }
             }
             if (!__pyx_t_16) {
-              __pyx_t_15 = __Pyx_PyObject_CallOneArg(__pyx_t_6, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 839, __pyx_L10_except_error)
+              __pyx_t_15 = __Pyx_PyObject_CallOneArg(__pyx_t_6, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 859, __pyx_L10_except_error)
               __Pyx_GOTREF(__pyx_t_15);
             } else {
               #if CYTHON_FAST_PYCALL
               if (PyFunction_Check(__pyx_t_6)) {
                 PyObject *__pyx_temp[2] = {__pyx_t_16, ((PyObject *)__pyx_v_self)};
-                __pyx_t_15 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 839, __pyx_L10_except_error)
+                __pyx_t_15 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 859, __pyx_L10_except_error)
                 __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
                 __Pyx_GOTREF(__pyx_t_15);
               } else
@@ -14331,19 +14784,19 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
               #if CYTHON_FAST_PYCCALL
               if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
                 PyObject *__pyx_temp[2] = {__pyx_t_16, ((PyObject *)__pyx_v_self)};
-                __pyx_t_15 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 839, __pyx_L10_except_error)
+                __pyx_t_15 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 859, __pyx_L10_except_error)
                 __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
                 __Pyx_GOTREF(__pyx_t_15);
               } else
               #endif
               {
-                __pyx_t_20 = PyTuple_New(1+1); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 839, __pyx_L10_except_error)
+                __pyx_t_20 = PyTuple_New(1+1); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 859, __pyx_L10_except_error)
                 __Pyx_GOTREF(__pyx_t_20);
                 __Pyx_GIVEREF(__pyx_t_16); PyTuple_SET_ITEM(__pyx_t_20, 0, __pyx_t_16); __pyx_t_16 = NULL;
                 __Pyx_INCREF(((PyObject *)__pyx_v_self));
                 __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
                 PyTuple_SET_ITEM(__pyx_t_20, 0+1, ((PyObject *)__pyx_v_self));
-                __pyx_t_15 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_20, NULL); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 839, __pyx_L10_except_error)
+                __pyx_t_15 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_20, NULL); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 859, __pyx_L10_except_error)
                 __Pyx_GOTREF(__pyx_t_15);
                 __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
               }
@@ -14351,7 +14804,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
             __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
             __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
 
-            /* "Flares.pyx":837
+            /* "Flares.pyx":857
  *                                 self.add_internal(spr, layer)
  *                                 spr.add_internal(self)
  *                     elif not self.has_internal(sprite):             # <<<<<<<<<<<<<<
@@ -14368,7 +14821,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
         goto __pyx_L10_except_error;
         __pyx_L10_except_error:;
 
-        /* "Flares.pyx":823
+        /* "Flares.pyx":843
  *                     sprite.add_internal(self)
  *             else:
  *                 try:             # <<<<<<<<<<<<<<
@@ -14390,7 +14843,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
     }
     __pyx_L6:;
 
-    /* "Flares.pyx":814
+    /* "Flares.pyx":834
  *             return
  * 
  *         for sprite in sprites:             # <<<<<<<<<<<<<<
@@ -14400,7 +14853,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add(struct __pyx_obj_6FLARES_LayeredU
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":809
+  /* "Flares.pyx":829
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cpdef add(self, sprites, layer=None):             # <<<<<<<<<<<<<<
@@ -14467,7 +14920,7 @@ static PyObject *__pyx_pw_6FLARES_14LayeredUpdates_5add(PyObject *__pyx_v_self, 
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "add") < 0)) __PYX_ERR(0, 809, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "add") < 0)) __PYX_ERR(0, 829, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -14483,7 +14936,7 @@ static PyObject *__pyx_pw_6FLARES_14LayeredUpdates_5add(PyObject *__pyx_v_self, 
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("add", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 809, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("add", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 829, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("FLARES.LayeredUpdates.add", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -14505,7 +14958,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_4add(struct __pyx_obj_6FLARES
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.layer = __pyx_v_layer;
-  __pyx_t_1 = __pyx_vtabptr_6FLARES_LayeredUpdates->add(__pyx_v_self, __pyx_v_sprites, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 809, __pyx_L1_error)
+  __pyx_t_1 = __pyx_vtabptr_6FLARES_LayeredUpdates->add(__pyx_v_self, __pyx_v_sprites, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 829, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -14526,7 +14979,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_add__pyx_wrap_1(struct __pyx_obj_6FLA
   return __pyx_f_6FLARES_14LayeredUpdates_add(__pyx_v_self, __pyx_v_sprites, __pyx_skip_dispatch, NULL);
 }
 
-/* "Flares.pyx":846
+/* "Flares.pyx":866
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cpdef remove_internal(self, sprite):             # <<<<<<<<<<<<<<
@@ -14552,7 +15005,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_remove_internal); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 846, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_remove_internal); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 866, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_7remove_internal)) {
       __Pyx_XDECREF(__pyx_r);
@@ -14568,13 +15021,13 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 846, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 866, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_sprite};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 846, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 866, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -14582,19 +15035,19 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_sprite};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 846, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 866, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 846, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 866, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(__pyx_v_sprite);
           __Pyx_GIVEREF(__pyx_v_sprite);
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_sprite);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 846, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 866, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
@@ -14608,14 +15061,14 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":852
+  /* "Flares.pyx":872
  * 
  *         """
  *         self._spritelist.remove(sprite)             # <<<<<<<<<<<<<<
  *         # these dirty rects are suboptimal for one frame
  *         r = self.spritedict[sprite]
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_spritelist, __pyx_n_s_remove); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 852, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_spritelist, __pyx_n_s_remove); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 872, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -14628,13 +15081,13 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_sprite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 852, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_sprite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 872, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_sprite};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 852, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 872, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -14642,19 +15095,19 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_sprite};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 852, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 872, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 852, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 872, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_INCREF(__pyx_v_sprite);
       __Pyx_GIVEREF(__pyx_v_sprite);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_sprite);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 852, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 872, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
@@ -14662,7 +15115,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":854
+  /* "Flares.pyx":874
  *         self._spritelist.remove(sprite)
  *         # these dirty rects are suboptimal for one frame
  *         r = self.spritedict[sprite]             # <<<<<<<<<<<<<<
@@ -14671,14 +15124,14 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
  */
   if (unlikely(__pyx_v_self->__pyx_base.spritedict == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 854, __pyx_L1_error)
+    __PYX_ERR(0, 874, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_self->__pyx_base.spritedict, __pyx_v_sprite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 854, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_self->__pyx_base.spritedict, __pyx_v_sprite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 874, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_r = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":855
+  /* "Flares.pyx":875
  *         # these dirty rects are suboptimal for one frame
  *         r = self.spritedict[sprite]
  *         if r is not self._init_rect:             # <<<<<<<<<<<<<<
@@ -14689,7 +15142,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
   __pyx_t_7 = (__pyx_t_6 != 0);
   if (__pyx_t_7) {
 
-    /* "Flares.pyx":856
+    /* "Flares.pyx":876
  *         r = self.spritedict[sprite]
  *         if r is not self._init_rect:
  *             self.lostsprites.append(r) # dirty rect             # <<<<<<<<<<<<<<
@@ -14698,11 +15151,11 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
  */
     if (unlikely(__pyx_v_self->__pyx_base.lostsprites == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 856, __pyx_L1_error)
+      __PYX_ERR(0, 876, __pyx_L1_error)
     }
-    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_self->__pyx_base.lostsprites, __pyx_v_r); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 856, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_self->__pyx_base.lostsprites, __pyx_v_r); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 876, __pyx_L1_error)
 
-    /* "Flares.pyx":855
+    /* "Flares.pyx":875
  *         # these dirty rects are suboptimal for one frame
  *         r = self.spritedict[sprite]
  *         if r is not self._init_rect:             # <<<<<<<<<<<<<<
@@ -14711,18 +15164,18 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
  */
   }
 
-  /* "Flares.pyx":857
+  /* "Flares.pyx":877
  *         if r is not self._init_rect:
  *             self.lostsprites.append(r) # dirty rect
  *         if hasattr(sprite, 'rect'):             # <<<<<<<<<<<<<<
  *             self.lostsprites.append(sprite.rect) # dirty rect
  * 
  */
-  __pyx_t_7 = __Pyx_HasAttr(__pyx_v_sprite, __pyx_n_s_rect); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 857, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_HasAttr(__pyx_v_sprite, __pyx_n_s_rect); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 877, __pyx_L1_error)
   __pyx_t_6 = (__pyx_t_7 != 0);
   if (__pyx_t_6) {
 
-    /* "Flares.pyx":858
+    /* "Flares.pyx":878
  *             self.lostsprites.append(r) # dirty rect
  *         if hasattr(sprite, 'rect'):
  *             self.lostsprites.append(sprite.rect) # dirty rect             # <<<<<<<<<<<<<<
@@ -14731,14 +15184,14 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
  */
     if (unlikely(__pyx_v_self->__pyx_base.lostsprites == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-      __PYX_ERR(0, 858, __pyx_L1_error)
+      __PYX_ERR(0, 878, __pyx_L1_error)
     }
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_rect); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 858, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_n_s_rect); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 878, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_self->__pyx_base.lostsprites, __pyx_t_1); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 858, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_self->__pyx_base.lostsprites, __pyx_t_1); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 878, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "Flares.pyx":857
+    /* "Flares.pyx":877
  *         if r is not self._init_rect:
  *             self.lostsprites.append(r) # dirty rect
  *         if hasattr(sprite, 'rect'):             # <<<<<<<<<<<<<<
@@ -14747,7 +15200,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
  */
   }
 
-  /* "Flares.pyx":860
+  /* "Flares.pyx":880
  *             self.lostsprites.append(sprite.rect) # dirty rect
  * 
  *         del self.spritedict[sprite]             # <<<<<<<<<<<<<<
@@ -14756,11 +15209,11 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
  */
   if (unlikely(__pyx_v_self->__pyx_base.spritedict == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 860, __pyx_L1_error)
+    __PYX_ERR(0, 880, __pyx_L1_error)
   }
-  if (unlikely(PyDict_DelItem(__pyx_v_self->__pyx_base.spritedict, __pyx_v_sprite) < 0)) __PYX_ERR(0, 860, __pyx_L1_error)
+  if (unlikely(PyDict_DelItem(__pyx_v_self->__pyx_base.spritedict, __pyx_v_sprite) < 0)) __PYX_ERR(0, 880, __pyx_L1_error)
 
-  /* "Flares.pyx":861
+  /* "Flares.pyx":881
  * 
  *         del self.spritedict[sprite]
  *         del self._spritelayers[sprite]             # <<<<<<<<<<<<<<
@@ -14769,11 +15222,11 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal(struct __pyx_obj_6FLA
  */
   if (unlikely(__pyx_v_self->_spritelayers == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 861, __pyx_L1_error)
+    __PYX_ERR(0, 881, __pyx_L1_error)
   }
-  if (unlikely(PyDict_DelItem(__pyx_v_self->_spritelayers, __pyx_v_sprite) < 0)) __PYX_ERR(0, 861, __pyx_L1_error)
+  if (unlikely(PyDict_DelItem(__pyx_v_self->_spritelayers, __pyx_v_sprite) < 0)) __PYX_ERR(0, 881, __pyx_L1_error)
 
-  /* "Flares.pyx":846
+  /* "Flares.pyx":866
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cpdef remove_internal(self, sprite):             # <<<<<<<<<<<<<<
@@ -14819,7 +15272,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_6remove_internal(struct __pyx
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("remove_internal", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_remove_internal(__pyx_v_self, __pyx_v_sprite, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 846, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_remove_internal(__pyx_v_self, __pyx_v_sprite, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 866, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -14840,7 +15293,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_internal__pyx_wrap_1(struct __
   return __pyx_f_6FLARES_14LayeredUpdates_remove_internal(__pyx_v_self, __pyx_v_sprite, 0);
 }
 
-/* "Flares.pyx":868
+/* "Flares.pyx":888
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cpdef sprites(self):             # <<<<<<<<<<<<<<
@@ -14861,7 +15314,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_sprites(struct __pyx_obj_6FLARES_Laye
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_sprites); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 868, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_sprites); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 888, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_9sprites)) {
       __Pyx_XDECREF(__pyx_r);
@@ -14877,10 +15330,10 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_sprites(struct __pyx_obj_6FLARES_Laye
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 868, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 888, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 868, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 888, __pyx_L1_error)
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -14892,7 +15345,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_sprites(struct __pyx_obj_6FLARES_Laye
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":874
+  /* "Flares.pyx":894
  * 
  *         """
  *         return list(self._spritelist)             # <<<<<<<<<<<<<<
@@ -14900,13 +15353,13 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_sprites(struct __pyx_obj_6FLARES_Laye
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PySequence_List(__pyx_v_self->_spritelist); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 874, __pyx_L1_error)
+  __pyx_t_1 = PySequence_List(__pyx_v_self->_spritelist); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 894, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "Flares.pyx":868
+  /* "Flares.pyx":888
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cpdef sprites(self):             # <<<<<<<<<<<<<<
@@ -14948,7 +15401,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_8sprites(struct __pyx_obj_6FL
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("sprites", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_sprites(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 868, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_sprites(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 888, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -14969,7 +15422,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_sprites__pyx_wrap_1(struct __pyx_obj_
   return __pyx_f_6FLARES_14LayeredUpdates_sprites(__pyx_v_self, 0);
 }
 
-/* "Flares.pyx":881
+/* "Flares.pyx":901
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cpdef draw(self, surface):             # <<<<<<<<<<<<<<
@@ -15004,7 +15457,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_draw); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 881, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_draw); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 901, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_11draw)) {
       __Pyx_XDECREF(__pyx_r);
@@ -15020,13 +15473,13 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_surface); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 881, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_surface); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 901, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_surface};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 881, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 901, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -15034,19 +15487,19 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_surface};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 881, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 901, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 881, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 901, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(__pyx_v_surface);
           __Pyx_GIVEREF(__pyx_v_surface);
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_surface);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 881, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 901, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
@@ -15060,7 +15513,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":882
+  /* "Flares.pyx":902
  *     @cython.cdivision(True)
  *     cpdef draw(self, surface):
  *         cdef dict spritedict = self.spritedict             # <<<<<<<<<<<<<<
@@ -15072,27 +15525,27 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
   __pyx_v_spritedict = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":883
+  /* "Flares.pyx":903
  *     cpdef draw(self, surface):
  *         cdef dict spritedict = self.spritedict
  *         cdef dict dirty = self.lostsprites             # <<<<<<<<<<<<<<
  *         self.lostsprites = []
  *         cdef object init_rect = self._init_rect
  */
-  if (!(likely(PyDict_CheckExact(__pyx_v_self->__pyx_base.lostsprites))||((__pyx_v_self->__pyx_base.lostsprites) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_self->__pyx_base.lostsprites)->tp_name), 0))) __PYX_ERR(0, 883, __pyx_L1_error)
+  if (!(likely(PyDict_CheckExact(__pyx_v_self->__pyx_base.lostsprites))||((__pyx_v_self->__pyx_base.lostsprites) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_self->__pyx_base.lostsprites)->tp_name), 0))) __PYX_ERR(0, 903, __pyx_L1_error)
   __pyx_t_1 = __pyx_v_self->__pyx_base.lostsprites;
   __Pyx_INCREF(__pyx_t_1);
   __pyx_v_dirty = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":884
+  /* "Flares.pyx":904
  *         cdef dict spritedict = self.spritedict
  *         cdef dict dirty = self.lostsprites
  *         self.lostsprites = []             # <<<<<<<<<<<<<<
  *         cdef object init_rect = self._init_rect
  *         for spr in self.sprites():
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 884, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 904, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->__pyx_base.lostsprites);
@@ -15100,7 +15553,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
   __pyx_v_self->__pyx_base.lostsprites = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":885
+  /* "Flares.pyx":905
  *         cdef dict dirty = self.lostsprites
  *         self.lostsprites = []
  *         cdef object init_rect = self._init_rect             # <<<<<<<<<<<<<<
@@ -15112,22 +15565,22 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
   __pyx_v_init_rect = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":886
+  /* "Flares.pyx":906
  *         self.lostsprites = []
  *         cdef object init_rect = self._init_rect
  *         for spr in self.sprites():             # <<<<<<<<<<<<<<
  *             rec = spritedict[spr]
  *             newrect = surface.blit(spr.image, spr.rect)
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->sprites(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 886, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->sprites(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 906, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
   } else {
-    __pyx_t_6 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 886, __pyx_L1_error)
+    __pyx_t_6 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 906, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 886, __pyx_L1_error)
+    __pyx_t_7 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 906, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -15135,17 +15588,17 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
       if (likely(PyList_CheckExact(__pyx_t_2))) {
         if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 886, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 906, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 886, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 906, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 886, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 906, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 886, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 906, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -15155,7 +15608,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 886, __pyx_L1_error)
+          else __PYX_ERR(0, 906, __pyx_L1_error)
         }
         break;
       }
@@ -15164,7 +15617,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
     __Pyx_XDECREF_SET(__pyx_v_spr, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "Flares.pyx":887
+    /* "Flares.pyx":907
  *         cdef object init_rect = self._init_rect
  *         for spr in self.sprites():
  *             rec = spritedict[spr]             # <<<<<<<<<<<<<<
@@ -15173,25 +15626,25 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
  */
     if (unlikely(__pyx_v_spritedict == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 887, __pyx_L1_error)
+      __PYX_ERR(0, 907, __pyx_L1_error)
     }
-    __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_spritedict, __pyx_v_spr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 887, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_spritedict, __pyx_v_spr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 907, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XDECREF_SET(__pyx_v_rec, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "Flares.pyx":888
+    /* "Flares.pyx":908
  *         for spr in self.sprites():
  *             rec = spritedict[spr]
  *             newrect = surface.blit(spr.image, spr.rect)             # <<<<<<<<<<<<<<
  *             if rec is init_rect:
  *                 dirty.append(newrect)
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_surface, __pyx_n_s_blit); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 888, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_surface, __pyx_n_s_blit); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 908, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 888, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_image); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 908, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_rect); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 888, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_spr, __pyx_n_s_rect); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 908, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_8 = NULL;
     __pyx_t_9 = 0;
@@ -15208,7 +15661,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_5, __pyx_t_4};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 888, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 908, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -15218,7 +15671,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_5, __pyx_t_4};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 888, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 908, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -15226,7 +15679,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
     } else
     #endif
     {
-      __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 888, __pyx_L1_error)
+      __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 908, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       if (__pyx_t_8) {
         __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_8); __pyx_t_8 = NULL;
@@ -15237,7 +15690,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
       PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_9, __pyx_t_4);
       __pyx_t_5 = 0;
       __pyx_t_4 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 888, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 908, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     }
@@ -15245,7 +15698,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
     __Pyx_XDECREF_SET(__pyx_v_newrect, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "Flares.pyx":889
+    /* "Flares.pyx":909
  *             rec = spritedict[spr]
  *             newrect = surface.blit(spr.image, spr.rect)
  *             if rec is init_rect:             # <<<<<<<<<<<<<<
@@ -15256,14 +15709,14 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
     __pyx_t_12 = (__pyx_t_11 != 0);
     if (__pyx_t_12) {
 
-      /* "Flares.pyx":890
+      /* "Flares.pyx":910
  *             newrect = surface.blit(spr.image, spr.rect)
  *             if rec is init_rect:
  *                 dirty.append(newrect)             # <<<<<<<<<<<<<<
  *             else:
  *                 if newrect.colliderect(rec):
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_dirty, __pyx_n_s_append); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 890, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_dirty, __pyx_n_s_append); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 910, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_10 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -15276,13 +15729,13 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
         }
       }
       if (!__pyx_t_10) {
-        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_newrect); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 890, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_newrect); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 910, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_v_newrect};
-          __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 890, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 910, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
           __Pyx_GOTREF(__pyx_t_1);
         } else
@@ -15290,19 +15743,19 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_v_newrect};
-          __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 890, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 910, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
           __Pyx_GOTREF(__pyx_t_1);
         } else
         #endif
         {
-          __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 890, __pyx_L1_error)
+          __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 910, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_10); __pyx_t_10 = NULL;
           __Pyx_INCREF(__pyx_v_newrect);
           __Pyx_GIVEREF(__pyx_v_newrect);
           PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_newrect);
-          __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 890, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 910, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         }
@@ -15310,7 +15763,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "Flares.pyx":889
+      /* "Flares.pyx":909
  *             rec = spritedict[spr]
  *             newrect = surface.blit(spr.image, spr.rect)
  *             if rec is init_rect:             # <<<<<<<<<<<<<<
@@ -15320,7 +15773,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
       goto __pyx_L5;
     }
 
-    /* "Flares.pyx":892
+    /* "Flares.pyx":912
  *                 dirty.append(newrect)
  *             else:
  *                 if newrect.colliderect(rec):             # <<<<<<<<<<<<<<
@@ -15328,7 +15781,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
  *                 else:
  */
     /*else*/ {
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_newrect, __pyx_n_s_colliderect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 892, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_newrect, __pyx_n_s_colliderect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 912, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_4 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -15341,13 +15794,13 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_rec); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 892, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_rec); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 912, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_rec};
-          __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 892, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 912, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_1);
         } else
@@ -15355,38 +15808,38 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_rec};
-          __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 892, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 912, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_1);
         } else
         #endif
         {
-          __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 892, __pyx_L1_error)
+          __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 912, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_10);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(__pyx_v_rec);
           __Pyx_GIVEREF(__pyx_v_rec);
           PyTuple_SET_ITEM(__pyx_t_10, 0+1, __pyx_v_rec);
-          __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 892, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 912, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         }
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_12 < 0)) __PYX_ERR(0, 892, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_12 < 0)) __PYX_ERR(0, 912, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (__pyx_t_12) {
 
-        /* "Flares.pyx":893
+        /* "Flares.pyx":913
  *             else:
  *                 if newrect.colliderect(rec):
  *                     dirty.append(newrect.union(rec))             # <<<<<<<<<<<<<<
  *                 else:
  *                     dirty.append(newrect)
  */
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_dirty, __pyx_n_s_append); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 893, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_dirty, __pyx_n_s_append); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 913, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_newrect, __pyx_n_s_union); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 893, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_newrect, __pyx_n_s_union); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 913, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __pyx_t_5 = NULL;
         if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -15399,13 +15852,13 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
           }
         }
         if (!__pyx_t_5) {
-          __pyx_t_10 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_rec); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 893, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_rec); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 913, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_10);
         } else {
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_4)) {
             PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_v_rec};
-            __pyx_t_10 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 893, __pyx_L1_error)
+            __pyx_t_10 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 913, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
             __Pyx_GOTREF(__pyx_t_10);
           } else
@@ -15413,19 +15866,19 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
             PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_v_rec};
-            __pyx_t_10 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 893, __pyx_L1_error)
+            __pyx_t_10 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 913, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
             __Pyx_GOTREF(__pyx_t_10);
           } else
           #endif
           {
-            __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 893, __pyx_L1_error)
+            __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 913, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_8);
             __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_5); __pyx_t_5 = NULL;
             __Pyx_INCREF(__pyx_v_rec);
             __Pyx_GIVEREF(__pyx_v_rec);
             PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_v_rec);
-            __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 893, __pyx_L1_error)
+            __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 913, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_10);
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           }
@@ -15442,14 +15895,14 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
           }
         }
         if (!__pyx_t_4) {
-          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 893, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 913, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           __Pyx_GOTREF(__pyx_t_1);
         } else {
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_3)) {
             PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_10};
-            __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 893, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 913, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
@@ -15458,20 +15911,20 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
             PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_10};
-            __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 893, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 913, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           } else
           #endif
           {
-            __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 893, __pyx_L1_error)
+            __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 913, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_8);
             __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_4); __pyx_t_4 = NULL;
             __Pyx_GIVEREF(__pyx_t_10);
             PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_t_10);
             __pyx_t_10 = 0;
-            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 893, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 913, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           }
@@ -15479,7 +15932,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-        /* "Flares.pyx":892
+        /* "Flares.pyx":912
  *                 dirty.append(newrect)
  *             else:
  *                 if newrect.colliderect(rec):             # <<<<<<<<<<<<<<
@@ -15489,7 +15942,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
         goto __pyx_L6;
       }
 
-      /* "Flares.pyx":895
+      /* "Flares.pyx":915
  *                     dirty.append(newrect.union(rec))
  *                 else:
  *                     dirty.append(newrect)             # <<<<<<<<<<<<<<
@@ -15497,7 +15950,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
  *             spritedict[spr] = newrect
  */
       /*else*/ {
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_dirty, __pyx_n_s_append); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 895, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_dirty, __pyx_n_s_append); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 915, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __pyx_t_8 = NULL;
         if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -15510,13 +15963,13 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
           }
         }
         if (!__pyx_t_8) {
-          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_newrect); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 895, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_newrect); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 915, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
         } else {
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_3)) {
             PyObject *__pyx_temp[2] = {__pyx_t_8, __pyx_v_newrect};
-            __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 895, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 915, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
             __Pyx_GOTREF(__pyx_t_1);
           } else
@@ -15524,19 +15977,19 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
             PyObject *__pyx_temp[2] = {__pyx_t_8, __pyx_v_newrect};
-            __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 895, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 915, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
             __Pyx_GOTREF(__pyx_t_1);
           } else
           #endif
           {
-            __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 895, __pyx_L1_error)
+            __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 915, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_10);
             __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_8); __pyx_t_8 = NULL;
             __Pyx_INCREF(__pyx_v_newrect);
             __Pyx_GIVEREF(__pyx_v_newrect);
             PyTuple_SET_ITEM(__pyx_t_10, 0+1, __pyx_v_newrect);
-            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 895, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 915, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           }
@@ -15544,14 +15997,14 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-        /* "Flares.pyx":896
+        /* "Flares.pyx":916
  *                 else:
  *                     dirty.append(newrect)
  *                     dirty.append(rec)             # <<<<<<<<<<<<<<
  *             spritedict[spr] = newrect
  *         return dirty
  */
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_dirty, __pyx_n_s_append); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 896, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_dirty, __pyx_n_s_append); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 916, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __pyx_t_10 = NULL;
         if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -15564,13 +16017,13 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
           }
         }
         if (!__pyx_t_10) {
-          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_rec); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 896, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_rec); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 916, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
         } else {
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_3)) {
             PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_v_rec};
-            __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 896, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 916, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
             __Pyx_GOTREF(__pyx_t_1);
           } else
@@ -15578,19 +16031,19 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
             PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_v_rec};
-            __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 896, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 916, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
             __Pyx_GOTREF(__pyx_t_1);
           } else
           #endif
           {
-            __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 896, __pyx_L1_error)
+            __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 916, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_8);
             __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_10); __pyx_t_10 = NULL;
             __Pyx_INCREF(__pyx_v_rec);
             __Pyx_GIVEREF(__pyx_v_rec);
             PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_v_rec);
-            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 896, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 916, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           }
@@ -15602,7 +16055,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
     }
     __pyx_L5:;
 
-    /* "Flares.pyx":897
+    /* "Flares.pyx":917
  *                     dirty.append(newrect)
  *                     dirty.append(rec)
  *             spritedict[spr] = newrect             # <<<<<<<<<<<<<<
@@ -15611,11 +16064,11 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
  */
     if (unlikely(__pyx_v_spritedict == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 897, __pyx_L1_error)
+      __PYX_ERR(0, 917, __pyx_L1_error)
     }
-    if (unlikely(PyDict_SetItem(__pyx_v_spritedict, __pyx_v_spr, __pyx_v_newrect) < 0)) __PYX_ERR(0, 897, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v_spritedict, __pyx_v_spr, __pyx_v_newrect) < 0)) __PYX_ERR(0, 917, __pyx_L1_error)
 
-    /* "Flares.pyx":886
+    /* "Flares.pyx":906
  *         self.lostsprites = []
  *         cdef object init_rect = self._init_rect
  *         for spr in self.sprites():             # <<<<<<<<<<<<<<
@@ -15625,7 +16078,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "Flares.pyx":898
+  /* "Flares.pyx":918
  *                     dirty.append(rec)
  *             spritedict[spr] = newrect
  *         return dirty             # <<<<<<<<<<<<<<
@@ -15637,7 +16090,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw(struct __pyx_obj_6FLARES_Layered
   __pyx_r = __pyx_v_dirty;
   goto __pyx_L0;
 
-  /* "Flares.pyx":881
+  /* "Flares.pyx":901
  *     @cython.nonecheck(False)
  *     @cython.cdivision(True)
  *     cpdef draw(self, surface):             # <<<<<<<<<<<<<<
@@ -15687,7 +16140,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_10draw(struct __pyx_obj_6FLAR
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("draw", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_draw(__pyx_v_self, __pyx_v_surface, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 881, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_draw(__pyx_v_self, __pyx_v_surface, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 901, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15708,7 +16161,7 @@ PyObject *__pyx_f_6FLARES_14LayeredUpdates_draw__pyx_wrap_1(struct __pyx_obj_6FL
   return __pyx_f_6FLARES_14LayeredUpdates_draw(__pyx_v_self, __pyx_v_surface, 0);
 }
 
-/* "Flares.pyx":900
+/* "Flares.pyx":920
  *         return dirty
  * 
  *     cdef get_sprites_at(self, pos):             # <<<<<<<<<<<<<<
@@ -15733,7 +16186,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_at(struct __pyx_ob
   PyObject *(*__pyx_t_7)(PyObject *);
   __Pyx_RefNannySetupContext("get_sprites_at", 0);
 
-  /* "Flares.pyx":908
+  /* "Flares.pyx":928
  * 
  *         """
  *         _sprites = self._spritelist             # <<<<<<<<<<<<<<
@@ -15745,14 +16198,14 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_at(struct __pyx_ob
   __pyx_v__sprites = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":909
+  /* "Flares.pyx":929
  *         """
  *         _sprites = self._spritelist
  *         rect = Rect(pos, (0, 0))             # <<<<<<<<<<<<<<
  *         cdef int colliding_idx = rect.collidelistall(_sprites)
  *         colliding = [_sprites[i] for i in colliding_idx]
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_Rect); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 909, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_Rect); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 929, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -15768,22 +16221,22 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_at(struct __pyx_ob
   }
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_pos, __pyx_tuple__5};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 909, __pyx_L1_error)
+    PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_pos, __pyx_tuple__8};
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 929, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_pos, __pyx_tuple__5};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 909, __pyx_L1_error)
+    PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_pos, __pyx_tuple__8};
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 929, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 909, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 929, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_3) {
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -15791,10 +16244,10 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_at(struct __pyx_ob
     __Pyx_INCREF(__pyx_v_pos);
     __Pyx_GIVEREF(__pyx_v_pos);
     PyTuple_SET_ITEM(__pyx_t_5, 0+__pyx_t_4, __pyx_v_pos);
-    __Pyx_INCREF(__pyx_tuple__5);
-    __Pyx_GIVEREF(__pyx_tuple__5);
-    PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_4, __pyx_tuple__5);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 909, __pyx_L1_error)
+    __Pyx_INCREF(__pyx_tuple__8);
+    __Pyx_GIVEREF(__pyx_tuple__8);
+    PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_4, __pyx_tuple__8);
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 929, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -15802,14 +16255,14 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_at(struct __pyx_ob
   __pyx_v_rect = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":910
+  /* "Flares.pyx":930
  *         _sprites = self._spritelist
  *         rect = Rect(pos, (0, 0))
  *         cdef int colliding_idx = rect.collidelistall(_sprites)             # <<<<<<<<<<<<<<
  *         colliding = [_sprites[i] for i in colliding_idx]
  *         return colliding
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rect, __pyx_n_s_collidelistall); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 910, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rect, __pyx_n_s_collidelistall); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 930, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -15822,13 +16275,13 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_at(struct __pyx_ob
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v__sprites); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 910, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v__sprites); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 930, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_v__sprites};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 910, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 930, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -15836,46 +16289,46 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_at(struct __pyx_ob
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_v__sprites};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 910, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 930, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 910, __pyx_L1_error)
+      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 930, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5); __pyx_t_5 = NULL;
       __Pyx_INCREF(__pyx_v__sprites);
       __Pyx_GIVEREF(__pyx_v__sprites);
       PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_v__sprites);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 910, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 930, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 910, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 930, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_colliding_idx = __pyx_t_4;
 
-  /* "Flares.pyx":911
+  /* "Flares.pyx":931
  *         rect = Rect(pos, (0, 0))
  *         cdef int colliding_idx = rect.collidelistall(_sprites)
  *         colliding = [_sprites[i] for i in colliding_idx]             # <<<<<<<<<<<<<<
  *         return colliding
  * 
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 911, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 931, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_colliding_idx); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 911, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_colliding_idx); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 931, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
     __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
   } else {
-    __pyx_t_6 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 911, __pyx_L1_error)
+    __pyx_t_6 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 931, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 911, __pyx_L1_error)
+    __pyx_t_7 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 931, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
@@ -15883,17 +16336,17 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_at(struct __pyx_ob
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 911, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 931, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 911, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 931, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 911, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 931, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 911, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 931, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -15903,7 +16356,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_at(struct __pyx_ob
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 911, __pyx_L1_error)
+          else __PYX_ERR(0, 931, __pyx_L1_error)
         }
         break;
       }
@@ -15913,18 +16366,18 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_at(struct __pyx_ob
     __pyx_t_2 = 0;
     if (unlikely(__pyx_v__sprites == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 911, __pyx_L1_error)
+      __PYX_ERR(0, 931, __pyx_L1_error)
     }
-    __pyx_t_2 = PyObject_GetItem(__pyx_v__sprites, __pyx_v_i); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 911, __pyx_L1_error)
+    __pyx_t_2 = PyObject_GetItem(__pyx_v__sprites, __pyx_v_i); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 931, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_2))) __PYX_ERR(0, 911, __pyx_L1_error)
+    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_2))) __PYX_ERR(0, 931, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_colliding = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":912
+  /* "Flares.pyx":932
  *         cdef int colliding_idx = rect.collidelistall(_sprites)
  *         colliding = [_sprites[i] for i in colliding_idx]
  *         return colliding             # <<<<<<<<<<<<<<
@@ -15936,7 +16389,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_at(struct __pyx_ob
   __pyx_r = __pyx_v_colliding;
   goto __pyx_L0;
 
-  /* "Flares.pyx":900
+  /* "Flares.pyx":920
  *         return dirty
  * 
  *     cdef get_sprites_at(self, pos):             # <<<<<<<<<<<<<<
@@ -15962,7 +16415,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_at(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "Flares.pyx":914
+/* "Flares.pyx":934
  *         return colliding
  * 
  *     cdef get_sprite(self, int idx):             # <<<<<<<<<<<<<<
@@ -15975,7 +16428,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprite(struct __pyx_obj_6F
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_sprite", 0);
 
-  /* "Flares.pyx":922
+  /* "Flares.pyx":942
  * 
  *         """
  *         return self._spritelist[idx]             # <<<<<<<<<<<<<<
@@ -15985,13 +16438,13 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprite(struct __pyx_obj_6F
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(__pyx_v_self->_spritelist == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 922, __pyx_L1_error)
+    __PYX_ERR(0, 942, __pyx_L1_error)
   }
   __Pyx_INCREF(PyList_GET_ITEM(__pyx_v_self->_spritelist, __pyx_v_idx));
   __pyx_r = PyList_GET_ITEM(__pyx_v_self->_spritelist, __pyx_v_idx);
   goto __pyx_L0;
 
-  /* "Flares.pyx":914
+  /* "Flares.pyx":934
  *         return colliding
  * 
  *     cdef get_sprite(self, int idx):             # <<<<<<<<<<<<<<
@@ -16009,7 +16462,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprite(struct __pyx_obj_6F
   return __pyx_r;
 }
 
-/* "Flares.pyx":924
+/* "Flares.pyx":944
  *         return self._spritelist[idx]
  * 
  *     cdef remove_sprites_of_layer(self, int layer_nr):             # <<<<<<<<<<<<<<
@@ -16025,36 +16478,36 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_sprites_of_layer(struct
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("remove_sprites_of_layer", 0);
 
-  /* "Flares.pyx":930
+  /* "Flares.pyx":950
  * 
  *         """
  *         sprites = self.get_sprites_from_layer(layer_nr)             # <<<<<<<<<<<<<<
  *         self.remove(tuple(sprites))
  *         return sprites
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_layer_nr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 930, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_layer_nr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 950, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->get_sprites_from_layer(__pyx_v_self, __pyx_t_1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 930, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->get_sprites_from_layer(__pyx_v_self, __pyx_t_1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 950, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_sprites = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "Flares.pyx":931
+  /* "Flares.pyx":951
  *         """
  *         sprites = self.get_sprites_from_layer(layer_nr)
  *         self.remove(tuple(sprites))             # <<<<<<<<<<<<<<
  *         return sprites
  * 
  */
-  __pyx_t_2 = __Pyx_PySequence_Tuple(__pyx_v_sprites); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 931, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PySequence_Tuple(__pyx_v_sprites); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 951, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->__pyx_base.remove(((struct __pyx_obj_6FLARES_AbstractGroup *)__pyx_v_self), ((PyObject*)__pyx_t_2)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 931, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->__pyx_base.remove(((struct __pyx_obj_6FLARES_AbstractGroup *)__pyx_v_self), ((PyObject*)__pyx_t_2)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 951, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":932
+  /* "Flares.pyx":952
  *         sprites = self.get_sprites_from_layer(layer_nr)
  *         self.remove(tuple(sprites))
  *         return sprites             # <<<<<<<<<<<<<<
@@ -16066,7 +16519,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_sprites_of_layer(struct
   __pyx_r = __pyx_v_sprites;
   goto __pyx_L0;
 
-  /* "Flares.pyx":924
+  /* "Flares.pyx":944
  *         return self._spritelist[idx]
  * 
  *     cdef remove_sprites_of_layer(self, int layer_nr):             # <<<<<<<<<<<<<<
@@ -16087,7 +16540,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_remove_sprites_of_layer(struct
   return __pyx_r;
 }
 
-/* "Flares.pyx":935
+/* "Flares.pyx":955
  * 
  *     #---# layer methods
  *     cpdef layers(self):             # <<<<<<<<<<<<<<
@@ -16109,7 +16562,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_layers(struct __pyx_obj_6FLARE
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_layers); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 935, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_layers); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 955, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_13layers)) {
       __Pyx_XDECREF(__pyx_r);
@@ -16125,10 +16578,10 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_layers(struct __pyx_obj_6FLARE
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 935, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 955, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 935, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 955, __pyx_L1_error)
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -16140,7 +16593,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_layers(struct __pyx_obj_6FLARE
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":941
+  /* "Flares.pyx":961
  * 
  *         """
  *         return sorted(set(self._spritelayers.values()))             # <<<<<<<<<<<<<<
@@ -16150,24 +16603,24 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_layers(struct __pyx_obj_6FLARE
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(__pyx_v_self->_spritelayers == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "values");
-    __PYX_ERR(0, 941, __pyx_L1_error)
+    __PYX_ERR(0, 961, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyDict_Values(__pyx_v_self->_spritelayers); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 941, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_Values(__pyx_v_self->_spritelayers); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 961, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PySet_New(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 941, __pyx_L1_error)
+  __pyx_t_3 = PySet_New(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 961, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PySequence_List(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 941, __pyx_L1_error)
+  __pyx_t_2 = PySequence_List(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 961, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_1 = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_5 = PyList_Sort(__pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 941, __pyx_L1_error)
+  __pyx_t_5 = PyList_Sort(__pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 961, __pyx_L1_error)
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "Flares.pyx":935
+  /* "Flares.pyx":955
  * 
  *     #---# layer methods
  *     cpdef layers(self):             # <<<<<<<<<<<<<<
@@ -16209,7 +16662,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_12layers(struct __pyx_obj_6FL
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("layers", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_layers(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 935, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_layers(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 955, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16226,7 +16679,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_12layers(struct __pyx_obj_6FL
   return __pyx_r;
 }
 
-/* "Flares.pyx":943
+/* "Flares.pyx":963
  *         return sorted(set(self._spritelayers.values()))
  * 
  *     cpdef change_layer(self, sprite, new_layer):             # <<<<<<<<<<<<<<
@@ -16259,7 +16712,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_change_layer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 943, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_change_layer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 963, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_15change_layer)) {
       __Pyx_XDECREF(__pyx_r);
@@ -16279,7 +16732,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_sprite, __pyx_v_new_layer};
-        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 943, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 963, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_2);
       } else
@@ -16287,13 +16740,13 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_sprite, __pyx_v_new_layer};
-        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 943, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 963, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_2);
       } else
       #endif
       {
-        __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 943, __pyx_L1_error)
+        __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 963, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         if (__pyx_t_4) {
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -16304,7 +16757,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
         __Pyx_INCREF(__pyx_v_new_layer);
         __Pyx_GIVEREF(__pyx_v_new_layer);
         PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_new_layer);
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 943, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 963, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       }
@@ -16317,7 +16770,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":952
+  /* "Flares.pyx":972
  * 
  *         """
  *         cdef list sprites = self._spritelist # speedup             # <<<<<<<<<<<<<<
@@ -16329,7 +16782,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
   __pyx_v_sprites = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":953
+  /* "Flares.pyx":973
  *         """
  *         cdef list sprites = self._spritelist # speedup
  *         cdef dict sprites_layers = self._spritelayers # speedup             # <<<<<<<<<<<<<<
@@ -16341,14 +16794,14 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
   __pyx_v_sprites_layers = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":955
+  /* "Flares.pyx":975
  *         cdef dict sprites_layers = self._spritelayers # speedup
  * 
  *         sprites.remove(sprite)             # <<<<<<<<<<<<<<
  *         sprites_layers.pop(sprite)
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprites, __pyx_n_s_remove); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 955, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprites, __pyx_n_s_remove); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 975, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -16361,13 +16814,13 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_sprite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 955, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_sprite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 975, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_sprite};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 955, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 975, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -16375,19 +16828,19 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_sprite};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 955, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 975, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 955, __pyx_L1_error)
+      __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 975, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_INCREF(__pyx_v_sprite);
       __Pyx_GIVEREF(__pyx_v_sprite);
       PyTuple_SET_ITEM(__pyx_t_6, 0+1, __pyx_v_sprite);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 955, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 975, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
@@ -16395,14 +16848,14 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":956
+  /* "Flares.pyx":976
  * 
  *         sprites.remove(sprite)
  *         sprites_layers.pop(sprite)             # <<<<<<<<<<<<<<
  * 
  *         # add the sprite at the right position
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprites_layers, __pyx_n_s_pop); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 956, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprites_layers, __pyx_n_s_pop); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 976, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_6 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -16415,13 +16868,13 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
     }
   }
   if (!__pyx_t_6) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_sprite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 956, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_sprite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 976, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_6, __pyx_v_sprite};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 956, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 976, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -16429,19 +16882,19 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_6, __pyx_v_sprite};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 956, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 976, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 956, __pyx_L1_error)
+      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 976, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_6); __pyx_t_6 = NULL;
       __Pyx_INCREF(__pyx_v_sprite);
       __Pyx_GIVEREF(__pyx_v_sprite);
       PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_v_sprite);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 956, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 976, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
@@ -16449,7 +16902,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":960
+  /* "Flares.pyx":980
  *         # add the sprite at the right position
  *         # bisect algorithmus
  *         cdef int leng = len(sprites)             # <<<<<<<<<<<<<<
@@ -16458,12 +16911,12 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
  */
   if (unlikely(__pyx_v_sprites == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 960, __pyx_L1_error)
+    __PYX_ERR(0, 980, __pyx_L1_error)
   }
-  __pyx_t_7 = PyList_GET_SIZE(__pyx_v_sprites); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 960, __pyx_L1_error)
+  __pyx_t_7 = PyList_GET_SIZE(__pyx_v_sprites); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 980, __pyx_L1_error)
   __pyx_v_leng = __pyx_t_7;
 
-  /* "Flares.pyx":961
+  /* "Flares.pyx":981
  *         # bisect algorithmus
  *         cdef int leng = len(sprites)
  *         cdef int low = 0, mid = 0             # <<<<<<<<<<<<<<
@@ -16473,7 +16926,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
   __pyx_v_low = 0;
   __pyx_v_mid = 0;
 
-  /* "Flares.pyx":962
+  /* "Flares.pyx":982
  *         cdef int leng = len(sprites)
  *         cdef int low = 0, mid = 0
  *         cdef int high = leng -1             # <<<<<<<<<<<<<<
@@ -16482,7 +16935,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
  */
   __pyx_v_high = (__pyx_v_leng - 1);
 
-  /* "Flares.pyx":963
+  /* "Flares.pyx":983
  *         cdef int low = 0, mid = 0
  *         cdef int high = leng -1
  *         while low <= high:             # <<<<<<<<<<<<<<
@@ -16493,7 +16946,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
     __pyx_t_8 = ((__pyx_v_low <= __pyx_v_high) != 0);
     if (!__pyx_t_8) break;
 
-    /* "Flares.pyx":964
+    /* "Flares.pyx":984
  *         cdef int high = leng -1
  *         while low <= high:
  *             mid = low + ((high - low) >> 1)             # <<<<<<<<<<<<<<
@@ -16502,7 +16955,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
  */
     __pyx_v_mid = (__pyx_v_low + ((__pyx_v_high - __pyx_v_low) >> 1));
 
-    /* "Flares.pyx":965
+    /* "Flares.pyx":985
  *         while low <= high:
  *             mid = low + ((high - low) >> 1)
  *             if sprites_layers[sprites[mid]] <= new_layer:             # <<<<<<<<<<<<<<
@@ -16511,21 +16964,21 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
  */
     if (unlikely(__pyx_v_sprites_layers == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 965, __pyx_L1_error)
+      __PYX_ERR(0, 985, __pyx_L1_error)
     }
     if (unlikely(__pyx_v_sprites == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 965, __pyx_L1_error)
+      __PYX_ERR(0, 985, __pyx_L1_error)
     }
-    __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_sprites_layers, PyList_GET_ITEM(__pyx_v_sprites, __pyx_v_mid)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 965, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_sprites_layers, PyList_GET_ITEM(__pyx_v_sprites, __pyx_v_mid)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 985, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_v_new_layer, Py_LE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 965, __pyx_L1_error)
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_v_new_layer, Py_LE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 985, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 965, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 985, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (__pyx_t_8) {
 
-      /* "Flares.pyx":966
+      /* "Flares.pyx":986
  *             mid = low + ((high - low) >> 1)
  *             if sprites_layers[sprites[mid]] <= new_layer:
  *                 low = mid + 1             # <<<<<<<<<<<<<<
@@ -16534,7 +16987,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
  */
       __pyx_v_low = (__pyx_v_mid + 1);
 
-      /* "Flares.pyx":965
+      /* "Flares.pyx":985
  *         while low <= high:
  *             mid = low + ((high - low) >> 1)
  *             if sprites_layers[sprites[mid]] <= new_layer:             # <<<<<<<<<<<<<<
@@ -16544,7 +16997,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
       goto __pyx_L5;
     }
 
-    /* "Flares.pyx":968
+    /* "Flares.pyx":988
  *                 low = mid + 1
  *             else:
  *                 high = mid - 1             # <<<<<<<<<<<<<<
@@ -16557,7 +17010,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
     __pyx_L5:;
   }
 
-  /* "Flares.pyx":970
+  /* "Flares.pyx":990
  *                 high = mid - 1
  *         # linear search to find final position
  *         while mid < leng and sprites_layers[sprites[mid]] <= new_layer:             # <<<<<<<<<<<<<<
@@ -16573,23 +17026,23 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
     }
     if (unlikely(__pyx_v_sprites_layers == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 970, __pyx_L1_error)
+      __PYX_ERR(0, 990, __pyx_L1_error)
     }
     if (unlikely(__pyx_v_sprites == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 970, __pyx_L1_error)
+      __PYX_ERR(0, 990, __pyx_L1_error)
     }
-    __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_sprites_layers, PyList_GET_ITEM(__pyx_v_sprites, __pyx_v_mid)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 970, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_sprites_layers, PyList_GET_ITEM(__pyx_v_sprites, __pyx_v_mid)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 990, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_v_new_layer, Py_LE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 970, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_v_new_layer, Py_LE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 990, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 970, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 990, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_8 = __pyx_t_9;
     __pyx_L8_bool_binop_done:;
     if (!__pyx_t_8) break;
 
-    /* "Flares.pyx":971
+    /* "Flares.pyx":991
  *         # linear search to find final position
  *         while mid < leng and sprites_layers[sprites[mid]] <= new_layer:
  *             mid += 1             # <<<<<<<<<<<<<<
@@ -16599,7 +17052,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
     __pyx_v_mid = (__pyx_v_mid + 1);
   }
 
-  /* "Flares.pyx":972
+  /* "Flares.pyx":992
  *         while mid < leng and sprites_layers[sprites[mid]] <= new_layer:
  *             mid += 1
  *         sprites.insert(mid, sprite)             # <<<<<<<<<<<<<<
@@ -16608,31 +17061,31 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
  */
   if (unlikely(__pyx_v_sprites == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "insert");
-    __PYX_ERR(0, 972, __pyx_L1_error)
+    __PYX_ERR(0, 992, __pyx_L1_error)
   }
-  __pyx_t_10 = PyList_Insert(__pyx_v_sprites, __pyx_v_mid, __pyx_v_sprite); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 972, __pyx_L1_error)
+  __pyx_t_10 = PyList_Insert(__pyx_v_sprites, __pyx_v_mid, __pyx_v_sprite); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 992, __pyx_L1_error)
 
-  /* "Flares.pyx":973
+  /* "Flares.pyx":993
  *             mid += 1
  *         sprites.insert(mid, sprite)
  *         if hasattr(sprite, 'layer'):             # <<<<<<<<<<<<<<
  *             sprite.layer = new_layer
  * 
  */
-  __pyx_t_8 = __Pyx_HasAttr(__pyx_v_sprite, __pyx_n_s_layer); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 973, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_HasAttr(__pyx_v_sprite, __pyx_n_s_layer); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 993, __pyx_L1_error)
   __pyx_t_9 = (__pyx_t_8 != 0);
   if (__pyx_t_9) {
 
-    /* "Flares.pyx":974
+    /* "Flares.pyx":994
  *         sprites.insert(mid, sprite)
  *         if hasattr(sprite, 'layer'):
  *             sprite.layer = new_layer             # <<<<<<<<<<<<<<
  * 
  *         # add layer info
  */
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_sprite, __pyx_n_s_layer, __pyx_v_new_layer) < 0) __PYX_ERR(0, 974, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_sprite, __pyx_n_s_layer, __pyx_v_new_layer) < 0) __PYX_ERR(0, 994, __pyx_L1_error)
 
-    /* "Flares.pyx":973
+    /* "Flares.pyx":993
  *             mid += 1
  *         sprites.insert(mid, sprite)
  *         if hasattr(sprite, 'layer'):             # <<<<<<<<<<<<<<
@@ -16641,7 +17094,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
  */
   }
 
-  /* "Flares.pyx":977
+  /* "Flares.pyx":997
  * 
  *         # add layer info
  *         sprites_layers[sprite] = new_layer             # <<<<<<<<<<<<<<
@@ -16650,11 +17103,11 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_change_layer(struct __pyx_obj_
  */
   if (unlikely(__pyx_v_sprites_layers == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 977, __pyx_L1_error)
+    __PYX_ERR(0, 997, __pyx_L1_error)
   }
-  if (unlikely(PyDict_SetItem(__pyx_v_sprites_layers, __pyx_v_sprite, __pyx_v_new_layer) < 0)) __PYX_ERR(0, 977, __pyx_L1_error)
+  if (unlikely(PyDict_SetItem(__pyx_v_sprites_layers, __pyx_v_sprite, __pyx_v_new_layer) < 0)) __PYX_ERR(0, 997, __pyx_L1_error)
 
-  /* "Flares.pyx":943
+  /* "Flares.pyx":963
  *         return sorted(set(self._spritelayers.values()))
  * 
  *     cpdef change_layer(self, sprite, new_layer):             # <<<<<<<<<<<<<<
@@ -16713,11 +17166,11 @@ static PyObject *__pyx_pw_6FLARES_14LayeredUpdates_15change_layer(PyObject *__py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_new_layer)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("change_layer", 1, 2, 2, 1); __PYX_ERR(0, 943, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("change_layer", 1, 2, 2, 1); __PYX_ERR(0, 963, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "change_layer") < 0)) __PYX_ERR(0, 943, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "change_layer") < 0)) __PYX_ERR(0, 963, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -16730,7 +17183,7 @@ static PyObject *__pyx_pw_6FLARES_14LayeredUpdates_15change_layer(PyObject *__py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("change_layer", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 943, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("change_layer", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 963, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("FLARES.LayeredUpdates.change_layer", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -16749,7 +17202,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_14change_layer(struct __pyx_o
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("change_layer", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_change_layer(__pyx_v_self, __pyx_v_sprite, __pyx_v_new_layer, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 943, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_change_layer(__pyx_v_self, __pyx_v_sprite, __pyx_v_new_layer, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 963, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16766,7 +17219,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_14change_layer(struct __pyx_o
   return __pyx_r;
 }
 
-/* "Flares.pyx":979
+/* "Flares.pyx":999
  *         sprites_layers[sprite] = new_layer
  * 
  *     cpdef get_layer_of_sprite(self, sprite):             # <<<<<<<<<<<<<<
@@ -16788,7 +17241,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_layer_of_sprite(struct __p
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_layer_of_sprite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 979, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_layer_of_sprite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 999, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_17get_layer_of_sprite)) {
       __Pyx_XDECREF(__pyx_r);
@@ -16804,13 +17257,13 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_layer_of_sprite(struct __p
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 979, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 999, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_sprite};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 979, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 999, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -16818,19 +17271,19 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_layer_of_sprite(struct __p
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_sprite};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 979, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 999, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 979, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 999, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(__pyx_v_sprite);
           __Pyx_GIVEREF(__pyx_v_sprite);
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_sprite);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 979, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 999, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
@@ -16844,7 +17297,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_layer_of_sprite(struct __p
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":985
+  /* "Flares.pyx":1005
  * 
  *         """
  *         return self._spritelayers.get(sprite, self._default_layer)             # <<<<<<<<<<<<<<
@@ -16854,18 +17307,18 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_layer_of_sprite(struct __p
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(__pyx_v_self->_spritelayers == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "get");
-    __PYX_ERR(0, 985, __pyx_L1_error)
+    __PYX_ERR(0, 1005, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->_default_layer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 985, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->_default_layer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1005, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_self->_spritelayers, __pyx_v_sprite, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 985, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_self->_spritelayers, __pyx_v_sprite, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1005, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "Flares.pyx":979
+  /* "Flares.pyx":999
  *         sprites_layers[sprite] = new_layer
  * 
  *     cpdef get_layer_of_sprite(self, sprite):             # <<<<<<<<<<<<<<
@@ -16908,7 +17361,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_16get_layer_of_sprite(struct 
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("get_layer_of_sprite", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_get_layer_of_sprite(__pyx_v_self, __pyx_v_sprite, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 979, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_get_layer_of_sprite(__pyx_v_self, __pyx_v_sprite, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 999, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16925,7 +17378,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_16get_layer_of_sprite(struct 
   return __pyx_r;
 }
 
-/* "Flares.pyx":987
+/* "Flares.pyx":1007
  *         return self._spritelayers.get(sprite, self._default_layer)
  * 
  *     cpdef get_top_layer(self):             # <<<<<<<<<<<<<<
@@ -16946,7 +17399,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_top_layer(struct __pyx_obj
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_top_layer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 987, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_top_layer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1007, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_19get_top_layer)) {
       __Pyx_XDECREF(__pyx_r);
@@ -16962,10 +17415,10 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_top_layer(struct __pyx_obj
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 987, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1007, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 987, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1007, __pyx_L1_error)
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -16977,7 +17430,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_top_layer(struct __pyx_obj
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":993
+  /* "Flares.pyx":1013
  * 
  *         """
  *         return self._spritelayers[self._spritelist[-1]]             # <<<<<<<<<<<<<<
@@ -16987,19 +17440,19 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_top_layer(struct __pyx_obj
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(__pyx_v_self->_spritelayers == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 993, __pyx_L1_error)
+    __PYX_ERR(0, 1013, __pyx_L1_error)
   }
   if (unlikely(__pyx_v_self->_spritelist == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 993, __pyx_L1_error)
+    __PYX_ERR(0, 1013, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_self->_spritelayers, PyList_GET_ITEM(__pyx_v_self->_spritelist, -1L)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 993, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_self->_spritelayers, PyList_GET_ITEM(__pyx_v_self->_spritelist, -1L)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1013, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "Flares.pyx":987
+  /* "Flares.pyx":1007
  *         return self._spritelayers.get(sprite, self._default_layer)
  * 
  *     cpdef get_top_layer(self):             # <<<<<<<<<<<<<<
@@ -17041,7 +17494,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_18get_top_layer(struct __pyx_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("get_top_layer", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_get_top_layer(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 987, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_get_top_layer(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1007, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -17058,7 +17511,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_18get_top_layer(struct __pyx_
   return __pyx_r;
 }
 
-/* "Flares.pyx":995
+/* "Flares.pyx":1015
  *         return self._spritelayers[self._spritelist[-1]]
  * 
  *     cpdef get_bottom_layer(self):             # <<<<<<<<<<<<<<
@@ -17079,7 +17532,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_bottom_layer(struct __pyx_
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_bottom_layer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 995, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_bottom_layer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1015, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_21get_bottom_layer)) {
       __Pyx_XDECREF(__pyx_r);
@@ -17095,10 +17548,10 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_bottom_layer(struct __pyx_
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 995, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1015, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 995, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1015, __pyx_L1_error)
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -17110,7 +17563,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_bottom_layer(struct __pyx_
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":1001
+  /* "Flares.pyx":1021
  * 
  *         """
  *         return self._spritelayers[self._spritelist[0]]             # <<<<<<<<<<<<<<
@@ -17120,19 +17573,19 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_bottom_layer(struct __pyx_
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(__pyx_v_self->_spritelayers == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 1001, __pyx_L1_error)
+    __PYX_ERR(0, 1021, __pyx_L1_error)
   }
   if (unlikely(__pyx_v_self->_spritelist == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 1001, __pyx_L1_error)
+    __PYX_ERR(0, 1021, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_self->_spritelayers, PyList_GET_ITEM(__pyx_v_self->_spritelist, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1001, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_self->_spritelayers, PyList_GET_ITEM(__pyx_v_self->_spritelist, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1021, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "Flares.pyx":995
+  /* "Flares.pyx":1015
  *         return self._spritelayers[self._spritelist[-1]]
  * 
  *     cpdef get_bottom_layer(self):             # <<<<<<<<<<<<<<
@@ -17174,7 +17627,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_20get_bottom_layer(struct __p
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("get_bottom_layer", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_get_bottom_layer(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 995, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_get_bottom_layer(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1015, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -17191,7 +17644,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_20get_bottom_layer(struct __p
   return __pyx_r;
 }
 
-/* "Flares.pyx":1003
+/* "Flares.pyx":1023
  *         return self._spritelayers[self._spritelist[0]]
  * 
  *     cpdef move_to_front(self, sprite):             # <<<<<<<<<<<<<<
@@ -17213,7 +17666,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_move_to_front(struct __pyx_obj
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_move_to_front); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1003, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_move_to_front); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1023, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_23move_to_front)) {
       __Pyx_XDECREF(__pyx_r);
@@ -17229,13 +17682,13 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_move_to_front(struct __pyx_obj
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1003, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1023, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_sprite};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1003, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1023, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -17243,19 +17696,19 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_move_to_front(struct __pyx_obj
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_sprite};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1003, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1023, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1003, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1023, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(__pyx_v_sprite);
           __Pyx_GIVEREF(__pyx_v_sprite);
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_sprite);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1003, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1023, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
@@ -17269,21 +17722,21 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_move_to_front(struct __pyx_obj
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":1013
+  /* "Flares.pyx":1033
  * 
  *         """
  *         self.change_layer(sprite, self.get_top_layer())             # <<<<<<<<<<<<<<
  * 
  *     cpdef move_to_back(self, sprite):
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->get_top_layer(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1013, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->get_top_layer(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1033, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->change_layer(__pyx_v_self, __pyx_v_sprite, __pyx_t_1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1013, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->change_layer(__pyx_v_self, __pyx_v_sprite, __pyx_t_1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1033, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "Flares.pyx":1003
+  /* "Flares.pyx":1023
  *         return self._spritelayers[self._spritelist[0]]
  * 
  *     cpdef move_to_front(self, sprite):             # <<<<<<<<<<<<<<
@@ -17328,7 +17781,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_22move_to_front(struct __pyx_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("move_to_front", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_move_to_front(__pyx_v_self, __pyx_v_sprite, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1003, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_move_to_front(__pyx_v_self, __pyx_v_sprite, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1023, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -17345,7 +17798,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_22move_to_front(struct __pyx_
   return __pyx_r;
 }
 
-/* "Flares.pyx":1015
+/* "Flares.pyx":1035
  *         self.change_layer(sprite, self.get_top_layer())
  * 
  *     cpdef move_to_back(self, sprite):             # <<<<<<<<<<<<<<
@@ -17367,7 +17820,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_move_to_back(struct __pyx_obj_
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_move_to_back); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1015, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_move_to_back); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1035, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_25move_to_back)) {
       __Pyx_XDECREF(__pyx_r);
@@ -17383,13 +17836,13 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_move_to_back(struct __pyx_obj_
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1015, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_sprite); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1035, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_sprite};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1015, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1035, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -17397,19 +17850,19 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_move_to_back(struct __pyx_obj_
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_sprite};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1015, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1035, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1015, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1035, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(__pyx_v_sprite);
           __Pyx_GIVEREF(__pyx_v_sprite);
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_sprite);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1015, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1035, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
@@ -17423,24 +17876,24 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_move_to_back(struct __pyx_obj_
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":1024
+  /* "Flares.pyx":1044
  * 
  *         """
  *         self.change_layer(sprite, self.get_bottom_layer() - 1)             # <<<<<<<<<<<<<<
  * 
  *     cpdef get_top_sprite(self):
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->get_bottom_layer(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1024, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->get_bottom_layer(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1044, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_SubtractObjC(__pyx_t_1, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1024, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_SubtractObjC(__pyx_t_1, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1044, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->change_layer(__pyx_v_self, __pyx_v_sprite, __pyx_t_2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1024, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->change_layer(__pyx_v_self, __pyx_v_sprite, __pyx_t_2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1044, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":1015
+  /* "Flares.pyx":1035
  *         self.change_layer(sprite, self.get_top_layer())
  * 
  *     cpdef move_to_back(self, sprite):             # <<<<<<<<<<<<<<
@@ -17485,7 +17938,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_24move_to_back(struct __pyx_o
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("move_to_back", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_move_to_back(__pyx_v_self, __pyx_v_sprite, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1015, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_move_to_back(__pyx_v_self, __pyx_v_sprite, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1035, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -17502,7 +17955,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_24move_to_back(struct __pyx_o
   return __pyx_r;
 }
 
-/* "Flares.pyx":1026
+/* "Flares.pyx":1046
  *         self.change_layer(sprite, self.get_bottom_layer() - 1)
  * 
  *     cpdef get_top_sprite(self):             # <<<<<<<<<<<<<<
@@ -17523,7 +17976,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_top_sprite(struct __pyx_ob
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_top_sprite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1026, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_top_sprite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1046, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_27get_top_sprite)) {
       __Pyx_XDECREF(__pyx_r);
@@ -17539,10 +17992,10 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_top_sprite(struct __pyx_ob
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1026, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1046, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1026, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1046, __pyx_L1_error)
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -17554,7 +18007,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_top_sprite(struct __pyx_ob
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":1032
+  /* "Flares.pyx":1052
  * 
  *         """
  *         return self._spritelist[-1]             # <<<<<<<<<<<<<<
@@ -17564,13 +18017,13 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_top_sprite(struct __pyx_ob
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(__pyx_v_self->_spritelist == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 1032, __pyx_L1_error)
+    __PYX_ERR(0, 1052, __pyx_L1_error)
   }
   __Pyx_INCREF(PyList_GET_ITEM(__pyx_v_self->_spritelist, -1L));
   __pyx_r = PyList_GET_ITEM(__pyx_v_self->_spritelist, -1L);
   goto __pyx_L0;
 
-  /* "Flares.pyx":1026
+  /* "Flares.pyx":1046
  *         self.change_layer(sprite, self.get_bottom_layer() - 1)
  * 
  *     cpdef get_top_sprite(self):             # <<<<<<<<<<<<<<
@@ -17612,7 +18065,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_26get_top_sprite(struct __pyx
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("get_top_sprite", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_get_top_sprite(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1026, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_get_top_sprite(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1046, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -17629,7 +18082,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_26get_top_sprite(struct __pyx
   return __pyx_r;
 }
 
-/* "Flares.pyx":1034
+/* "Flares.pyx":1054
  *         return self._spritelist[-1]
  * 
  *     cpdef get_sprites_from_layer(self, layer):             # <<<<<<<<<<<<<<
@@ -17658,7 +18111,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(struct 
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_sprites_from_layer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1034, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_sprites_from_layer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1054, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_29get_sprites_from_layer)) {
       __Pyx_XDECREF(__pyx_r);
@@ -17674,13 +18127,13 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(struct 
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_layer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1034, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_layer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1054, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_layer};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1034, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1054, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -17688,19 +18141,19 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(struct 
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_layer};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1034, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1054, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1034, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1054, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
           __Pyx_INCREF(__pyx_v_layer);
           __Pyx_GIVEREF(__pyx_v_layer);
           PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_layer);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1034, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1054, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
@@ -17714,31 +18167,31 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(struct 
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":1044
+  /* "Flares.pyx":1064
  * 
  *         """
  *         sprites = []             # <<<<<<<<<<<<<<
  *         sprites_append = sprites.append
  *         sprite_layers = self._spritelayers
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1044, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1064, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_sprites = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":1045
+  /* "Flares.pyx":1065
  *         """
  *         sprites = []
  *         sprites_append = sprites.append             # <<<<<<<<<<<<<<
  *         sprite_layers = self._spritelayers
  *         for spr in self._spritelist:
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprites, __pyx_n_s_append); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1045, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprites, __pyx_n_s_append); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1065, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_sprites_append = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":1046
+  /* "Flares.pyx":1066
  *         sprites = []
  *         sprites_append = sprites.append
  *         sprite_layers = self._spritelayers             # <<<<<<<<<<<<<<
@@ -17750,7 +18203,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(struct 
   __pyx_v_sprite_layers = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":1047
+  /* "Flares.pyx":1067
  *         sprites_append = sprites.append
  *         sprite_layers = self._spritelayers
  *         for spr in self._spritelist:             # <<<<<<<<<<<<<<
@@ -17759,21 +18212,21 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(struct 
  */
   if (unlikely(__pyx_v_self->_spritelist == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 1047, __pyx_L1_error)
+    __PYX_ERR(0, 1067, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_v_self->_spritelist; __Pyx_INCREF(__pyx_t_1); __pyx_t_6 = 0;
   for (;;) {
     if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_1)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 1047, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 1067, __pyx_L1_error)
     #else
-    __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1047, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1067, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
     __Pyx_XDECREF_SET(__pyx_v_spr, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "Flares.pyx":1048
+    /* "Flares.pyx":1068
  *         sprite_layers = self._spritelayers
  *         for spr in self._spritelist:
  *             if sprite_layers[spr] == layer:             # <<<<<<<<<<<<<<
@@ -17782,26 +18235,26 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(struct 
  */
     if (unlikely(__pyx_v_sprite_layers == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 1048, __pyx_L1_error)
+      __PYX_ERR(0, 1068, __pyx_L1_error)
     }
-    __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_sprite_layers, __pyx_v_spr); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1048, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_sprite_layers, __pyx_v_spr); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1068, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_v_layer, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1048, __pyx_L1_error)
+    __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_v_layer, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1068, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 1048, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 1068, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_7) {
 
-      /* "Flares.pyx":1049
+      /* "Flares.pyx":1069
  *         for spr in self._spritelist:
  *             if sprite_layers[spr] == layer:
  *                 sprites_append(spr)             # <<<<<<<<<<<<<<
  *             elif sprite_layers[spr] > layer:# break after because no other will
  *                                             # follow with same layer
  */
-      __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_sprites, __pyx_v_spr); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 1049, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_sprites, __pyx_v_spr); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 1069, __pyx_L1_error)
 
-      /* "Flares.pyx":1048
+      /* "Flares.pyx":1068
  *         sprite_layers = self._spritelayers
  *         for spr in self._spritelist:
  *             if sprite_layers[spr] == layer:             # <<<<<<<<<<<<<<
@@ -17811,7 +18264,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(struct 
       goto __pyx_L5;
     }
 
-    /* "Flares.pyx":1050
+    /* "Flares.pyx":1070
  *             if sprite_layers[spr] == layer:
  *                 sprites_append(spr)
  *             elif sprite_layers[spr] > layer:# break after because no other will             # <<<<<<<<<<<<<<
@@ -17820,17 +18273,17 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(struct 
  */
     if (unlikely(__pyx_v_sprite_layers == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 1050, __pyx_L1_error)
+      __PYX_ERR(0, 1070, __pyx_L1_error)
     }
-    __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_sprite_layers, __pyx_v_spr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1050, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_sprite_layers, __pyx_v_spr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1070, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_3, __pyx_v_layer, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1050, __pyx_L1_error)
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_3, __pyx_v_layer, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1070, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 1050, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 1070, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (__pyx_t_7) {
 
-      /* "Flares.pyx":1052
+      /* "Flares.pyx":1072
  *             elif sprite_layers[spr] > layer:# break after because no other will
  *                                             # follow with same layer
  *                 break             # <<<<<<<<<<<<<<
@@ -17839,7 +18292,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(struct 
  */
       goto __pyx_L4_break;
 
-      /* "Flares.pyx":1050
+      /* "Flares.pyx":1070
  *             if sprite_layers[spr] == layer:
  *                 sprites_append(spr)
  *             elif sprite_layers[spr] > layer:# break after because no other will             # <<<<<<<<<<<<<<
@@ -17849,7 +18302,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(struct 
     }
     __pyx_L5:;
 
-    /* "Flares.pyx":1047
+    /* "Flares.pyx":1067
  *         sprites_append = sprites.append
  *         sprite_layers = self._spritelayers
  *         for spr in self._spritelist:             # <<<<<<<<<<<<<<
@@ -17860,7 +18313,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(struct 
   __pyx_L4_break:;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Flares.pyx":1053
+  /* "Flares.pyx":1073
  *                                             # follow with same layer
  *                 break
  *         return sprites             # <<<<<<<<<<<<<<
@@ -17872,7 +18325,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(struct 
   __pyx_r = __pyx_v_sprites;
   goto __pyx_L0;
 
-  /* "Flares.pyx":1034
+  /* "Flares.pyx":1054
  *         return self._spritelist[-1]
  * 
  *     cpdef get_sprites_from_layer(self, layer):             # <<<<<<<<<<<<<<
@@ -17919,7 +18372,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_28get_sprites_from_layer(stru
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("get_sprites_from_layer", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(__pyx_v_self, __pyx_v_layer, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1034, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer(__pyx_v_self, __pyx_v_layer, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1054, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -17936,7 +18389,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_28get_sprites_from_layer(stru
   return __pyx_r;
 }
 
-/* "Flares.pyx":1055
+/* "Flares.pyx":1075
  *         return sprites
  * 
  *     cpdef switch_layer(self, layer1_nr, layer2_nr):             # <<<<<<<<<<<<<<
@@ -17964,7 +18417,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_switch_layer(struct __pyx_obj_
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_switch_layer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1055, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_switch_layer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1075, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6FLARES_14LayeredUpdates_31switch_layer)) {
       __Pyx_XDECREF(__pyx_r);
@@ -17984,7 +18437,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_switch_layer(struct __pyx_obj_
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_layer1_nr, __pyx_v_layer2_nr};
-        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1055, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1075, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_2);
       } else
@@ -17992,13 +18445,13 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_switch_layer(struct __pyx_obj_
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_layer1_nr, __pyx_v_layer2_nr};
-        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1055, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1075, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_2);
       } else
       #endif
       {
-        __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1055, __pyx_L1_error)
+        __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1075, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         if (__pyx_t_4) {
           __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -18009,7 +18462,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_switch_layer(struct __pyx_obj_
         __Pyx_INCREF(__pyx_v_layer2_nr);
         __Pyx_GIVEREF(__pyx_v_layer2_nr);
         PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_layer2_nr);
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1055, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1075, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       }
@@ -18022,35 +18475,35 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_switch_layer(struct __pyx_obj_
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Flares.pyx":1064
+  /* "Flares.pyx":1084
  * 
  *         """
  *         sprites1 = self.remove_sprites_of_layer(layer1_nr)             # <<<<<<<<<<<<<<
  *         for spr in self.get_sprites_from_layer(layer2_nr):
  *             self.change_layer(spr, layer1_nr)
  */
-  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_v_layer1_nr); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1064, __pyx_L1_error)
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->remove_sprites_of_layer(__pyx_v_self, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1064, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_v_layer1_nr); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1084, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->remove_sprites_of_layer(__pyx_v_self, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1084, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_sprites1 = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "Flares.pyx":1065
+  /* "Flares.pyx":1085
  *         """
  *         sprites1 = self.remove_sprites_of_layer(layer1_nr)
  *         for spr in self.get_sprites_from_layer(layer2_nr):             # <<<<<<<<<<<<<<
  *             self.change_layer(spr, layer1_nr)
  *         self.add(sprites1, layer=layer2_nr)
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->get_sprites_from_layer(__pyx_v_self, __pyx_v_layer2_nr, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1065, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->get_sprites_from_layer(__pyx_v_self, __pyx_v_layer2_nr, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1085, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_7 = 0;
     __pyx_t_8 = NULL;
   } else {
-    __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1065, __pyx_L1_error)
+    __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1085, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_8 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1065, __pyx_L1_error)
+    __pyx_t_8 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1085, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -18058,17 +18511,17 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_switch_layer(struct __pyx_obj_
       if (likely(PyList_CheckExact(__pyx_t_2))) {
         if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 1065, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 1085, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1065, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1085, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 1065, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 1085, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1065, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1085, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -18078,7 +18531,7 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_switch_layer(struct __pyx_obj_
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 1065, __pyx_L1_error)
+          else __PYX_ERR(0, 1085, __pyx_L1_error)
         }
         break;
       }
@@ -18087,17 +18540,17 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_switch_layer(struct __pyx_obj_
     __Pyx_XDECREF_SET(__pyx_v_spr, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "Flares.pyx":1066
+    /* "Flares.pyx":1086
  *         sprites1 = self.remove_sprites_of_layer(layer1_nr)
  *         for spr in self.get_sprites_from_layer(layer2_nr):
  *             self.change_layer(spr, layer1_nr)             # <<<<<<<<<<<<<<
  *         self.add(sprites1, layer=layer2_nr)
  */
-    __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->change_layer(__pyx_v_self, __pyx_v_spr, __pyx_v_layer1_nr, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1066, __pyx_L1_error)
+    __pyx_t_1 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->change_layer(__pyx_v_self, __pyx_v_spr, __pyx_v_layer1_nr, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1086, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "Flares.pyx":1065
+    /* "Flares.pyx":1085
  *         """
  *         sprites1 = self.remove_sprites_of_layer(layer1_nr)
  *         for spr in self.get_sprites_from_layer(layer2_nr):             # <<<<<<<<<<<<<<
@@ -18107,18 +18560,18 @@ static PyObject *__pyx_f_6FLARES_14LayeredUpdates_switch_layer(struct __pyx_obj_
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "Flares.pyx":1067
+  /* "Flares.pyx":1087
  *         for spr in self.get_sprites_from_layer(layer2_nr):
  *             self.change_layer(spr, layer1_nr)
  *         self.add(sprites1, layer=layer2_nr)             # <<<<<<<<<<<<<<
  */
   __pyx_t_9.__pyx_n = 1;
   __pyx_t_9.layer = __pyx_v_layer2_nr;
-  __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->add(__pyx_v_self, __pyx_v_sprites1, 0, &__pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1067, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_6FLARES_LayeredUpdates *)__pyx_v_self->__pyx_base.__pyx_vtab)->add(__pyx_v_self, __pyx_v_sprites1, 0, &__pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1087, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "Flares.pyx":1055
+  /* "Flares.pyx":1075
  *         return sprites
  * 
  *     cpdef switch_layer(self, layer1_nr, layer2_nr):             # <<<<<<<<<<<<<<
@@ -18177,11 +18630,11 @@ static PyObject *__pyx_pw_6FLARES_14LayeredUpdates_31switch_layer(PyObject *__py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_layer2_nr)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("switch_layer", 1, 2, 2, 1); __PYX_ERR(0, 1055, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("switch_layer", 1, 2, 2, 1); __PYX_ERR(0, 1075, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "switch_layer") < 0)) __PYX_ERR(0, 1055, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "switch_layer") < 0)) __PYX_ERR(0, 1075, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -18194,7 +18647,7 @@ static PyObject *__pyx_pw_6FLARES_14LayeredUpdates_31switch_layer(PyObject *__py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("switch_layer", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1055, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("switch_layer", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1075, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("FLARES.LayeredUpdates.switch_layer", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18213,7 +18666,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_30switch_layer(struct __pyx_o
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("switch_layer", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_switch_layer(__pyx_v_self, __pyx_v_layer1_nr, __pyx_v_layer2_nr, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1055, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6FLARES_14LayeredUpdates_switch_layer(__pyx_v_self, __pyx_v_layer1_nr, __pyx_v_layer2_nr, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1075, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -18230,7 +18683,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_30switch_layer(struct __pyx_o
   return __pyx_r;
 }
 
-/* "Flares.pyx":749
+/* "Flares.pyx":769
  * cdef class LayeredUpdates(AbstractGroup):
  * 
  *     cdef public dict _spritelayers             # <<<<<<<<<<<<<<
@@ -18285,7 +18738,7 @@ static int __pyx_pf_6FLARES_14LayeredUpdates_13_spritelayers_2__set__(struct __p
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__set__", 0);
-  if (!(likely(PyDict_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_value)->tp_name), 0))) __PYX_ERR(0, 749, __pyx_L1_error)
+  if (!(likely(PyDict_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_value)->tp_name), 0))) __PYX_ERR(0, 769, __pyx_L1_error)
   __pyx_t_1 = __pyx_v_value;
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -18335,7 +18788,7 @@ static int __pyx_pf_6FLARES_14LayeredUpdates_13_spritelayers_4__del__(struct __p
   return __pyx_r;
 }
 
-/* "Flares.pyx":750
+/* "Flares.pyx":770
  * 
  *     cdef public dict _spritelayers
  *     cdef public list _spritelist             # <<<<<<<<<<<<<<
@@ -18390,7 +18843,7 @@ static int __pyx_pf_6FLARES_14LayeredUpdates_11_spritelist_2__set__(struct __pyx
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__set__", 0);
-  if (!(likely(PyList_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_v_value)->tp_name), 0))) __PYX_ERR(0, 750, __pyx_L1_error)
+  if (!(likely(PyList_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_v_value)->tp_name), 0))) __PYX_ERR(0, 770, __pyx_L1_error)
   __pyx_t_1 = __pyx_v_value;
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -18440,7 +18893,7 @@ static int __pyx_pf_6FLARES_14LayeredUpdates_11_spritelist_4__del__(struct __pyx
   return __pyx_r;
 }
 
-/* "Flares.pyx":751
+/* "Flares.pyx":771
  *     cdef public dict _spritelayers
  *     cdef public list _spritelist
  *     cdef public int _default_layer             # <<<<<<<<<<<<<<
@@ -18467,7 +18920,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_14_default_layer___get__(stru
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->_default_layer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 751, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->_default_layer); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 771, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -18502,7 +18955,7 @@ static int __pyx_pf_6FLARES_14LayeredUpdates_14_default_layer_2__set__(struct __
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_value); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 751, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_value); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 771, __pyx_L1_error)
   __pyx_v_self->_default_layer = __pyx_t_1;
 
   /* function exit code */
@@ -18516,7 +18969,7 @@ static int __pyx_pf_6FLARES_14LayeredUpdates_14_default_layer_2__set__(struct __
   return __pyx_r;
 }
 
-/* "Flares.pyx":752
+/* "Flares.pyx":772
  *     cdef public list _spritelist
  *     cdef public int _default_layer
  *     cdef public object _init_rect # = Rect(0, 0, 0, 0)   # --> cannot cynthonized             # <<<<<<<<<<<<<<
@@ -18642,7 +19095,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_32__reduce_cython__(CYTHON_UN
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -18695,7 +19148,7 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_34__setstate_cython__(CYTHON_
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -18725,9 +19178,9 @@ static PyObject *__pyx_pf_6FLARES_14LayeredUpdates_34__setstate_cython__(CYTHON_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6FLARES_13__pyx_unpickle_Sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_6FLARES_13__pyx_unpickle_Sprite = {"__pyx_unpickle_Sprite", (PyCFunction)__pyx_pw_6FLARES_13__pyx_unpickle_Sprite, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6FLARES_13__pyx_unpickle_Sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6FLARES_15__pyx_unpickle_Sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_6FLARES_15__pyx_unpickle_Sprite = {"__pyx_unpickle_Sprite", (PyCFunction)__pyx_pw_6FLARES_15__pyx_unpickle_Sprite, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6FLARES_15__pyx_unpickle_Sprite(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v___pyx_type = 0;
   long __pyx_v___pyx_checksum;
   PyObject *__pyx_v___pyx_state = 0;
@@ -18790,14 +19243,14 @@ static PyObject *__pyx_pw_6FLARES_13__pyx_unpickle_Sprite(PyObject *__pyx_self, 
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6FLARES_12__pyx_unpickle_Sprite(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6FLARES_14__pyx_unpickle_Sprite(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6FLARES_12__pyx_unpickle_Sprite(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6FLARES_14__pyx_unpickle_Sprite(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = NULL;
   PyObject *__pyx_v___pyx_result = NULL;
   PyObject *__pyx_r = NULL;
@@ -19194,9 +19647,9 @@ static PyObject *__pyx_f_6FLARES___pyx_unpickle_Sprite__set_state(struct __pyx_o
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6FLARES_16__pyx_unpickle_AbstractGroup(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_6FLARES_16__pyx_unpickle_AbstractGroup = {"__pyx_unpickle_AbstractGroup", (PyCFunction)__pyx_pw_6FLARES_16__pyx_unpickle_AbstractGroup, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6FLARES_16__pyx_unpickle_AbstractGroup(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6FLARES_18__pyx_unpickle_AbstractGroup(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_6FLARES_18__pyx_unpickle_AbstractGroup = {"__pyx_unpickle_AbstractGroup", (PyCFunction)__pyx_pw_6FLARES_18__pyx_unpickle_AbstractGroup, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6FLARES_18__pyx_unpickle_AbstractGroup(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v___pyx_type = 0;
   long __pyx_v___pyx_checksum;
   PyObject *__pyx_v___pyx_state = 0;
@@ -19259,14 +19712,14 @@ static PyObject *__pyx_pw_6FLARES_16__pyx_unpickle_AbstractGroup(PyObject *__pyx
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6FLARES_15__pyx_unpickle_AbstractGroup(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6FLARES_17__pyx_unpickle_AbstractGroup(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6FLARES_15__pyx_unpickle_AbstractGroup(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6FLARES_17__pyx_unpickle_AbstractGroup(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = NULL;
   PyObject *__pyx_v___pyx_result = NULL;
   PyObject *__pyx_r = NULL;
@@ -19846,7 +20299,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 235, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 235, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -19902,7 +20355,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  * 
  *             info.buf = PyArray_DATA(self)
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 239, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 239, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -20211,7 +20664,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  *                 if   t == NPY_BYTE:        f = "b"
  *                 elif t == NPY_UBYTE:       f = "B"
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 276, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 276, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -21100,7 +21553,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  * 
  *         if ((child.byteorder == c'>' and little_endian) or
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 823, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 823, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -21168,7 +21621,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  *             # One could encode it in the format string and have Cython
  *             # complain instead, BUT: < and > in format strings also imply
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 827, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 827, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -21277,7 +21730,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  * 
  *             # Until ticket #99 is fixed, use integers to avoid warnings
  */
-        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(2, 847, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(2, 847, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_Raise(__pyx_t_4, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -21957,7 +22410,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
  * 
  * cdef inline int import_umath() except -1:
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1013, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1013, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -22086,7 +22539,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
  * 
  * cdef inline int import_ufunc() except -1:
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1019, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1019, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -22212,7 +22665,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1025, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1025, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -22379,7 +22832,7 @@ static struct vector2d __pyx_convert__from_py_struct__vector2d(PyObject *__pyx_v
  *     result.x = value
  *     try:
  */
-      __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 19, __pyx_L6_except_error)
+      __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__20, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 19, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_Raise(__pyx_t_9, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -22481,7 +22934,7 @@ static struct vector2d __pyx_convert__from_py_struct__vector2d(PyObject *__pyx_v
  *     result.y = value
  *     return result
  */
-      __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 24, __pyx_L14_except_error)
+      __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 24, __pyx_L14_except_error)
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_Raise(__pyx_t_9, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -23266,11 +23719,12 @@ static PyTypeObject __pyx_type_6FLARES_LayeredUpdatesModified = {
 
 static PyMethodDef __pyx_methods[] = {
   {"make_vector2d", (PyCFunction)__pyx_pw_6FLARES_1make_vector2d, METH_O, __pyx_doc_6FLARES_make_vector2d},
-  {"get_angle", (PyCFunction)__pyx_pw_6FLARES_3get_angle, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6FLARES_2get_angle},
-  {"polygon", (PyCFunction)__pyx_pw_6FLARES_5polygon, METH_NOARGS, __pyx_doc_6FLARES_4polygon},
-  {"second_flares", (PyCFunction)__pyx_pw_6FLARES_7second_flares, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6FLARES_6second_flares},
-  {"display_flare_sprite", (PyCFunction)__pyx_pw_6FLARES_9display_flare_sprite, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6FLARES_8display_flare_sprite},
-  {"create_flare_sprite", (PyCFunction)__pyx_pw_6FLARES_11create_flare_sprite, METH_VARARGS|METH_KEYWORDS, 0},
+  {"v_surface", (PyCFunction)__pyx_pw_6FLARES_3v_surface, METH_NOARGS, 0},
+  {"get_angle", (PyCFunction)__pyx_pw_6FLARES_5get_angle, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6FLARES_4get_angle},
+  {"polygon", (PyCFunction)__pyx_pw_6FLARES_7polygon, METH_NOARGS, __pyx_doc_6FLARES_6polygon},
+  {"second_flares", (PyCFunction)__pyx_pw_6FLARES_9second_flares, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6FLARES_8second_flares},
+  {"display_flare_sprite", (PyCFunction)__pyx_pw_6FLARES_11display_flare_sprite, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6FLARES_10display_flare_sprite},
+  {"create_flare_sprite", (PyCFunction)__pyx_pw_6FLARES_13create_flare_sprite, METH_VARARGS|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
@@ -23339,6 +23793,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
   {&__pyx_n_s_ValueError, __pyx_k_ValueError, sizeof(__pyx_k_ValueError), 0, 0, 1, 1},
   {&__pyx_n_s_Vector2, __pyx_k_Vector2, sizeof(__pyx_k_Vector2), 0, 0, 1, 1},
+  {&__pyx_n_s_a, __pyx_k_a, sizeof(__pyx_k_a), 0, 0, 1, 1},
+  {&__pyx_n_s_aaline, __pyx_k_aaline, sizeof(__pyx_k_aaline), 0, 0, 1, 1},
   {&__pyx_n_s_add, __pyx_k_add, sizeof(__pyx_k_add), 0, 0, 1, 1},
   {&__pyx_n_s_add_internal, __pyx_k_add_internal, sizeof(__pyx_k_add_internal), 0, 0, 1, 1},
   {&__pyx_n_s_alpha, __pyx_k_alpha, sizeof(__pyx_k_alpha), 0, 0, 1, 1},
@@ -23348,6 +23804,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_array_alpha, __pyx_k_array_alpha, sizeof(__pyx_k_array_alpha), 0, 0, 1, 1},
   {&__pyx_n_s_asarray, __pyx_k_asarray, sizeof(__pyx_k_asarray), 0, 0, 1, 1},
   {&__pyx_n_s_ascontiguousarray, __pyx_k_ascontiguousarray, sizeof(__pyx_k_ascontiguousarray), 0, 0, 1, 1},
+  {&__pyx_n_s_b, __pyx_k_b, sizeof(__pyx_k_b), 0, 0, 1, 1},
   {&__pyx_n_s_bgd, __pyx_k_bgd, sizeof(__pyx_k_bgd), 0, 0, 1, 1},
   {&__pyx_n_s_blend, __pyx_k_blend, sizeof(__pyx_k_blend), 0, 0, 1, 1},
   {&__pyx_n_s_blend_2, __pyx_k_blend_2, sizeof(__pyx_k_blend_2), 0, 0, 1, 1},
@@ -23378,14 +23835,17 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_dstack, __pyx_k_dstack, sizeof(__pyx_k_dstack), 0, 0, 1, 1},
   {&__pyx_n_s_dtype, __pyx_k_dtype, sizeof(__pyx_k_dtype), 0, 0, 1, 1},
   {&__pyx_n_s_empty, __pyx_k_empty, sizeof(__pyx_k_empty), 0, 0, 1, 1},
+  {&__pyx_n_s_end, __pyx_k_end, sizeof(__pyx_k_end), 0, 0, 1, 1},
   {&__pyx_n_s_event_type, __pyx_k_event_type, sizeof(__pyx_k_event_type), 0, 0, 1, 1},
   {&__pyx_n_s_exception, __pyx_k_exception, sizeof(__pyx_k_exception), 0, 0, 1, 1},
+  {&__pyx_n_s_file, __pyx_k_file, sizeof(__pyx_k_file), 0, 0, 1, 1},
   {&__pyx_n_s_fill, __pyx_k_fill, sizeof(__pyx_k_fill), 0, 0, 1, 1},
   {&__pyx_n_s_flags, __pyx_k_flags, sizeof(__pyx_k_flags), 0, 0, 1, 1},
   {&__pyx_n_s_float32, __pyx_k_float32, sizeof(__pyx_k_float32), 0, 0, 1, 1},
   {&__pyx_n_s_float64, __pyx_k_float64, sizeof(__pyx_k_float64), 0, 0, 1, 1},
   {&__pyx_n_s_frombuffer, __pyx_k_frombuffer, sizeof(__pyx_k_frombuffer), 0, 0, 1, 1},
   {&__pyx_n_s_full, __pyx_k_full, sizeof(__pyx_k_full), 0, 0, 1, 1},
+  {&__pyx_n_s_g, __pyx_k_g, sizeof(__pyx_k_g), 0, 0, 1, 1},
   {&__pyx_n_s_get, __pyx_k_get, sizeof(__pyx_k_get), 0, 0, 1, 1},
   {&__pyx_n_s_get_bottom_layer, __pyx_k_get_bottom_layer, sizeof(__pyx_k_get_bottom_layer), 0, 0, 1, 1},
   {&__pyx_n_s_get_height, __pyx_k_get_height, sizeof(__pyx_k_get_height), 0, 0, 1, 1},
@@ -23448,6 +23908,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_position, __pyx_k_position, sizeof(__pyx_k_position), 0, 0, 1, 1},
   {&__pyx_n_s_position_2, __pyx_k_position_2, sizeof(__pyx_k_position_2), 0, 0, 1, 1},
   {&__pyx_n_s_prepare, __pyx_k_prepare, sizeof(__pyx_k_prepare), 0, 0, 1, 1},
+  {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
   {&__pyx_n_s_pygame, __pyx_k_pygame, sizeof(__pyx_k_pygame), 0, 0, 1, 1},
   {&__pyx_n_s_pygame_image, __pyx_k_pygame_image, sizeof(__pyx_k_pygame_image), 0, 0, 1, 1},
   {&__pyx_n_s_pygame_surfarray, __pyx_k_pygame_surfarray, sizeof(__pyx_k_pygame_surfarray), 0, 0, 1, 1},
@@ -23461,6 +23922,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_pyx_unpickle_Sprite, __pyx_k_pyx_unpickle_Sprite, sizeof(__pyx_k_pyx_unpickle_Sprite), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
   {&__pyx_n_s_qualname, __pyx_k_qualname, sizeof(__pyx_k_qualname), 0, 0, 1, 1},
+  {&__pyx_n_s_r, __pyx_k_r, sizeof(__pyx_k_r), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_rect, __pyx_k_rect, sizeof(__pyx_k_rect), 0, 0, 1, 1},
   {&__pyx_n_s_reduce, __pyx_k_reduce, sizeof(__pyx_k_reduce), 0, 0, 1, 1},
@@ -23506,7 +23968,7 @@ static int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(0, 34, __pyx_L1_error)
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 232, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
-  __pyx_builtin_AttributeError = __Pyx_GetBuiltinName(__pyx_n_s_AttributeError); if (!__pyx_builtin_AttributeError) __PYX_ERR(0, 593, __pyx_L1_error)
+  __pyx_builtin_AttributeError = __Pyx_GetBuiltinName(__pyx_n_s_AttributeError); if (!__pyx_builtin_AttributeError) __PYX_ERR(0, 613, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(2, 235, __pyx_L1_error)
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(2, 823, __pyx_L1_error)
   __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) __PYX_ERR(1, 18, __pyx_L1_error)
@@ -23538,27 +24000,52 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "Flares.pyx":757
+  /* "Flares.pyx":267
+ * cpdef v_surface():
+ *     cdef rgba_color color1
+ *     s = pygame.Surface((370, 370))             # <<<<<<<<<<<<<<
+ *     for r in range(380, 750):
+ *         color1 = wavelength_to_rgba(r, 0.8)
+ */
+  __pyx_tuple__3 = PyTuple_Pack(2, __pyx_int_370, __pyx_int_370); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__3);
+  __Pyx_GIVEREF(__pyx_tuple__3);
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_tuple__3); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__4);
+  __Pyx_GIVEREF(__pyx_tuple__4);
+
+  /* "Flares.pyx":268
+ *     cdef rgba_color color1
+ *     s = pygame.Surface((370, 370))
+ *     for r in range(380, 750):             # <<<<<<<<<<<<<<
+ *         color1 = wavelength_to_rgba(r, 0.8)
+ *         try:
+ */
+  __pyx_tuple__5 = PyTuple_Pack(2, __pyx_int_380, __pyx_int_750); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 268, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__5);
+  __Pyx_GIVEREF(__pyx_tuple__5);
+
+  /* "Flares.pyx":777
  *     def __cinit__(self, *sprites, **kwargs):
  * 
  *         self._init_rect = Rect(0, 0, 0, 0)             # <<<<<<<<<<<<<<
  *         self._spritelayers = {}
  *         self._spritelist = []
  */
-  __pyx_tuple__4 = PyTuple_Pack(4, __pyx_int_0, __pyx_int_0, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 757, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__4);
-  __Pyx_GIVEREF(__pyx_tuple__4);
+  __pyx_tuple__7 = PyTuple_Pack(4, __pyx_int_0, __pyx_int_0, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 777, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__7);
+  __Pyx_GIVEREF(__pyx_tuple__7);
 
-  /* "Flares.pyx":909
+  /* "Flares.pyx":929
  *         """
  *         _sprites = self._spritelist
  *         rect = Rect(pos, (0, 0))             # <<<<<<<<<<<<<<
  *         cdef int colliding_idx = rect.collidelistall(_sprites)
  *         colliding = [_sprites[i] for i in colliding_idx]
  */
-  __pyx_tuple__5 = PyTuple_Pack(2, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 909, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__5);
-  __Pyx_GIVEREF(__pyx_tuple__5);
+  __pyx_tuple__8 = PyTuple_Pack(2, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 929, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__8);
+  __Pyx_GIVEREF(__pyx_tuple__8);
 
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
@@ -23566,18 +24053,18 @@ static int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(1, 2, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__6);
-  __Pyx_GIVEREF(__pyx_tuple__6);
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__9);
+  __Pyx_GIVEREF(__pyx_tuple__9);
 
   /* "(tree fragment)":4
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(1, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__7);
-  __Pyx_GIVEREF(__pyx_tuple__7);
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__10);
+  __Pyx_GIVEREF(__pyx_tuple__10);
 
   /* "../../AppData/Local/Programs/Python/Python36/lib/site-packages/Cython/Includes/numpy/__init__.pxd":235
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)
@@ -23586,9 +24073,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_C_contiguous); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(2, 235, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__8);
-  __Pyx_GIVEREF(__pyx_tuple__8);
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_C_contiguous); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(2, 235, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__11);
+  __Pyx_GIVEREF(__pyx_tuple__11);
 
   /* "../../AppData/Local/Programs/Python/Python36/lib/site-packages/Cython/Includes/numpy/__init__.pxd":239
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
@@ -23597,9 +24084,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *             info.buf = PyArray_DATA(self)
  */
-  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_Fortran_contiguou); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(2, 239, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__9);
-  __Pyx_GIVEREF(__pyx_tuple__9);
+  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_Fortran_contiguou); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(2, 239, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__12);
+  __Pyx_GIVEREF(__pyx_tuple__12);
 
   /* "../../AppData/Local/Programs/Python/Python36/lib/site-packages/Cython/Includes/numpy/__init__.pxd":276
  *                 if ((descr.byteorder == c'>' and little_endian) or
@@ -23608,9 +24095,9 @@ static int __Pyx_InitCachedConstants(void) {
  *                 if   t == NPY_BYTE:        f = "b"
  *                 elif t == NPY_UBYTE:       f = "B"
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_u_Non_native_byte_order_not_suppor); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(2, 276, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__10);
-  __Pyx_GIVEREF(__pyx_tuple__10);
+  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_u_Non_native_byte_order_not_suppor); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(2, 276, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
 
   /* "../../AppData/Local/Programs/Python/Python36/lib/site-packages/Cython/Includes/numpy/__init__.pxd":823
  * 
@@ -23619,9 +24106,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *         if ((child.byteorder == c'>' and little_endian) or
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(2, 823, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__11);
-  __Pyx_GIVEREF(__pyx_tuple__11);
+  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(2, 823, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__14);
+  __Pyx_GIVEREF(__pyx_tuple__14);
 
   /* "../../AppData/Local/Programs/Python/Python36/lib/site-packages/Cython/Includes/numpy/__init__.pxd":827
  *         if ((child.byteorder == c'>' and little_endian) or
@@ -23630,9 +24117,9 @@ static int __Pyx_InitCachedConstants(void) {
  *             # One could encode it in the format string and have Cython
  *             # complain instead, BUT: < and > in format strings also imply
  */
-  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_Non_native_byte_order_not_suppor); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(2, 827, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__12);
-  __Pyx_GIVEREF(__pyx_tuple__12);
+  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_u_Non_native_byte_order_not_suppor); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(2, 827, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__15);
+  __Pyx_GIVEREF(__pyx_tuple__15);
 
   /* "../../AppData/Local/Programs/Python/Python36/lib/site-packages/Cython/Includes/numpy/__init__.pxd":847
  *             t = child.type_num
@@ -23641,9 +24128,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *             # Until ticket #99 is fixed, use integers to avoid warnings
  */
-  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor_2); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(2, 847, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
+  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor_2); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(2, 847, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__16);
+  __Pyx_GIVEREF(__pyx_tuple__16);
 
   /* "../../AppData/Local/Programs/Python/Python36/lib/site-packages/Cython/Includes/numpy/__init__.pxd":1013
  *         _import_array()
@@ -23652,9 +24139,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  * cdef inline int import_umath() except -1:
  */
-  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_s_numpy_core_multiarray_failed_to); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(2, 1013, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__14);
-  __Pyx_GIVEREF(__pyx_tuple__14);
+  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_s_numpy_core_multiarray_failed_to); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(2, 1013, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__17);
+  __Pyx_GIVEREF(__pyx_tuple__17);
 
   /* "../../AppData/Local/Programs/Python/Python36/lib/site-packages/Cython/Includes/numpy/__init__.pxd":1019
  *         _import_umath()
@@ -23663,18 +24150,18 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  * cdef inline int import_ufunc() except -1:
  */
-  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_s_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(2, 1019, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__15);
-  __Pyx_GIVEREF(__pyx_tuple__15);
+  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_s_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(2, 1019, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__18);
+  __Pyx_GIVEREF(__pyx_tuple__18);
 
   /* "../../AppData/Local/Programs/Python/Python36/lib/site-packages/Cython/Includes/numpy/__init__.pxd":1025
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_kp_s_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(2, 1025, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__16);
-  __Pyx_GIVEREF(__pyx_tuple__16);
+  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_kp_s_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(2, 1025, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
 
   /* "FromPyStructUtility":19
  *         value = obj['x']
@@ -23683,9 +24170,9 @@ static int __Pyx_InitCachedConstants(void) {
  *     result.x = value
  *     try:
  */
-  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_s_No_value_specified_for_struct_at); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(1, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__17);
-  __Pyx_GIVEREF(__pyx_tuple__17);
+  __pyx_tuple__20 = PyTuple_Pack(1, __pyx_kp_s_No_value_specified_for_struct_at); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(1, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__20);
+  __Pyx_GIVEREF(__pyx_tuple__20);
 
   /* "FromPyStructUtility":24
  *         value = obj['y']
@@ -23694,9 +24181,9 @@ static int __Pyx_InitCachedConstants(void) {
  *     result.y = value
  *     return result
  */
-  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_s_No_value_specified_for_struct_at_2); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(1, 24, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__18);
-  __Pyx_GIVEREF(__pyx_tuple__18);
+  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_kp_s_No_value_specified_for_struct_at_2); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(1, 24, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
 
   /* "Flares.pyx":35
  *     asarray, ascontiguousarray
@@ -23705,9 +24192,9 @@ static int __Pyx_InitCachedConstants(void) {
  *           "\nTry: \n   C:\\pip install numpy on a window command prompt.")
  * 
  */
-  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_kp_s_numpy_library_is_missing_on_you); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 35, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__19);
-  __Pyx_GIVEREF(__pyx_tuple__19);
+  __pyx_tuple__22 = PyTuple_Pack(1, __pyx_kp_s_numpy_library_is_missing_on_you); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__22);
+  __Pyx_GIVEREF(__pyx_tuple__22);
 
   /* "Flares.pyx":57
  * 
@@ -23716,35 +24203,35 @@ static int __Pyx_InitCachedConstants(void) {
  *           "\nTry: \n   C:\\pip install pygame on a window command prompt.")
  * 
  */
-  __pyx_tuple__20 = PyTuple_Pack(1, __pyx_kp_s_Pygame_library_is_missing_on_yo); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 57, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__20);
-  __Pyx_GIVEREF(__pyx_tuple__20);
+  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_s_Pygame_library_is_missing_on_yo); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__23);
+  __Pyx_GIVEREF(__pyx_tuple__23);
 
-  /* "Flares.pyx":738
+  /* "Flares.pyx":758
  * class Group(AbstractGroup):
  * 
  *     def __init__(self, *sprites):             # <<<<<<<<<<<<<<
  *         AbstractGroup.__init__(self)
  *         self.add(*sprites)
  */
-  __pyx_tuple__21 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_sprites); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 738, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__21);
-  __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Flares_pyx, __pyx_n_s_init, 738, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 738, __pyx_L1_error)
+  __pyx_tuple__24 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_sprites); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 758, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__24);
+  __Pyx_GIVEREF(__pyx_tuple__24);
+  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Flares_pyx, __pyx_n_s_init, 758, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 758, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_Sprite(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     if __pyx_checksum != 0x0f402d7:
  *         from pickle import PickleError as __pyx_PickleError
  */
-  __pyx_tuple__23 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__23);
-  __Pyx_GIVEREF(__pyx_tuple__23);
-  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Sprite, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__25 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__25);
-  __Pyx_GIVEREF(__pyx_tuple__25);
-  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_AbstractGroup, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__26 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__26);
+  __Pyx_GIVEREF(__pyx_tuple__26);
+  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Sprite, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__28 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__28);
+  __Pyx_GIVEREF(__pyx_tuple__28);
+  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_AbstractGroup, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -23765,6 +24252,9 @@ if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_80 = PyInt_FromLong(80); if (unlikely(!__pyx_int_80)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_370 = PyInt_FromLong(370); if (unlikely(!__pyx_int_370)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_380 = PyInt_FromLong(380); if (unlikely(!__pyx_int_380)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_750 = PyInt_FromLong(750); if (unlikely(!__pyx_int_750)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_15991511 = PyInt_FromLong(15991511L); if (unlikely(!__pyx_int_15991511)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_188665677 = PyInt_FromLong(188665677L); if (unlikely(!__pyx_int_188665677)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
@@ -23943,11 +24433,11 @@ static int __pyx_pymod_exec_FLARES(PyObject *__pyx_pyinit_module)
   __pyx_vtable_6FLARES_AbstractGroup.remove = (PyObject *(*)(struct __pyx_obj_6FLARES_AbstractGroup *, PyObject *))__pyx_f_6FLARES_13AbstractGroup_remove;
   __pyx_vtable_6FLARES_AbstractGroup.has = (PyObject *(*)(struct __pyx_obj_6FLARES_AbstractGroup *, PyObject *))__pyx_f_6FLARES_13AbstractGroup_has;
   __pyx_vtable_6FLARES_AbstractGroup.draw = (PyObject *(*)(struct __pyx_obj_6FLARES_AbstractGroup *, PyObject *))__pyx_f_6FLARES_13AbstractGroup_draw;
-  if (PyType_Ready(&__pyx_type_6FLARES_AbstractGroup) < 0) __PYX_ERR(0, 518, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_6FLARES_AbstractGroup) < 0) __PYX_ERR(0, 538, __pyx_L1_error)
   __pyx_type_6FLARES_AbstractGroup.tp_print = 0;
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_6FLARES_AbstractGroup, "__len__"); if (unlikely(!wrapper)) __PYX_ERR(0, 518, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_6FLARES_AbstractGroup, "__len__"); if (unlikely(!wrapper)) __PYX_ERR(0, 538, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_6FLARES_13AbstractGroup_16__len__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_6FLARES_13AbstractGroup_16__len__.doc = __pyx_doc_6FLARES_13AbstractGroup_16__len__;
@@ -23955,9 +24445,9 @@ static int __pyx_pymod_exec_FLARES(PyObject *__pyx_pyinit_module)
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_6FLARES_AbstractGroup.tp_dict, __pyx_vtabptr_6FLARES_AbstractGroup) < 0) __PYX_ERR(0, 518, __pyx_L1_error)
-  if (PyObject_SetAttrString(__pyx_m, "AbstractGroup", (PyObject *)&__pyx_type_6FLARES_AbstractGroup) < 0) __PYX_ERR(0, 518, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_6FLARES_AbstractGroup) < 0) __PYX_ERR(0, 518, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_6FLARES_AbstractGroup.tp_dict, __pyx_vtabptr_6FLARES_AbstractGroup) < 0) __PYX_ERR(0, 538, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "AbstractGroup", (PyObject *)&__pyx_type_6FLARES_AbstractGroup) < 0) __PYX_ERR(0, 538, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_6FLARES_AbstractGroup) < 0) __PYX_ERR(0, 538, __pyx_L1_error)
   __pyx_ptype_6FLARES_AbstractGroup = &__pyx_type_6FLARES_AbstractGroup;
   __pyx_vtabptr_6FLARES_LayeredUpdates = &__pyx_vtable_6FLARES_LayeredUpdates;
   __pyx_vtable_6FLARES_LayeredUpdates.__pyx_base = *__pyx_vtabptr_6FLARES_AbstractGroup;
@@ -23985,11 +24475,11 @@ static int __pyx_pymod_exec_FLARES(PyObject *__pyx_pyinit_module)
   __pyx_vtable_6FLARES_LayeredUpdates.get_sprites_from_layer = (PyObject *(*)(struct __pyx_obj_6FLARES_LayeredUpdates *, PyObject *, int __pyx_skip_dispatch))__pyx_f_6FLARES_14LayeredUpdates_get_sprites_from_layer;
   __pyx_vtable_6FLARES_LayeredUpdates.switch_layer = (PyObject *(*)(struct __pyx_obj_6FLARES_LayeredUpdates *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_6FLARES_14LayeredUpdates_switch_layer;
   __pyx_type_6FLARES_LayeredUpdates.tp_base = __pyx_ptype_6FLARES_AbstractGroup;
-  if (PyType_Ready(&__pyx_type_6FLARES_LayeredUpdates) < 0) __PYX_ERR(0, 747, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_6FLARES_LayeredUpdates) < 0) __PYX_ERR(0, 767, __pyx_L1_error)
   __pyx_type_6FLARES_LayeredUpdates.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_6FLARES_LayeredUpdates.tp_dict, __pyx_vtabptr_6FLARES_LayeredUpdates) < 0) __PYX_ERR(0, 747, __pyx_L1_error)
-  if (PyObject_SetAttrString(__pyx_m, "LayeredUpdates", (PyObject *)&__pyx_type_6FLARES_LayeredUpdates) < 0) __PYX_ERR(0, 747, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_6FLARES_LayeredUpdates) < 0) __PYX_ERR(0, 747, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_6FLARES_LayeredUpdates.tp_dict, __pyx_vtabptr_6FLARES_LayeredUpdates) < 0) __PYX_ERR(0, 767, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "LayeredUpdates", (PyObject *)&__pyx_type_6FLARES_LayeredUpdates) < 0) __PYX_ERR(0, 767, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_6FLARES_LayeredUpdates) < 0) __PYX_ERR(0, 767, __pyx_L1_error)
   __pyx_ptype_6FLARES_LayeredUpdates = &__pyx_type_6FLARES_LayeredUpdates;
   __pyx_vtabptr_6FLARES_LayeredUpdatesModified = &__pyx_vtable_6FLARES_LayeredUpdatesModified;
   __pyx_vtable_6FLARES_LayeredUpdatesModified.__pyx_base = *__pyx_vtabptr_6FLARES_LayeredUpdates;
@@ -24186,7 +24676,7 @@ static int __pyx_pymod_exec_FLARES(PyObject *__pyx_pyinit_module)
  *           "\nTry: \n   C:\\pip install numpy on a window command prompt.")
  * 
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 35, __pyx_L4_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 35, __pyx_L4_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -24481,7 +24971,7 @@ static int __pyx_pymod_exec_FLARES(PyObject *__pyx_pyinit_module)
  *           "\nTry: \n   C:\\pip install pygame on a window command prompt.")
  * 
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__20, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 57, __pyx_L18_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 57, __pyx_L18_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -24505,76 +24995,76 @@ static int __pyx_pymod_exec_FLARES(PyObject *__pyx_pyinit_module)
     __pyx_L21_try_end:;
   }
 
-  /* "Flares.pyx":479
+  /* "Flares.pyx":499
  *                           gl_,
  *                           child_group_,
  *                           int blend_ = pygame.BLEND_RGB_ADD,             # <<<<<<<<<<<<<<
  *                           event_type = 'CHILD',
  *                           bint delete_=False
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 479, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_BLEND_RGB_ADD); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 479, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_BLEND_RGB_ADD); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 479, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_k__3 = __pyx_t_6;
+  __pyx_k__6 = __pyx_t_6;
 
-  /* "Flares.pyx":472
+  /* "Flares.pyx":492
  * 
  * 
  * cpdef create_flare_sprite(images_,             # <<<<<<<<<<<<<<
  *                           float distance_,
  *                           vector_,
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 479, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_pygame); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "Flares.pyx":479
+  /* "Flares.pyx":499
  *                           gl_,
  *                           child_group_,
  *                           int blend_ = pygame.BLEND_RGB_ADD,             # <<<<<<<<<<<<<<
  *                           event_type = 'CHILD',
  *                           bint delete_=False
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_BLEND_RGB_ADD); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 479, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_BLEND_RGB_ADD); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 479, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_k__3 = __pyx_t_6;
+  __pyx_k__6 = __pyx_t_6;
 
-  /* "Flares.pyx":510
+  /* "Flares.pyx":530
  * # Python 3 does not have the callable function, but an equivalent can be made
  * # with the hasattr function.
  * if 'callable' not in dir(__builtins__):             # <<<<<<<<<<<<<<
  *     callable = lambda obj: hasattr(obj, '__call__')
  * 
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_builtins); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 510, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_builtins); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 530, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = PyObject_Dir(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 510, __pyx_L1_error)
+  __pyx_t_4 = PyObject_Dir(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 530, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_n_s_callable, __pyx_t_4, Py_NE)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 510, __pyx_L1_error)
+  __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_n_s_callable, __pyx_t_4, Py_NE)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 530, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_10 = (__pyx_t_9 != 0);
   if (__pyx_t_10) {
 
-    /* "Flares.pyx":511
+    /* "Flares.pyx":531
  * # with the hasattr function.
  * if 'callable' not in dir(__builtins__):
  *     callable = lambda obj: hasattr(obj, '__call__')             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6FLARES_14lambda, 0, __pyx_n_s_lambda, NULL, __pyx_n_s_FLARES, __pyx_d, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 511, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6FLARES_16lambda, 0, __pyx_n_s_lambda, NULL, __pyx_n_s_FLARES, __pyx_d, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 531, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_callable, __pyx_t_4) < 0) __PYX_ERR(0, 511, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_callable, __pyx_t_4) < 0) __PYX_ERR(0, 531, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "Flares.pyx":510
+    /* "Flares.pyx":530
  * # Python 3 does not have the callable function, but an equivalent can be made
  * # with the hasattr function.
  * if 'callable' not in dir(__builtins__):             # <<<<<<<<<<<<<<
@@ -24583,45 +25073,45 @@ static int __pyx_pymod_exec_FLARES(PyObject *__pyx_pyinit_module)
  */
   }
 
-  /* "Flares.pyx":736
+  /* "Flares.pyx":756
  * 
  * 
  * class Group(AbstractGroup):             # <<<<<<<<<<<<<<
  * 
  *     def __init__(self, *sprites):
  */
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 736, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 756, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_INCREF(((PyObject *)__pyx_ptype_6FLARES_AbstractGroup));
   __Pyx_GIVEREF(((PyObject *)__pyx_ptype_6FLARES_AbstractGroup));
   PyTuple_SET_ITEM(__pyx_t_4, 0, ((PyObject *)__pyx_ptype_6FLARES_AbstractGroup));
-  __pyx_t_5 = __Pyx_CalculateMetaclass(NULL, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 736, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CalculateMetaclass(NULL, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 756, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_7 = __Pyx_Py3MetaclassPrepare(__pyx_t_5, __pyx_t_4, __pyx_n_s_Group, __pyx_n_s_Group, (PyObject *) NULL, __pyx_n_s_FLARES, (PyObject *) NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 736, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_Py3MetaclassPrepare(__pyx_t_5, __pyx_t_4, __pyx_n_s_Group, __pyx_n_s_Group, (PyObject *) NULL, __pyx_n_s_FLARES, (PyObject *) NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 756, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
 
-  /* "Flares.pyx":738
+  /* "Flares.pyx":758
  * class Group(AbstractGroup):
  * 
  *     def __init__(self, *sprites):             # <<<<<<<<<<<<<<
  *         AbstractGroup.__init__(self)
  *         self.add(*sprites)
  */
-  __pyx_t_8 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6FLARES_5Group_1__init__, 0, __pyx_n_s_Group___init, NULL, __pyx_n_s_FLARES, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 738, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6FLARES_5Group_1__init__, 0, __pyx_n_s_Group___init, NULL, __pyx_n_s_FLARES, __pyx_d, ((PyObject *)__pyx_codeobj__25)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 758, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  if (PyObject_SetItem(__pyx_t_7, __pyx_n_s_init, __pyx_t_8) < 0) __PYX_ERR(0, 738, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_7, __pyx_n_s_init, __pyx_t_8) < 0) __PYX_ERR(0, 758, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-  /* "Flares.pyx":736
+  /* "Flares.pyx":756
  * 
  * 
  * class Group(AbstractGroup):             # <<<<<<<<<<<<<<
  * 
  *     def __init__(self, *sprites):
  */
-  __pyx_t_8 = __Pyx_Py3ClassCreate(__pyx_t_5, __pyx_n_s_Group, __pyx_t_4, __pyx_t_7, NULL, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 736, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_Py3ClassCreate(__pyx_t_5, __pyx_n_s_Group, __pyx_t_4, __pyx_t_7, NULL, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 756, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Group, __pyx_t_8) < 0) __PYX_ERR(0, 736, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Group, __pyx_t_8) < 0) __PYX_ERR(0, 756, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -24632,7 +25122,7 @@ static int __pyx_pymod_exec_FLARES(PyObject *__pyx_pyinit_module)
  *     if __pyx_checksum != 0x0f402d7:
  *         from pickle import PickleError as __pyx_PickleError
  */
-  __pyx_t_4 = PyCFunction_NewEx(&__pyx_mdef_6FLARES_13__pyx_unpickle_Sprite, NULL, __pyx_n_s_FLARES); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_4 = PyCFunction_NewEx(&__pyx_mdef_6FLARES_15__pyx_unpickle_Sprite, NULL, __pyx_n_s_FLARES); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_Sprite, __pyx_t_4) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -24644,7 +25134,7 @@ static int __pyx_pymod_exec_FLARES(PyObject *__pyx_pyinit_module)
  *     __pyx_result.__g = __pyx_state[0]
  *     if len(__pyx_state) > 1 and hasattr(__pyx_result, '__dict__'):
  */
-  __pyx_t_4 = PyCFunction_NewEx(&__pyx_mdef_6FLARES_16__pyx_unpickle_AbstractGroup, NULL, __pyx_n_s_FLARES); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_4 = PyCFunction_NewEx(&__pyx_mdef_6FLARES_18__pyx_unpickle_AbstractGroup, NULL, __pyx_n_s_FLARES); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_AbstractGroup, __pyx_t_4) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -25592,8 +26082,233 @@ bad:
 }
 #endif
 
+/* PyIntBinop */
+    #if !CYTHON_COMPILING_IN_PYPY
+static PyObject* __Pyx_PyInt_SubtractObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, CYTHON_UNUSED int inplace) {
+    #if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_CheckExact(op1))) {
+        const long b = intval;
+        long x;
+        long a = PyInt_AS_LONG(op1);
+            x = (long)((unsigned long)a - b);
+            if (likely((x^a) >= 0 || (x^~b) >= 0))
+                return PyInt_FromLong(x);
+            return PyLong_Type.tp_as_number->nb_subtract(op1, op2);
+    }
+    #endif
+    #if CYTHON_USE_PYLONG_INTERNALS
+    if (likely(PyLong_CheckExact(op1))) {
+        const long b = intval;
+        long a, x;
+#ifdef HAVE_LONG_LONG
+        const PY_LONG_LONG llb = intval;
+        PY_LONG_LONG lla, llx;
+#endif
+        const digit* digits = ((PyLongObject*)op1)->ob_digit;
+        const Py_ssize_t size = Py_SIZE(op1);
+        if (likely(__Pyx_sst_abs(size) <= 1)) {
+            a = likely(size) ? digits[0] : 0;
+            if (size == -1) a = -a;
+        } else {
+            switch (size) {
+                case -2:
+                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
+                        a = -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                case 2:
+                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
+                        a = (long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                case -3:
+                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
+                        a = -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                case 3:
+                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
+                        a = (long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                case -4:
+                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
+                        a = -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                case 4:
+                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
+                        a = (long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                default: return PyLong_Type.tp_as_number->nb_subtract(op1, op2);
+            }
+        }
+                x = a - b;
+            return PyLong_FromLong(x);
+#ifdef HAVE_LONG_LONG
+        long_long:
+                llx = lla - llb;
+            return PyLong_FromLongLong(llx);
+#endif
+        
+        
+    }
+    #endif
+    if (PyFloat_CheckExact(op1)) {
+        const long b = intval;
+        double a = PyFloat_AS_DOUBLE(op1);
+            double result;
+            PyFPE_START_PROTECT("subtract", return NULL)
+            result = ((double)a) - (double)b;
+            PyFPE_END_PROTECT(result)
+            return PyFloat_FromDouble(result);
+    }
+    return (inplace ? PyNumber_InPlaceSubtract : PyNumber_Subtract)(op1, op2);
+}
+#endif
+
+/* SaveResetException */
+    #if CYTHON_FAST_THREAD_STATE
+static CYTHON_INLINE void __Pyx__ExceptionSave(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
+    #if PY_VERSION_HEX >= 0x030700A2
+    *type = tstate->exc_state.exc_type;
+    *value = tstate->exc_state.exc_value;
+    *tb = tstate->exc_state.exc_traceback;
+    #else
+    *type = tstate->exc_type;
+    *value = tstate->exc_value;
+    *tb = tstate->exc_traceback;
+    #endif
+    Py_XINCREF(*type);
+    Py_XINCREF(*value);
+    Py_XINCREF(*tb);
+}
+static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    #if PY_VERSION_HEX >= 0x030700A2
+    tmp_type = tstate->exc_state.exc_type;
+    tmp_value = tstate->exc_state.exc_value;
+    tmp_tb = tstate->exc_state.exc_traceback;
+    tstate->exc_state.exc_type = type;
+    tstate->exc_state.exc_value = value;
+    tstate->exc_state.exc_traceback = tb;
+    #else
+    tmp_type = tstate->exc_type;
+    tmp_value = tstate->exc_value;
+    tmp_tb = tstate->exc_traceback;
+    tstate->exc_type = type;
+    tstate->exc_value = value;
+    tstate->exc_traceback = tb;
+    #endif
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+}
+#endif
+
+/* GetException */
+    #if CYTHON_FAST_THREAD_STATE
+static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
+#else
+static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb) {
+#endif
+    PyObject *local_type, *local_value, *local_tb;
+#if CYTHON_FAST_THREAD_STATE
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    local_type = tstate->curexc_type;
+    local_value = tstate->curexc_value;
+    local_tb = tstate->curexc_traceback;
+    tstate->curexc_type = 0;
+    tstate->curexc_value = 0;
+    tstate->curexc_traceback = 0;
+#else
+    PyErr_Fetch(&local_type, &local_value, &local_tb);
+#endif
+    PyErr_NormalizeException(&local_type, &local_value, &local_tb);
+#if CYTHON_FAST_THREAD_STATE
+    if (unlikely(tstate->curexc_type))
+#else
+    if (unlikely(PyErr_Occurred()))
+#endif
+        goto bad;
+    #if PY_MAJOR_VERSION >= 3
+    if (local_tb) {
+        if (unlikely(PyException_SetTraceback(local_value, local_tb) < 0))
+            goto bad;
+    }
+    #endif
+    Py_XINCREF(local_tb);
+    Py_XINCREF(local_type);
+    Py_XINCREF(local_value);
+    *type = local_type;
+    *value = local_value;
+    *tb = local_tb;
+#if CYTHON_FAST_THREAD_STATE
+    #if PY_VERSION_HEX >= 0x030700A2
+    tmp_type = tstate->exc_state.exc_type;
+    tmp_value = tstate->exc_state.exc_value;
+    tmp_tb = tstate->exc_state.exc_traceback;
+    tstate->exc_state.exc_type = local_type;
+    tstate->exc_state.exc_value = local_value;
+    tstate->exc_state.exc_traceback = local_tb;
+    #else
+    tmp_type = tstate->exc_type;
+    tmp_value = tstate->exc_value;
+    tmp_tb = tstate->exc_traceback;
+    tstate->exc_type = local_type;
+    tstate->exc_value = local_value;
+    tstate->exc_traceback = local_tb;
+    #endif
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+#else
+    PyErr_SetExcInfo(local_type, local_value, local_tb);
+#endif
+    return 0;
+bad:
+    *type = 0;
+    *value = 0;
+    *tb = 0;
+    Py_XDECREF(local_type);
+    Py_XDECREF(local_value);
+    Py_XDECREF(local_tb);
+    return -1;
+}
+
 /* RaiseDoubleKeywords */
-    static void __Pyx_RaiseDoubleKeywordsError(
+      static void __Pyx_RaiseDoubleKeywordsError(
     const char* func_name,
     PyObject* kw_name)
 {
@@ -25607,7 +26322,7 @@ bad:
 }
 
 /* ParseKeywords */
-    static int __Pyx_ParseOptionalKeywords(
+      static int __Pyx_ParseOptionalKeywords(
     PyObject *kwds,
     PyObject **argnames[],
     PyObject *kwds2,
@@ -25709,7 +26424,7 @@ bad:
 }
 
 /* ExtTypeTest */
-    static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
+      static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
     if (unlikely(!type)) {
         PyErr_SetString(PyExc_SystemError, "Missing type object");
         return 0;
@@ -25722,7 +26437,7 @@ bad:
 }
 
 /* IsLittleEndian */
-    static CYTHON_INLINE int __Pyx_Is_Little_Endian(void)
+      static CYTHON_INLINE int __Pyx_Is_Little_Endian(void)
 {
   union {
     uint32_t u32;
@@ -25733,7 +26448,7 @@ bad:
 }
 
 /* BufferFormatCheck */
-    static void __Pyx_BufFmt_Init(__Pyx_BufFmt_Context* ctx,
+      static void __Pyx_BufFmt_Init(__Pyx_BufFmt_Context* ctx,
                               __Pyx_BufFmt_StackElem* stack,
                               __Pyx_TypeInfo* type) {
   stack[0].field = &ctx->root;
@@ -26233,7 +26948,7 @@ static const char* __Pyx_BufFmt_CheckString(__Pyx_BufFmt_Context* ctx, const cha
 }
 
 /* BufferGetAndValidate */
-      static CYTHON_INLINE void __Pyx_SafeReleaseBuffer(Py_buffer* info) {
+        static CYTHON_INLINE void __Pyx_SafeReleaseBuffer(Py_buffer* info) {
   if (unlikely(info->buf == NULL)) return;
   if (info->suboffsets == __Pyx_minusones) info->suboffsets = NULL;
   __Pyx_ReleaseBuffer(info);
@@ -26280,7 +26995,7 @@ fail:;
 }
 
 /* BytesEquals */
-      static CYTHON_INLINE int __Pyx_PyBytes_Equals(PyObject* s1, PyObject* s2, int equals) {
+        static CYTHON_INLINE int __Pyx_PyBytes_Equals(PyObject* s1, PyObject* s2, int equals) {
 #if CYTHON_COMPILING_IN_PYPY
     return PyObject_RichCompareBool(s1, s2, equals);
 #else
@@ -26327,7 +27042,7 @@ fail:;
 }
 
 /* UnicodeEquals */
-      static CYTHON_INLINE int __Pyx_PyUnicode_Equals(PyObject* s1, PyObject* s2, int equals) {
+        static CYTHON_INLINE int __Pyx_PyUnicode_Equals(PyObject* s1, PyObject* s2, int equals) {
 #if CYTHON_COMPILING_IN_PYPY
     return PyObject_RichCompareBool(s1, s2, equals);
 #else
@@ -26426,7 +27141,7 @@ return_ne:
 }
 
 /* PyIntBinop */
-      #if !CYTHON_COMPILING_IN_PYPY
+        #if !CYTHON_COMPILING_IN_PYPY
 static PyObject* __Pyx_PyInt_RshiftObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, CYTHON_UNUSED int inplace) {
     #if PY_MAJOR_VERSION < 3
     if (likely(PyInt_CheckExact(op1))) {
@@ -26529,7 +27244,7 @@ static PyObject* __Pyx_PyInt_RshiftObjC(PyObject *op1, PyObject *op2, CYTHON_UNU
 #endif
 
 /* GetItemInt */
-      static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {
+        static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {
     PyObject *r;
     if (!j) return NULL;
     r = PyObject_GetItem(o, j);
@@ -26616,7 +27331,7 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i, 
 }
 
 /* PyObjectCallMethod1 */
-      static PyObject* __Pyx__PyObject_CallMethod1(PyObject* method, PyObject* arg) {
+        static PyObject* __Pyx__PyObject_CallMethod1(PyObject* method, PyObject* arg) {
     PyObject *result = NULL;
 #if CYTHON_UNPACK_METHODS
     if (likely(PyMethod_Check(method))) {
@@ -26668,7 +27383,7 @@ done:
 }
 
 /* append */
-      static CYTHON_INLINE int __Pyx_PyObject_Append(PyObject* L, PyObject* x) {
+        static CYTHON_INLINE int __Pyx_PyObject_Append(PyObject* L, PyObject* x) {
     if (likely(PyList_CheckExact(L))) {
         if (unlikely(__Pyx_PyList_Append(L, x) < 0)) return -1;
     } else {
@@ -26678,115 +27393,6 @@ done:
         Py_DECREF(retval);
     }
     return 0;
-}
-
-/* SaveResetException */
-      #if CYTHON_FAST_THREAD_STATE
-static CYTHON_INLINE void __Pyx__ExceptionSave(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
-    #if PY_VERSION_HEX >= 0x030700A2
-    *type = tstate->exc_state.exc_type;
-    *value = tstate->exc_state.exc_value;
-    *tb = tstate->exc_state.exc_traceback;
-    #else
-    *type = tstate->exc_type;
-    *value = tstate->exc_value;
-    *tb = tstate->exc_traceback;
-    #endif
-    Py_XINCREF(*type);
-    Py_XINCREF(*value);
-    Py_XINCREF(*tb);
-}
-static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    #if PY_VERSION_HEX >= 0x030700A2
-    tmp_type = tstate->exc_state.exc_type;
-    tmp_value = tstate->exc_state.exc_value;
-    tmp_tb = tstate->exc_state.exc_traceback;
-    tstate->exc_state.exc_type = type;
-    tstate->exc_state.exc_value = value;
-    tstate->exc_state.exc_traceback = tb;
-    #else
-    tmp_type = tstate->exc_type;
-    tmp_value = tstate->exc_value;
-    tmp_tb = tstate->exc_traceback;
-    tstate->exc_type = type;
-    tstate->exc_value = value;
-    tstate->exc_traceback = tb;
-    #endif
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-}
-#endif
-
-/* GetException */
-      #if CYTHON_FAST_THREAD_STATE
-static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
-#else
-static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb) {
-#endif
-    PyObject *local_type, *local_value, *local_tb;
-#if CYTHON_FAST_THREAD_STATE
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    local_type = tstate->curexc_type;
-    local_value = tstate->curexc_value;
-    local_tb = tstate->curexc_traceback;
-    tstate->curexc_type = 0;
-    tstate->curexc_value = 0;
-    tstate->curexc_traceback = 0;
-#else
-    PyErr_Fetch(&local_type, &local_value, &local_tb);
-#endif
-    PyErr_NormalizeException(&local_type, &local_value, &local_tb);
-#if CYTHON_FAST_THREAD_STATE
-    if (unlikely(tstate->curexc_type))
-#else
-    if (unlikely(PyErr_Occurred()))
-#endif
-        goto bad;
-    #if PY_MAJOR_VERSION >= 3
-    if (local_tb) {
-        if (unlikely(PyException_SetTraceback(local_value, local_tb) < 0))
-            goto bad;
-    }
-    #endif
-    Py_XINCREF(local_tb);
-    Py_XINCREF(local_type);
-    Py_XINCREF(local_value);
-    *type = local_type;
-    *value = local_value;
-    *tb = local_tb;
-#if CYTHON_FAST_THREAD_STATE
-    #if PY_VERSION_HEX >= 0x030700A2
-    tmp_type = tstate->exc_state.exc_type;
-    tmp_value = tstate->exc_state.exc_value;
-    tmp_tb = tstate->exc_state.exc_traceback;
-    tstate->exc_state.exc_type = local_type;
-    tstate->exc_state.exc_value = local_value;
-    tstate->exc_state.exc_traceback = local_tb;
-    #else
-    tmp_type = tstate->exc_type;
-    tmp_value = tstate->exc_value;
-    tmp_tb = tstate->exc_traceback;
-    tstate->exc_type = local_type;
-    tstate->exc_value = local_value;
-    tstate->exc_traceback = local_tb;
-    #endif
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-#else
-    PyErr_SetExcInfo(local_type, local_value, local_tb);
-#endif
-    return 0;
-bad:
-    *type = 0;
-    *value = 0;
-    *tb = 0;
-    Py_XDECREF(local_type);
-    Py_XDECREF(local_value);
-    Py_XDECREF(local_tb);
-    return -1;
 }
 
 /* UnpackUnboundCMethod */
@@ -26863,122 +27469,6 @@ bad:
 #endif
     return value;
 }
-
-/* PyIntBinop */
-        #if !CYTHON_COMPILING_IN_PYPY
-static PyObject* __Pyx_PyInt_SubtractObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, CYTHON_UNUSED int inplace) {
-    #if PY_MAJOR_VERSION < 3
-    if (likely(PyInt_CheckExact(op1))) {
-        const long b = intval;
-        long x;
-        long a = PyInt_AS_LONG(op1);
-            x = (long)((unsigned long)a - b);
-            if (likely((x^a) >= 0 || (x^~b) >= 0))
-                return PyInt_FromLong(x);
-            return PyLong_Type.tp_as_number->nb_subtract(op1, op2);
-    }
-    #endif
-    #if CYTHON_USE_PYLONG_INTERNALS
-    if (likely(PyLong_CheckExact(op1))) {
-        const long b = intval;
-        long a, x;
-#ifdef HAVE_LONG_LONG
-        const PY_LONG_LONG llb = intval;
-        PY_LONG_LONG lla, llx;
-#endif
-        const digit* digits = ((PyLongObject*)op1)->ob_digit;
-        const Py_ssize_t size = Py_SIZE(op1);
-        if (likely(__Pyx_sst_abs(size) <= 1)) {
-            a = likely(size) ? digits[0] : 0;
-            if (size == -1) a = -a;
-        } else {
-            switch (size) {
-                case -2:
-                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
-                        a = -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-#ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
-                        lla = -(PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-#endif
-                    }
-                case 2:
-                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
-                        a = (long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-#ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
-                        lla = (PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-#endif
-                    }
-                case -3:
-                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
-                        a = -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-#ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
-                        lla = -(PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-#endif
-                    }
-                case 3:
-                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
-                        a = (long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-#ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
-                        lla = (PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-#endif
-                    }
-                case -4:
-                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
-                        a = -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-#ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
-                        lla = -(PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-#endif
-                    }
-                case 4:
-                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
-                        a = (long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-#ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
-                        lla = (PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-#endif
-                    }
-                default: return PyLong_Type.tp_as_number->nb_subtract(op1, op2);
-            }
-        }
-                x = a - b;
-            return PyLong_FromLong(x);
-#ifdef HAVE_LONG_LONG
-        long_long:
-                llx = lla - llb;
-            return PyLong_FromLongLong(llx);
-#endif
-        
-        
-    }
-    #endif
-    if (PyFloat_CheckExact(op1)) {
-        const long b = intval;
-        double a = PyFloat_AS_DOUBLE(op1);
-            double result;
-            PyFPE_START_PROTECT("subtract", return NULL)
-            result = ((double)a) - (double)b;
-            PyFPE_END_PROTECT(result)
-            return PyFloat_FromDouble(result);
-    }
-    return (inplace ? PyNumber_InPlaceSubtract : PyNumber_Subtract)(op1, op2);
-}
-#endif
 
 /* Import */
         static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {
@@ -28184,6 +28674,134 @@ static PyObject* __pyx_convert__to_py_struct__vector2d(struct vector2d s) {
     }
 }
 
+static PyObject* __pyx_convert__to_py_struct__rgba_color(struct rgba_color s) {
+              PyObject* res;
+              PyObject* member;
+              res = __Pyx_PyDict_NewPresized(4); if (unlikely(!res)) return NULL;
+              member = __Pyx_PyInt_From_int(s.r); if (unlikely(!member)) goto bad;
+              if (unlikely(PyDict_SetItem(res, __pyx_n_s_r, member) < 0)) goto bad;
+              Py_DECREF(member);
+              member = __Pyx_PyInt_From_int(s.g); if (unlikely(!member)) goto bad;
+              if (unlikely(PyDict_SetItem(res, __pyx_n_s_g, member) < 0)) goto bad;
+              Py_DECREF(member);
+              member = __Pyx_PyInt_From_int(s.b); if (unlikely(!member)) goto bad;
+              if (unlikely(PyDict_SetItem(res, __pyx_n_s_b, member) < 0)) goto bad;
+              Py_DECREF(member);
+              member = __Pyx_PyInt_From_int(s.a); if (unlikely(!member)) goto bad;
+              if (unlikely(PyDict_SetItem(res, __pyx_n_s_a, member) < 0)) goto bad;
+              Py_DECREF(member);
+              return res;
+              bad:
+              Py_XDECREF(member);
+              Py_DECREF(res);
+              return NULL;
+            }
+            /* Print */
+            #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
+static PyObject *__Pyx_GetStdout(void) {
+    PyObject *f = PySys_GetObject((char *)"stdout");
+    if (!f) {
+        PyErr_SetString(PyExc_RuntimeError, "lost sys.stdout");
+    }
+    return f;
+}
+static int __Pyx_Print(PyObject* f, PyObject *arg_tuple, int newline) {
+    int i;
+    if (!f) {
+        if (!(f = __Pyx_GetStdout()))
+            return -1;
+    }
+    Py_INCREF(f);
+    for (i=0; i < PyTuple_GET_SIZE(arg_tuple); i++) {
+        PyObject* v;
+        if (PyFile_SoftSpace(f, 1)) {
+            if (PyFile_WriteString(" ", f) < 0)
+                goto error;
+        }
+        v = PyTuple_GET_ITEM(arg_tuple, i);
+        if (PyFile_WriteObject(v, f, Py_PRINT_RAW) < 0)
+            goto error;
+        if (PyString_Check(v)) {
+            char *s = PyString_AsString(v);
+            Py_ssize_t len = PyString_Size(v);
+            if (len > 0) {
+                switch (s[len-1]) {
+                    case ' ': break;
+                    case '\f': case '\r': case '\n': case '\t': case '\v':
+                        PyFile_SoftSpace(f, 0);
+                        break;
+                    default:  break;
+                }
+            }
+        }
+    }
+    if (newline) {
+        if (PyFile_WriteString("\n", f) < 0)
+            goto error;
+        PyFile_SoftSpace(f, 0);
+    }
+    Py_DECREF(f);
+    return 0;
+error:
+    Py_DECREF(f);
+    return -1;
+}
+#else
+static int __Pyx_Print(PyObject* stream, PyObject *arg_tuple, int newline) {
+    PyObject* kwargs = 0;
+    PyObject* result = 0;
+    PyObject* end_string;
+    if (unlikely(!__pyx_print)) {
+        __pyx_print = PyObject_GetAttr(__pyx_b, __pyx_n_s_print);
+        if (!__pyx_print)
+            return -1;
+    }
+    if (stream) {
+        kwargs = PyDict_New();
+        if (unlikely(!kwargs))
+            return -1;
+        if (unlikely(PyDict_SetItem(kwargs, __pyx_n_s_file, stream) < 0))
+            goto bad;
+        if (!newline) {
+            end_string = PyUnicode_FromStringAndSize(" ", 1);
+            if (unlikely(!end_string))
+                goto bad;
+            if (PyDict_SetItem(kwargs, __pyx_n_s_end, end_string) < 0) {
+                Py_DECREF(end_string);
+                goto bad;
+            }
+            Py_DECREF(end_string);
+        }
+    } else if (!newline) {
+        if (unlikely(!__pyx_print_kwargs)) {
+            __pyx_print_kwargs = PyDict_New();
+            if (unlikely(!__pyx_print_kwargs))
+                return -1;
+            end_string = PyUnicode_FromStringAndSize(" ", 1);
+            if (unlikely(!end_string))
+                return -1;
+            if (PyDict_SetItem(__pyx_print_kwargs, __pyx_n_s_end, end_string) < 0) {
+                Py_DECREF(end_string);
+                return -1;
+            }
+            Py_DECREF(end_string);
+        }
+        kwargs = __pyx_print_kwargs;
+    }
+    result = PyObject_Call(__pyx_print, arg_tuple, kwargs);
+    if (unlikely(kwargs) && (kwargs != __pyx_print_kwargs))
+        Py_DECREF(kwargs);
+    if (!result)
+        return -1;
+    Py_DECREF(result);
+    return 0;
+bad:
+    if (kwargs != __pyx_print_kwargs)
+        Py_XDECREF(kwargs);
+    return -1;
+}
+#endif
+
 /* CIntToPy */
             static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
     const long neg_one = (long) -1, const_zero = (long) 0;
@@ -28933,6 +29551,43 @@ raise_neg_overflow:
         "can't convert negative value to long");
     return (long) -1;
 }
+
+/* PrintOne */
+            #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
+static int __Pyx_PrintOne(PyObject* f, PyObject *o) {
+    if (!f) {
+        if (!(f = __Pyx_GetStdout()))
+            return -1;
+    }
+    Py_INCREF(f);
+    if (PyFile_SoftSpace(f, 0)) {
+        if (PyFile_WriteString(" ", f) < 0)
+            goto error;
+    }
+    if (PyFile_WriteObject(o, f, Py_PRINT_RAW) < 0)
+        goto error;
+    if (PyFile_WriteString("\n", f) < 0)
+        goto error;
+    Py_DECREF(f);
+    return 0;
+error:
+    Py_DECREF(f);
+    return -1;
+    /* the line below is just to avoid C compiler
+     * warnings about unused functions */
+    return __Pyx_Print(f, NULL, 0);
+}
+#else
+static int __Pyx_PrintOne(PyObject* stream, PyObject *o) {
+    int res;
+    PyObject* arg_tuple = PyTuple_Pack(1, o);
+    if (unlikely(!arg_tuple))
+        return -1;
+    res = __Pyx_Print(stream, arg_tuple, 1);
+    Py_DECREF(arg_tuple);
+    return res;
+}
+#endif
 
 /* FastTypeChecks */
             #if CYTHON_COMPILING_IN_CPYTHON

@@ -23,12 +23,25 @@ SOFTWARE.
 
 
 # PROJECT:
+Lens flare effect demonstration using a wavelength to RGB algorithm
+written by Noah.org in python and adapted into C language for speed improvement.
+You can find the wavelength to RGB algorithm in the C file wavelength.c under the main
+project directory.
+Shows a pseudo lens flare effect that can be used for video games, demos or other
+aesthetic purpose.
 
+If you change the C file, don't forget to build it with gcc and to re-build the project
+using the command "C:>python setup_fares.py build_ext --inplace"
 
 # TECHNIQUE:
-
-
-# EFFECTS
+A vector direction (VECTOR) is calculated from the mouse cursor position and the centre of
+the effect (FLARE_EFFECT_CENTRE) and polygons of various sizes and colors are added
+along that vector (with sizes proportional to the distance from the centre).
+All polygons are filled with RGB color corresponding to the wavelength (distance
+relative to centre of the effect FLARE_EFFECT_CENTRE.
+When the polygon is at the end of the spectrum, the RGB color will vary from purple,
+blue, green yellow, orange and red when moving along the lens vector (red being the
+closest from the user position).
 
 
 REQUIREMENT:
@@ -140,6 +153,9 @@ TEXTURE3 = pygame.image.load('Assets\\untitled8.png').convert(24)
 TEXTURE3 = pygame.transform.smoothscale(TEXTURE3, (256, 256))
 TEXTURE3.set_colorkey((0, 0, 0, 0), pygame.RLEACCEL)
 
+MODEL = FLARES.v_surface()
+pygame.image.save(MODEL, "color_spectrum.png")
+
 # ********************************************************************
 
 # SPRITE OF THE STAR CAUSING THE FLARE EFFECT
@@ -163,7 +179,7 @@ VECTOR = pygame.math.Vector2(0, 0)
 
 
 # BLUE STAR POSITION ONTO THE SCREEN (CENTRE OF THE EFFECT)
-FLARE_POSITION = pygame.math.Vector2(280, 120)
+FLARE_EFFECT_CENTRE = pygame.math.Vector2(280, 120)
 
 
 # GROUP USED FOR REFERENCING ALL THE SUB-FLARES.
@@ -203,33 +219,33 @@ exc = [TEXTURE2]
 # ALSO INSERT POLYGON INTO THE PYTHON LIST FLARES
 for r in range(20):
     FLARES.append(second_flares(TEXTURE, octagon.copy(),
-                                make_vector2d(FLARE_POSITION), 0.8, 1.2, exc))
+                                make_vector2d(FLARE_EFFECT_CENTRE), 0.8, 1.2, exc))
 for r in range(5):
     FLARES.append(second_flares(TEXTURE1, octagon.copy(),
-                                make_vector2d(FLARE_POSITION), 0.8, 1.2, exc))
+                                make_vector2d(FLARE_EFFECT_CENTRE), 0.8, 1.2, exc))
 # DRAW GLARES
 for r in range(5):
     FLARES.append(second_flares(TEXTURE2, octagon.copy(),
-                                make_vector2d(FLARE_POSITION), 0.8, 1.2, exc))
+                                make_vector2d(FLARE_EFFECT_CENTRE), 0.8, 1.2, exc))
 
 # GO TROUGH THE LIST FLARES AND CREATE FLARES SPRITES.
 # THE SPRITE ARE INSERTED INTO THE PYTHON LIST CHILD
 for flares in FLARES:
     create_flare_sprite(
         images_=flares[0], distance_=flares[1], vector_=VECTOR,
-        position_=FLARE_POSITION, layer_=0, gl_=GL,
+        position_=FLARE_EFFECT_CENTRE, layer_=0, gl_=GL,
         child_group_=CHILD, blend_=pygame.BLEND_RGB_ADD, event_type='CHILD', delete_=False)
 
 # SPRITE DISPLAY AT THE END OF THE VECTOR
 create_flare_sprite(
         images_=TEXTURE3, distance_=2.0, vector_=VECTOR,
-        position_=FLARE_POSITION, layer_=0, gl_=GL,
+        position_=FLARE_EFFECT_CENTRE, layer_=0, gl_=GL,
         child_group_=CHILD, blend_=pygame.BLEND_RGB_ADD, event_type='CHILD', delete_=False)
 
 # BLUE BRIGHT STAR
 create_flare_sprite(
         images_=STAR_BURST, distance_=0.5, vector_=VECTOR,
-        position_=FLARE_POSITION, layer_=0, gl_=GL,
+        position_=FLARE_EFFECT_CENTRE, layer_=0, gl_=GL,
         child_group_=CHILD, blend_=pygame.BLEND_RGB_ADD, event_type='PARENT', delete_=False)
 
 
@@ -259,7 +275,7 @@ while not STOP_GAME:
             # VECTOR GIVEN BETWEEN THE MOUSE CURSOR AND THE CENTRE
             # OF THE BLUE STAR
             VECTOR = get_angle(
-                make_vector2d(FLARE_POSITION),
+                make_vector2d(FLARE_EFFECT_CENTRE),
                 make_vector2d(pygame.math.Vector2(mouse_pos[0], mouse_pos[1])))
 
     # DISPLAY THE BACKGROUND IMAGE
