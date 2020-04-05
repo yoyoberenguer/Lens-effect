@@ -89,6 +89,7 @@ display_flare_sprite(CHILD, STAR_BURST, STAR_BURST3x, GL, VECTOR)
 ### BUILDING PROJECT:
 ```
 Use the following command:
+C:\python setup_bloom.py build_ext --inplace
 C:\python setup_flares.py build_ext --inplace
 ```
 
