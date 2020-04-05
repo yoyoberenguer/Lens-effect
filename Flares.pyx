@@ -23,6 +23,73 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+# PROJECT:
+Lens flare effect demonstration using a wavelength to RGB algorithm
+written by Noah.org in python and adapted into C language for speed improvement.
+You can find the wavelength to RGB algorithm in the C file wavelength.c under the main
+project directory.
+Shows a pseudo lens flare effect that can be used for video games, demos or other
+aesthetic purpose.
+
+If you change the C file, don't forget to build it with gcc and to re-build the project
+using the command "C:>python setup_fares.py build_ext --inplace"
+
+# TECHNIQUE:
+A vector direction (VECTOR) is calculated from the mouse cursor position and the centre of
+the effect (FLARE_EFFECT_CENTRE) and polygons of various sizes and colors are added
+along that vector (with sizes proportional to the distance from the centre).
+All polygons are filled with RGB color corresponding to the wavelength (distance
+relative to centre of the effect FLARE_EFFECT_CENTRE.
+When the polygon is at the end of the spectrum, the RGB color will vary from purple,
+blue, green yellow, orange and red when moving along the lens vector (red being the
+closest from the user position, see color_spectrum image)
+
+# HOW TO CREATE FLARES
+
+First create a texture
+TEXTURE = pygame.image.load('Assets\\Untitled3.png').convert(24)
+TEXTURE = pygame.transform.smoothscale(TEXTURE, (100, 100))
+TEXTURE.set_colorkey((0, 0, 0, 0), pygame.RLEACCEL)
+
+Instantiate the flare
+for r in range(20):
+    FLARES.append(second_flares(TEXTURE, octagon.copy(),
+                                make_vector2d(FLARE_EFFECT_CENTRE), 0.8, 1.2, exc))
+
+In the above example, we are creating 20 sub-flares with texture (image Untitled3.png)
+All instance will be added to the python list FLARES.
+The method second_flares assign the texture and give a random position to the
+flare along the direction vector. Float values 0.8 and 1.2 are the minimum and maximum
+of the polygon size.
+All texture contains in the list named <exc> will be blit directly
+on the flare vector without creating a textured polygon
+
+CREATE ALL THE SPRITES
+
+for flares in FLARES:
+    create_flare_sprite(
+        images_=flares[0], distance_=flares[1], vector_=VECTOR,
+        position_=FLARE_EFFECT_CENTRE, layer_=0, gl_=GL,
+        child_group_=CHILD, blend_=pygame.BLEND_RGB_ADD, event_type='CHILD', delete_=False)
+
+DISPLAY THE SPRITE IN YOUR MAIN LOOP
+display_flare_sprite(CHILD, STAR_BURST, STAR_BURST3x, GL, VECTOR)
+
+REQUIREMENT:
+- python > 3.0
+- numpy arrays
+- pygame with SDL version 1.2 (SDL version 2 untested)
+  Cython
+- A compiler such visual studio, MSVC, CGYWIN setup correctly
+  on your system
+
+
+BUILDING PROJECT:
+Use the following command:
+C:>python setup_lights.py build_ext --inplace
+
 """
 
 
