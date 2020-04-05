@@ -37,7 +37,10 @@ TEXTURE = pygame.image.load('Assets\\Untitled3.png').convert(24)
 TEXTURE = pygame.transform.smoothscale(TEXTURE, (100, 100))
 TEXTURE.set_colorkey((0, 0, 0, 0), pygame.RLEACCEL)
 
-2) Instantiate the flare
+2) Create a polygon
+octagon = polygon()
+
+3) Instantiate the flare
 for r in range(20):
     FLARES.append(second_flares(TEXTURE, octagon.copy(),
                                 make_vector2d(FLARE_EFFECT_CENTRE), 0.8, 1.2, exc))
@@ -50,14 +53,25 @@ of the polygon size.
 Texture contain in the list named <exc> will be blit directly
 on the flare vector without creating a textured polygon
 
-3) Create the sprites
+4) Create the sprites
 
 for flares in FLARES:
     create_flare_sprite(
         images_=flares[0], distance_=flares[1], vector_=VECTOR,
         position_=FLARE_EFFECT_CENTRE, layer_=0, gl_=GL,
         child_group_=CHILD, blend_=pygame.BLEND_RGB_ADD, event_type='CHILD', delete_=False)
-        
+
+flares[0] : correspond to the texture 
+flares[1] : the distance from the centre of the effect
+vector    : the flare vector
+position  : Polygon position along the flare vector
+layer     : layer used for displaying the sprite (this is not implemented yet)
+GL        : Global constant 
+CHILD     : is the group containing all the instances
+blend     : default additive mode 
+event     : can be 'CHILD' or 'PARENT' child is used for the flares (polygons)
+            Child polygon 's size is inalterable. 
+
 4) Fisplay the sprites in your mainloop
 display_flare_sprite(CHILD, STAR_BURST, STAR_BURST3x, GL, VECTOR)
 ```
@@ -76,7 +90,7 @@ display_flare_sprite(CHILD, STAR_BURST, STAR_BURST3x, GL, VECTOR)
 ```
 Use the following command:
 C:\
-python setup_lights.py build_ext --inplace
+python setup_flares.py build_ext --inplace
 ```
 
 #### Reference see page https://www.noah.org/wiki/Wavelength_to_RGB_in_Python
