@@ -26,6 +26,11 @@ blue, green yellow, orange and red when moving along the lens vector (red being 
 closest from the user position, see color_spectrum image)
 ```
 
+### DEMO: 
+```
+Edit the file test_flares.py in your favorite python IDE and run it
+```
+
 Color Spectrum
 
 ![alt text](https://github.com/yoyoberenguer/lens-effect/blob/master/color_spectrum.png) 
