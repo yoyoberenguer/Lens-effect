@@ -201,7 +201,7 @@ class GL:
 
 AVG_FPS = []
 
-SCREENRECT = pygame.Rect(0, 0, 1280, 1024)
+SCREENRECT = pygame.Rect(0, 0, 400, 400)
 GL.screenrect = SCREENRECT
 
 # os.environ['SDL_VIDEODRIVER'] = 'windib'
