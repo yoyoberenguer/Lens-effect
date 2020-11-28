@@ -108,8 +108,7 @@ display_flare_sprite(CHILD, STAR_BURST, STAR_BURST3x, GL, VECTOR)
 ### BUILDING PROJECT:
 ```
 Use the following command:
-C:>\\python setup_bloom.py build_ext --inplace
-C:>\\python setup_flares.py build_ext --inplace
+C:>\\python setup_project.py build_ext --inplace
 ```
 
 #### Reference see page https://www.noah.org/wiki/Wavelength_to_RGB_in_Python
@@ -191,6 +190,7 @@ try:
 except ImportError:
     print("\n library bloom is missing on your system.")
 
+import MAPPING
 
 # ALL SHARE CONSTANT(s) GOES HERE
 class GL:
@@ -201,10 +201,10 @@ class GL:
 
 AVG_FPS = []
 
-SCREENRECT = pygame.Rect(0, 0, 500, 500)
+SCREENRECT = pygame.Rect(0, 0, 1280, 1024)
 GL.screenrect = SCREENRECT
 
-os.environ['SDL_VIDEODRIVER'] = 'windib'
+# os.environ['SDL_VIDEODRIVER'] = 'windib'
 
 pygame.display.init()
 SCREEN = pygame.display.set_mode(SCREENRECT.size, pygame.SWSURFACE, 32)
@@ -377,15 +377,15 @@ while not STOP_GAME:
     # CHECK METHOD display_flare_sprite FOR MORE DETAILS
     display_flare_sprite(CHILD, STAR_BURST, STAR_BURST3x, GL, VECTOR)
 
-    # WE DO NOT NEED TO UPDATE
+    # WE DO NOT NEED UPDATE AND DRAW METHODS
     # SPRITE DOES NOT BELONG TO PYGAME GROUP
     # All.update()
-    All.draw(SCREEN)
+    # All.draw(SCREEN)
 
     # DISPLAY CHANGES
     pygame.display.flip()
 
-    TIME_PASSED_SECONDS = clock.tick_busy_loop(400)
+    TIME_PASSED_SECONDS = clock.tick_busy_loop(800)
     GL.TIME_PASSED_SECONDS = TIME_PASSED_SECONDS
     avg_fps = clock.get_fps()
     print(avg_fps, 1000/(avg_fps + 0.001))
