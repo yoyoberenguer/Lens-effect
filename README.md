@@ -36,16 +36,20 @@ Color Spectrum
 ![alt text](https://github.com/yoyoberenguer/lens-effect/blob/master/color_spectrum.png) 
 
 ### HOW TO CREATE FLARES
-```
-# 1) Create a texture
+
+#### 1) Create a texture
+```python
 TEXTURE = pygame.image.load('Assets\\Untitled3.png').convert(24)
 TEXTURE = pygame.transform.smoothscale(TEXTURE, (100, 100))
-TEXTURE.set_colorkey((0, 0, 0, 0), pygame.RLEACCEL)
+TEXTURE.set_colorkey((0, 0, 0, 0), pygame.RLEACCEL) 
+```
 
-# 2) Create a polygon
+#### 2) Create a polygon
+```python
 octagon = polygon()
-
-# 3) Instantiate the flare
+```
+#### 3) Instantiate the flare
+``` python
 for r in range(20):
     FLARES.append(second_flares(TEXTURE, octagon.copy(),
                                 make_vector2d(FLARE_EFFECT_CENTRE), 0.8, 1.2, exc))
@@ -57,9 +61,9 @@ for r in range(20):
 # of the polygon size.
 # Texture contain in the list named <exc> will be blit directly
 # on the flare vector without creating a textured polygon
-
-# 4) Create the sprites
-
+```
+#### 4) Create the sprites
+```python
 for flares in FLARES:
     create_flare_sprite(
         images_=flares[0], distance_=flares[1], vector_=VECTOR,
@@ -76,8 +80,9 @@ for flares in FLARES:
 # blend     : default additive mode 
 # event     : can be 'CHILD' or 'PARENT' child is used for the flares (polygons)
 #            Child polygon 's size is inalterable. 
-
-# 4) Fisplay the sprites in your mainloop
+```
+#### 5) Fisplay the sprites in your mainloop
+```python
 display_flare_sprite(CHILD, STAR_BURST, STAR_BURST3x, GL, VECTOR)
 ```
 
