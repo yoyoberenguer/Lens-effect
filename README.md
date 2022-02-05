@@ -4,23 +4,27 @@
 
 ### PROJECT:
 ```
-Lens flare effect demonstration using a wavelength to RGB algorithm
-written by Noah.org in python and adapted into C language for speed improvement.
+Lens flare effect demonstration is using a `wavelength to RGB` algorithm
+written in python and ported into C language for speed improvement.
 You can find the wavelength to RGB algorithm in the C file wavelength.c under the main
 project directory.
 Note:
-If you change the C file, don't forget to build it with gcc and to re-build the project
-using the command "C:>python setup_fares.py build_ext --inplace"
+    If you change the C file, don't forget to build it with gcc and to re-build the project
+    using the command : 
+```
+```DOS
+"C:>python setup_fares.py build_ext --inplace"
 ```
 
 ### TECHNIQUE:
 ```
 1) A vector direction is calculated from the mouse cursor position to the centre of
-the effect (FLARE_EFFECT_CENTRE). 
+   the effect (FLARE_EFFECT_CENTRE). 
 2) Polygons of various sizes and colors are added along that vector (with sizes 
-proportional to the distance from the centre).
+   proportional to the distance from the centre).
 3) All polygons are filled with RGB color corresponding to the wavelength relative to
-their distances.
+   their distances.
+   
 When the polygon is placed at the end of the vector, the RGB color will vary from purple,
 blue, green yellow, orange and red when moving along the lens vector (red being the
 closest from the user position, see color_spectrum image)
