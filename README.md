@@ -3,7 +3,7 @@
 ## Pseudo Lens flare effect for 2D video game
 
 ### PROJECT:
-```
+
 Lens flare effect demonstration is using a `wavelength to RGB` algorithm
 written in python and ported into C language for speed improvement.
 You can find the wavelength to RGB algorithm in the C file wavelength.c under the main
@@ -11,9 +11,9 @@ project directory.
 Note:
     If you change the C file, don't forget to build it with gcc and to re-build the project
     using the command : 
-```
+
 ```DOS
-"C:>python setup_fares.py build_ext --inplace"
+C:>python setup_fares.py build_ext --inplace
 ```
 
 ### TECHNIQUE:
