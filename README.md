@@ -20,8 +20,10 @@ C:>python setup_fares.py build_ext --inplace
 ```
 1) A vector direction is calculated from the mouse cursor position to the centre of
    the effect (FLARE_EFFECT_CENTRE). 
+   
 2) Polygons of various sizes and colors are added along that vector (with sizes 
    proportional to the distance from the centre).
+   
 3) All polygons are filled with RGB color corresponding to the wavelength relative to
    their distances.
    
@@ -59,7 +61,7 @@ for r in range(20):
                                 make_vector2d(FLARE_EFFECT_CENTRE), 0.8, 1.2, exc))
 
 # In the above example, we are creating 20 sub-flares with texture (image Untitled3.png)
-# All instance will be added to the python list FLARES.
+# All instances will be added to the python list FLARES.
 # The method second_flares assign the texture and give a random position to the
 # flare along the direction vector. Float values 0.8 and 1.2 are the minimum and maximum
 # of the polygon size.
