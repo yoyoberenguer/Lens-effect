@@ -2,6 +2,8 @@
 
 ## Pseudo Lens flare effect for 2D video game
 
+![alt text](https://github.com/yoyoberenguer/lens-effect/blob/master/LensFlare.gif) 
+
 ### PROJECT:
 
 Lens flare effect demonstration is using a `wavelength to RGB` algorithm
@@ -150,5 +152,5 @@ http://www.physics.sfasu.edu/astro/color/spectra.html
 ```
 
 
-![alt text](https://github.com/yoyoberenguer/lens-effect/blob/master/LensFlare.gif) 
+
 
