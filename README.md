@@ -8,44 +8,52 @@
 
 Lens flare effect demonstration is using a `wavelength to RGB` algorithm
 written in python and ported into C language for speed improvement.
-You can find the wavelength to RGB algorithm in the C file wavelength.c under the main
+You can find the wavelength to RGB algorithm in the C file `wavelength.c` under the main
 project directory.
-Note:
-    If you change the C file, don't forget to build it with gcc and to re-build the project
-    using the command : 
 
 ```DOS
+Note:
+    If you change the C file (wavelength.c), don't forget to build it with gcc and re-build the project
+    using the command :
+    
 C:>python setup_fares.py build_ext --inplace
 ```
 
+---
+
 ### TECHNIQUE:
 ```
-1) A vector direction is calculated from the mouse cursor position to the centre of
-   the effect (FLARE_EFFECT_CENTRE). 
+1) A vector direction is calculated from the mouse cursor position on the screen 
+   relative to the centre of the flare effect. 
    
 2) Polygons of various sizes and colors are added along that vector (with sizes 
-   proportional to the distance from the centre).
+   proportional to the distance from the centre of the effect).
    
 3) All polygons are filled with RGB color corresponding to the wavelength relative to
-   their distances.
+   their distances from the centre of the effect
    
-When the polygon is placed at the end of the vector, the RGB color will vary from purple,
-blue, green yellow, orange and red when moving along the lens vector (red being the
-closest from the user position, see color_spectrum image)
+Polygons colors will vary from purple to red (see color spectrum below), red for polygon close to the observer
+and purple toward the centre/origin of the lens flare effect.
 ```
-
+---
 ### DEMO: 
-```
-Edit the file test_flares.py in your favorite python IDE and run it
-```
 
-Color Spectrum
+Edit the file `test_flares.py` in your favorite python IDE and run it 
+
+---
+
+### Color Spectrum
 
 ![alt text](https://github.com/yoyoberenguer/lens-effect/blob/master/color_spectrum.png) 
 
+---
+
 ### HOW TO CREATE FLARES
 
+The project is using the game library Pygame for loading image, transformation and creating sprites 
+
 #### 1) Create a texture
+
 ```python
 TEXTURE = pygame.image.load('Assets\\Untitled3.png').convert(24)
 TEXTURE = pygame.transform.smoothscale(TEXTURE, (100, 100))
@@ -53,24 +61,35 @@ TEXTURE.set_colorkey((0, 0, 0, 0), pygame.RLEACCEL)
 ```
 
 #### 2) Create a polygon
+
 ```python
 octagon = polygon()
 ```
-#### 3) Instantiate the flare
+
+#### 3) Instantiate the flares
+
+In the below example, we are creating 20 sub-flares from the texture `Untitled3.png`
+
+All instances will be added to the python list FLARES.
+
+The method `second_flares` assign the texture and give a random position to the
+flare along the direction vector. 
+
+Float values 0.8 and 1.2 are the minimum and maximum for the polygon size.
+
+Texture(s) belonging to the list `exc` (exclude) will be blit directly
+on the flare vector without creating a textured polygon
+
 ``` python
 for r in range(20):
     FLARES.append(second_flares(TEXTURE, octagon.copy(),
                                 make_vector2d(FLARE_EFFECT_CENTRE), 0.8, 1.2, exc))
 
-# In the above example, we are creating 20 sub-flares with texture (image Untitled3.png)
-# All instances will be added to the python list FLARES.
-# The method second_flares assign the texture and give a random position to the
-# flare along the direction vector. Float values 0.8 and 1.2 are the minimum and maximum
-# of the polygon size.
-# Texture contain in the list named <exc> will be blit directly
-# on the flare vector without creating a textured polygon
+
 ```
+
 #### 4) Create the sprites
+
 ```python
 for flares in FLARES:
     create_flare_sprite(
@@ -78,45 +97,46 @@ for flares in FLARES:
         position_=FLARE_EFFECT_CENTRE, layer_=0, gl_=GL,
         child_group_=CHILD, blend_=pygame.BLEND_RGB_ADD, event_type='CHILD', delete_=False)
 
-# flares[0] : correspond to the texture 
-# flares[1] : the distance from the centre of the effect
-# vector    : the flare vector
-# position  : Polygon position along the flare vector
-# layer     : layer used for displaying the sprite (this is not implemented yet)
-# GL        : Global constant 
+# flares[0] : Correspond to the texture 
+# flares[1] : Distance from the centre of the effect
+# vector    : Flare vector
+# position  : Polygon(s) positions (x,y) along the flare vector
+# layer     : Sprite layer used for displaying the sprite(s) (this is not implemented yet)
+# GL        : Global constant (python class containing all the project constants and variables)
 # CHILD     : is the group containing all the instances
-# blend     : default additive mode 
-# event     : can be 'CHILD' or 'PARENT' child is used for the flares (polygons)
-#            Child polygon 's size is inalterable. 
+# blend     : Sprite additive mode (e.g BLEND_RGB_ADD etc)
+# event     : Event can be set to 'CHILD' or 'PARENT' child is used for the flares (polygons)
+#             Child polygon 's size is inalterable. 
 ```
-#### 5) Fisplay the sprites in your mainloop
+
+#### 5) Fisplay the sprites in your game mainloop
+
 ```python
 display_flare_sprite(CHILD, STAR_BURST, STAR_BURST3x, GL, VECTOR)
 ```
 
-### REQUIREMENT:
+### REQUIREMENTS:
 ```
 - python > 3.0
-- numpy arrays
-- pygame with SDL version 1.2 (SDL version 2 untested)
-  Cython
-- A compiler such visual studio, MSVC, CGYWIN setup correctly
-  on your system
+- numpy 
+- pygame 
+- Cython
+- A compiler such visual studio, MSVC, CGYWIN setup correctly on your system
 ```
 
-### BUILDING PROJECT:
+### BUILDING THE PROJECT:
 ```
 Use the following command:
 C:\python setup_project.py build_ext --inplace
 ```
 
-#### Reference see page https://www.noah.org/wiki/Wavelength_to_RGB_in_Python
+#### Reference 
+see page:
+http://www.physics.sfasu.edu/astro/color/spectra.html
 
 ```
 Wavelength to RGB in Python - Noah.org
 Based on code by Dan Bruton
-http://www.physics.sfasu.edu/astro/color/spectra.html
-
 
 == A few notes about color ==
 
