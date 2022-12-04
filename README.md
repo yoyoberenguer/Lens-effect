@@ -11,14 +11,6 @@ written in python and ported into C language for speed improvement.
 You can find the wavelength to RGB algorithm in the C file `wavelength.c` under the main
 project directory.
 
-```DOS
-Note:
-    If you change the C file (wavelength.c), don't forget to build it with gcc and re-build the project
-    using the command :
-    
-C:>python setup_fares.py build_ext --inplace
-```
-
 ---
 
 ### TECHNIQUE:
@@ -35,8 +27,19 @@ C:>python setup_fares.py build_ext --inplace
 Polygons colors will vary from purple to red (see color spectrum below), red for polygon close to the observer
 and purple toward the centre/origin of the lens flare effect.
 ```
+
 ---
+
 ### DEMO: 
+
+Download the source code and decompress the archive `Lens-effect-master`.
+
+Enter the folder Lens-effect-master (and run the following command in a DOS 
+command prompt
+
+```
+C:>python setup_project.py build_ext --inplace
+```
 
 Edit the file `test_flares.py` in your favorite python IDE and run it 
 
