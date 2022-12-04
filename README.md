@@ -112,7 +112,7 @@ for flares in FLARES:
 #             Child polygon 's size is inalterable. 
 ```
 
-#### 5) Fisplay the sprites in your game mainloop
+#### 5) Display the sprites in your game mainloop
 
 ```python
 display_flare_sprite(CHILD, STAR_BURST, STAR_BURST3x, GL, VECTOR)
