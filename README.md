@@ -35,7 +35,7 @@ and purple toward the centre/origin of the lens flare effect.
 Download the source code and decompress the archive `Lens-effect-master`.
 
 Enter the folder Lens-effect-master (and run the following command in a DOS 
-command prompt
+command prompt)
 
 ```
 C:>python setup_project.py build_ext --inplace
