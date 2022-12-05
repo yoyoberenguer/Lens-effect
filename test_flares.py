@@ -201,7 +201,7 @@ class GL:
 
 AVG_FPS = []
 
-SCREENRECT = pygame.Rect(0, 0, 400, 400)
+SCREENRECT = pygame.Rect(0, 0, 800, 600)
 GL.screenrect = SCREENRECT
 
 # os.environ['SDL_VIDEODRIVER'] = 'windib'
@@ -388,7 +388,7 @@ while not STOP_GAME:
     TIME_PASSED_SECONDS = clock.tick_busy_loop(800)
     GL.TIME_PASSED_SECONDS = TIME_PASSED_SECONDS
     avg_fps = clock.get_fps()
-    print(avg_fps, 1000/(avg_fps + 0.001))
+    # print(avg_fps, 1000/(avg_fps + 0.001))
 
     FRAME += 1
 
